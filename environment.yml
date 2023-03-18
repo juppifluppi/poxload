@@ -3,9 +3,7 @@ channels:
   - conda-forge
   - r
 dependencies:
-  - rdkit-pypi
   - rdkit
-  - stmol
   - dimorphite_dl
   - padelpy
   - scopy
@@ -14,5 +12,4 @@ dependencies:
   - scipy
   - mordred
   - numpy==1.19
-  - r-essentials
   - r-cubist
