@@ -12,7 +12,7 @@ padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 #mordredpol=mordredpol[,colnames(mordredpol)%in%names(x)]
 
 print(ncol(mordredpol))
-print(ncol(mordred))
+print(ncol(t(mordred)))
 
 #mordred=mordred[mordred$Name%in%padel$Name,]
 #padel=padel[padel$Name%in%mordred$Name,]
