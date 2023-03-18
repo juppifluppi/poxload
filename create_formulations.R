@@ -7,22 +7,8 @@ padel=rbind(padel[1:nrow(padel)/2,1],padel[((nrow(padel)/2)+1):nrow(padel),1])
 colnames(padel)=padel[1,]
 padel=padel[-1,]
 
-padelpol=rbind(padelpol[1:nrow(padelpol)/2,1],padelpol[((nrow(padelpol)/2)+1):nrow(padelpol),1])
-colnames(padelpol)=padelpol[1,]
-padelpol=padelpol[-1,]
-
-mordred=rbind(mordred[1:nrow(mordred)/2,1],mordred[((nrow(mordred)/2)+1):nrow(mordred),1])
-colnames(mordred)=mordred[1,]
-mordred=mordred[-1,]
-
-mordredpol=rbind(mordredpol[1:nrow(mordredpol)/2,1],mordredpol[((nrow(mordredpol)/2)+1):nrow(mordredpol),1])
-colnames(mordredpol)=mordredpol[1,]
-mordredpol=mordredpol[-1,]
-
 print(ncol(padel))
-print(ncol(padelpol))
-print(ncol(mordred))
-print(ncol(mordredpol))
+print(nrow(padel))
 
 #mordredpol=mordredpol[,colnames(mordredpol)%in%colnames(mordred)]
 #mordred=mordred[,colnames(mordred)%in%colnames(mordredpol)]
