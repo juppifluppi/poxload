@@ -5,6 +5,7 @@ mordredpol=read.csv("descriptors_mordred_pol.csv")
 
 x=(padel[c(1:nrow(padel)/2),1])
 names(x)=(padel[c(((nrow(padel)/2)+1):(nrow(padel))),1])
+padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 #mordred=mordred[mordred$Name%in%padel$Name,]
 #padel=padel[padel$Name%in%mordred$Name,]
 padel=rbind(padelpol,padel)
