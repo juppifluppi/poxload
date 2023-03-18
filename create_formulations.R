@@ -22,8 +22,8 @@ padel=rbind(padelpol,x)
 #mordred=mordred[,-1]
 #descriptors=cbind(padel,mordred)
 descriptors=padel
-print(descriptors[,1])
-names=descriptors[,1]
+
+#names=descriptors[,1]
 
 descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 compounds="Drug"
@@ -95,5 +95,5 @@ for(ij in c(1:ncol(dm))){
 g=cbind(formulations,am,bm,dm)
 wholeset=rbind(wholeset,g)
 }
-#wholeset=wholeset[-1,]
+wholeset=wholeset[-1,]
 write.csv(wholeset,file=paste0("fdaset.dat"),row.names = F)
