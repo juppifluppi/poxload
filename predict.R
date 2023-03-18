@@ -1,5 +1,5 @@
 library("caret")
-devtools::load_all("Cubist")
+devtools::load_all("./")
 
 fda=read.csv("fdaset.dat")
 fg=rep(10,nrow(fda))
