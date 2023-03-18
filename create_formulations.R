@@ -4,10 +4,6 @@ mordred=read.csv("descriptors_mordred_fda.csv")
 mordredpol=read.csv("descriptors_mordred_pol.csv")
 mordred=mordred[mordred$Name%in%padel$Name,]
 padel=padel[padel$Name%in%mordred$Name,]
-
-print(ncol(padelpol))
-print(ncol(padel))
-
 padel=rbind(padelpol,padel)
 mordred=rbind(mordredpol,mordred)
 mordred=mordred[,-1]
@@ -82,5 +78,4 @@ g=cbind(formulations,am,bm,dm)
 wholeset=rbind(wholeset,g)
 }
 wholeset=wholeset[-1,]
-print(wholeset)
 write.csv(wholeset,file=paste0("fdaset.dat"),row.names = F)
