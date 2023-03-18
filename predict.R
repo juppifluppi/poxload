@@ -9,5 +9,5 @@ colnames(fda)[ncol(fda)]="formulations.DF"
 fda=cbind(fda,fz)
 colnames(fda)[ncol(fda)]="formulations.Time"
 
-fx=predict(final_model[["cubist"]],fda,na.action=na.pass)
+fx=predict(model,fda,na.action=na.pass)
 print(fx)
