@@ -75,5 +75,4 @@ result1 = process1.communicate()
 process2 = subprocess.Popen(["Rscript", "predict.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 result2 = process2.communicate()
         
-          
-
+st.write(result2)         
