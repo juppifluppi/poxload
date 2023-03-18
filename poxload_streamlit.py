@@ -61,7 +61,7 @@ with open("descriptors_mordred_fda.csv","a") as f:
     
 st.image(im)
     
-
+st.write(ax)
 #except:
 #    st.write("Something is wrong with your SMILES code.")
 #    st.stop()
