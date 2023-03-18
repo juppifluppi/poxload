@@ -4,7 +4,7 @@ channels:
   - r
 dependencies:
   - rdkit
-  - dimorphite_dl
+  - dimorphite-dl
   - padelpy
   - scopy
   - pandas
