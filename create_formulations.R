@@ -25,7 +25,8 @@ descriptors=padel
 
 names=descriptors[,1]
 
-#descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
+descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
+print(descriptors[,1])
 compounds="Drug"
 
 
