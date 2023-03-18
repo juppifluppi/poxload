@@ -10,12 +10,12 @@ colnames(fda)[ncol(fda)]="formulations.DF"
 fda=cbind(fda,fz)
 colnames(fda)[ncol(fda)]="formulations.Time"
 
-print(fda$POL)
+#print(fda$POL)
 
 for(i in c(1:ncol(fda))){
   fda[,i]=as.numeric(as.character(fda[,i]))
 }
 
 fx=predict(final_model[["cubist"]],fda,na.action=na.pass)
-print(fx)
-write.csv(fx,"fx.dat",row.names=F)
+#print(fx)
+write.csv(cbind(fda$POL,fx),"fx.csv",row.names=F)
