@@ -3,7 +3,7 @@ stmol
 dimorphite_dl
 padelpy
 scopy
-numpy
+numpy==1.19
 pandas
 matplotlib
 scipy
