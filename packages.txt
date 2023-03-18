@@ -1,4 +1,4 @@
 libxrender1
 r-base
 r-cran-caret
-java-jdk
+default-jre-headless
