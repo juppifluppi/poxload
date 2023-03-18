@@ -12,6 +12,7 @@ import sys, os
 from mordred import Calculator, descriptors
 from rdkit.Chem import Draw
 import subprocess
+import pandas as pd
 
 
 calc = Calculator(descriptors, ignore_3D=True)
@@ -71,4 +72,7 @@ result1 = process1.communicate()
 
 process2 = subprocess.Popen(["Rscript", "predict.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 result2 = process2.communicate()
-st.write(result2)         
+#st.write(result2)         
+
+df = pd.read_csv(r'fx.csv')
+st.write(df)
