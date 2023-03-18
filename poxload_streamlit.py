@@ -55,8 +55,8 @@ try:
         for o in ax.values():
             f.write(str(o)+",")
             f.write("\n")
-    except:
-        pass
+except:
+    pass
     
     st.image(im)
     
