@@ -4,7 +4,7 @@ mordred=read.csv("descriptors_mordred_fda.csv")
 mordredpol=read.csv("descriptors_mordred_pol.csv")
 
 padel=as.data.frame(padel[1:nrow(padel)/2,1],padel[((nrow(padel)/2)+1):nrow(padel),1])
-print(nrow(padel))
+print(ncol(padel))
 
 #mordredpol=mordredpol[,colnames(mordredpol)%in%colnames(mordred)]
 #mordred=mordred[,colnames(mordred)%in%colnames(mordredpol)]
