@@ -8,6 +8,3 @@ pandas
 matplotlib
 scipy
 mordred
-r-base
-r-dev
-r-cran-caret
