@@ -49,10 +49,11 @@ for(ij in c(1:nrow(formulations))){
   am=rbind(am,bx)
 }
 am=am[-1,]
+print(ncol(am))
 for(ij in c(1:ncol(am))){
   colnames(am)[ij]=paste0("ABLOCK_",colnames(am)[ij])
 }
-print(kj)
+
 
 bm=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
