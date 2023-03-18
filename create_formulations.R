@@ -18,6 +18,8 @@ padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 padel=rbind(padelpol,padel)
 #mordred=rbind(mordredpol,t(mordred))
 
+print(padel[,1])
+
 #mordred=mordred[,-1]
 #descriptors=cbind(padel,mordred)
 descriptors=padel
