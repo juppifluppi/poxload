@@ -35,8 +35,8 @@ names=descriptors[,1]
 #descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 compounds="Drug"
 
-print(descriptors[,c(3:10)])
-
+descriptors[] <- lapply(descriptors, function(x) as.numeric(as.character(x)))
+descriptors=descriptors[ , colSums(is.na(descriptors))==0]
 
 wholeset=rep(NA,ncol(descriptors))
 olo=0
