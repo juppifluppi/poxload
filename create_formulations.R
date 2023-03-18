@@ -25,8 +25,11 @@ descriptors=cbind(padel,mordred)
 
 names=descriptors[,1]
 
-descriptors=(as.matrix(descriptors))
-descriptors=descriptors[, sapply(descriptors, class) == "numeric"]
+nums <- unlist(lapply(descriptors, is.numeric), use.names = FALSE)  
+descriptors=descriptors[ , nums]
+
+#descriptors=(as.matrix(descriptors))
+#descriptors=descriptors[, sapply(descriptors, class) == "numeric"]
 #descriptors <- descriptors %>% dplyr::select(where(is.numeric))
 #descriptors=select_if(descriptors, is.numeric)
 #descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
