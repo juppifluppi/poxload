@@ -5,4 +5,5 @@ r-cran-devtools
 r-cran-caret
 r-cran-tidyverse
 r-cran-purrr
+r-cran-dplyr
 default-jre-headless
