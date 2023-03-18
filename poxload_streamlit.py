@@ -75,4 +75,5 @@ result2 = process2.communicate()
 #st.write(result2)         
 
 df = pd.read_csv(r'fx.csv')
+df = df.rename(columns={'axb': 'Polymer', 'fx': 'LE(%)'})
 st.write(df)
