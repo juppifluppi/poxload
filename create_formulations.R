@@ -25,7 +25,7 @@ descriptors=cbind(padel,mordred)
 
 names=descriptors[,1]
 
-descriptors %>% dplyr::select(where(is.numeric))
+descriptors <- descriptors %>% dplyr::select(where(is.numeric))
 #descriptors=select_if(descriptors, is.numeric)
 #descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 compounds="Drug"
