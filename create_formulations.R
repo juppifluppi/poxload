@@ -23,6 +23,8 @@ descriptors=cbind(padel,mordred)
 #descriptors=padel
 
 #names=descriptors[,1]
+names=c("Drug","MeOx","EtOx","nPrOx","nBuOx","iBuOx","cPrOx","iPrOx","cPrMeOx","sBuOx","EtHepOx","nNonOx","PhOx","PentOx","nPrOzi","nBuOzi","iBuOzi","cPrOzi","iPrOzi","cPrMeOzi","sBuOzi","EtHepOzi","nNonOzi","PhOzi","BzOx","BzOzi","Curcumin","Paclitaxel","Efavirenz","Dexamethason","Tanshinone2A","Axitinib","Brefeldine","Carbamazepine","Dasatinib","Erlotinib","Sunitinib","Clofazimine","Crizotinib","Ezetimib","Vorinostat","Bexarotene","Cabazitaxel","Bortezomib","Cannabidiol","Celecoxib","Clotrimazole","Genistein","Lapatinib","Sorafenib","Vismodegib","Mitotane","SchisandrinA","PipBoc","Pid","EIP","PgMeOx")
+
 
 descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 compounds="Drug"
