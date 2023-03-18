@@ -1,5 +1,6 @@
 library("caret")
-
+install.packages("cubist")
+library("cubist")
 load("cubist.rda")
 
 fda=read.csv("fdaset.dat")
