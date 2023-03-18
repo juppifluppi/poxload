@@ -26,7 +26,7 @@ descriptors=cbind(padel,mordred)
 names=descriptors[,1]
 
 nums <- unlist(lapply(descriptors, is.numeric), use.names = FALSE)  
-descriptors=descriptors[ , nums]
+print(descriptors[ , nums])
 
 #descriptors=(as.matrix(descriptors))
 #descriptors=descriptors[, sapply(descriptors, class) == "numeric"]
