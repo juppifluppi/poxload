@@ -24,9 +24,11 @@ descriptors=cbind(padel,mordred)
 
 names=descriptors[,1]
 
-
+print(descriptors[1,])
 descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 compounds="Drug"
+print(descriptors[1,])
+
 
 print(names)
 
@@ -38,7 +40,7 @@ olo=olo+1
 formulations=read.csv("formulations.csv",dec=",")
 formulations$D=kj
 
-print(descriptors[1,])
+
   
 am=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
