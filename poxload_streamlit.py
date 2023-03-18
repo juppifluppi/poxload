@@ -27,7 +27,7 @@ SMI = st.text_input('Enter SMILES code', 'CC(C)NCC(COC1=CC=C(C=C1)CCOC)O')
 mol = Chem.MolFromSmiles(SMI)
 sdm = pretreat.StandardizeMol()
 mol = sdm.disconnect_metals(mol)    
-SMI = str(Chem.MolFromSmiles(mol))
+SMI = str(Chem.MolToSmiles(mol))
 im = Draw.MolToImage(m,fitImage=True)    
 
 descriptors = from_smiles(SMI)
