@@ -22,6 +22,7 @@ padel=rbind(padelpol,x)
 #descriptors=cbind(padel,mordred)
 descriptors=padel
 names=descriptors$Name
+print(names)
 descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 compounds=padel$Name[!padel$Name%in%padelpol$Name]
 
@@ -33,7 +34,7 @@ olo=olo+1
 formulations=read.csv("formulations.csv",dec=",")
 formulations$D=kj
   
-print(descriptors)
+
   
 am=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
