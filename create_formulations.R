@@ -22,6 +22,7 @@ padel=rbind(padelpol,x)
 #mordred=mordred[,-1]
 #descriptors=cbind(padel,mordred)
 descriptors=padel
+print(descriptors[,1])
 names=descriptors[,1]
 
 descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
