@@ -24,9 +24,11 @@ padel=rbind(padelpol,x)
 #descriptors=cbind(padel,mordred)
 descriptors=padel
 names=descriptors$Name
-print(padel$Name)
+
 descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 compounds=padel$Name[!padel$Name%in%padelpol$Name]
+
+print(descriptors)
 
 wholeset=rep(NA,ncol(descriptors))
 olo=0
