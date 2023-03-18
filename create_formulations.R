@@ -15,7 +15,7 @@ padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 
 #mordred=mordred[mordred$Name%in%padel$Name,]
 #padel=padel[padel$Name%in%mordred$Name,]
-padel=rbind(padelpol,t(padel))
+padel=rbind(padelpol,padel)
 #mordred=rbind(mordredpol,t(mordred))
 
 print(nrow(padel))
