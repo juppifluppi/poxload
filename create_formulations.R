@@ -3,10 +3,10 @@ padelpol=read.csv("descriptors_padel_pol.csv")
 #mordred=read.csv("descriptors_mordred_fda.csv")
 #mordredpol=read.csv("descriptors_mordred_pol.csv")
 
-x=(padel[c(((nrow(padel)/2)):(nrow(padel))),1])
+x=(padel[c(((nrow(padel)/2)+1):(nrow(padel))),1])
 names(x)=(padel[c(1:(nrow(padel)/2)),1])
 x=c("Drug",x)
-names(x)=c(colnames(padel)[1],names(x))
+print(names(x))
 padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 
 #x=(mordred[c(1:nrow(mordred)/2),1])
