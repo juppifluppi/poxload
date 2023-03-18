@@ -8,7 +8,7 @@ padel=t(padel)
 colnames(padel)=padel[1,]
 padel=padel[-1,]
 
-print(ncol(padel))
+print(nrow(padel))
 
 #mordredpol=mordredpol[,colnames(mordredpol)%in%colnames(mordred)]
 #mordred=mordred[,colnames(mordred)%in%colnames(mordredpol)]
