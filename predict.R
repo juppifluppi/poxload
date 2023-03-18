@@ -1,5 +1,4 @@
 library("caret")
-install.packages("cubist")
 library("cubist")
 load("cubist.rda")
 
