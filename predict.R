@@ -10,5 +10,9 @@ colnames(fda)[ncol(fda)]="formulations.DF"
 fda=cbind(fda,fz)
 colnames(fda)[ncol(fda)]="formulations.Time"
 
+for(i in c(1:ncol(fda))){
+  fda[,i]=as.numeric(fda[,i])
+}
+
 fx=predict(final_model[["cubist"]],fda,na.action=na.pass)
 print(fx)
