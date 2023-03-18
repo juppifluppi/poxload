@@ -58,7 +58,7 @@ with open("descriptors_mordred_fda.csv","a") as f:
     for o in ax.values():
         f.write(str(o)+",")
         f.write("\n")
-  
+st.write(descriptors)  
 st.image(im)
 
 #except:
