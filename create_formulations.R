@@ -5,7 +5,7 @@ padelpol=read.csv("descriptors_padel_pol.csv")
 
 x=(padel[c(((nrow(padel)/2)+1):(nrow(padel))),1])
 names(x)=(padel[c(1:(nrow(padel)/2)),1])
-x=c("Drug",x)
+x=append("Drug",x)
 names(x)=c(colnames(padel)[1],names(x))
 padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 
