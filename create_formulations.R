@@ -3,9 +3,12 @@ padelpol=read.csv("descriptors_padel_pol.csv")
 mordred=read.csv("descriptors_mordred_fda.csv")
 mordredpol=read.csv("descriptors_mordred_pol.csv")
 
-padel=padel[c(((nrow(padel)/2)+1):nrow(padel)),1]
+x=padel[c(((nrow(padel)/2)+1):nrow(padel)),1]
+names(x)=padel[c(1:nrow(padel)/2),1]
+padelpol=padelpol[,colnames(padelpol)%in%names(x)]
+padel=rbind(padelpol,x)
 #padel=padel[c(1:nrow(padel)/2),1]
-print(padel)
+print(ncol(padel))
 
 #mordred=mordred[mordred$Name%in%padel$Name,]
 #padel=padel[padel$Name%in%mordred$Name,]
