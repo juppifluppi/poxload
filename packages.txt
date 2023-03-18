@@ -1,4 +1,3 @@
 libxrender1
 r-base
-r-dev
 r-cran-caret
