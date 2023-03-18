@@ -2,10 +2,6 @@ padel=read.csv("descriptors_padel_fda.csv")
 padelpol=read.csv("descriptors_padel_pol.csv")
 mordred=read.csv("descriptors_mordred_fda.csv")
 mordredpol=read.csv("descriptors_mordred_pol.csv")
-print(padel[c(1:nrow(padel)/2),1])
-print(nrow(padelpol))
-print(nrow(mordred))
-print(nrow(mordredpol))
 #mordredpol=mordredpol[,colnames(mordredpol)%in%colnames(mordred)]
 #mordred=mordred[,colnames(mordred)%in%colnames(mordredpol)]
 #mordred=mordred[mordred$Name%in%padel$Name,]
