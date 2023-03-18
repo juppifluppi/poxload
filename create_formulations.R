@@ -9,6 +9,8 @@ mordred=rbind(mordredpol,mordred)
 mordred=mordred[,-1]
 descriptors=cbind(padel,mordred)
 names=descriptors$Name
+print(mordred)
+print(padel)
 descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 compounds=padel$Name[!padel$Name%in%padelpol$Name]
 
