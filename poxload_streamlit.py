@@ -61,11 +61,9 @@ with open("descriptors_mordred_fda.csv","a") as f:
     
 st.image(im)
     
-st.write(ax)
 #except:
 #    st.write("Something is wrong with your SMILES code.")
 #    st.stop()
-
 
 process1 = subprocess.Popen(["Rscript", "create_formulations.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 result1 = process1.communicate()
@@ -74,5 +72,4 @@ st.write(result1)
 
 process2 = subprocess.Popen(["Rscript", "predict.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 result2 = process2.communicate()
-        
 st.write(result2)         
