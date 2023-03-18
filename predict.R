@@ -19,4 +19,6 @@ for(i in c(1:ncol(fda))){
 fx=predict(final_model[["cubist"]],fda,na.action=na.pass)
 iji=cbind(axb,iji)
 colnames(iji)=c("Polymer","LE (%)")
+iji = iji[order(iji[,'Polymer'],-df[,'Polymer']),]
+iji = iji[!duplicated(df$Polymer),]
 write.csv(iji,"fx.csv",row.names=F)
