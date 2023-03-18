@@ -10,6 +10,8 @@ import scopy.ScoDruglikeness
 from padelpy import from_smiles
 import sys, os
 from mordred import Calculator, descriptors
+from rdkit.Chem import Draw
+
 
 calc = Calculator(descriptors, ignore_3D=True)
 
