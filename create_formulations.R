@@ -16,7 +16,7 @@ mordredpol=mordredpol[,colnames(mordredpol)%in%names(x)]
 #mordred=mordred[mordred$Name%in%padel$Name,]
 #padel=padel[padel$Name%in%mordred$Name,]
 padel=rbind(padelpol,x)
-mordred=rbind(mordredpol,y)
+mordred=rbind(mordredpol,x)
 
 #mordred=mordred[,-1]
 descriptors=cbind(padel,mordred)
