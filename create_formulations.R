@@ -34,8 +34,8 @@ names=descriptors[,1]
 #descriptors=select_if(descriptors, is.numeric)
 #descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 compounds="Drug"
-print(ncol(descriptors))
 
+print(descriptors[,c(3:10)])
 
 
 wholeset=rep(NA,ncol(descriptors))
