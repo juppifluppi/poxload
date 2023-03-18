@@ -7,9 +7,6 @@ x=(padel[c(((nrow(padel)/2)+1):(nrow(padel))),1])
 names(x)=(padel[c(1:(nrow(padel)/2)),1])
 padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 
-print(ncol(padelpol))
-print(ncol(t(padel)))
-
 #x=(mordred[c(1:nrow(mordred)/2),1])
 #print(x)
 #names(x)=(mordred[c(((nrow(mordred)/2)+1):(nrow(mordred))),1])
@@ -18,7 +15,7 @@ print(ncol(t(padel)))
 
 #mordred=mordred[mordred$Name%in%padel$Name,]
 #padel=padel[padel$Name%in%mordred$Name,]
-padel=rbind(padelpol,padel)
+padel=rbind(padelpol,x)
 #mordred=rbind(mordredpol,t(mordred))
 
 #mordred=mordred[,-1]
