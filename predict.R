@@ -15,5 +15,6 @@ for(i in c(1:ncol(fda))){
 }
 
 fx=predict(final_model[["cubist"]],fda,na.action=na.pass)
+print(fda)
 print(fx)
 write.csv(fx,"fx.dat",row.names=F)
