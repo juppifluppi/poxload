@@ -11,6 +11,9 @@ padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 #names(x)=(mordred[c(((nrow(mordred)/2)+1):(nrow(mordred))),1])
 #mordredpol=mordredpol[,colnames(mordredpol)%in%names(x)]
 
+print(ncol(mordredpol))
+print(ncol(mordred))
+
 #mordred=mordred[mordred$Name%in%padel$Name,]
 #padel=padel[padel$Name%in%mordred$Name,]
 padel=rbind(padelpol,t(padel))
