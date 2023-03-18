@@ -19,6 +19,11 @@ mordredpol=rbind(mordredpol[1:nrow(mordredpol)/2,1],mordredpol[((nrow(mordredpol
 colnames(mordredpol)=mordredpol[1,]
 mordredpol=mordredpol[-1,]
 
+print(ncol(padel))
+print(ncol(padelpol))
+print(ncol(mordred))
+print(ncol(mordredpol))
+
 #mordredpol=mordredpol[,colnames(mordredpol)%in%colnames(mordred)]
 #mordred=mordred[,colnames(mordred)%in%colnames(mordredpol)]
 #mordred=mordred[mordred$Name%in%padel$Name,]
