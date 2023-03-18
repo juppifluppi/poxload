@@ -21,7 +21,7 @@ dimorphite_dl = DimorphiteDL(
     pka_precision = 0.1
 )
 
-try:
+#try:
     SMI = st.text_input('Enter SMILES code', 'CC(C)NCC(COC1=CC=C(C=C1)CCOC)O')  
     # SMI = str(dimorphite_dl.protonate(SMI)[0])    
     mol = Chem.MolFromSmiles(SMI)
@@ -58,8 +58,7 @@ try:
     
     st.image(im)
     
-# output error if SMILES cannot be recognized
 
-except:
-    st.write("Something is wrong with your SMILES code.")
-    st.stop()
+#except:
+#    st.write("Something is wrong with your SMILES code.")
+#    st.stop()
