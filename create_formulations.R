@@ -13,8 +13,8 @@ mordredpol=mordredpol[,colnames(mordredpol)%in%names(x)]
 
 #mordred=mordred[mordred$Name%in%padel$Name,]
 #padel=padel[padel$Name%in%mordred$Name,]
-padel=cbind(padelpol,padel)
-mordred=cbind(mordredpol,mordred)
+padel=cbind(padelpol,t(padel))
+mordred=cbind(mordredpol,t(mordred))
 
 
 
