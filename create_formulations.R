@@ -24,8 +24,6 @@ descriptors=cbind(padel,mordred)
 
 names=descriptors[,1]
 
-print(descriptors[,1])
-
 descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 compounds="Drug"
 
@@ -40,7 +38,6 @@ formulations=read.csv("formulations.csv",dec=",")
 formulations$D=kj
   
 
-  
 am=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
   bx=descriptors[names%in%formulations[ij,]$A1,]
