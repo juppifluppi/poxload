@@ -2,6 +2,6 @@ libxrender1
 r-base
 r-cran-caret
 r-cran-tidyverse
-r-cran-cubist
+r-cran-Cubist
 r-cran-purrr
 default-jre-headless
