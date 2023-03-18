@@ -18,8 +18,6 @@ padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 padel=rbind(padelpol,padel)
 #mordred=rbind(mordredpol,t(mordred))
 
-print(nrow(padel))
-
 #mordred=mordred[,-1]
 #descriptors=cbind(padel,mordred)
 descriptors=padel
@@ -33,7 +31,7 @@ for(kj in compounds){
 olo=olo+1
 print(paste0(olo,"/",length(compounds)))  
   
-formulations=read.csv("test.csv",dec=",")
+formulations=read.csv("formulations.csv",dec=",")
 formulations$D=kj
   
 am=rep(NA,ncol(descriptors))
