@@ -25,7 +25,7 @@ descriptors=cbind(padel,mordred)
 
 names=descriptors[,1]
 
-descriptors=as.data.frame(as.matrix(descriptors))
+descriptors=(as.matrix(descriptors))
 descriptors=descriptors[, sapply(descriptors, class) == "numeric"]
 #descriptors <- descriptors %>% dplyr::select(where(is.numeric))
 #descriptors=select_if(descriptors, is.numeric)
