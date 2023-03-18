@@ -13,12 +13,13 @@ padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 #print(names(x))
 #mordredpol=mordredpol[,colnames(mordredpol)%in%names(x)]
 
+print(ncol(padelpol))
+
 #mordred=mordred[mordred$Name%in%padel$Name,]
 #padel=padel[padel$Name%in%mordred$Name,]
 padel=rbind(padelpol,padel)
 #mordred=rbind(mordredpol,t(mordred))
-padel=t(padel)
-print(padel[,1])
+
 
 #mordred=mordred[,-1]
 #descriptors=cbind(padel,mordred)
