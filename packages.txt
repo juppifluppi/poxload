@@ -1,5 +1,6 @@
 libxrender1
 r-base
+r-base-dev
 r-cran-caret
 r-cran-tidyverse
 r-cran-cubist
