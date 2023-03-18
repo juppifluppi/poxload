@@ -22,8 +22,7 @@ mordred=rbind(mordredpol,x)
 descriptors=cbind(padel,mordred)
 #descriptors=padel
 
-#names=descriptors[,1]
-names=c("Drug","MeOx","EtOx","nPrOx","nBuOx","iBuOx","cPrOx","iPrOx","cPrMeOx","sBuOx","EtHepOx","nNonOx","PhOx","PentOx","nPrOzi","nBuOzi","iBuOzi","cPrOzi","iPrOzi","cPrMeOzi","sBuOzi","EtHepOzi","nNonOzi","PhOzi","BzOx","BzOzi","Curcumin","Paclitaxel","Efavirenz","Dexamethason","Tanshinone2A","Axitinib","Brefeldine","Carbamazepine","Dasatinib","Erlotinib","Sunitinib","Clofazimine","Crizotinib","Ezetimib","Vorinostat","Bexarotene","Cabazitaxel","Bortezomib","Cannabidiol","Celecoxib","Clotrimazole","Genistein","Lapatinib","Sorafenib","Vismodegib","Mitotane","SchisandrinA","PipBoc","Pid","EIP","PgMeOx")
+names=descriptors[,1]
 
 
 descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
@@ -39,7 +38,7 @@ olo=olo+1
 formulations=read.csv("formulations.csv",dec=",")
 formulations$D=kj
   
-print(kj)
+
 am=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
   bx=descriptors[names%in%formulations[ij,]$A1,]
@@ -49,6 +48,7 @@ for(ij in c(1:nrow(formulations))){
   bx=bx+t1x+t2x
   am=rbind(am,bx)
 }
+print(kj)
 am=am[-1,]
 for(ij in c(1:ncol(am))){
   colnames(am)[ij]=paste0("ABLOCK_",colnames(am)[ij])
