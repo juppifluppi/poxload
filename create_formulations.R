@@ -28,7 +28,7 @@ names=descriptors[,1]
 descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 compounds="Drug"
 
-
+print(names)
 
 wholeset=rep(NA,ncol(descriptors))
 olo=0
@@ -37,6 +37,8 @@ olo=olo+1
   
 formulations=read.csv("formulations.csv",dec=",")
 formulations$D=kj
+
+print(formulations$A1)
   
 am=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
@@ -48,11 +50,10 @@ for(ij in c(1:nrow(formulations))){
   am=rbind(am,bx)
 }
 am=am[-1,]
-
 for(ij in c(1:ncol(am))){
   colnames(am)[ij]=paste0("ABLOCK_",colnames(am)[ij])
 }
-print(am)
+
 
 bm=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
