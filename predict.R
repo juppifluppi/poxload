@@ -1,5 +1,7 @@
 library("caret")
 
+load("cubist.rda")
+
 fda=read.csv("fdaset.dat")
 fg=rep(10,nrow(fda))
 fz=rep(0,nrow(fda))
