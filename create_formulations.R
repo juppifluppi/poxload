@@ -18,7 +18,7 @@ print(ncol(padel))
 
 #mordred=mordred[mordred$Name%in%padel$Name,]
 #padel=padel[padel$Name%in%mordred$Name,]
-padel=rbind(padelpol,padel)
+padel=rbind(padelpol,t(padel))
 #mordred=rbind(mordredpol,t(mordred))
 
 #mordred=mordred[,-1]
