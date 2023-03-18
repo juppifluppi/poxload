@@ -24,13 +24,11 @@ descriptors=cbind(padel,mordred)
 
 names=descriptors[,1]
 
-print(descriptors[1,])
 descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 compounds="Drug"
-print(descriptors[1,])
+print(ncol(descriptors))
 
 
-print(names)
 
 wholeset=rep(NA,ncol(descriptors))
 olo=0
