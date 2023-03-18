@@ -11,6 +11,7 @@ from padelpy import from_smiles
 import sys, os
 from mordred import Calculator, descriptors
 from rdkit.Chem import Draw
+import subprocess
 
 
 calc = Calculator(descriptors, ignore_3D=True)
@@ -64,3 +65,10 @@ st.image(im)
 #except:
 #    st.write("Something is wrong with your SMILES code.")
 #    st.stop()
+
+
+process1 = subprocess.Popen(["Rscript", "create_formulations.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+result1 = process1.communicate()
+
+
+
