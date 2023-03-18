@@ -4,6 +4,7 @@ padelpol=read.csv("descriptors_padel_pol.csv")
 #mordredpol=read.csv("descriptors_mordred_pol.csv")
 
 print(colnames(padelpol))
+print(colnames(padel))
 
 x=(padel[c(((nrow(padel)/2)+1):(nrow(padel))),1])
 names(x)=(padel[c(1:(nrow(padel)/2)),1])
