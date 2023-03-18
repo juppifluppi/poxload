@@ -1,5 +1,6 @@
 library("caret")
 devtools::load_all("Cubist")
+load("cubist.rda")
 
 fda=read.csv("fdaset.dat")
 fg=rep(10,nrow(fda))
@@ -9,5 +10,5 @@ colnames(fda)[ncol(fda)]="formulations.DF"
 fda=cbind(fda,fz)
 colnames(fda)[ncol(fda)]="formulations.Time"
 
-fx=predict(model,fda,na.action=na.pass)
+fx=predict(final_model[["cubist"]],fda,na.action=na.pass)
 print(fx)
