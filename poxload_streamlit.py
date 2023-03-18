@@ -1,0 +1,67 @@
+import streamlit as st
+from rdkit import Chem
+from rdkit.Chem import AllChem
+from rdkit import DataStructs
+from rdkit.Chem.Fingerprints import FingerprintMols
+from dimorphite_dl import DimorphiteDL
+from rdkit.Chem.Fingerprints import FingerprintMols
+from scopy.ScoPretreat import pretreat
+import scopy.ScoDruglikeness
+from padelpy import from_smiles
+import sys, os
+from mordred import Calculator, descriptors
+
+calc = Calculator(descriptors, ignore_3D=True)
+
+dimorphite_dl = DimorphiteDL(
+    min_ph = 6.4,
+    max_ph = 6.6,
+    max_variants = 1,
+    label_states = False,
+    pka_precision = 0.1
+)
+
+try:
+    SMI = st.text_input('Enter SMILES code', 'CC(C)NCC(COC1=CC=C(C=C1)CCOC)O')  
+    # SMI = str(dimorphite_dl.protonate(SMI)[0])    
+    mol = Chem.MolFromSmiles(SMI)
+    sdm = pretreat.StandardizeMol()
+    mol = sdm.disconnect_metals(mol)    
+    SMI = str(Chem.MolFromSmiles(mol))
+    im = Draw.MolToImage(m,fitImage=True)    
+
+    descriptors = from_smiles(SMI)
+    items = list(descriptors.items())
+    items.insert(0, ('Name', str(SMI)))
+    descriptors = dict(items)
+    ax=calc(mol)
+    items = list(ax.items())
+    items.insert(0, ('Name', str(SMI))) 
+    ax = dict(items)       
+    
+    with open("descriptors_padel_fda.csv","a") as f:
+        for o in descriptors.keys():
+            f.write(str(o)+",")
+            f.write("\n")
+    with open("descriptors_mordred_fda.csv","a") as f:
+        for o in ax.keys():
+            f.write(str(o)+",")
+            f.write("\n")       
+    with open("descriptors_padel_fda.csv","a") as f:
+        for o in descriptors.values():
+            f.write(str(o)+",")
+            f.write("\n")  
+    with open("descriptors_mordred_fda.csv","a") as f:
+        for o in ax.values():
+            f.write(str(o)+",")
+            f.write("\n")
+    except:
+        pass
+    
+    st.image(im)
+    
+# output error if SMILES cannot be recognized
+
+except:
+    st.write("Something is wrong with your SMILES code.")
+    st.stop()
