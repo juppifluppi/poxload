@@ -6,7 +6,7 @@ padelpol=read.csv("descriptors_padel_pol.csv")
 x=(padel[c(((nrow(padel)/2)+1):(nrow(padel))),1])
 names(x)=(padel[c(1:(nrow(padel)/2)),1])
 x=c("Drug",x)
-names(x)[1]=colnames(padel)[1]
+names(x)=c(colnames(padel)[1],names(x))
 padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 
 #x=(mordred[c(1:nrow(mordred)/2),1])
@@ -28,7 +28,7 @@ names=descriptors$Name
 descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 compounds=padel$Name[!padel$Name%in%padelpol$Name]
 
-print(descriptors)
+
 
 wholeset=rep(NA,ncol(descriptors))
 olo=0
