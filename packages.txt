@@ -1,4 +1,5 @@
 libxrender1
 r-base
 r-cran-caret
+r-cran-tidyverse
 default-jre-headless
