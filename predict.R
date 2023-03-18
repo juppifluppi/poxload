@@ -1,6 +1,5 @@
 library("caret")
-library("cubist")
-load("cubist.rda")
+load_all("Cubist")
 
 fda=read.csv("fdaset.dat")
 fg=rep(10,nrow(fda))
