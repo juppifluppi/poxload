@@ -38,6 +38,7 @@ items = list(descriptors.items())
 items.insert(0, ('Name', str(SMI)))
 descriptors = dict(items)
 ax=calc(mol)
+st.write(ax)
 items = list(ax.items())
 items.insert(0, ('Name', str(SMI))) 
 ax = dict(items)       
@@ -60,7 +61,7 @@ with open("descriptors_mordred_fda.csv","a") as f:
         f.write("\n")
     
 st.image(im)
-    
+
 #except:
 #    st.write("Something is wrong with your SMILES code.")
 #    st.stop()
