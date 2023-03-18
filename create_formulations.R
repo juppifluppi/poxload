@@ -16,6 +16,9 @@ mordredpol=mordredpol[,colnames(mordredpol)%in%names(x)]
 padel=rbind(padelpol,padel)
 mordred=rbind(mordredpol,mordred)
 
+padel=t(padel)
+mordred=t(mordred)
+
 print(ncol(padel))
 print(ncol(mordred))
 
