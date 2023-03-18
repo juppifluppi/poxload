@@ -8,4 +8,4 @@ matplotlib
 scipy
 mordred
 numpy==1.19
-r-cubist
+r-essentials
