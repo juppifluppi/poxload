@@ -3,8 +3,10 @@ padelpol=read.csv("descriptors_padel_pol.csv")
 mordred=read.csv("descriptors_mordred_fda.csv")
 mordredpol=read.csv("descriptors_mordred_pol.csv")
 
-print(colnames(t(padel)))
-print(colnames(padelpol))
+padel=t(padel)
+x=padel[2,]
+names(x)=padel[1,]
+ncol(padel)
 
 #mordred=mordred[mordred$Name%in%padel$Name,]
 #padel=padel[padel$Name%in%mordred$Name,]
