@@ -4,6 +4,10 @@ mordred=read.csv("descriptors_mordred_fda.csv")
 mordredpol=read.csv("descriptors_mordred_pol.csv")
 mordred=mordred[mordred$Name%in%padel$Name,]
 padel=padel[padel$Name%in%mordred$Name,]
+
+print(ncol(padelpol))
+print(ncol(padel))
+
 padel=rbind(padelpol,padel)
 mordred=rbind(mordredpol,mordred)
 mordred=mordred[,-1]
@@ -20,8 +24,7 @@ print(paste0(olo,"/",length(compounds)))
   
 formulations=read.csv("test.csv",dec=",")
 formulations$D=kj
-  
-print(descriptors)
+
 
 am=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
