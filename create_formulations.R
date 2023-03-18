@@ -11,12 +11,15 @@ x=(mordred[c(1:nrow(mordred)/2),1])
 names(x)=(mordred[c(((nrow(mordred)/2)+1):(nrow(mordred))),1])
 mordredpol=mordredpol[,colnames(mordredpol)%in%names(x)]
 
+print(colnames(padel))
+print(colnames(padelpol))
+
 #mordred=mordred[mordred$Name%in%padel$Name,]
 #padel=padel[padel$Name%in%mordred$Name,]
 padel=rbind(padelpol,padel)
 mordred=rbind(mordredpol,mordred)
 
-print(padel[1,])
+
 
 #mordred=mordred[,-1]
 descriptors=cbind(padel,mordred)
