@@ -30,7 +30,7 @@ mol = Chem.MolFromSmiles(SMI)
 sdm = pretreat.StandardizeMol()
 mol = sdm.disconnect_metals(mol)    
 SMI = str(Chem.MolToSmiles(mol))
-im = Draw.MolToImage(m,fitImage=True)    
+im = Draw.MolToImage(mol,fitImage=True)    
 
 descriptors = from_smiles(SMI)
 items = list(descriptors.items())
