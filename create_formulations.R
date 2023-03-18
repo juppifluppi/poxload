@@ -18,12 +18,12 @@ padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 padel=rbind(padelpol,x)
 #mordred=rbind(mordredpol,t(mordred))
 
-
+print(padel[,1])
 
 #mordred=mordred[,-1]
 #descriptors=cbind(padel,mordred)
 descriptors=padel
-names=names(x)
+names=descriptors$Name
 descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 compounds=padel$Name[!padel$Name%in%padelpol$Name]
 
