@@ -29,7 +29,6 @@ wholeset=rep(NA,ncol(descriptors))
 olo=0
 for(kj in compounds){
 olo=olo+1
-print(paste0(olo,"/",length(compounds)))  
   
 formulations=read.csv("formulations.csv",dec=",")
 formulations$D=kj
