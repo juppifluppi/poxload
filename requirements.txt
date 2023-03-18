@@ -8,4 +8,3 @@ matplotlib
 scipy
 mordred
 numpy==1.19
-r-essentials
