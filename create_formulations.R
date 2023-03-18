@@ -39,7 +39,7 @@ olo=olo+1
 formulations=read.csv("formulations.csv",dec=",")
 formulations$D=kj
   
-
+print(kj)
 am=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
   bx=descriptors[names%in%formulations[ij,]$A1,]
