@@ -50,7 +50,6 @@ with open("descriptors_mordred_fda.csv","w") as f:
     for o in ax.keys():
         f.write(str(o)+",")
         f.write("\n")
-        st.write(o)
 with open("descriptors_padel_fda.csv","a") as f:
     for o in descriptors.values():
         f.write(str(o)+",")
@@ -59,7 +58,7 @@ with open("descriptors_mordred_fda.csv","a") as f:
     for o in ax.values():
         f.write(str(o)+",")
         f.write("\n")
-  
+
 st.image(im)
 
 #except:
