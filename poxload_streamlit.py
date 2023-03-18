@@ -22,41 +22,41 @@ dimorphite_dl = DimorphiteDL(
 )
 
 #try:
-    SMI = st.text_input('Enter SMILES code', 'CC(C)NCC(COC1=CC=C(C=C1)CCOC)O')  
-    # SMI = str(dimorphite_dl.protonate(SMI)[0])    
-    mol = Chem.MolFromSmiles(SMI)
-    sdm = pretreat.StandardizeMol()
-    mol = sdm.disconnect_metals(mol)    
-    SMI = str(Chem.MolFromSmiles(mol))
-    im = Draw.MolToImage(m,fitImage=True)    
+SMI = st.text_input('Enter SMILES code', 'CC(C)NCC(COC1=CC=C(C=C1)CCOC)O')  
+# SMI = str(dimorphite_dl.protonate(SMI)[0])    
+mol = Chem.MolFromSmiles(SMI)
+sdm = pretreat.StandardizeMol()
+mol = sdm.disconnect_metals(mol)    
+SMI = str(Chem.MolFromSmiles(mol))
+im = Draw.MolToImage(m,fitImage=True)    
 
-    descriptors = from_smiles(SMI)
-    items = list(descriptors.items())
-    items.insert(0, ('Name', str(SMI)))
-    descriptors = dict(items)
-    ax=calc(mol)
-    items = list(ax.items())
-    items.insert(0, ('Name', str(SMI))) 
-    ax = dict(items)       
+descriptors = from_smiles(SMI)
+items = list(descriptors.items())
+items.insert(0, ('Name', str(SMI)))
+descriptors = dict(items)
+ax=calc(mol)
+items = list(ax.items())
+items.insert(0, ('Name', str(SMI))) 
+ax = dict(items)       
+  
+with open("descriptors_padel_fda.csv","a") as f:
+    for o in descriptors.keys():
+        f.write(str(o)+",")
+        f.write("\n")
+with open("descriptors_mordred_fda.csv","a") as f:
+    for o in ax.keys():
+        f.write(str(o)+",")
+        f.write("\n")       
+with open("descriptors_padel_fda.csv","a") as f:
+    for o in descriptors.values():
+        f.write(str(o)+",")
+        f.write("\n")  
+with open("descriptors_mordred_fda.csv","a") as f:
+    for o in ax.values():
+        f.write(str(o)+",")
+        f.write("\n")
     
-    with open("descriptors_padel_fda.csv","a") as f:
-        for o in descriptors.keys():
-            f.write(str(o)+",")
-            f.write("\n")
-    with open("descriptors_mordred_fda.csv","a") as f:
-        for o in ax.keys():
-            f.write(str(o)+",")
-            f.write("\n")       
-    with open("descriptors_padel_fda.csv","a") as f:
-        for o in descriptors.values():
-            f.write(str(o)+",")
-            f.write("\n")  
-    with open("descriptors_mordred_fda.csv","a") as f:
-        for o in ax.values():
-            f.write(str(o)+",")
-            f.write("\n")
-    
-    st.image(im)
+st.image(im)
     
 
 #except:
