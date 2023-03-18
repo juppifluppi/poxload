@@ -38,10 +38,11 @@ items = list(descriptors.items())
 items.insert(0, ('Name', str(SMI)))
 descriptors = dict(items)
 ax=calc(mol)
-#items = list(ax.items())
-#items.insert(0, ('Name', str(SMI))) 
-#ax = dict(items)       
-#st.write(ax)  
+items = list(ax.items())
+st.write(items)
+items.insert(0, ('Name', str(SMI))) 
+ax = dict(items)       
+st.write(ax)  
 with open("descriptors_padel_fda.csv","a") as f:
     for o in descriptors.keys():
         f.write(str(o)+",")
@@ -58,7 +59,7 @@ with open("descriptors_mordred_fda.csv","a") as f:
     for o in ax.values():
         f.write(str(o)+",")
         f.write("\n")
-st.write(ax.values)    
+  
 st.image(im)
 
 #except:
