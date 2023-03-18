@@ -8,6 +8,7 @@ names(x)=(padel[c(1:(nrow(padel)/2)),1])
 print(length(x))
 x=c("Drug",x)
 print(length(x))
+print(length(colnames(padel)[1]))
 names(x)=c(colnames(padel)[1],names(x))
 padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 
