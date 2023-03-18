@@ -1,7 +1,7 @@
 padel=read.csv("descriptors_padel_fda.csv")
 padelpol=read.csv("descriptors_padel_pol.csv")
-mordred=read.csv("descriptors_mordred_fda.csv")
-mordredpol=read.csv("descriptors_mordred_pol.csv")
+#mordred=read.csv("descriptors_mordred_fda.csv")
+#mordredpol=read.csv("descriptors_mordred_pol.csv")
 
 x=(padel[c(1:nrow(padel)/2),1])
 names(x)=(padel[c(((nrow(padel)/2)+1):(nrow(padel))),1])
@@ -13,18 +13,16 @@ padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 #print(names(x))
 #mordredpol=mordredpol[,colnames(mordredpol)%in%names(x)]
 
-print(ncol(mordredpol))
-print(ncol(t(mordred)))
-
 #mordred=mordred[mordred$Name%in%padel$Name,]
 #padel=padel[padel$Name%in%mordred$Name,]
 padel=rbind(padelpol,t(padel))
-mordred=rbind(mordredpol,t(mordred))
+#mordred=rbind(mordredpol,t(mordred))
 
 
 
 #mordred=mordred[,-1]
-descriptors=cbind(padel,mordred)
+#descriptors=cbind(padel,mordred)
+descriptors=padel
 names=descriptors$Name
 descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 compounds=padel$Name[!padel$Name%in%padelpol$Name]
