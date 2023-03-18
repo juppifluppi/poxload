@@ -7,17 +7,20 @@ x=(padel[c(1:nrow(padel)/2),1])
 names(x)=(padel[c(((nrow(padel)/2)+1):(nrow(padel))),1])
 padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 
+print(x)
+
 x=(mordred[c(1:nrow(mordred)/2),1])
 names(x)=(mordred[c(((nrow(mordred)/2)+1):(nrow(mordred))),1])
 mordredpol=mordredpol[,colnames(mordredpol)%in%names(x)]
+
+print(x)
 
 #mordred=mordred[mordred$Name%in%padel$Name,]
 #padel=padel[padel$Name%in%mordred$Name,]
 padel=rbind(padelpol,padel)
 mordred=rbind(mordredpol,mordred)
 
-print(padel[,1])
-print(mordred[,1])
+
 
 #mordred=mordred[,-1]
 descriptors=cbind(padel,mordred)
