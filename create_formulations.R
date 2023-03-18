@@ -21,7 +21,8 @@ print(paste0(olo,"/",length(compounds)))
 formulations=read.csv("test.csv",dec=",")
 formulations$D=kj
 
-
+print(formulations)
+  
 am=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
   bx=descriptors[names%in%formulations[ij,]$A1,]
@@ -77,6 +78,6 @@ for(ij in c(1:ncol(dm))){
 g=cbind(formulations,am,bm,dm)
 wholeset=rbind(wholeset,g)
 }
-#wholeset=wholeset[-1,]
+wholeset=wholeset[-1,]
 write.csv(wholeset,file=paste0("fdaset.dat"),row.names = F)
 print(wholeset)
