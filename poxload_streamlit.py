@@ -76,5 +76,5 @@ result2 = process2.communicate()
 
 df = pd.read_csv(r'fx.csv')
 df = df.rename(columns={'axb': 'Polymer', 'fx': 'LE(%)'})
-df = df.sort_values('LE(%)',ascending=F)
+df = df.sort_values('LE(%)',ascending=False)
 st.write(df)
