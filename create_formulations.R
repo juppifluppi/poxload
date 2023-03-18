@@ -41,7 +41,6 @@ formulations$D=kj
 am=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
   bx=descriptors[names%in%formulations[ij,]$A1,]
-  print(bx)
   bx=bx*(formulations[ij,]$A1n+formulations[ij,]$A2n)
   t1x=descriptors[names%in%formulations[ij,]$T1,]
   t2x=descriptors[names%in%formulations[ij,]$T2,]
@@ -49,11 +48,11 @@ for(ij in c(1:nrow(formulations))){
   am=rbind(am,bx)
 }
 am=am[-1,]
-print(ncol(am))
+
 for(ij in c(1:ncol(am))){
   colnames(am)[ij]=paste0("ABLOCK_",colnames(am)[ij])
 }
-
+print(am)
 
 bm=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
