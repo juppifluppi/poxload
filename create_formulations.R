@@ -38,7 +38,7 @@ olo=olo+1
 formulations=read.csv("formulations.csv",dec=",")
 formulations$D=kj
 
-print(descriptors["MeOx"%in%formulations$A1,])
+print(descriptors[1,])
   
 am=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
