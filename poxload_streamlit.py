@@ -66,7 +66,6 @@ st.image(im)
 #    st.write("Something is wrong with your SMILES code.")
 #    st.stop()
 
-st.write(calc(mol))
 
 process1 = subprocess.Popen(["Rscript", "create_formulations.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 result1 = process1.communicate()
