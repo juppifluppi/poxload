@@ -20,8 +20,6 @@ print(paste0(olo,"/",length(compounds)))
   
 formulations=read.csv("test.csv",dec=",")
 formulations$D=kj
-
-print(formulations)
   
 am=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
