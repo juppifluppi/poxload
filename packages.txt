@@ -3,6 +3,5 @@ r-base
 r-base-dev
 r-cran-caret
 r-cran-tidyverse
-r-cran-cubist 0.4.2.1
 r-cran-purrr
 default-jre-headless
