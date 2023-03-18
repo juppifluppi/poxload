@@ -9,3 +9,4 @@ scipy
 mordred
 numpy==1.19
 r-essentials
+r-cubist
