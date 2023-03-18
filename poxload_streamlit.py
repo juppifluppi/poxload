@@ -40,7 +40,7 @@ descriptors = dict(items)
 ax=calc(mol)
 items = list(ax.items())
 items.insert(0, ('Name', str(SMI)))
-ax = list(items)
+ax = dict(items)
  
 with open("descriptors_padel_fda.csv","a") as f:
     for o in descriptors.keys():
