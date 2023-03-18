@@ -23,9 +23,9 @@ padel=rbind(padelpol,x)
 #descriptors=cbind(padel,mordred)
 descriptors=padel
 
-#names=descriptors[,1]
+names=descriptors[,1]
 
-descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
+#descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 compounds="Drug"
 
 
