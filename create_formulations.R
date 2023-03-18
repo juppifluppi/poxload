@@ -2,7 +2,81 @@ padel=read.csv("descriptors_padel_fda.csv")
 padelpol=read.csv("descriptors_padel_pol.csv")
 mordred=read.csv("descriptors_mordred_fda.csv")
 mordredpol=read.csv("descriptors_mordred_pol.csv")
-print(ncol(padel))
-print(ncol(padelpol))
-print(ncol(mordred))
-print(ncol(mordredpol))
+mordred=mordred[mordred$Name%in%padel$Name,]
+padel=padel[padel$Name%in%mordred$Name,]
+padel=rbind(padelpol,padel)
+mordred=rbind(mordredpol,mordred)
+mordred=mordred[,-1]
+descriptors=cbind(padel,mordred)
+names=descriptors$Name
+descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
+compounds=padel$Name[!padel$Name%in%padelpol$Name]
+
+wholeset=rep(NA,ncol(descriptors))
+olo=0
+for(kj in compounds){
+olo=olo+1
+print(paste0(olo,"/",length(compounds)))  
+  
+formulations=read.csv("test.csv",dec=",")
+formulations$D=kj
+
+
+am=rep(NA,ncol(descriptors))
+for(ij in c(1:nrow(formulations))){
+  bx=descriptors[names%in%formulations[ij,]$A1,]
+  bx=bx*(formulations[ij,]$A1n+formulations[ij,]$A2n)
+  t1x=descriptors[names%in%formulations[ij,]$T1,]
+  t2x=descriptors[names%in%formulations[ij,]$T2,]
+  bx=bx+t1x+t2x
+  am=rbind(am,bx)
+}
+am=am[-1,]
+for(ij in c(1:ncol(am))){
+  colnames(am)[ij]=paste0("ABLOCK_",colnames(am)[ij])
+}
+
+bm=rep(NA,ncol(descriptors))
+for(ij in c(1:nrow(formulations))){
+  bx=descriptors[names%in%formulations[ij,]$B,]
+  bx=bx*(formulations[ij,]$Bn)
+  bm=rbind(bm,bx)
+}
+bm=bm[-1,]
+for(ij in c(1:ncol(bm))){
+  colnames(bm)[ij]=paste0("BBLOCK_",colnames(bm)[ij])
+}
+
+molratio=c()
+for(ij in c(1:nrow(formulations))){
+  bx=descriptors[names%in%formulations[ij,]$A1,]
+  ax=bx$MW*(formulations[ij,]$A1n+formulations[ij,]$A1n)
+  bx=descriptors[names%in%formulations[ij,]$B,]
+  fx=bx$MW*(formulations[ij,]$Bn)
+  bx=descriptors[names%in%formulations[ij,]$T1,]
+  t1x=bx$MW
+  bx=descriptors[names%in%formulations[ij,]$T2,]
+  t2x=bx$MW
+  polmw=ax+fx+t1x+t2x
+  bx=descriptors[names%in%formulations[ij,]$D,]  
+  dx=bx$MW
+  molratio=append(molratio,((formulations[ij,]$DF/formulations[ij,]$PF)*polmw)/dx)
+}
+
+dm=rep(NA,ncol(descriptors))
+for(ij in c(1:nrow(formulations))){
+  bx=descriptors[names%in%formulations[ij,]$D,]
+  bx=bx*molratio[ij]
+  dm=rbind(dm,bx)
+}
+dm=dm[-1,]
+for(ij in c(1:ncol(dm))){
+  colnames(dm)[ij]=paste0("DRUG_",colnames(dm)[ij])
+}
+
+g=cbind(formulations,am,bm,dm)
+wholeset=rbind(wholeset,g)
+}
+wholeset=wholeset[-1,]
+write.csv(wholeset,file=paste0("fdaset.dat"),row.names = F)
+print(wholeset)
