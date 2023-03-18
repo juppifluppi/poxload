@@ -11,7 +11,7 @@ fda=cbind(fda,fz)
 colnames(fda)[ncol(fda)]="formulations.Time"
 
 for(i in c(1:ncol(fda))){
-  fda[,i]=as.numeric(fda[,i])
+  fda[,i]=as.numeric(as.character(fda[,i]))
 }
 
 fx=predict(final_model[["cubist"]],fda,na.action=na.pass)
