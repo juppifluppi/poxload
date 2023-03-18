@@ -24,7 +24,8 @@ descriptors=cbind(padel,mordred)
 
 names=descriptors[,1]
 
-descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
+descriptors=select_if(descriptors, is.numeric)
+#descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 compounds="Drug"
 print(ncol(descriptors))
 
