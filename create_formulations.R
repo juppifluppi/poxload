@@ -10,14 +10,21 @@ names(x)=c("Name",(padel[c(1:(nrow(padel)/2)),1]))
 padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 af=names(x)
 
+
+
+
 x=data.frame(matrix(x, 1))
 colnames(x)=names(x)
+
+print(nrow(padel))
+print(ncol(padel))
+print(nrow(padelpol))
+print(ncol(padelpol))
+
 padel=rbind(padelpol,x)
 colnames(padel)=af
 padel=padel[,-2]
 
-print(nrow(padel))
-print(ncol(padel))
 
 
 x=as.numeric(as.character((mordred[c(((nrow(mordred)/2)+1):(nrow(mordred))),1])))
