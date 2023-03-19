@@ -25,7 +25,7 @@ mordred=rbind(x,mordredpol)
 descriptors=cbind(padel,mordred)
 #descriptors=padel
 
-
+print(descriptors[,colnames(descriptors)%in%"MW"])
 
 names=descriptors[,1]
 
@@ -43,7 +43,7 @@ descriptors[] <- lapply(descriptors, function(x) as.numeric(as.character(x)))
 descriptors=descriptors[ , colSums(is.na(descriptors))==0]
 
                     
-print(descriptors[,colnames(descriptors)%in%"MW"])                
+#print(descriptors[,colnames(descriptors)%in%"MW"])                
                     
                         
 wholeset=rep(NA,ncol(descriptors))
