@@ -13,7 +13,7 @@ from mordred import Calculator, descriptors
 from rdkit.Chem import Draw
 import subprocess
 import pandas as pd
-from PIL import image
+from PIL import Image
 
 try:
     os.remove("descriptors_padel_fda.csv")
