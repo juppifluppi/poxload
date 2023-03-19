@@ -11,9 +11,11 @@ padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 
 #print(names(x))
 #print(x["MW"])
-print(x)
+#print(x)
 
 padel=rbind(x,padelpol)
+
+print(padel[1,])
 
 x=as.numeric(as.character((mordred[c(((nrow(mordred)/2)+1):(nrow(mordred))),1])))
 x=c("Drug",x)
