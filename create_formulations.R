@@ -94,7 +94,6 @@ for(ij in c(1:nrow(formulations))){
   polmw=ax+fx+t1x+t2x
   bx=descriptors[names%in%formulations[ij,]$D,]  
   dx=bx$MW
-  print(dx)
   molratio=append(molratio,((formulations[ij,]$DF/formulations[ij,]$PF)*polmw)/dx)
 }
 
@@ -103,6 +102,7 @@ dm=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
   bx=descriptors[names%in%formulations[ij,]$D,]
   bx=bx*molratio[ij]
+  print(bx)
   dm=rbind(dm,bx)
 }
 dm=dm[-1,]
