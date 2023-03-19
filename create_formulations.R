@@ -25,7 +25,7 @@ mordred=rbind(x,mordredpol)
 descriptors=cbind(padel,mordred)
 #descriptors=padel
 
-print(descriptors[1,])
+
 
 names=descriptors[,1]
 
@@ -39,10 +39,12 @@ names=descriptors[,1]
 #descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 compounds="Drug"
 
-descriptors[] <- lapply(descriptors, function(x) as.numeric(as.character(x)))
+descriptors <- lapply(descriptors, function(x) as.numeric(as.character(x)))
 descriptors=descriptors[ , colSums(is.na(descriptors))==0]
 
-#print(descriptors)                        
+                    
+                      
+print(descriptors[1,])                        
                         
 wholeset=rep(NA,ncol(descriptors))
 olo=0
