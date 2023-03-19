@@ -8,13 +8,13 @@ fg=rep(10,nrow(fda))
 fz=rep(0,nrow(fda))
 fda=cbind(fda,fg)
 
-print(fda[1,])
-
 colnames(fda)[ncol(fda)]="formulations.DF"
 fda=cbind(fda,fz)
 colnames(fda)[ncol(fda)]="formulations.Time"
 
 axb=fda$POL
+
+print(fda[1,])
 
 for(i in c(1:ncol(fda))){
   fda[,i]=(as.numeric(as.character(fda[,i]))
