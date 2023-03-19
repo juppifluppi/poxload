@@ -14,9 +14,11 @@ from rdkit.Chem import Draw
 import subprocess
 import pandas as pd
 
-os.remove("descriptors_padel_fda.csv")
-os.remove("descriptors_mordred_fda.csv")
-
+try:
+    os.remove("descriptors_padel_fda.csv")
+    os.remove("descriptors_mordred_fda.csv")
+except:
+    pass
 
 calc = Calculator(descriptors, ignore_3D=True)
 
