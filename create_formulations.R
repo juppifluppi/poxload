@@ -43,8 +43,8 @@ descriptors[] <- lapply(descriptors, function(x) as.numeric(as.character(x)))
 descriptors=descriptors[ , colSums(is.na(descriptors))==0]
 
                     
-                      
-print(descriptors[1,])                        
+                     
+                    
                         
 wholeset=rep(NA,ncol(descriptors))
 olo=0
@@ -102,6 +102,7 @@ dm=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
   bx=descriptors[names%in%formulations[ij,]$D,]
   bx=bx*molratio[ij]
+  print(bx)
   dm=rbind(dm,bx)
 }
 dm=dm[-1,]
