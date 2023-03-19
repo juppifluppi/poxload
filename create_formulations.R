@@ -39,7 +39,7 @@ names=descriptors[,1]
 #descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 compounds="Drug"
 
-descriptors <- lapply(descriptors, function(x) as.numeric(as.character(x)))
+descriptors[] <- lapply(descriptors, function(x) as.numeric(as.character(x)))
 descriptors=descriptors[ , colSums(is.na(descriptors))==0]
 
                     
