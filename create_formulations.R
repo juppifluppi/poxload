@@ -8,6 +8,7 @@ x=as.numeric(as.character((padel[c(((nrow(padel)/2)+1):(nrow(padel))),1])))
 x=c("Drug",x)
 names(x)=c("Name",(padel[c(1:(nrow(padel)/2)),1]))
 padelpol=padelpol[,colnames(padelpol)%in%names(x)]
+af=names(x)
 
 x=data.frame(matrix(x, 1))
 colnames(x)=names(x)
@@ -16,10 +17,10 @@ colnames(x)=names(x)
 #print(x)
 
 padel=rbind(padelpol,x)
+colnames(padel)=af
 padel=padel[,-2]
-colnames(padel)=names(x[-2])
 #padel=as.numeric(as.character(padel))
-print(colnames(padel))
+print(padel[1,])
 
 x=as.numeric(as.character((mordred[c(((nrow(mordred)/2)+1):(nrow(mordred))),1])))
 x=c("Drug",x)
