@@ -4,11 +4,12 @@ load("cubist.rda")
 
 fda=read.csv("fdaset.dat")
 
-print(fda[1,])
-
 fg=rep(10,nrow(fda))
 fz=rep(0,nrow(fda))
 fda=cbind(fda,fg)
+
+print(fda[1,])
+
 colnames(fda)[ncol(fda)]="formulations.DF"
 fda=cbind(fda,fz)
 colnames(fda)[ncol(fda)]="formulations.Time"
