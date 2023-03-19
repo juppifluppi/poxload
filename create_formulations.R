@@ -20,24 +20,24 @@ colnames(padel)=af
 
 
 
-#x=as.numeric(as.character((mordred[c(((nrow(mordred)/2)+1):(nrow(mordred))),1])))
-#x=c("Drug",x)
-#names(x)=c("Name",(mordred[c(1:(nrow(mordred)/2)),1]))
-#af=names(x)
-#x=data.frame(matrix(x, 1))
-#colnames(x)=af
-#x=x[,-2]
-#af=colnames(x)
-#mordredpol=mordredpol[,colnames(mordredpol)%in%colnames(x)]
-#x=x[,colnames(x)%in%colnames(mordredpol)]
-#af=colnames(x)
-#mordred=rbind(mordredpol,x)
-#colnames(mordred)=af
+x=as.numeric(as.character((mordred[c(((nrow(mordred)/2)+1):(nrow(mordred))),1])))
+x=c("Drug",x)
+names(x)=c("Name",(mordred[c(1:(nrow(mordred)/2)),1]))
+af=names(x)
+x=data.frame(matrix(x, 1))
+colnames(x)=af
+x=x[,-2]
+af=colnames(x)
+mordredpol=mordredpol[,colnames(mordredpol)%in%colnames(x)]
+x=x[,colnames(x)%in%colnames(mordredpol)]
+af=colnames(x)
+mordred=rbind(mordredpol,x)
+colnames(mordred)=af
 
 
 
 descriptors=padel
-#descriptors=cbind(padel,mordred)
+descriptors=cbind(padel,mordred)
 names=descriptors[,1]
 compounds="Drug"
 descriptors[] <- lapply(descriptors, function(x) as.numeric(as.character(x)))
@@ -93,7 +93,13 @@ for(ij in c(1:nrow(formulations))){
   t2x=bx$MW
   polmw=ax+fx+t1x+t2x
   bx=descriptors[names%in%formulations[ij,]$D,]  
-  dx=as.numeric(as.character(bx$MW))
+  dx=bx$MW
+  print(ax)
+  print(bx)
+  print(fx)
+  print(t1x)
+  print(t2x)
+  print(dx)
   molratio=append(molratio,((formulations[ij,]$DF/formulations[ij,]$PF)*polmw)/dx)
 }
 
