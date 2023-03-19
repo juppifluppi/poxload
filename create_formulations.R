@@ -9,12 +9,13 @@ x=c("Drug",x)
 names(x)=c("Name",(padel[c(1:(nrow(padel)/2)),1]))
 padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 
+x=as.data.frame(x)
 #print(names(x))
 #print(x["MW"])
 #print(x)
 
 padel=rbind(x,padelpol)
-#padel=padel[,-2]
+padel=padel[,-2]
 #padel=as.numeric(as.character(padel))
 print(padel[1,])
 
