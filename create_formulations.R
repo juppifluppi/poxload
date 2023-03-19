@@ -54,7 +54,7 @@ olo=olo+1
 formulations=read.csv("formulations.csv",dec=",")
 formulations$D=kj
 
-print(descriptors[names%in%formulations[1,]$D,])    
+#print(descriptors[names%in%formulations[1,]$D,])    
   
 am=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
@@ -98,7 +98,8 @@ for(ij in c(1:nrow(formulations))){
   dx=bx$MW
   molratio=append(molratio,((formulations[ij,]$DF/formulations[ij,]$PF)*polmw)/dx)
 }
-
+print(molratio)
+  
 dm=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
   bx=descriptors[names%in%formulations[ij,]$D,]
