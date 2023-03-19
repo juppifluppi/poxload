@@ -14,7 +14,8 @@ padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 #print(x)
 
 padel=rbind(x,padelpol)
-
+padel=padel[,-2]
+padel=as.numeric(as.character(padel))
 print(padel[1,])
 
 x=as.numeric(as.character((mordred[c(((nrow(mordred)/2)+1):(nrow(mordred))),1])))
