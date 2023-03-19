@@ -33,7 +33,7 @@ dimorphite_dl = DimorphiteDL(
 
 st.image('logo.png')
 
-st.title('POxload prediction model')
+#st.title('POxload prediction model')
 
 st.caption("*** WORK IN PROGRESS ***")
 
