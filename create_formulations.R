@@ -43,7 +43,7 @@ descriptors[] <- lapply(descriptors, function(x) as.numeric(as.character(x)))
 descriptors=descriptors[ , colSums(is.na(descriptors))==0]
 
                     
-                     
+print(descriptors[names%in%formulations[1,]$D,])                    
                     
                         
 wholeset=rep(NA,ncol(descriptors))
@@ -54,7 +54,7 @@ olo=olo+1
 formulations=read.csv("formulations.csv",dec=",")
 formulations$D=kj
 
-print(formulations$D)
+
   
 am=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
