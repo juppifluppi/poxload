@@ -9,6 +9,8 @@ x=c("Drug",x)
 names(x)=c("Name",(padel[c(1:(nrow(padel)/2)),1]))
 padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 
+padel=rbind(padelpol,x)
+
 x=(mordred[c(((nrow(mordred)/2)+1):(nrow(mordred))),1])
 x=c("Drug",x)
 names(x)=c("Name",(mordred[c(1:(nrow(mordred)/2)),1]))
@@ -16,7 +18,7 @@ mordredpol=mordredpol[,colnames(mordredpol)%in%names(x)]
 
 #mordred=mordred[mordred$Name%in%padel$Name,]
 #padel=padel[padel$Name%in%mordred$Name,]
-padel=rbind(padelpol,x)
+
 mordred=rbind(mordredpol,x)
 
 #mordred=mordred[,-1]
