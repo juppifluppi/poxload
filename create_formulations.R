@@ -9,7 +9,7 @@ x=c("Drug",x)
 names(x)=c("Name",(padel[c(1:(nrow(padel)/2)),1]))
 padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 
-print(names(x))
+#print(names(x))
 #print(x["MW"])
 print(x)
 
