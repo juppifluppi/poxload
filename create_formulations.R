@@ -15,6 +15,13 @@ af=colnames(x)
 #print(af)
 #print(colnames(padelpol))
 padelpol=padelpol[,colnames(padelpol)%in%colnames(x)]
+
+print(nrow(x))
+print(ncol(x))
+print(nrow(padelpol))
+print(ncol(padelpol))
+
+
 padel=rbind(padelpol,x)
 colnames(padel)=af
 
@@ -23,10 +30,7 @@ colnames(padel)=af
 
 
 
-print(nrow(padel))
-print(ncol(padel))
-print(nrow(padelpol))
-print(ncol(padelpol))
+
 
 
 
