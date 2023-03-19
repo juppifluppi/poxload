@@ -22,5 +22,5 @@ axb=fda$POL
 fx=predict(final_model[["cubist"]],fda,na.action=na.pass)
 iji=cbind(axb,fx)
 iji=iji[-26,]
-colnames(iji)=c("Polymer","Ligand efficency")
+colnames(iji)=c("Polymer","LE")
 write.csv(iji,"fx.csv",row.names=F)
