@@ -94,7 +94,7 @@ for(ij in c(1:nrow(formulations))){
   t2x=bx$MW
   polmw=ax+fx+t1x+t2x
   bx=descriptors[names%in%formulations[ij,]$D,]  
-  dx=bx$MW
+  dx=as.numeric(as.character(bx$MW))
   print(ax)
   print(fx)
   print(t1x)
