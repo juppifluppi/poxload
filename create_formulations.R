@@ -75,7 +75,6 @@ bm=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
   bx=descriptors[names%in%formulations[ij,]$B,]
   bx=bx*(formulations[ij,]$Bn)
-  print(bx)
   bm=rbind(bm,bx)
 }
 bm=bm[-1,]
@@ -96,9 +95,15 @@ for(ij in c(1:nrow(formulations))){
   polmw=ax+fx+t1x+t2x
   bx=descriptors[names%in%formulations[ij,]$D,]  
   dx=bx$MW
+  print(ax)
+  print(fx)
+  print(t1x)
+  print(t2x)
+  print(dx)
   molratio=append(molratio,((formulations[ij,]$DF/formulations[ij,]$PF)*polmw)/dx)
+  print(molratio)
 }
-print(molratio)
+
   
 dm=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
