@@ -1,6 +1,6 @@
 library("caret")
 devtools::load_all("Cubist")
-load("cubist_reduced.rda")
+load("cubist.rda")
 
 fda=read.csv("fdaset.dat")
 
