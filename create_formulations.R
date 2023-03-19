@@ -11,6 +11,8 @@ x=data.frame(matrix(x, 1))
 colnames(x)=names(x)
 x=x[,-2]
 af=colnames(x)
+print(af)
+print(colnames(padelpol))
 padelpol=padelpol[,colnames(padelpol)%in%colnames(x)]
 padel=rbind(padelpol,x)
 colnames(padel)=af
