@@ -28,7 +28,7 @@ mordred=rbind(mordredpol,x)
 colnames(mordred)=af
 mordred=mordred[,-2]
 
-
+print(mordred[1,])
 
 descriptors=cbind(padel,mordred)
 names=descriptors[,1]
