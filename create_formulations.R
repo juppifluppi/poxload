@@ -19,7 +19,7 @@ padel=rbind(padelpol,x)
 padel=padel[,-2]
 colnames(padel)=names(x[-2])
 #padel=as.numeric(as.character(padel))
-print(padel[nrow(padel),])
+print(colnames(padel))
 
 x=as.numeric(as.character((mordred[c(((nrow(mordred)/2)+1):(nrow(mordred))),1])))
 x=c("Drug",x)
