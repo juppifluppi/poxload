@@ -36,7 +36,7 @@ st.caption("*** WORK IN PROGRESS ***")
 
 st.caption("""Input a [molecule SMILES code](https://pubchem.ncbi.nlm.nih.gov/edit3/index.html). Predictions for the loading efficency (in %) 
 for different amphiphilic ABA-triblock poly(2-oxazoline)/poly(2-oxazine)-based micelles are listed, given drug and polymer feeds of 10 g/L 
-(A blocks: A = pMeOx, A* = pEtOx).""")
+(A blocks: A = pMeOx, A* = pEtOx). The prediction is based on a cubist regression model with an RMSE value of 15 % for a validation set.""")
 
 
 #try:
