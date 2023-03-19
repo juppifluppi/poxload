@@ -101,7 +101,6 @@ for(ij in c(1:nrow(formulations))){
   print(t2x)
   print(dx)
   molratio=append(molratio,((formulations[ij,]$DF/formulations[ij,]$PF)*polmw)/dx)
-  print(molratio)
 }
 
   
