@@ -25,6 +25,8 @@ mordred=rbind(x,mordredpol)
 descriptors=cbind(padel,mordred)
 #descriptors=padel
 
+print(descriptors[1,])
+
 names=descriptors[,1]
 
 #nums <- unlist(lapply(descriptors, is.numeric), use.names = FALSE)  
