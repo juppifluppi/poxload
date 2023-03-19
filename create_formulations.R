@@ -38,6 +38,8 @@ compounds="Drug"
 descriptors[] <- lapply(descriptors, function(x) as.numeric(as.character(x)))
 descriptors=descriptors[ , colSums(is.na(descriptors))==0]
 
+print(descriptors)                        
+                        
 wholeset=rep(NA,ncol(descriptors))
 olo=0
 for(kj in compounds){
