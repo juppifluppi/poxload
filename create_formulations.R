@@ -16,6 +16,8 @@ padel=rbind(padelpol,x)
 colnames(padel)=af
 padel=padel[,-2]
 
+print(nrow(padel))
+
 x=as.numeric(as.character((mordred[c(((nrow(mordred)/2)+1):(nrow(mordred))),1])))
 x=c("Drug",x)
 names(x)=c("Name",(mordred[c(1:(nrow(mordred)/2)),1]))
@@ -29,7 +31,7 @@ colnames(mordred)=af
 mordred=mordred[,-2]
 
 print(nrow(mordred))
-print(nrow(padel))
+
 
 descriptors=cbind(padel,mordred)
 names=descriptors[,1]
