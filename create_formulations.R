@@ -15,6 +15,7 @@ af=colnames(x)
 #print(af)
 #print(colnames(padelpol))
 padelpol=padelpol[,colnames(padelpol)%in%colnames(x)]
+x=x[,colnames(x)%in%colnames(padelpol)]
 
 print(nrow(x))
 print(ncol(x))
