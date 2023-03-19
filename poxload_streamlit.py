@@ -32,8 +32,9 @@ dimorphite_dl = DimorphiteDL(
 
 st.title('POxload prediction model')
 
-st.caption("""Input a [molecule SMILES code](https://pubchem.ncbi.nlm.nih.gov/edit3/index.html). A prediction for the loading efficency (in %) 
-for different amphiphilic ABA-triblock poly(2-oxazoline)/poly(2-oxazine)-based micelles is listed, assuming a drug feed of 10 g/L given a polymer feed of 10 g/L.""")
+st.caption("""Input a [molecule SMILES code](https://pubchem.ncbi.nlm.nih.gov/edit3/index.html). Predictions for the loading efficency (in %) 
+for different amphiphilic ABA-triblock poly(2-oxazoline)/poly(2-oxazine)-based micelles are listed, assuming a drug feed of 10 g/L given a polymer feed of 10 g/L
+(A blocks: A = pMeOx, A* = pEtOx).""")
 
 
 #try:
