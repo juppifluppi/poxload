@@ -65,7 +65,7 @@ with open("descriptors_mordred_fda.csv","a") as f:
         f.write(str(o)+",")
         f.write("\n")
 
-st.image(im)
+
 
 #except:
 #    st.write("Something is wrong with your SMILES code.")
@@ -82,4 +82,9 @@ result2 = process2.communicate()
 df = pd.read_csv(r'fx.csv')
 df = df.rename(columns={'axb': 'Polymer', 'fx': 'LE'})
 df = df.sort_values('LE',ascending=False)
-st.dataframe(df)
+
+col1, col2 = st.columns(2)
+with col1:
+    st.image(im)
+with col2:
+    st.dataframe(df)
