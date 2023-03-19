@@ -17,8 +17,7 @@ axb=fda$POL
 #for(i in c(1:ncol(fda))){
 #  fda[,i]=(as.numeric(as.character(fda[,i]))
 #}
-
-print(fda[1,])           
+       
            
 fx=predict(final_model[["cubist"]],fda,na.action=na.pass)
 iji=cbind(axb,fx)
