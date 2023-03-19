@@ -11,6 +11,7 @@ padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 
 print(names(x))
 #print(x["MW"])
+print(x)
 
 padel=rbind(x,padelpol)
 
