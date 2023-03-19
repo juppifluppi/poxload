@@ -41,10 +41,11 @@ st.caption("""Input a [molecule SMILES code](https://pubchem.ncbi.nlm.nih.gov/ed
 for different amphiphilic ABA-triblock poly(2-oxazoline)/poly(2-oxazine)-based micelles are listed, given drug and polymer feeds of 10 g/L 
 (A blocks: A = pMeOx, A* = pEtOx). The prediction is based on a cubist regression model with an RMSE value of 15 % for a validation set.""")
 
+SMI = st.text_input('Enter SMILES code of drug to load', 'CC1=C2[C@@]([C@]([C@H]([C@@H]3[C@]4([C@H](OC4)C[C@@H]([C@]3(C(=O)[C@@H]2OC(=O)C)C)O)OC(=O)C)OC(=O)c5ccccc5)(C[C@@H]1OC(=O)[C@H](O)[C@@H](NC(=O)c6ccccc6)c7ccccc7)O)(C)C')  
+
 with st.spinner('Computing loading efficiencies...'):
     
     try:
-        SMI = st.text_input('Enter SMILES code of drug to load', 'CC1=C2[C@@]([C@]([C@H]([C@@H]3[C@]4([C@H](OC4)C[C@@H]([C@]3(C(=O)[C@@H]2OC(=O)C)C)O)OC(=O)C)OC(=O)c5ccccc5)(C[C@@H]1OC(=O)[C@H](O)[C@@H](NC(=O)c6ccccc6)c7ccccc7)O)(C)C')  
         # SMI = str(dimorphite_dl.protonate(SMI)[0])    
         mol = Chem.MolFromSmiles(SMI)
         sdm = pretreat.StandardizeMol()
