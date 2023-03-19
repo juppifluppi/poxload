@@ -20,7 +20,7 @@ axb=fda$POL
        
            
 fx=predict(final_model[["cubist"]],fda,na.action=na.pass)
-fx=round(fx,2)
+fx=round(fx,0)
 iji=cbind(axb,fx)
 iji=iji[-c(20,26),]
 colnames(iji)=c("Polymer","LE")
