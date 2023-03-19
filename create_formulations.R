@@ -63,7 +63,6 @@ for(ij in c(1:nrow(formulations))){
   t1x=descriptors[names%in%formulations[ij,]$T1,]
   t2x=descriptors[names%in%formulations[ij,]$T2,]
   bx=bx+t1x+t2x
-  print(bx)
   am=rbind(am,bx)
 }
 am=am[-1,]
@@ -76,6 +75,7 @@ bm=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
   bx=descriptors[names%in%formulations[ij,]$B,]
   bx=bx*(formulations[ij,]$Bn)
+  print(bx)
   bm=rbind(bm,bx)
 }
 bm=bm[-1,]
