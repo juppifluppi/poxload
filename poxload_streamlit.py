@@ -95,3 +95,6 @@ with col1:
 with col2:
     st.image(im)
 
+# reference
+
+st.caption("[github page](https://github.com/juppifluppi/poxload)")
