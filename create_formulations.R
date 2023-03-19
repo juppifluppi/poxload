@@ -1,8 +1,8 @@
 library("dplyr")
 padel=read.csv("descriptors_padel_fda.csv",header=F)
-padelpol=read.csv("descriptors_padel_pol.csv",header=F)
+padelpol=read.csv("descriptors_padel_pol.csv")
 mordred=read.csv("descriptors_mordred_fda.csv",header=F)
-mordredpol=read.csv("descriptors_mordred_pol.csv",header=F)
+mordredpol=read.csv("descriptors_mordred_pol.csv")
 
 x=as.numeric(as.character((padel[c(((nrow(padel)/2)+1):(nrow(padel))),1])))
 x=c("Drug",x)
