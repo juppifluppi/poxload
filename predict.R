@@ -14,9 +14,9 @@ colnames(fda)[ncol(fda)]="formulations.Time"
 
 axb=fda$POL
 
-for(i in c(1:ncol(fda))){
-  fda[,i]=(as.numeric(as.character(fda[,i]))
-}
+#for(i in c(1:ncol(fda))){
+#  fda[,i]=(as.numeric(as.character(fda[,i]))
+#}
 
 print(fda[1,])           
            
