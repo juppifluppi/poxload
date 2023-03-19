@@ -12,47 +12,30 @@ af=names(x)
 
 x=data.frame(matrix(x, 1))
 colnames(x)=names(x)
-#print(names(x))
-#print(x["MW"])
-#print(x)
-
 padel=rbind(padelpol,x)
 colnames(padel)=af
 padel=padel[,-2]
-#padel=as.numeric(as.character(padel))
-print(padel[1,])
 
 x=as.numeric(as.character((mordred[c(((nrow(mordred)/2)+1):(nrow(mordred))),1])))
 x=c("Drug",x)
 names(x)=c("Name",(mordred[c(1:(nrow(mordred)/2)),1]))
 mordredpol=mordredpol[,colnames(mordredpol)%in%names(x)]
+af=names(x)
 
-#mordred=mordred[mordred$Name%in%padel$Name,]
-#padel=padel[padel$Name%in%mordred$Name,]
+x=data.frame(matrix(x, 1))
+colnames(x)=names(x)
+mordred=rbind(mordredpol,x)
+colnames(mordred)=af
+mordred=mordred[,-2]
 
-mordred=rbind(x,mordredpol)
 
-#mordred=mordred[,-1]
+
 descriptors=cbind(padel,mordred)
-#descriptors=padel
-
 names=descriptors[,1]
-
-#nums <- unlist(lapply(descriptors, is.numeric), use.names = FALSE)  
-#print(descriptors[ , nums])
-
-#descriptors=(as.matrix(descriptors))
-#descriptors=descriptors[, sapply(descriptors, class) == "numeric"]
-#descriptors <- descriptors %>% dplyr::select(where(is.numeric))
-#descriptors=select_if(descriptors, is.numeric)
-#descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 compounds="Drug"
-
 descriptors[] <- lapply(descriptors, function(x) as.numeric(as.character(x)))
 descriptors=descriptors[ , colSums(is.na(descriptors))==0]
 
-                    
-#print(descriptors[,colnames(descriptors)%in%"MW"])                
                     
                         
 wholeset=rep(NA,ncol(descriptors))
