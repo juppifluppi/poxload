@@ -85,6 +85,7 @@ df = df.sort_values('LE',ascending=False)
 
 col1, col2 = st.columns(2)
 with col1:
-    st.image(im)
-with col2:
     st.dataframe(df)
+with col2:
+    st.image(im)
+
