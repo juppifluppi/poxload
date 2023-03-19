@@ -10,13 +10,16 @@ names(x)=c("Name",(padel[c(1:(nrow(padel)/2)),1]))
 padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 af=names(x)
 
+print(nrow(padel))
+print(nrow(padelpol))
+
 x=data.frame(matrix(x, 1))
 colnames(x)=names(x)
 padel=rbind(padelpol,x)
 colnames(padel)=af
 padel=padel[,-2]
 
-print(nrow(padel))
+
 
 x=as.numeric(as.character((mordred[c(((nrow(mordred)/2)+1):(nrow(mordred))),1])))
 x=c("Drug",x)
@@ -24,13 +27,17 @@ names(x)=c("Name",(mordred[c(1:(nrow(mordred)/2)),1]))
 mordredpol=mordredpol[,colnames(mordredpol)%in%names(x)]
 af=names(x)
 
+print(nrow(mordred))
+print(nrow(mordredpol))
+
+
 x=data.frame(matrix(x, 1))
 colnames(x)=names(x)
 mordred=rbind(mordredpol,x)
 colnames(mordred)=af
 mordred=mordred[,-2]
 
-print(nrow(mordred))
+
 
 
 descriptors=cbind(padel,mordred)
