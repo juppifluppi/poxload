@@ -95,11 +95,6 @@ for(ij in c(1:nrow(formulations))){
   polmw=ax+fx+t1x+t2x
   bx=descriptors[names%in%formulations[ij,]$D,]  
   dx=as.numeric(as.character(bx$MW))
-  print(ax)
-  print(fx)
-  print(t1x)
-  print(t2x)
-  print(dx)
   molratio=append(molratio,((formulations[ij,]$DF/formulations[ij,]$PF)*polmw)/dx)
 }
 
