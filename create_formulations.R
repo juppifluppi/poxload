@@ -17,7 +17,7 @@ colnames(x)=names(x)
 
 padel=rbind(padelpol,x)
 padel=padel[,-2]
-colnames(padel)=names(x)
+colnames(padel)=names(x[-2])
 #padel=as.numeric(as.character(padel))
 print(padel[nrow(padel),])
 
