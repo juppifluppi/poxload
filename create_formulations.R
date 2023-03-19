@@ -43,7 +43,7 @@ descriptors[] <- lapply(descriptors, function(x) as.numeric(as.character(x)))
 descriptors=descriptors[ , colSums(is.na(descriptors))==0]
 
                     
-                
+print(descriptors[names%in%formulations[1,]$D,colnames(descriptors)%in%"MW"])                
                     
                         
 wholeset=rep(NA,ncol(descriptors))
