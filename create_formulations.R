@@ -9,8 +9,9 @@ x=c("Drug",x)
 names(x)=c("Name",(padel[c(1:(nrow(padel)/2)),1]))
 padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 
+print(x["MW"])
+
 padel=rbind(x,padelpol)
-print(padel[1,colnames(padel)%in%"MW"])
 
 x=as.numeric(as.character((mordred[c(((nrow(mordred)/2)+1):(nrow(mordred))),1])))
 x=c("Drug",x)
