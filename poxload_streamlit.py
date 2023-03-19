@@ -30,6 +30,7 @@ dimorphite_dl = DimorphiteDL(
 
 #try:
 SMI = st.text_input('Enter SMILES code of drug to load', 'CC1=C2[C@@]([C@]([C@H]([C@@H]3[C@]4([C@H](OC4)C[C@@H]([C@]3(C(=O)[C@@H]2OC(=O)C)C)O)OC(=O)C)OC(=O)c5ccccc5)(C[C@@H]1OC(=O)[C@H](O)[C@@H](NC(=O)c6ccccc6)c7ccccc7)O)(C)C')  
+write
 # SMI = str(dimorphite_dl.protonate(SMI)[0])    
 mol = Chem.MolFromSmiles(SMI)
 sdm = pretreat.StandardizeMol()
@@ -75,7 +76,7 @@ result1 = process1.communicate()
 
 process2 = subprocess.Popen(["Rscript", "predict.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 result2 = process2.communicate()
-#st.write(result2)         
+st.write(result2)         
 
 df = pd.read_csv(r'fx.csv')
 df = df.rename(columns={'axb': 'Polymer', 'fx': 'LE(%)'})
