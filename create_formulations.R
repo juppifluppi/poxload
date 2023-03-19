@@ -7,10 +7,10 @@ mordredpol=read.csv("descriptors_mordred_pol.csv")
 x=as.numeric(as.character((padel[c(((nrow(padel)/2)+1):(nrow(padel))),1])))
 x=c("Drug",x)
 names(x)=c("Name",(padel[c(1:(nrow(padel)/2)),1]))
-print(x["MW"])
 padelpol=padelpol[,colnames(padelpol)%in%names(x)]
 
 padel=rbind(x,padelpol)
+print(padel[1,colnames(padel)%in%"MW"])
 
 x=as.numeric(as.character((mordred[c(((nrow(mordred)/2)+1):(nrow(mordred))),1])))
 x=c("Drug",x)
