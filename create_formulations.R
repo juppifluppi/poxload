@@ -113,4 +113,5 @@ g=cbind(formulations,am,bm,dm)
 wholeset=rbind(wholeset,g)
 }
 wholeset=wholeset[-1,]
+print(wholeset[1,])
 write.csv(wholeset,file=paste0("fdaset.dat"),row.names = F)
