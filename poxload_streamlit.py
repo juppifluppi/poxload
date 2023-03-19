@@ -13,6 +13,7 @@ from mordred import Calculator, descriptors
 from rdkit.Chem import Draw
 import subprocess
 import pandas as pd
+from PIL import image
 
 try:
     os.remove("descriptors_padel_fda.csv")
@@ -29,6 +30,8 @@ dimorphite_dl = DimorphiteDL(
     label_states = False,
     pka_precision = 0.1
 )
+
+st.image('logo.png')
 
 st.title('POxload prediction model')
 
