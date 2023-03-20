@@ -94,20 +94,19 @@ with st.spinner('Computing loading efficiencies, please wait...'):
         df = df.sort_values('LE10',ascending=False)
         
         # CSS to inject contained in a string
-        hide_table_row_index = """
+        hide_dataframe_row_index = """
             <style>
-            thead tr th:first-child {display:none}
-            tbody th {display:none}
+            .row_heading.level0 {display:none}
+            .blank {display:none}
             </style>
             """
         
         # Inject CSS with Markdown
-        st.markdown(hide_table_row_index, unsafe_allow_html=True)
-        
+        st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
+               
         col1, col2 = st.columns(2)
         with col1:
-            #st.dataframe(df)
-            st.table(df)
+            st.dataframe(df)
         with col2:
             st.image(im)
     
