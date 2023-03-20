@@ -93,9 +93,21 @@ with st.spinner('Computing loading efficiencies, please wait...'):
         df = df.rename(columns={0: "Polymer", 1: "LE10", 2: "LE8", 3: "LE6", 4: "LE4", 5: "LE2"})
         df = df.sort_values('LE10',ascending=False)
         
+        # CSS to inject contained in a string
+        hide_table_row_index = """
+            <style>
+            thead tr th:first-child {display:none}
+            tbody th {display:none}
+            </style>
+            """
+        
+        # Inject CSS with Markdown
+        st.markdown(hide_table_row_index, unsafe_allow_html=True)
+        
         col1, col2 = st.columns(2)
         with col1:
-            st.dataframe(df)
+            #st.dataframe(df)
+            st.table(df)
         with col2:
             st.image(im)
     
