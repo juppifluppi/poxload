@@ -4,7 +4,7 @@ load("cubist.rda")
 
 fda=read.csv("fdaset.dat")
 
-fg=rep(8,nrow(fda))
+fg=rep(10,nrow(fda))
 fz=rep(0,nrow(fda))
 fda=cbind(fda,fg)
 
