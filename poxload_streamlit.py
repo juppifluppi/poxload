@@ -90,8 +90,8 @@ with st.spinner('Computing loading efficiencies, please wait...'):
         #st.write(result2)         
         
         df = pd.read_csv(r'fx.csv')
-        df = df.rename(columns={'axb': 'Polymer', 'fx': 'LE'})
-        df = df.sort_values('LE',ascending=False)
+        df = df.rename(columns={0: "Polymer", 1: "LE2", 2: "LE4", 3: "LE4", 4: "LE6", 5: "LE8", 6: "LE10"})
+        df = df.sort_values('LE10',ascending=False)
         
         col1, col2 = st.columns(2)
         with col1:
