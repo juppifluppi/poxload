@@ -39,7 +39,7 @@ st.caption("*** WORK IN PROGRESS ***")
 
 st.caption("""Input a [molecule SMILES code](https://pubchem.ncbi.nlm.nih.gov/edit3/index.html). Predictions for loading efficencies (in %) 
 for different amphiphilic ABA-triblock poly(2-oxazoline)/poly(2-oxazine)-based micelles are listed, given a polymer feed of 10 g/L and drug feeds of
-10, 8, 6, 4 or 2 g/L (A blocks: A = pMeOx, A* = pEtOx). The prediction is based on a cubist regression model with an RMSE value of 15 % for a validation set.""")
+10, 8, 6, 4 or 2 g/L (A blocks: A = pMeOx, A* = pEtOx).""")
 
 SMI = st.text_input('Enter SMILES code of drug to load', '')  
 
@@ -85,18 +85,33 @@ with st.spinner('Computing loading efficiencies, please wait...'):
         result1 = process1.communicate()
         #st.write(result1)
         
-        #process2 = subprocess.Popen(["Rscript", "predict_reg.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        process2 = subprocess.Popen(["Rscript", "predict_class.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        process2 = subprocess.Popen(["Rscript", "predict_reg.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         result2 = process2.communicate()
         #st.write(result2)         
         
         df = pd.read_csv(r'fx.csv',index_col=0)
         df = df.rename(columns={0: "Polymer", 1: "LE10", 2: "LE8", 3: "LE6", 4: "LE4", 5: "LE2"})
         df = df.sort_values('LE10',ascending=False)
+        df = df1
+        
+        
+        
+        process3 = subprocess.Popen(["Rscript", "predict_class.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        result3 = process3.communicate()
+        #st.write(result2)         
+        
+        df = pd.read_csv(r'fx.csv',index_col=0)
+        df = df.rename(columns={0: "Polymer", 1: "LE10", 2: "LE8", 3: "LE6", 4: "LE4", 5: "LE2"})
+        df = df.sort_values('LE10',ascending=False)
+        df = df2
+                  
                      
         col1, col2 = st.columns(2)
         with col1:
-            st.dataframe(df.style.hide_index().background_gradient(axis=None, vmin=50, vmax=100, cmap="Reds"))
+            st.caption("""Cubist regression model (RMSE = 15 % for validation set)""")
+            st.dataframe(df1.style.hide_index().background_gradient(axis=None, vmin=0, vmax=100, cmap="Reds"))
+            st.caption("""Treebag classification probabilities for LE >= 80 % (BAcc = 91 % for validation set)""")
+            st.dataframe(df2.style.hide_index().background_gradient(axis=None, vmin=50, vmax=100, cmap="Reds"))
         with col2:
             st.image(im)
     
