@@ -15,27 +15,27 @@ axb=fda$POL
 
 final_model=model_list
            
-fx=predict(final_model[["treebag"]],fda,na.action=na.pass,type="prob")$X1
+fx=predict(final_model[["treebag"]],fda,na.action=na.pass,type="prob")$X1*100
 fx=round(fx,0)
 iji=cbind(axb,fx)
 
 fda$formulations.DF=rep(8,nrow(fda))
-fx=predict(final_model[["treebag"]],fda,na.action=na.pass,type="prob")$X1
+fx=predict(final_model[["treebag"]],fda,na.action=na.pass,type="prob")$X1*100
 fx=round(fx,0)
 iji=cbind(iji,fx)
 
 fda$formulations.DF=rep(6,nrow(fda))
-fx=predict(final_model[["treebag"]],fda,na.action=na.pass,type="prob")$X1
+fx=predict(final_model[["treebag"]],fda,na.action=na.pass,type="prob")$X1*100
 fx=round(fx,0)
 iji=cbind(iji,fx)
 
 fda$formulations.DF=rep(4,nrow(fda))
-fx=predict(final_model[["treebag"]],fda,na.action=na.pass,type="prob")$X1
+fx=predict(final_model[["treebag"]],fda,na.action=na.pass,type="prob")$X1*100
 fx=round(fx,0)
 iji=cbind(iji,fx)
 
 fda$formulations.DF=rep(2,nrow(fda))
-fx=predict(final_model[["treebag"]],fda,na.action=na.pass,type="prob")$X1
+fx=predict(final_model[["treebag"]],fda,na.action=na.pass,type="prob")$X1*100
 fx=round(fx,0)
 iji=cbind(iji,fx)
 
