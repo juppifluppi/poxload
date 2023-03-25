@@ -1,5 +1,5 @@
 library("caret")
-load("treebag_reduced.rda")
+load("treebag.rda")
 
 fda=read.csv("fdaset.dat")
 
