@@ -96,7 +96,7 @@ with st.spinner('Computing loading efficiencies, please wait...'):
                      
         col1, col2 = st.columns(2)
         with col1:
-            st.dataframe(df)
+            st.dataframe(df.style.background_gradient(axis=None, vmin=0, vmax=100))
         with col2:
             st.image(im)
     
