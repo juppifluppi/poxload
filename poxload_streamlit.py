@@ -90,14 +90,13 @@ with st.spinner('Computing loading efficiencies, please wait...'):
         result2 = process2.communicate()
         #st.write(result2)         
         
-        df = pd.read_csv(r'fx.csv')
+        df = pd.read_csv(r'fx.csv',index_col=0)
         df = df.rename(columns={0: "Polymer", 1: "LE10", 2: "LE8", 3: "LE6", 4: "LE4", 5: "LE2"})
         df = df.sort_values('LE10',ascending=False)
                      
         col1, col2 = st.columns(2)
         with col1:
-            v=df.style.hide_index().background_gradient(axis=None, vmin=0, vmax=100, cmap="Reds")
-            st.write(v.to_html(),unsage_allow_html=True)
+            st.dataframe(df.style.hide_index().background_gradient(axis=None, vmin=0, vmax=100, cmap="Reds"))
         with col2:
             st.image(im)
     
