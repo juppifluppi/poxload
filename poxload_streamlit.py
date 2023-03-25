@@ -39,7 +39,7 @@ st.caption("*** WORK IN PROGRESS ***")
 
 st.caption("""Input a [molecule SMILES code](https://pubchem.ncbi.nlm.nih.gov/edit3/index.html). Predictions for loading efficencies 
 for different ABA-triblock poly(2-oxazoline)- and poly(2-oxazine)-based micelles are listed, given a polymer feed of 10 g/L and drug feeds of
-10, 8, 6, 4 or 2 g/L. A cubist regression model for predictions of continuous LE values in % and a treebag classification model listing the probability of LE ≥ 80% are listed.""")
+10, 8, 6, 4 or 2 g/L. A cubist regression model for predictions of continuous LE values in % and a treebag classification model for probabilities of LE ≥ 80% are listed.""")
 
 SMI = st.text_input('Enter SMILES code of drug to load', '')  
 
