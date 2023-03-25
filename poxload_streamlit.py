@@ -109,9 +109,9 @@ with st.spinner('Computing loading efficiencies, please wait...'):
         col1, col2 = st.columns(2)
         with col1:
             st.caption("""Cubist regression (RMSE = 15 %)""")
-            st.dataframe(df1.style.hide_index().background_gradient(axis=None, vmin=50, vmax=100, cmap="Reds"),height=220)
+            st.dataframe(df1.style.hide_index().background_gradient(axis=None, vmin=50, vmax=100, cmap="Reds"),height=210)
             st.caption("""Treebag probabilities for LE ≥ 80% (BAcc = 91 %)""")
-            st.dataframe(df2.style.hide_index().background_gradient(axis=None, vmin=50, vmax=100, cmap="Reds"),height=220)
+            st.dataframe(df2.style.hide_index().background_gradient(axis=None, vmin=50, vmax=100, cmap="Reds"),height=210)
         with col2:
             st.image(im)
     
