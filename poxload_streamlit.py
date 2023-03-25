@@ -92,7 +92,7 @@ with st.spinner('Computing loading efficiencies, please wait...'):
         df = pd.read_csv(r'fx.csv',index_col=0)
         df = df.rename(columns={0: "Polymer", 1: "LE10", 2: "LE8", 3: "LE6", 4: "LE4", 5: "LE2"})
         df = df.sort_values('LE10',ascending=False)
-        df = df1
+        df1 = df
         
         
         
@@ -103,7 +103,7 @@ with st.spinner('Computing loading efficiencies, please wait...'):
         df = pd.read_csv(r'fx.csv',index_col=0)
         df = df.rename(columns={0: "Polymer", 1: "LE10", 2: "LE8", 3: "LE6", 4: "LE4", 5: "LE2"})
         df = df.sort_values('LE10',ascending=False)
-        df = df2
+        df2 = df
                   
                      
         col1, col2 = st.columns(2)
