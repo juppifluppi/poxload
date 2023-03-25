@@ -85,7 +85,8 @@ with st.spinner('Computing loading efficiencies, please wait...'):
         result1 = process1.communicate()
         #st.write(result1)
         
-        process2 = subprocess.Popen(["Rscript", "predict.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        #process2 = subprocess.Popen(["Rscript", "predict_reg.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        process2 = subprocess.Popen(["Rscript", "predict_class.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, tex>
         result2 = process2.communicate()
         #st.write(result2)         
         
