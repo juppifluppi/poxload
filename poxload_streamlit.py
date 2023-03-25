@@ -37,7 +37,7 @@ st.image('logo.png')
 
 st.caption("*** WORK IN PROGRESS ***")
 
-st.caption("""Input a [molecule SMILES code](https://pubchem.ncbi.nlm.nih.gov/edit3/index.html). Predictions for loading efficencies (in %) 
+st.caption("""Input a [molecule SMILES code](https://pubchem.ncbi.nlm.nih.gov/edit3/index.html). Predictions for loading efficencies 
 for different amphiphilic ABA-triblock poly(2-oxazoline)/poly(2-oxazine)-based micelles are listed, given a polymer feed of 10 g/L and drug feeds of
 10, 8, 6, 4 or 2 g/L (A blocks: A = pMeOx, A* = pEtOx).""")
 
@@ -109,9 +109,9 @@ with st.spinner('Computing loading efficiencies, please wait...'):
         col1, col2 = st.columns(2)
         with col1:
             st.caption("""Cubist regression (RMSE = 15 %)""")
-            st.dataframe(df1.style.hide_index().background_gradient(axis=None, vmin=50, vmax=100, cmap="Reds"),height=120)
-            st.caption("""Treebag classification probabilities for LE ≥ 80% (BAcc = 91 %)""")
-            st.dataframe(df2.style.hide_index().background_gradient(axis=None, vmin=50, vmax=100, cmap="Reds"),height=120)
+            st.dataframe(df1.style.hide_index().background_gradient(axis=None, vmin=50, vmax=100, cmap="Reds"),height=300)
+            st.caption("""Treebag probabilities for LE ≥ 80% (BAcc = 91 %)""")
+            st.dataframe(df2.style.hide_index().background_gradient(axis=None, vmin=50, vmax=100, cmap="Reds"),height=300)
         with col2:
             st.image(im)
     
