@@ -108,10 +108,12 @@ with st.spinner('Computing loading efficiencies, please wait...'):
                      
         col1, col2 = st.columns(2)
         with col1:
-            st.caption("""Cubist regression model (RMSE = 15 % for validation set)""")
-            st.dataframe(df1.style.hide_index().background_gradient(axis=None, vmin=0, vmax=100, cmap="Reds"))
-            st.caption("""Treebag classification probabilities for LE >= 80 % (BAcc = 91 % for validation set)""")
-            st.dataframe(df2.style.hide_index().background_gradient(axis=None, vmin=50, vmax=100, cmap="Reds"))
+            st.caption("""Cubist regression model""")
+            st.caption("""RMSE = 15 % for validation set""")
+            st.dataframe(df1.style.hide_index().background_gradient(axis=None, vmin=50, vmax=100, cmap="Reds"),height=30)
+            st.caption("""Treebag classification probabilities for LE >= 80 %""")
+            st.caption("""BAcc = 91 % for validation set""")
+            st.dataframe(df2.style.hide_index().background_gradient(axis=None, vmin=50, vmax=100, cmap="Reds"),height=30)
         with col2:
             st.image(im)
     
