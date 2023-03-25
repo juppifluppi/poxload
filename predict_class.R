@@ -12,6 +12,8 @@ fda=cbind(fda,fz)
 colnames(fda)[ncol(fda)]="formulations.Time"
 
 axb=fda$POL    
+
+final_model=model_list
            
 fx=predict(final_model[["treebag"]],fda,na.action=na.pass,type="prob")$X1
 fx=round(fx,0)
