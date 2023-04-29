@@ -138,7 +138,7 @@ dfx.to_csv("db_molstest.csv",index=False)
 
 print("CREATING FORMULATIONS (STEP 3 OF 6)...")
 
-os.system("$CONDA_PREFIX/Rscript cxdb.R")
+os.system("Rscript $CONDA_PREFIX/cxdb.R")
 
 os.system("sed -i -e 's/\"//g' formulations3test_db.csv")
 
@@ -168,8 +168,8 @@ os.system("sirms -i db_library_merged.sdf -a mr logp eeq alp sa sdx sdc at -o si
 os.system("sed -i -e 's/\t/,/g' sirms_test.txt")
 
 print("CALCULATING PADEL DESCRIPTORS FOR MIXTURES (STEP 5 OF 6)...")
-os.system("$CONDA_PREFIX/Rscript gtg2.R > /dev/null 2>&1")
+os.system("Rscript $CONDA_PREFIX/gtg2.R > /dev/null 2>&1")
 print("CALCULATING PREDICTIONS (STEP 6 OF 6)...")
-os.system("$CONDA_PREFIX/Rscript fgv2.R > /dev/null 2>&1")
+os.system("Rscript $CONDA_PREFIX/fgv2.R > /dev/null 2>&1")
 print("WRITE RESULTS TO CSV...")
 print("DONE! CALCULATION TIME: {0} SECONDS".format(time.time() - startTime))
