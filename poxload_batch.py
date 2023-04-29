@@ -125,9 +125,12 @@ with Chem.SDWriter('librarytest.sdf') as w:
     for m in mols:
         w.write(m)
 
+
+CON = os.getenv('$CONDA_PREFIX')     
 os.system("sed -i -e 's/atom.prop.//g' librarytest.sdf")
 os.system("sed -i -e 's/; /;/g' librarytest.sdf")
-os.system("cat librarytest.sdf $CONDA_PREFIX/library_pol.sdf > db_library_merged.sdf")
+command = str("cat librarytest.sdf "+CON+"/library_pol.sdf > db_library_merged.sdf")
+os.system(command)
 
 dfx = pd.DataFrame(columns=['NAME', "SMILES","MW"])
 dfx["NAME"]=NAMES
@@ -163,15 +166,18 @@ with open("formulations3test_db.csv","r") as f:
 
 print("CALCULATING SiRMS DESCRIPTORS (STEP 4 OF 6)...")
 
-os.system("cp $CONDA_PREFIX/setup.txt .")
+command=str("cp "+CON+"/setup.txt .")
+os.system(command)
 
 os.system("sirms -i db_library_merged.sdf -a mr logp eeq alp sa sdx sdc at -o sirms_test.txt -m mixture_test.txt --max_mix_components 3 --mix_type rel -c 1 -r > /dev/null 2>&1")
 
 os.system("sed -i -e 's/\t/,/g' sirms_test.txt")
 
 print("CALCULATING PADEL DESCRIPTORS FOR MIXTURES (STEP 5 OF 6)...")
-os.system("Rscript $CONDA_PREFIX/gtg2.R > /dev/null 2>&1")
+command=str("Rscript "+CON+"/gtg.R > /dev/null 2>&1")
+os.system(command)
 print("CALCULATING PREDICTIONS (STEP 6 OF 6)...")
-os.system("Rscript $CONDA_PREFIX/fgv2.R > /dev/null 2>&1")
+command=str("Rscript "+CON+"/fgv.R > /dev/null 2>&1")
+os.system(command)
 print("WRITE RESULTS TO CSV...")
 print("DONE! CALCULATION TIME: {0} SECONDS".format(time.time() - startTime))
