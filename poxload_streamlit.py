@@ -58,7 +58,7 @@ with col2:
 
 SMI = st.text_input('Enter SMILES code of drug to load', '')  
 
-if len(SMI)>0:
+if SMI:
     
     if option == "PaDEL+SiRMS (slower)":
         with st.spinner('CALCULATING PADEL DESCRIPTORS FOR COMPOUND (STEP 1 OF 6)...'):
