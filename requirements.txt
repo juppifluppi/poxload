@@ -1,7 +1,6 @@
 rdkit-pypi
 stmol
 padelpy
-scopy
 pandas
 matplotlib
 scipy
