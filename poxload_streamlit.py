@@ -44,17 +44,17 @@ st.image('logo.png')
 st.caption("*** WORK IN PROGRESS ***")
 
 st.caption("""Input a [molecule SMILES code](https://pubchem.ncbi.nlm.nih.gov/edit3/index.html). Predictions for loading efficencies (LE) and
-loading capacities (LC) for different ABA-triblock poly(2-oxazoline)- and poly(2-oxazine)-based micelles are listed, given a polymer feed of 10 g/L and a drug feed of 8 g/L.
+loading capacities (LC) for different ABA-triblock poly(2-oxazoline)- and poly(2-oxazine)-based micelles are listed, given a polymer feed of 10 g/L.
 Random forest classifications for different thresholds are listed (LE ≥ 20, 40, 60, 70 and 80%; LC ≥ 10, 20, 30, 35 and 40%).
-Mixtures that exceed these thresholds are labeled "X1" and colored green. The calculation usually takes around 10 minutes.""")
+Mixtures that exceed these thresholds are labeled "X1" and colored green.""")
 
 col1, col2 = st.columns(2)
 with col1:
-   option = st.selectbox('Descriptor subset to use:',
+   option = st.selectbox('Descriptor subset model to use:',
                          ('PaDEL (faster: around 1 min)', 'PaDEL+SIRMS (slower: around 10 min)'))
 with col2:
-   set_DF = st.selectbox('Drug feed:',
-                         ('6 g/L', '4 g/L', '2 g/L', '8 g/L' '10 g/L', '12 g/L'))   
+   set_DF = st.selectbox('Drug feed (g/L):',
+                         ('6', '4', '2', '8', '10', '12'))   
 
 SMI = st.text_input('Enter SMILES code of drug to load', '')  
 
