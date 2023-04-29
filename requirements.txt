@@ -1,10 +1,9 @@
 rdkit-pypi
 stmol
-dimorphite_dl
 padelpy
 scopy
 pandas
 matplotlib
 scipy
-mordred
-numpy==1.19
+sirms
+numpy
