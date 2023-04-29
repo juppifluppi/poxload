@@ -137,5 +137,5 @@ for(ij in c(1:ncol(totm))){
 
 colnames(totm)=colnames(descriptors)
 g=cbind(formulations,totm,am,bm,dm,dm2)
-
+print(g)
 write.csv(g,file=paste0("descp.csv"),row.names = F)
