@@ -177,6 +177,8 @@ os.system("sirms -i db_library_merged.sdf -a mr logp eeq alp sa sdx sdc at -o si
 os.system("sed -i -e 's/\t/,/g' sirms_test.txt")
 
 print("CALCULATING PADEL DESCRIPTORS FOR MIXTURES (STEP 5 OF 6)...")
+command=str("cp "+CON+"/descriptors_padel_pol.csv .")
+os.system(command)
 command=str("Rscript "+CON+"/gtg.R > /dev/null 2>&1")
 os.system(command)
 print("CALCULATING PREDICTIONS (STEP 6 OF 6)...")
