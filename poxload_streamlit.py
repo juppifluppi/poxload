@@ -14,8 +14,6 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 from rdkit import DataStructs
 from rdkit.Chem.Fingerprints import FingerprintMols
-from dimorphite_dl import DimorphiteDL
-from rdkit.Chem.Fingerprints import FingerprintMols
 from scopy.ScoPretreat import pretreat
 import scopy.ScoDruglikeness
 from padelpy import from_smiles
@@ -27,8 +25,6 @@ from jazzy.core import rdkit_molecule_from_smiles
 from rdkit import Chem
 from rdkit.Chem import AllChem
 from rdkit import DataStructs
-from rdkit.Chem.Fingerprints import FingerprintMols
-from dimorphite_dl import DimorphiteDL
 from rdkit.Chem.Fingerprints import FingerprintMols
 from scopy.ScoPretreat import pretreat
 import scopy.ScoDruglikeness
