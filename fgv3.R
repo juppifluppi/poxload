@@ -1,7 +1,6 @@
 library("caret")
 af=read.csv("formulations3test_db.csv",sep="\t")
 af2=read.csv("descp.csv")
-colnames(af3)[1]="Mixture"
 afx=cbind(af,af2)
 ui=read.csv("startdatayyy.dat",check.names = F)
 afx=afx[,colnames(afx)%in%colnames(ui)]
