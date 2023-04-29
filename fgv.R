@@ -45,7 +45,5 @@ load("m8.rda")
 b=unlist(predict(final_model,newdata=afx))
 a=cbind(a,b)
 
-print(a)
-
 colnames(a)=c("POL","LC10","LC20","LC30","LC40","LE20","LE40","LE60","LE80")
 write.csv(a,"fin_results.csv",row.names=F)
