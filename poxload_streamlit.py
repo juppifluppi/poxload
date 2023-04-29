@@ -49,16 +49,14 @@ for different ABA-triblock poly(2-oxazoline)- and poly(2-oxazine)-based micelles
 
 SMI = st.text_input('Enter SMILES code of drug to load', '')  
 
-with st.spinner('Computing loading efficiencies, please wait...'):
+with st.spinner('CALCULATING PADEL DESCRIPTORS FOR COMPOUND (STEP 1 OF 6)...'):
     NAME = "testcompound"
     
     mol = Chem.MolFromSmiles(SMI)
     sdm = pretreat.StandardizeMol()
     mol = sdm.disconnect_metals(mol)
     SMI = str(Chem.MolToSmiles(mol))
-    
-    #print("CALCULATING PADEL DESCRIPTORS FOR COMPOUND...")
-    
+      
     descriptors = from_smiles(SMI)
     items = list(descriptors.items())
     descriptors = dict(items)
@@ -81,7 +79,7 @@ with st.spinner('Computing loading efficiencies, please wait...'):
     sum_SMILES.append(SMI)
     sum_NAME.append(NAME)
     
-    #print("CALCULATING ATOMIC PROPERTIES FOR SiRMS...")
+with st.spinner('CALCULATING ATOMIC PROPERTIES FOR SiRMS (STEP 2 OF 6)...'):
             
     mol = rdkit_molecule_from_smiles(SMI, minimisation_method="MMFF94")
     kallisto_mol = kallisto_molecule_from_rdkit_molecule(mol)
@@ -137,10 +135,11 @@ with st.spinner('Computing loading efficiencies, please wait...'):
     
     dfx.to_csv("db_molstest.csv",index=False)
     
-    #print("CREATING FORMULATIONS...")
+with st.spinner('CREATING FORMULATIONS (STEP 3 OF 6)...'):
     
     process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     result1 = process1.communicate()
+    st.write(result1)
     
     #os.system("Rscript cxdb.R")
     
@@ -165,19 +164,21 @@ with st.spinner('Computing loading efficiencies, please wait...'):
                 else:
                     file.write("\n")
     
-    #print("CALCULATING SiRMS DESCRIPTORS...")
+with st.spinner('CALCULATING SiRMS DESCRIPTORS (STEP 4 OF 6)...'):
     
     os.system("sirms -i db_library_merged.sdf -a mr logp eeq alp sa sdx sdc at -o sirms_test.txt -m mixture_test.txt --max_mix_components 3 --mix_type rel -c 1 -r > /dev/null 2>&1")
     
     os.system("sed -i -e 's/\t/,/g' sirms_test.txt")
     
-    #print("CALCULATING PADEL DESCRIPTORS FOR MIXTURES...")
+with st.spinner('CALCULATING PADEL DESCRIPTORS FOR MIXTURES (STEP 5 OF 6)...'):
     process2 = subprocess.Popen(["Rscript", "gtg.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     result2 = process2.communicate()
+    st.write(result2)
     #os.system("Rscript gtg.R > /dev/null 2>&1")
-    #print("CALCULATING PREDICTIONS...")
+with st.spinner('CALCULATING PREDICTIONS (STEP 6 OF 6)...'):
     process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     result3 = process3.communicate()
+    st.write(result3)
     #os.system("Rscript fgv.R > /dev/null 2>&1")
     #print("WRITE RESULTS TO CSV...")
     #print("DONE! CALCULATION TIME: {0} SECONDS".format(time.time() - startTime))
