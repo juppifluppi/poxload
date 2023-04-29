@@ -115,6 +115,8 @@ with Chem.SDWriter('librarytest.sdf') as w:
         w.write(m)
 
 CON = os.path.expandvars('$CONDA_PREFIX')
+command=str("cp "+CON+"/smiles3.csv .")
+os.system(command)
         
 os.system("sed -i -e 's/atom.prop.//g' librarytest.sdf")
 os.system("sed -i -e 's/; /;/g' librarytest.sdf")
