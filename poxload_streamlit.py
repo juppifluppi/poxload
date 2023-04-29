@@ -78,7 +78,7 @@ with st.spinner('Computing loading efficiencies, please wait...'):
     sum_SMILES=[]
     sum_NAME=[]
     
-    sum_SMILES.append(str(sys.argv[1]))
+    sum_SMILES.append(SMI)
     sum_NAME.append(NAME)
     
     #print("CALCULATING ATOMIC PROPERTIES FOR SiRMS...")
