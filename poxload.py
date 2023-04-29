@@ -116,7 +116,7 @@ with Chem.SDWriter('librarytest.sdf') as w:
 
 os.system("sed -i -e 's/atom.prop.//g' librarytest.sdf")
 os.system("sed -i -e 's/; /;/g' librarytest.sdf")
-os.system("cat librarytest.sdf library_pol.sdf > db_library_merged.sdf")
+os.system("cat librarytest.sdf $CONDA_PREFIX/library_pol.sdf > db_library_merged.sdf")
 
 SMI = str(sys.argv[1])
 
@@ -153,6 +153,8 @@ with open("formulations3test_db.csv","r") as f:
                 file.write("\n")
 
 print("CALCULATING SiRMS DESCRIPTORS (STEP 4 OF 6)...")
+
+os.system("cp $CONDA_PREFIX/setup.txt .")
 
 os.system("sirms -i db_library_merged.sdf -a mr logp eeq alp sa sdx sdc at -o sirms_test.txt -m mixture_test.txt --max_mix_components 3 --mix_type rel -c 1 -r > /dev/null 2>&1")
 
