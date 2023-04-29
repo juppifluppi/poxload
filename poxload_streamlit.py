@@ -186,8 +186,7 @@ with st.spinner('CALCULATING PREDICTIONS (STEP 6 OF 6)...'):
     
     col1, col2 = st.columns(2)
     with col1:
-        st.caption("""Cubist regression (RMSE = 15 %)""")
-        st.dataframe(df.style.hide_index().background_gradient(axis=None, cmap="Reds"),height=212)
+        st.dataframe(df)
     with col2:
         st.image(im)
     
