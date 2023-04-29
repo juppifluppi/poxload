@@ -14,13 +14,11 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 from rdkit import DataStructs
 from rdkit.Chem.Fingerprints import FingerprintMols
-from dimorphite_dl import DimorphiteDL
 from rdkit.Chem.Fingerprints import FingerprintMols
 from scopy.ScoPretreat import pretreat
 import scopy.ScoDruglikeness
 from padelpy import from_smiles
 import sys, os
-from mordred import Calculator, descriptors
 from io import StringIO
 from rdkit import RDConfig
 from jazzy.core import rdkit_molecule_from_smiles
@@ -28,13 +26,11 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 from rdkit import DataStructs
 from rdkit.Chem.Fingerprints import FingerprintMols
-from dimorphite_dl import DimorphiteDL
 from rdkit.Chem.Fingerprints import FingerprintMols
 from scopy.ScoPretreat import pretreat
 import scopy.ScoDruglikeness
 from padelpy import from_smiles
 import sys, os
-from mordred import Calculator, descriptors
 import pandas as pd
 import time 
 
