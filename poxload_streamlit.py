@@ -180,7 +180,7 @@ if submit_button:
                             else:
                                 file.write("\n")
                 
-                tune_DF=str("sed -i -e 's/10\t8\t/10\t"+set_DF+"\t/g' formulations3test_db.csv")
+                tune_DF=str("sed -i -e 's/10\\t6\t/10\\t"+set_DF+"\\t/g' formulations3test_db.csv")
                 os.system(tune_DF)
                 
             with st.spinner('CALCULATING SiRMS DESCRIPTORS (STEP 4 OF 6)...'):
@@ -273,7 +273,7 @@ if submit_button:
                 
                 os.system("sed -i -e 's/\"//g' formulations3test_db.csv")
                 
-                tune_DF=str("sed -i -e 's/10\\t8\\t/10\\t"+set_DF+"\\t/g' formulations3test_db.csv")
+                tune_DF=str("sed -i -e 's/10\\t6\\t/10\\t"+set_DF+"\\t/g' formulations3test_db.csv")
                 os.system(tune_DF)
                 st.write(tune_DF)
                 
