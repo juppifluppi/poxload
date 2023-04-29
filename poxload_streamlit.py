@@ -48,11 +48,10 @@ loading capacities (LC) for different ABA-triblock poly(2-oxazoline)- and poly(2
 Random forest classifications for different thresholds are listed (LE ≥ 20, 40, 60, 70 and 80%; LC ≥ 10, 20, 30, 35 and 40%).
 Mixtures that exceed these thresholds are labeled "X1" and colored green. The calculation usually takes around 10 minutes.""")
 
-SMI = st.text_input('Enter SMILES code of drug to load', '')  
-
-option = st.selectbox(
-    'What model would you like to use?',
+option = st.selectbox('What model would you like to use?',
     ('PaDEL (fast)', 'PaDEL+SIRMS (slower)'))
+
+SMI = st.text_input('Enter SMILES code of drug to load', '')  
 
 if len(SMI)>0:
     
