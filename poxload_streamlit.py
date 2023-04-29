@@ -265,7 +265,6 @@ if submit_button:
                 
                 tune_DF=str("sed -i -e 's/10\\t6\\t/10\\t"+set_DF+"\\t/g' formulations3test_db.csv")
                 os.system(tune_DF)
-                st.write(tune_DF)
                 
             with st.spinner('CALCULATING PADEL DESCRIPTORS FOR MIXTURES (STEP 3 OF 4)...'):
                 process2 = subprocess.Popen(["Rscript", "gtg.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
