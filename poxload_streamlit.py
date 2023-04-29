@@ -39,8 +39,6 @@ from PIL import Image
 
 st.image('logo.png')
 
-#st.title('POxload prediction model')
-
 st.caption("*** WORK IN PROGRESS ***")
 
 st.caption("""Input a [molecule SMILES code](https://pubchem.ncbi.nlm.nih.gov/edit3/index.html). Predictions for loading efficencies (LE) and
@@ -156,9 +154,7 @@ if submit_button:
                 
                 process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 result1 = process1.communicate()
-                
-                #os.system("Rscript cxdb.R")
-                
+                                
                 os.system("sed -i -e 's/\"//g' formulations3test_db.csv")
                 
                 try:
@@ -192,14 +188,10 @@ if submit_button:
             with st.spinner('CALCULATING PADEL DESCRIPTORS FOR MIXTURES (STEP 5 OF 6)...'):
                 process2 = subprocess.Popen(["Rscript", "gtg.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 result2 = process2.communicate()
-                #os.system("Rscript gtg.R > /dev/null 2>&1")
+
             with st.spinner('CALCULATING PREDICTIONS (STEP 6 OF 6)...'):
                 process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 result3 = process3.communicate()
-                #st.write(result3)
-                #os.system("Rscript fgv.R > /dev/null 2>&1")
-                #print("WRITE RESULTS TO CSV...")
-                #print("DONE! CALCULATION TIME: {0} SECONDS".format(time.time() - startTime))
                 
                 def cooling_highlight(val):
                     color = 'red' if val == "X0" else 'green'
@@ -268,9 +260,7 @@ if submit_button:
                 
                 process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 result1 = process1.communicate()
-                
-                #os.system("Rscript cxdb.R")
-                
+                               
                 os.system("sed -i -e 's/\"//g' formulations3test_db.csv")
                 
                 tune_DF=str("sed -i -e 's/10\\t6\\t/10\\t"+set_DF+"\\t/g' formulations3test_db.csv")
@@ -280,15 +270,9 @@ if submit_button:
             with st.spinner('CALCULATING PADEL DESCRIPTORS FOR MIXTURES (STEP 3 OF 4)...'):
                 process2 = subprocess.Popen(["Rscript", "gtg.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 result2 = process2.communicate()
-                st.write(result2)
-                #os.system("Rscript gtg.R > /dev/null 2>&1")
             with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
                 process3 = subprocess.Popen(["Rscript", "fgv3.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 result3 = process3.communicate()
-                #st.write(result3)
-                #os.system("Rscript fgv.R > /dev/null 2>&1")
-                #print("WRITE RESULTS TO CSV...")
-                #print("DONE! CALCULATION TIME: {0} SECONDS".format(time.time() - startTime))
                 
                 def cooling_highlight(val):
                     color = 'red' if val == "X0" else 'green'
