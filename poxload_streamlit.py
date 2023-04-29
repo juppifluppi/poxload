@@ -18,7 +18,6 @@ from scopy.ScoPretreat import pretreat
 import scopy.ScoDruglikeness
 from padelpy import from_smiles
 import sys, os
-from mordred import Calculator, descriptors
 from io import StringIO
 from rdkit import RDConfig
 from jazzy.core import rdkit_molecule_from_smiles
@@ -30,7 +29,6 @@ from scopy.ScoPretreat import pretreat
 import scopy.ScoDruglikeness
 from padelpy import from_smiles
 import sys, os
-from mordred import Calculator, descriptors
 import pandas as pd
 import time 
 
