@@ -56,6 +56,7 @@ with st.spinner('CALCULATING PADEL DESCRIPTORS FOR COMPOUND (STEP 1 OF 6)...'):
     sdm = pretreat.StandardizeMol()
     mol = sdm.disconnect_metals(mol)
     SMI = str(Chem.MolToSmiles(mol))
+    im = Draw.MolToImage(mol,fitImage=True) 
       
     descriptors = from_smiles(SMI)
     items = list(descriptors.items())
@@ -181,12 +182,19 @@ with st.spinner('CALCULATING PREDICTIONS (STEP 6 OF 6)...'):
     #print("WRITE RESULTS TO CSV...")
     #print("DONE! CALCULATION TIME: {0} SECONDS".format(time.time() - startTime))
     
+    def cooling_highlight(val):
+        color = 'red' if val == "X0" else 'green'
+        return f'background-color: {color}'
+    
     df = pd.read_csv(r'fin_results.csv',index_col=0)
     df = df.rename(columns={0: "Polymer", 1: "LC10", 2: "LC20", 3: "LC30", 4: "LC40", 5: "LE20", 6: "LE40", 7: "LE60", 8: "LE80"})
+    df1 = df[["LC10","LC20","LC30","LC40"]]
+    df2 = df[["LE20","LE40","LE60","LE80"]]
     
     col1, col2 = st.columns(2)
     with col1:
-        st.dataframe(df)
+        st.dataframe(df2.style.applymap(cooling_highlight))
+        st.dataframe(df2.style.applymap(cooling_highlight))
     with col2:
         st.image(im)
     
