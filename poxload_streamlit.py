@@ -48,8 +48,13 @@ loading capacities (LC) for different ABA-triblock poly(2-oxazoline)- and poly(2
 Random forest classifications for different thresholds are listed (LE ≥ 20, 40, 60, 70 and 80%; LC ≥ 10, 20, 30, 35 and 40%).
 Mixtures that exceed these thresholds are labeled "X1" and colored green. The calculation usually takes around 10 minutes.""")
 
-option = st.selectbox('What model would you like to use?',
-    ('PaDEL (fast)', 'PaDEL+SIRMS (slower)'))
+col1, col2 = st.columns(2)
+with col1:
+   option = st.selectbox('Descriptor subset to use:',
+                         ('PaDEL (faster: around 1 min)', 'PaDEL+SIRMS (slower: around 10 min)'))
+with col2:
+   set_DF = st.selectbox('Drug feed:',
+                         ('6 g/L', '4 g/L', '2 g/L', '8 g/L' '10 g/L', '12 g/L'))   
 
 SMI = st.text_input('Enter SMILES code of drug to load', '')  
 
@@ -171,6 +176,9 @@ if len(SMI)>0:
                         else:
                             file.write("\n")
             
+            tune_DF=str("sed -i -e 's/10\t8\t/10\t"+set_DF+"\t/g' formulations3test_db.csv")
+            os.system(tune_DF)
+            
         with st.spinner('CALCULATING SiRMS DESCRIPTORS (STEP 4 OF 6)...'):
             
             os.system("sirms -i db_library_merged.sdf -a mr logp eeq alp sa sdx sdc at -o sirms_test.txt -m mixture_test.txt --max_mix_components 3 --mix_type rel -c 1 -r > /dev/null 2>&1")
@@ -260,6 +268,9 @@ if len(SMI)>0:
             #os.system("Rscript cxdb.R")
             
             os.system("sed -i -e 's/\"//g' formulations3test_db.csv")
+            
+            tune_DF=str("sed -i -e 's/10\t8\t/10\t"+set_DF+"\t/g' formulations3test_db.csv")
+            os.system(tune_DF)
             
         with st.spinner('CALCULATING PADEL DESCRIPTORS FOR MIXTURES (STEP 3 OF 4)...'):
             process2 = subprocess.Popen(["Rscript", "gtg.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
