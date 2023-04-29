@@ -126,7 +126,7 @@ with Chem.SDWriter('librarytest.sdf') as w:
         w.write(m)
 
 
-CON = os.getenv('$CONDA_PREFIX')     
+CON = os.path.expandvars('$CONDA_PREFIX')     
 os.system("sed -i -e 's/atom.prop.//g' librarytest.sdf")
 os.system("sed -i -e 's/; /;/g' librarytest.sdf")
 command = str("cat librarytest.sdf "+CON+"/library_pol.sdf > db_library_merged.sdf")
