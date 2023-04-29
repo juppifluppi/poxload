@@ -114,7 +114,7 @@ with Chem.SDWriter('librarytest.sdf') as w:
     for m in mols:
         w.write(m)
 
-CON = os.getenv('$CONDA_PREFIX')
+CON = os.path.expandvars('$CONDA_PREFIX')
         
 os.system("sed -i -e 's/atom.prop.//g' librarytest.sdf")
 os.system("sed -i -e 's/; /;/g' librarytest.sdf")
