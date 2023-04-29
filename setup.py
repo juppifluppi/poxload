@@ -32,10 +32,10 @@ setup(
         ]
     },
     install_requires=[
-        'numpy==1.19.0',        
-        'rdkit==2022.09.5',    
+        'numpy>=1.19.0',        
+        'rdkit>=2022.09.5',    
         'scopy>=1.2.5',
-        'jazzy==0.0.11',
+        'jazzy>=0.0.11',
         'padelpy',
         'sirms',
     ],
