@@ -6,4 +6,5 @@ r-cran-caret
 r-cran-tidyverse
 r-cran-purrr
 r-cran-dplyr
+r-cran-randomForest
 default-jre-headless
