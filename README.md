@@ -15,7 +15,7 @@ The model can be installed as program in a new conda environment with all the ne
 2. ```git clone https://github.com/juppifluppi/poxload.git```
 3. ```cd poxload```
 4. ```conda env create -f env.yml```
-5. ```conda activate tclint```
+5. ```conda activate poxload```
 6. ```pip install -e .```
 
 In addition, R and its packages caret and randomForest need to be installed.
