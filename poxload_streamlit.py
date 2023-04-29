@@ -280,6 +280,7 @@ if submit_button:
             with st.spinner('CALCULATING PADEL DESCRIPTORS FOR MIXTURES (STEP 3 OF 4)...'):
                 process2 = subprocess.Popen(["Rscript", "gtg.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 result2 = process2.communicate()
+                st.write(result2)
                 #os.system("Rscript gtg.R > /dev/null 2>&1")
             with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
                 process3 = subprocess.Popen(["Rscript", "fgv3.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
