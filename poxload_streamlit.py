@@ -139,7 +139,6 @@ with st.spinner('CREATING FORMULATIONS (STEP 3 OF 6)...'):
     
     process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     result1 = process1.communicate()
-    st.write(result1)
     
     #os.system("Rscript cxdb.R")
     
@@ -173,12 +172,10 @@ with st.spinner('CALCULATING SiRMS DESCRIPTORS (STEP 4 OF 6)...'):
 with st.spinner('CALCULATING PADEL DESCRIPTORS FOR MIXTURES (STEP 5 OF 6)...'):
     process2 = subprocess.Popen(["Rscript", "gtg.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     result2 = process2.communicate()
-    st.write(result2)
     #os.system("Rscript gtg.R > /dev/null 2>&1")
 with st.spinner('CALCULATING PREDICTIONS (STEP 6 OF 6)...'):
     process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     result3 = process3.communicate()
-    st.write(result3)
     #os.system("Rscript fgv.R > /dev/null 2>&1")
     #print("WRITE RESULTS TO CSV...")
     #print("DONE! CALCULATION TIME: {0} SECONDS".format(time.time() - startTime))
