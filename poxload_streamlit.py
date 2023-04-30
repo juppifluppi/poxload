@@ -205,10 +205,9 @@ if submit_button:
                 col1, col2 = st.columns(2)
                 with col1:
                     st.dataframe(df2.style.applymap(cooling_highlight))
-                    st.image(im)
                 with col2:
                     st.dataframe(df1.style.applymap(cooling_highlight))
-            
+                st.image(im)            
                 
             # reference
             
@@ -285,10 +284,9 @@ if submit_button:
                 col1, col2 = st.columns(2)
                 with col1:
                     st.dataframe(df2.style.applymap(cooling_highlight))
-                    st.image(im)
                 with col2:
                     st.dataframe(df1.style.applymap(cooling_highlight))
-            
+            st.image(im)
                 
             # reference
             
