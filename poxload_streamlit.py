@@ -286,7 +286,7 @@ if submit_button:
                     st.dataframe(df2.style.applymap(cooling_highlight))
                 with col2:
                     st.dataframe(df1.style.applymap(cooling_highlight))
-            st.image(im)
+                st.image(im)
                 
             # reference
             
