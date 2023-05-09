@@ -290,7 +290,7 @@ if submit_button:
                 
             # reference
             
-            st.caption("[github page](https://github.com/juppifluppi/poxload)")
+            #st.caption("[github page](https://github.com/juppifluppi/poxload)")
           
     except:
         st.write("Cannot parse SMILES string!")
