@@ -49,7 +49,7 @@ Mixtures that exceed these thresholds are labeled "X1" and colored green.""")
 col1, col2 = st.columns(2)
 with col1:
    option = st.selectbox('Descriptor subset model to use:',
-                         ('PaDEL+SiRMS (slower: around 10 min)'))
+                         ('PaDEL+SiRMS (slower: around 10 min)','PaDEL+SiRMS (slower: around 10 min)'))
 with col2:
    set_DF = st.selectbox('Drug feed (g/L):',
                          ('6', '4', '2', '8', '10', '12'))   
