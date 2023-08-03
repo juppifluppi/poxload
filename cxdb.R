@@ -2,7 +2,7 @@ dr=read.csv("db_molstest.csv")
 formulations=read.csv("smiles3.csv",dec=".")
 fill=read.csv("smiles3.csv")
 
-fill$DF=6
+fill$DF=8
 fill$D2="None"
 fill$DF2=0
 fill$DRUGNAME2="None"
