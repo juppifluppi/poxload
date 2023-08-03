@@ -196,10 +196,9 @@ if submit_button:
         with st.spinner('CALCULATING PREDICTIONS (STEP 6 OF 6)...'):
             process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             result3 = process3.communicate()
-            st.write(result3)
                 
             def cooling_highlight(val):
-                color = 'red' if val == "X0" else 'green'
+                color = 'red' if val == "X0" else 'grey' if val=="AD" else 'green'
                 return f'background-color: {color}'
 
             st.write("test1")
@@ -212,11 +211,11 @@ if submit_button:
             st.write("test3")
             col1, col2 = st.columns(2)
             with col1:
-                #st.dataframe(df2.style.applymap(cooling_highlight))
-                st.dataframe(df2)
+                st.dataframe(df2.style.applymap(cooling_highlight))
+                #st.dataframe(df2)
             with col2:
-                #st.dataframe(df1.style.applymap(cooling_highlight))
-                st.dataframe(df1)
+                st.dataframe(df1.style.applymap(cooling_highlight))
+                #st.dataframe(df1)
             st.image(im)            
                 
         # reference
