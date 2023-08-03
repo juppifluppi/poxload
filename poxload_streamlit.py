@@ -136,7 +136,7 @@ if submit_button:
                             
                 mols.append(mol)
                 
-                mj = Chem.Descriptors.ExactMolWt(mol)[0]
+                mj = Chem.Descriptors.ExactMolWt(mol)
                 sum_MW.append(mj)
                     
                 with Chem.SDWriter('librarytest.sdf') as w:
@@ -150,7 +150,7 @@ if submit_button:
                 dfx = pd.DataFrame(columns=['NAME', "SMILES","MW"])
                 dfx["NAME"]=sum_NAME
                 dfx["SMILES"]=sum_SMILES
-                dfx["MW"]=sum_MW
+                dfx["MW"]=sum_MW[0]
                 
                 dfx.to_csv("db_molstest.csv",index=False)
                 
