@@ -68,12 +68,12 @@ for(huh in 1:nrow(afx2)){
   z1=append(z1,aggg)
 }
 
-print(z1)
+
 
 a=af$POL
 a=as.data.frame(a)
 
-print(a)
+
 
 load("xgb_m1w.rda")
 b=as.character(unlist(predict(final_model,newdata=afx2)))
@@ -82,9 +82,7 @@ gzy=gzy<thr1_3
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
-print(b)
-print(gzy)
-print(a)
+
 
 ui=read.csv("startdatayyymod.dat",check.names = F)
 ui=ui[,colnames(ui)%in%colnames(m2$trainingData)]
