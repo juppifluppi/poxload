@@ -44,15 +44,19 @@ st.caption("*** WORK IN PROGRESS ***")
 st.caption("""Input a [molecule SMILES code](https://pubchem.ncbi.nlm.nih.gov/edit3/index.html). Predictions for loading efficencies (LE) and
 loading capacities (LC) for different ABA-triblock poly(2-oxazoline)- and poly(2-oxazine)-based micelles are listed, given a polymer feed of 10 g/L.
 Random forest classifications for different thresholds are listed (LE ≥ 20, 40, 60, 70 and 80%; LC ≥ 10, 20, 30, 35 and 40%).
-Mixtures that exceed these thresholds are labeled "X1" and colored green. Mixtures outside of the applicability domain of the respective model are labeled with "NA". """)
+Mixtures that exceed these thresholds are labeled "X1" and colored green. Mixtures outside of the applicability domain of the respective model are labeled with "NA".
+Predictions usually take around 5-10 minutes.""")
 
-col1, col2 = st.columns(2)
-with col1:
-   option = st.selectbox('Descriptor subset model to use:',
-                         ('PaDEL+SiRMS (slower: around 10 min)','PaDEL+SiRMS (slower: around 10 min)'))
-with col2:
-   set_DF = st.selectbox('Drug feed (g/L):',
-                         ('8', '2', '4', '6', '10', '12'))   
+#col1, col2 = st.columns(2)
+#with col1:
+#   option = st.selectbox('Descriptor subset model to use:',
+#                         ('PaDEL+SiRMS (slower: around 10 min)','PaDEL+SiRMS (slower: around 10 min)'))
+#with col2:
+#   set_DF = st.selectbox('Drug feed (g/L):',
+#                         ('8', '2', '4', '6', '10', '12'))   
+
+set_DF = st.selectbox('Drug feed (g/L):',
+    ('8', '2', '4', '6', '10', '12'))   
 
 with st.form(key='my_form_to_submit'):
     SMI = st.text_input('Enter SMILES code of drug to load', '') 
