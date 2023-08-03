@@ -137,6 +137,7 @@ if submit_button:
                 mols.append(mol)
                 
                 mj = Chem.Descriptors.ExactMolWt(mol)
+                st.write(mj)
                 sum_MW.append(mj)
                     
                 with Chem.SDWriter('librarytest.sdf') as w:
