@@ -49,13 +49,13 @@ a=as.data.frame(a)
 
 load("xgb_m1w.rda")
 b=unlist(predict(final_model,newdata=afx2))
-gzy=gzy<thr1_3
+gzy=z1<thr1_3
 b[gzy==FALSE]=NA
 a=cbind(a,b)
 
 load("xgb_m2w.rda")
 b=unlist(predict(final_model,newdata=afx2))
-gzy=gzy<thr2_3
+gzy=z1<thr2_3
 b[gzy==FALSE]=NA
 a=cbind(a,b)
 
@@ -80,7 +80,7 @@ for(huh in 1:nrow(afx2)){
 
 load("xgb_m3v.rda")
 b=unlist(predict(final_model,newdata=afx2))
-gzy=gzy<thr3_3
+gzy=z1<thr3_3
 b[gzy==FALSE]=NA
 a=cbind(a,b)
 
@@ -105,7 +105,7 @@ for(huh in 1:nrow(afx2)){
 
 load("xgb_m35j.rda")
 b=unlist(predict(final_model,newdata=afx2))
-gzy=gzy<thr35_3
+gzy=z1<thr35_3
 b[gzy==FALSE]=NA
 a=cbind(a,b)
 
@@ -130,7 +130,7 @@ for(huh in 1:nrow(afx2)){
 
 load("xgb_m4w.rda")
 b=unlist(predict(final_model,newdata=afx2))
-gzy=gzy<thr4_3
+gzy=z1<thr4_3
 b[gzy==FALSE]=NA
 a=cbind(a,b)
 
@@ -155,13 +155,13 @@ for(huh in 1:nrow(afx2)){
 
 load("xgb_m5v.rda")
 b=unlist(predict(final_model,newdata=afx2))
-gzy=gzy<thr5_3
+gzy=z1<thr5_3
 b[gzy==FALSE]=NA
 a=cbind(a,b)
 
 load("xgb_m6v.rda")
 b=unlist(predict(final_model,newdata=afx2))
-gzy=gzy<thr6_3
+gzy=z1<thr6_3
 b[gzy==FALSE]=NA
 a=cbind(a,b)
 
@@ -197,13 +197,13 @@ for(huh in 1:nrow(afx2)){
 
 load("xgb_m7j.rda")
 b=unlist(predict(final_model,newdata=afx2))
-gzy=gzy<thr7_3
+gzy=z1<thr7_3
 b[gzy==FALSE]=NA
 a=cbind(a,b)
 
 load("xgb_m75j.rda")
 b=unlist(predict(final_model,newdata=afx2))
-gzy=gzy<thr75_3
+gzy=z1<thr75_3
 b[gzy==FALSE]=NA
 a=cbind(a,b)
 
@@ -228,7 +228,7 @@ for(huh in 1:nrow(afx2)){
 
 load("xgb_m8v.rda")
 b=unlist(predict(final_model,newdata=afx2))
-gzy=gzy<thr8_3
+gzy=z1<thr8_3
 b[gzy==FALSE]=NA
 a=cbind(a,b)
 
