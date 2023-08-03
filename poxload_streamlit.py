@@ -67,51 +67,51 @@ if submit_button:
     try:
         
 #        if option == "PaDEL+SiRMS (slower: around 10 min)":
-            with st.spinner('CALCULATING PADEL DESCRIPTORS FOR COMPOUND (STEP 1 OF 6)...'):
-                NAME = "testcompound"
-                
-                mol = Chem.MolFromSmiles(SMI)
-                sdm = pretreat.StandardizeMol()
-                mol = sdm.disconnect_metals(mol)
-                SMI = str(Chem.MolToSmiles(mol))
-                im = Draw.MolToImage(mol,fitImage=True) 
+        with st.spinner('CALCULATING PADEL DESCRIPTORS FOR COMPOUND (STEP 1 OF 6)...'):
+            NAME = "testcompound"
+               
+            mol = Chem.MolFromSmiles(SMI)
+            sdm = pretreat.StandardizeMol()
+            mol = sdm.disconnect_metals(mol)
+            SMI = str(Chem.MolToSmiles(mol))
+            im = Draw.MolToImage(mol,fitImage=True) 
                   
-                descriptors = from_smiles(SMI)
-                items = list(descriptors.items())
-                descriptors = dict(items)
-                items.insert(0, ('Name', NAME))
+            descriptors = from_smiles(SMI)
+            items = list(descriptors.items())
+            descriptors = dict(items)
+            items.insert(0, ('Name', NAME))
                 
-                with open("descriptors_padeltest.csv","w") as f:
-                    for o in descriptors.keys():
-                        f.write(str(o)+",")
-                    f.write("\n")
+            with open("descriptors_padeltest.csv","w") as f:
+                for o in descriptors.keys():
+                    f.write(str(o)+",")
+                f.write("\n")
                 
-                with open("descriptors_padeltest.csv","a") as f:
-                    for o in descriptors.values():
-                        f.write(str(o)+",")
+            with open("descriptors_padeltest.csv","a") as f:
+                for o in descriptors.values():
+                    f.write(str(o)+",")
                 
-                mols=[]
-                sum_MW=[]
-                sum_SMILES=[]
-                sum_NAME=[]
+            mols=[]
+            sum_MW=[]
+            sum_SMILES=[]
+            sum_NAME=[]
                 
-                sum_SMILES.append(SMI)
-                sum_NAME.append(NAME)
+            sum_SMILES.append(SMI)
+            sum_NAME.append(NAME)
                 
-            with st.spinner('CALCULATING ATOMIC PROPERTIES FOR SiRMS (STEP 2 OF 6)...'):
+        with st.spinner('CALCULATING ATOMIC PROPERTIES FOR SiRMS (STEP 2 OF 6)...'):
                         
-                mol = rdkit_molecule_from_smiles(SMI, minimisation_method="MMFF94")
-                kallisto_mol = kallisto_molecule_from_rdkit_molecule(mol)
-                atoms_and_nbrs = get_covalent_atom_idxs(mol)
-                kallisto_charges = get_charges_from_kallisto_molecule(kallisto_mol, charge=0)  
-                a = calculate_polar_strength_map(mol, kallisto_mol, atoms_and_nbrs, kallisto_charges)
-                
-                contribs = Crippen.rdMolDescriptors._CalcCrippenContribs( mol )    
-                logps, mrs = zip( *contribs )
+            mol = rdkit_molecule_from_smiles(SMI, minimisation_method="MMFF94")
+            kallisto_mol = kallisto_molecule_from_rdkit_molecule(mol)
+            atoms_and_nbrs = get_covalent_atom_idxs(mol)
+            kallisto_charges = get_charges_from_kallisto_molecule(kallisto_mol, charge=0)  
+            a = calculate_polar_strength_map(mol, kallisto_mol, atoms_and_nbrs, kallisto_charges)
+                 
+            contribs = Crippen.rdMolDescriptors._CalcCrippenContribs( mol )    
+            logps, mrs = zip( *contribs )
                     
-                comp = 0
-                for atom in mol.GetAtoms():
-                    comp += 1
+            comp = 0
+            for atom in mol.GetAtoms():
+                comp += 1
                 
                 for ji in ["eeq","alp","num_lp","sdc","sdx","sa"]:
                     for nmx in range(0,comp):
