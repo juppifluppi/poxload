@@ -74,7 +74,7 @@ a=as.data.frame(a)
 load("xgb_m1w.rda")
 b=as.character(unlist(predict(final_model,newdata=afx2)))
 gzy=unlist(as.vector(z1))
-gzy=gzy<thr1_3
+gzy=unlist(gzy<thr1_3)
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
