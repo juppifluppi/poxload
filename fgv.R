@@ -68,6 +68,8 @@ for(huh in 1:nrow(afx2)){
   z1=append(z1,aggg)
 }
 
+print(z1)
+
 a=af$POL
 a=as.data.frame(a)
 
