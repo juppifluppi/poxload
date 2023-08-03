@@ -78,6 +78,8 @@ gzy=gzy<thr1_3
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
+print(gzy)
+print(b)
 print(a)
 
 
