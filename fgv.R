@@ -19,6 +19,29 @@ library("devtools")
 # load package w/o installing
 devtools::load_all('import')
 
+
+load("xgb_m1w.rda")
+m1=final_model
+load("xgb_m2w.rda")
+m2=final_model
+load("xgb_m3v.rda")
+m3=final_model
+load("xgb_m35j.rda")
+m35=final_model
+load("xgb_m4w.rda")
+m4=final_model
+load("xgb_m5v.rda")
+m5=final_model
+load("xgb_m6v.rda")
+m6=final_model
+load("xgb_m7j.rda")
+m7=final_model
+load("xgb_m75j.rda")
+m75=final_model
+load("xgb_m8v.rda")
+m8=final_model
+
+
 af=read.csv("formulations3test_db.csv",sep="\t")
 af2=read.csv("descp.csv")
 af3=read.csv("sirms_test.txt",check.names = F)
@@ -26,6 +49,7 @@ colnames(af3)[1]="Mixture"
 afx=cbind(af,af2,af3)
 
 ui=read.csv("startdatayyymod.dat",check.names = F)
+ui=ui[,colnames(ui)%in%colnames(m1$trainingData)]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -53,6 +77,26 @@ gzy=z1<thr1_3
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
+ui=read.csv("startdatayyymod.dat",check.names = F)
+ui=ui[,colnames(ui)%in%colnames(m2$trainingData)]
+afx2=afx[,colnames(afx)%in%colnames(ui)]
+Missing <- setdiff(colnames(ui), colnames(afx2))
+afx2[Missing] <- 0
+afx2 <- afx2[colnames(ui)]
+is.na(afx2)<-sapply(afx2, is.infinite)
+afx2[is.na(afx2)]<-0
+
+preproc <- preProcess(ui, method=c("center","scale"))
+uix <- predict(preproc, newdata = ui)
+z1=c()
+for(huh in 1:nrow(afx2)){
+  scaled.new <- predict(preproc, newdata = afx2[huh,])
+  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
+  aggg=abs(sort(aggg)[1:14])
+  aggg=mean(aggg,na.rm=T)
+  z1=append(z1,aggg)
+}
+
 load("xgb_m2w.rda")
 b=unlist(predict(final_model,newdata=afx2))
 gzy=z1<thr2_3
@@ -60,6 +104,7 @@ b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
 ui=read.csv("startdatayyy6mod.dat",check.names = F)
+ui=ui[,colnames(ui)%in%colnames(m3$trainingData)]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -85,6 +130,7 @@ b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
 ui=read.csv("startdatayyy7mod.dat",check.names = F)
+ui=ui[,colnames(ui)%in%colnames(m35$trainingData)]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -110,6 +156,7 @@ b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
 ui=read.csv("startdatayyymod.dat",check.names = F)
+ui=ui[,colnames(ui)%in%colnames(m4$trainingData)]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -135,6 +182,7 @@ b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
 ui=read.csv("startdatayyy6mod.dat",check.names = F)
+ui=ui[,colnames(ui)%in%colnames(m5$trainingData)]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -159,6 +207,26 @@ gzy=z1<thr5_3
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
+ui=read.csv("startdatayyy6mod.dat",check.names = F)
+ui=ui[,colnames(ui)%in%colnames(m6$trainingData)]
+afx2=afx[,colnames(afx)%in%colnames(ui)]
+Missing <- setdiff(colnames(ui), colnames(afx2))
+afx2[Missing] <- 0
+afx2 <- afx2[colnames(ui)]
+is.na(afx2)<-sapply(afx2, is.infinite)
+afx2[is.na(afx2)]<-0
+
+preproc <- preProcess(ui, method=c("center","scale"))
+uix <- predict(preproc, newdata = ui)
+z1=c()
+for(huh in 1:nrow(afx2)){
+  scaled.new <- predict(preproc, newdata = afx2[huh,])
+  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
+  aggg=abs(sort(aggg)[1:14])
+  aggg=mean(aggg,na.rm=T)
+  z1=append(z1,aggg)
+}
+
 load("xgb_m6v.rda")
 b=unlist(predict(final_model,newdata=afx2))
 gzy=z1<thr6_3
@@ -177,6 +245,7 @@ for(huh in 1:nrow(afx2)){
 }
 
 ui=read.csv("startdatayyy7mod.dat",check.names = F)
+ui=ui[,colnames(ui)%in%colnames(m7$trainingData)]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -201,6 +270,26 @@ gzy=z1<thr7_3
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
+ui=read.csv("startdatayyy7mod.dat",check.names = F)
+ui=ui[,colnames(ui)%in%colnames(m75$trainingData)]
+afx2=afx[,colnames(afx)%in%colnames(ui)]
+Missing <- setdiff(colnames(ui), colnames(afx2))
+afx2[Missing] <- 0
+afx2 <- afx2[colnames(ui)]
+is.na(afx2)<-sapply(afx2, is.infinite)
+afx2[is.na(afx2)]<-0
+
+preproc <- preProcess(ui, method=c("center","scale"))
+uix <- predict(preproc, newdata = ui)
+z1=c()
+for(huh in 1:nrow(afx2)){
+  scaled.new <- predict(preproc, newdata = afx2[huh,])
+  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
+  aggg=abs(sort(aggg)[1:14])
+  aggg=mean(aggg,na.rm=T)
+  z1=append(z1,aggg)
+}
+
 load("xgb_m75j.rda")
 b=unlist(predict(final_model,newdata=afx2))
 gzy=z1<thr75_3
@@ -208,6 +297,7 @@ b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
 ui=read.csv("startdatayyy6mod.dat",check.names = F)
+ui=ui[,colnames(ui)%in%colnames(m8$trainingData)]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
