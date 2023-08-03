@@ -323,5 +323,5 @@ b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
 colnames(a)=c("POL","LC10","LC20","LC30","LC35","LC40","LE20","LE40","LE60","LE70","LE80")
-a
+print(a)
 write.csv(a,"fin_results.csv",row.names=F)
