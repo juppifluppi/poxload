@@ -75,8 +75,12 @@ load("xgb_m1w.rda")
 b=unlist(predict(final_model,newdata=afx2))
 gzy=unlist(as.vector(z1))
 gzy=gzy<thr1_3
-b[gzy==FALSE]="AD"
+b[gzy==FALSE]=NA
 a=cbind(a,b)
+
+print(b)
+print(gzy)
+print(a)
 
 ui=read.csv("startdatayyymod.dat",check.names = F)
 ui=ui[,colnames(ui)%in%colnames(m2$trainingData)]
@@ -102,7 +106,7 @@ load("xgb_m2w.rda")
 b=unlist(predict(final_model,newdata=afx2))
 gzy=unlist(as.vector(z1))
 gzy=gzy<thr2_3
-b[gzy==FALSE]="AD"
+b[gzy==FALSE]=NA
 a=cbind(a,b)
 
 ui=read.csv("startdatayyy6mod.dat",check.names = F)
@@ -129,7 +133,7 @@ load("xgb_m3v.rda")
 b=unlist(predict(final_model,newdata=afx2))
 gzy=unlist(as.vector(z1))
 gzy=gzy<thr3_3
-b[gzy==FALSE]="AD"
+b[gzy==FALSE]=NA
 a=cbind(a,b)
 
 ui=read.csv("startdatayyy7mod.dat",check.names = F)
@@ -156,7 +160,7 @@ load("xgb_m35j.rda")
 b=unlist(predict(final_model,newdata=afx2))
 gzy=unlist(as.vector(z1))
 gzy=gzy<thr35_3
-b[gzy==FALSE]="AD"
+b[gzy==FALSE]=NA
 a=cbind(a,b)
 
 ui=read.csv("startdatayyymod.dat",check.names = F)
@@ -183,7 +187,7 @@ load("xgb_m4w.rda")
 b=unlist(predict(final_model,newdata=afx2))
 gzy=unlist(as.vector(z1))
 gzy=gzy<thr4_3
-b[gzy==FALSE]="AD"
+b[gzy==FALSE]=NA
 a=cbind(a,b)
 
 ui=read.csv("startdatayyy6mod.dat",check.names = F)
@@ -210,7 +214,7 @@ load("xgb_m5v.rda")
 b=unlist(predict(final_model,newdata=afx2))
 gzy=unlist(as.vector(z1))
 gzy=gzy<thr5_3
-b[gzy==FALSE]="AD"
+b[gzy==FALSE]=NA
 a=cbind(a,b)
 
 ui=read.csv("startdatayyy6mod.dat",check.names = F)
@@ -237,7 +241,7 @@ load("xgb_m6v.rda")
 b=unlist(predict(final_model,newdata=afx2))
 gzy=unlist(as.vector(z1))
 gzy=gzy<thr6_3
-b[gzy==FALSE]="AD"
+b[gzy==FALSE]=NA
 a=cbind(a,b)
 
 preproc <- preProcess(ui, method=c("center","scale"))
@@ -275,7 +279,7 @@ load("xgb_m7j.rda")
 b=unlist(predict(final_model,newdata=afx2))
 gzy=unlist(as.vector(z1))
 gzy=gzy<thr7_3
-b[gzy==FALSE]="AD"
+b[gzy==FALSE]=NA
 a=cbind(a,b)
 
 ui=read.csv("startdatayyy7mod.dat",check.names = F)
@@ -302,7 +306,7 @@ load("xgb_m75j.rda")
 b=unlist(predict(final_model,newdata=afx2))
 gzy=unlist(as.vector(z1))
 gzy=gzy<thr75_3
-b[gzy==FALSE]="AD"
+b[gzy==FALSE]=NA
 a=cbind(a,b)
 
 ui=read.csv("startdatayyy6mod.dat",check.names = F)
@@ -329,7 +333,7 @@ load("xgb_m8v.rda")
 b=unlist(predict(final_model,newdata=afx2))
 gzy=unlist(as.vector(z1))
 gzy=gzy<thr8_3
-b[gzy==FALSE]="AD"
+b[gzy==FALSE]=NA
 a=cbind(a,b)
 
 colnames(a)=c("POL","LC10","LC20","LC30","LC35","LC40","LE20","LE40","LE60","LE70","LE80")
