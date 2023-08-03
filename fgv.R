@@ -78,10 +78,6 @@ gzy=gzy<thr1_3
 b[gzy==FALSE]=NA
 a=cbind(a,b)
 
-print(b)
-print(gzy)
-print(a)
-
 ui=read.csv("startdatayyymod.dat",check.names = F)
 ui=ui[,colnames(ui)%in%colnames(m2$trainingData)]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
@@ -337,5 +333,7 @@ b[gzy==FALSE]=NA
 a=cbind(a,b)
 
 colnames(a)=c("POL","LC10","LC20","LC30","LC35","LC40","LE20","LE40","LE60","LE70","LE80")
+print(b)
+print(gzy)
 print(a)
 write.csv(a,"fin_results.csv",row.names=F)
