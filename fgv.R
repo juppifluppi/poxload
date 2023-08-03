@@ -69,7 +69,7 @@ for(huh in 1:nrow(afx2)){
 }
 
 a=af$POL
-a=as.data.frame(a)
+a=as.data.frame(a,a)
 
 load("xgb_m1w.rda")
 b=unlist(predict(final_model,newdata=afx2))
@@ -332,7 +332,7 @@ gzy=gzy<thr8_3
 b[gzy==FALSE]=NA
 a=cbind(a,b)
 
-colnames(a)=c("POL","LC10","LC20","LC30","LC35","LC40","LE20","LE40","LE60","LE70","LE80")
+colnames(a)=c("POL","POL","LC10","LC20","LC30","LC35","LC40","LE20","LE40","LE60","LE70","LE80")
 print(b)
 print(gzy)
 print(a)
