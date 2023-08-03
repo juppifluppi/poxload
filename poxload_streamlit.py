@@ -49,7 +49,7 @@ Mixtures that exceed these thresholds are labeled "X1" and colored green.""")
 col1, col2 = st.columns(2)
 with col1:
    option = st.selectbox('Descriptor subset model to use:',
-                         ('PaDEL (30 - 60s)', 'PaDEL+SiRMS (slower: around 10 min)'))
+                         ('PaDEL+SiRMS (slower: around 10 min)'))
 with col2:
    set_DF = st.selectbox('Drug feed (g/L):',
                          ('6', '4', '2', '8', '10', '12'))   
@@ -188,10 +188,12 @@ if submit_button:
             with st.spinner('CALCULATING PADEL DESCRIPTORS FOR MIXTURES (STEP 5 OF 6)...'):
                 process2 = subprocess.Popen(["Rscript", "gtg.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 result2 = process2.communicate()
+                st.write(result2)
 
             with st.spinner('CALCULATING PREDICTIONS (STEP 6 OF 6)...'):
                 process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 result3 = process3.communicate()
+                st.write(result3)
                 
                 def cooling_highlight(val):
                     color = 'red' if val == "X0" else 'green'
@@ -212,85 +214,6 @@ if submit_button:
             # reference
             
             st.caption("[github page](https://github.com/juppifluppi/poxload)")
-    
-        if option == "PaDEL (30 - 60s)":     
-            with st.spinner('CALCULATING PADEL DESCRIPTORS FOR COMPOUND (STEP 1 OF 4)...'):
-                NAME = "testcompound"
-                
-                mol = Chem.MolFromSmiles(SMI)
-                sdm = pretreat.StandardizeMol()
-                mol = sdm.disconnect_metals(mol)
-                SMI = str(Chem.MolToSmiles(mol))
-                im = Draw.MolToImage(mol,fitImage=True) 
-                  
-                descriptors = from_smiles(SMI)
-                items = list(descriptors.items())
-                descriptors = dict(items)
-                items.insert(0, ('Name', NAME))
-                
-                with open("descriptors_padeltest.csv","w") as f:
-                    for o in descriptors.keys():
-                        f.write(str(o)+",")
-                    f.write("\n")
-                
-                with open("descriptors_padeltest.csv","a") as f:
-                    for o in descriptors.values():
-                        f.write(str(o)+",")
-                
-                mols=[]
-                sum_MW=[]
-                sum_SMILES=[]
-                sum_NAME=[]
-                
-                sum_SMILES.append(SMI)
-                sum_NAME.append(NAME)
-                
-                mj = Chem.Descriptors.ExactMolWt(mol)
-                sum_MW.append(mj)
-    
-                dfx = pd.DataFrame(columns=['NAME', "SMILES","MW"])
-                dfx["NAME"]=sum_NAME
-                dfx["SMILES"]=sum_SMILES
-                dfx["MW"]=sum_MW
-                
-                dfx.to_csv("db_molstest.csv",index=False)
-                
-            with st.spinner('CREATING FORMULATIONS (STEP 2 OF 4)...'):
-                
-                process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                result1 = process1.communicate()
-                               
-                os.system("sed -i -e 's/\"//g' formulations3test_db.csv")
-                
-                tune_DF=str("sed -i -e 's/10\\t6\\t/10\\t"+set_DF+"\\t/g' formulations3test_db.csv")
-                os.system(tune_DF)
-                
-            with st.spinner('CALCULATING PADEL DESCRIPTORS FOR MIXTURES (STEP 3 OF 4)...'):
-                process2 = subprocess.Popen(["Rscript", "gtg.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                result2 = process2.communicate()
-            with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
-                process3 = subprocess.Popen(["Rscript", "fgv3.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                result3 = process3.communicate()
-                
-                def cooling_highlight(val):
-                    color = 'red' if val == "X0" else 'green'
-                    return f'background-color: {color}'
-                
-                df = pd.read_csv(r'fin_results.csv',index_col=0)
-                df = df.rename(columns={0: "Polymer", 1: "LC10", 2: "LC20", 3: "LC30", 4: "LC35", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE70", 10: "LE80"})
-                df1 = df[["LC10","LC20","LC30","LC35","LC40"]]
-                df2 = df[["LE20","LE40","LE60","LE70","LE80"]]
-                
-                col1, col2 = st.columns(2)
-                with col1:
-                    st.dataframe(df2.style.applymap(cooling_highlight))
-                with col2:
-                    st.dataframe(df1.style.applymap(cooling_highlight))
-                st.image(im)
-                
-            # reference
-            
-            #st.caption("[github page](https://github.com/juppifluppi/poxload)")
-          
+              
     except:
         st.write("Cannot parse SMILES string!")
