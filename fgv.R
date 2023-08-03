@@ -13,7 +13,12 @@ library("caret")
 library("randomForest")
 library("e1071")
 library("foreach")
-library("import")
+
+library("devtools")
+
+# load package w/o installing
+load_all('/import')
+
 af=read.csv("formulations3test_db.csv",sep="\t")
 af2=read.csv("descp.csv")
 af3=read.csv("sirms_test.txt",check.names = F)
