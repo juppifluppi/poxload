@@ -64,7 +64,7 @@ with st.form(key='my_form_to_submit'):
 
 if submit_button:
 
-    try:
+    #try:
         
 #        if option == "PaDEL+SiRMS (slower: around 10 min)":
         with st.spinner('CALCULATING PADEL DESCRIPTORS FOR COMPOUND (STEP 1 OF 6)...'):
@@ -223,5 +223,5 @@ if submit_button:
             
             st.caption("[github page](https://github.com/juppifluppi/poxload)")
               
-    except:
-        st.write("Cannot parse SMILES string!")
+    #except:
+    #    st.write("Cannot parse SMILES string!")
