@@ -66,7 +66,7 @@ if submit_button:
 
     try:
         
-        if option == "PaDEL+SiRMS (slower: around 10 min)":
+#        if option == "PaDEL+SiRMS (slower: around 10 min)":
             with st.spinner('CALCULATING PADEL DESCRIPTORS FOR COMPOUND (STEP 1 OF 6)...'):
                 NAME = "testcompound"
                 
