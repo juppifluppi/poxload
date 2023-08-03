@@ -154,74 +154,74 @@ if submit_button:
                 
                 dfx.to_csv("db_molstest.csv",index=False)
                 
-            with st.spinner('CREATING FORMULATIONS (STEP 3 OF 6)...'):
+        with st.spinner('CREATING FORMULATIONS (STEP 3 OF 6)...'):
                 
-                process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                result1 = process1.communicate()
+            process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            result1 = process1.communicate()
                                 
-                os.system("sed -i -e 's/\"//g' formulations3test_db.csv")
+            os.system("sed -i -e 's/\"//g' formulations3test_db.csv")
                 
-                try:
-                    os.remove("mixture_test.txt")
-                except:
-                    pass
+            try:
+                os.remove("mixture_test.txt")
+            except:
+                pass
                 
-                with open("formulations3test_db.csv","r") as f:
-                    lines=f.readlines()
-                    for o in lines[1:]:
-                        o=o.split("\t")
-                        with open("mixture_test.txt", "a") as file:
-                            file.write(str(o[-6])+"\t"+str(o[-5]))
-                            if str(o[-4]) != "None":
-                                file.write("\t"+str(o[-4]))
-                            file.write("\t"+str(o[-3])+"\t"+str(o[-2]))
-                            if float(o[-1]) > 0:
-                                file.write("\t"+str(o[-1]))
-                            else:
-                                file.write("\n")
+            with open("formulations3test_db.csv","r") as f:
+                lines=f.readlines()
+                for o in lines[1:]:
+                    o=o.split("\t")
+                    with open("mixture_test.txt", "a") as file:
+                        file.write(str(o[-6])+"\t"+str(o[-5]))
+                        if str(o[-4]) != "None":
+                            file.write("\t"+str(o[-4]))
+                        file.write("\t"+str(o[-3])+"\t"+str(o[-2]))
+                        if float(o[-1]) > 0:
+                            file.write("\t"+str(o[-1]))
+                        else:
+                            file.write("\n")
                 
-                tune_DF=str("sed -i -e 's/10\\t6\t/10\\t"+set_DF+"\\t/g' formulations3test_db.csv")
-                os.system(tune_DF)
+            tune_DF=str("sed -i -e 's/10\\t6\t/10\\t"+set_DF+"\\t/g' formulations3test_db.csv")
+            os.system(tune_DF)
                 
-            with st.spinner('CALCULATING SiRMS DESCRIPTORS (STEP 4 OF 6)...'):
+        with st.spinner('CALCULATING SiRMS DESCRIPTORS (STEP 4 OF 6)...'):
                 
-                os.system("sirms -i db_library_merged.sdf -a mr logp eeq alp sa sdx sdc at -o sirms_test.txt -m mixture_test.txt --max_mix_components 3 --mix_type rel -c 1 -r > /dev/null 2>&1")
+            os.system("sirms -i db_library_merged.sdf -a mr logp eeq alp sa sdx sdc at -o sirms_test.txt -m mixture_test.txt --max_mix_components 3 --mix_type rel -c 1 -r > /dev/null 2>&1")
                 
-                os.system("sed -i -e 's/\t/,/g' sirms_test.txt")
-                
-            with st.spinner('CALCULATING PADEL DESCRIPTORS FOR MIXTURES (STEP 5 OF 6)...'):
-                process2 = subprocess.Popen(["Rscript", "gtg.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                result2 = process2.communicate()
+            os.system("sed -i -e 's/\t/,/g' sirms_test.txt")
+               
+        with st.spinner('CALCULATING PADEL DESCRIPTORS FOR MIXTURES (STEP 5 OF 6)...'):
+            process2 = subprocess.Popen(["Rscript", "gtg.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            result2 = process2.communicate()
 
-            with st.spinner('CALCULATING PREDICTIONS (STEP 6 OF 6)...'):
-                process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                result3 = process3.communicate()
-                st.write(result3)
+        with st.spinner('CALCULATING PREDICTIONS (STEP 6 OF 6)...'):
+            process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            result3 = process3.communicate()
+            st.write(result3)
                 
-                def cooling_highlight(val):
-                    color = 'red' if val == "X0" else 'green'
-                    return f'background-color: {color}'
+            def cooling_highlight(val):
+                color = 'red' if val == "X0" else 'green'
+                return f'background-color: {color}'
 
-                st.write("test1")
-                df = pd.read_csv(r'fin_results.csv',index_col=0)
-                st.write("test2")
-                df = df.rename(columns={0: "Polymer", 1: "LC10", 2: "LC20", 3: "LC30", 4: "LC35", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE70", 10: "LE80"})
-                df1 = df[["LC10","LC20","LC30","LC35","LC40"]]
-                df2 = df[["LE20","LE40","LE60","LE70","LE80"]]
+            st.write("test1")
+            df = pd.read_csv(r'fin_results.csv',index_col=0)
+            st.write("test2")
+            df = df.rename(columns={0: "Polymer", 1: "LC10", 2: "LC20", 3: "LC30", 4: "LC35", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE70", 10: "LE80"})
+            df1 = df[["LC10","LC20","LC30","LC35","LC40"]]
+            df2 = df[["LE20","LE40","LE60","LE70","LE80"]]
 
-                st.write("test3")
-                col1, col2 = st.columns(2)
-                with col1:
-                    #st.dataframe(df2.style.applymap(cooling_highlight))
-                    st.dataframe(df2)
-                with col2:
-                    #st.dataframe(df1.style.applymap(cooling_highlight))
-                    st.dataframe(df1)
-                st.image(im)            
+            st.write("test3")
+            col1, col2 = st.columns(2)
+            with col1:
+                #st.dataframe(df2.style.applymap(cooling_highlight))
+                st.dataframe(df2)
+            with col2:
+                #st.dataframe(df1.style.applymap(cooling_highlight))
+                st.dataframe(df1)
+            st.image(im)            
                 
-            # reference
+        # reference
             
-            st.caption("[github page](https://github.com/juppifluppi/poxload)")
+        st.caption("[github page](https://github.com/juppifluppi/poxload)")
               
     #except:
     #    st.write("Cannot parse SMILES string!")
