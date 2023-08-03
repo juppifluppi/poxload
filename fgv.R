@@ -17,7 +17,7 @@ library("foreach")
 library("devtools")
 
 # load package w/o installing
-load_all('/import')
+devtools::load_all('import')
 
 af=read.csv("formulations3test_db.csv",sep="\t")
 af2=read.csv("descp.csv")
