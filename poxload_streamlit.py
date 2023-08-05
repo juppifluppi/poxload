@@ -184,8 +184,9 @@ if submit_button:
             os.system(tune_DF)
                 
         with st.spinner('CALCULATING SiRMS DESCRIPTORS (STEP 4 OF 6)...'):
-                
-            os.system("sirms -i db_library_merged.sdf -a mr logp eeq alp sa sdx sdc at -o sirms_test.txt -m mixture_test.txt --max_mix_components 3 --mix_type rel -c 1 -r > /dev/null 2>&1")
+
+            #os.system("sirms -i db_library_merged.sdf -a mr logp eeq alp sa sdx sdc at -o sirms_test.txt -m mixture_test.txt --max_mix_components 3 --mix_type rel -c 1 -r > /dev/null 2>&1")
+            os.system("sirms -i db_library_merged.sdf -a mr eeq alp at -o sirms_test.txt -m mixture_test.txt --max_mix_components 3 --mix_type rel -c 1 -r > /dev/null 2>&1")
                 
             os.system("sed -i -e 's/\t/,/g' sirms_test.txt")
                
