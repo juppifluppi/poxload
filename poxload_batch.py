@@ -47,7 +47,7 @@ for i in df["name"]:
 for i in df["smiles"]:
     SMILES.append(i)
 
-print("CALCULATING PADEL DESCRIPTORS FOR COMPOUNDS (STEP 1 OF 6)...")
+print("CALCULATING PADEL DESCRIPTORS FOR COMPOUNDS (STEP 1 OF 5)...")
 
 try:
     os.remove("descriptors_padeltest.csv")
@@ -75,7 +75,7 @@ for molecule in range(0,len(SMILES)):
             f.write(str(o)+",")
         f.write("\n")
 
-print("CALCULATING ATOMIC PROPERTIES FOR SiRMS (STEP 2 OF 6)...")
+print("CALCULATING ATOMIC PROPERTIES FOR SiRMS (STEP 2 OF 5)...")
 
 mols=[]
 
@@ -142,7 +142,7 @@ dfx["MW"]=sum_MW
 
 dfx.to_csv("db_molstest.csv",index=False)
 
-print("CREATING FORMULATIONS (STEP 3 OF 6)...")
+print("CREATING FORMULATIONS (STEP 3 OF 5)...")
 
 os.system("Rscript $CONDA_PREFIX/cxdb.R")
 
@@ -167,16 +167,16 @@ with open("formulations3test_db.csv","r") as f:
             else:
                 file.write("\n")
 
-print("CALCULATING SiRMS DESCRIPTORS (STEP 4 OF 6)...")
+#print("CALCULATING SiRMS DESCRIPTORS (STEP 4 OF 6)...")
+#
+#command=str("cp "+CON+"/setup.txt .")
+#os.system(command)
+#
+#os.system("sirms -i db_library_merged.sdf -a mr logp eeq alp sa sdx sdc at -o sirms_test.txt -m mixture_test.txt --max_mix_components 3 --mix_type rel -c 1 -r > /dev/null 2>&1")
+#
+#os.system("sed -i -e 's/\t/,/g' sirms_test.txt")
 
-command=str("cp "+CON+"/setup.txt .")
-os.system(command)
-
-os.system("sirms -i db_library_merged.sdf -a mr logp eeq alp sa sdx sdc at -o sirms_test.txt -m mixture_test.txt --max_mix_components 3 --mix_type rel -c 1 -r > /dev/null 2>&1")
-
-os.system("sed -i -e 's/\t/,/g' sirms_test.txt")
-
-print("CALCULATING PADEL DESCRIPTORS FOR MIXTURES (STEP 5 OF 6)...")
+print("CALCULATING PADEL DESCRIPTORS FOR MIXTURES (STEP 4 OF 5)...")
 command=str("cp "+CON+"/startdatayyy*.dat .")
 os.system(command)
 command=str("cp "+CON+"/xgb*.rda .")
@@ -187,7 +187,7 @@ command=str("cp "+CON+"/descriptors_padel_pol.csv .")
 os.system(command)
 command=str("Rscript "+CON+"/gtg2.R > /dev/null 2>&1")
 os.system(command)
-print("CALCULATING PREDICTIONS (STEP 6 OF 6)...")
+print("CALCULATING PREDICTIONS (STEP 5 OF 5)...")
 command=str("Rscript "+CON+"/fgv4.R > /dev/null 2>&1")
 os.system(command)
 print("WRITE RESULTS TO CSV...")
