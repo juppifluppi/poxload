@@ -27,7 +27,7 @@ You can then use the alias poxload:
 poxload "SMILESCODE" 
 ```
 
-A batch mode is available to compute predictions for a list of compounds. Prepare a CSV file with two columns named "name" and "smiles"
+A batch mode is available to compute predictions for a list of compounds. Prepare a comma-separated CSV file with two columns named "name" and "smiles"
 
 ```
 poxload_batch CSVFILE 
