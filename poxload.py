@@ -44,7 +44,7 @@ sdm = pretreat.StandardizeMol()
 mol = sdm.disconnect_metals(mol)
 SMI = str(Chem.MolToSmiles(mol))
 
-print("CALCULATING PADEL DESCRIPTORS FOR COMPOUND (STEP 1 OF 6)...")
+print("CALCULATING PADEL DESCRIPTORS FOR COMPOUND (STEP 1 OF 5)...")
 
 descriptors = from_smiles(SMI)
 items = list(descriptors.items())
@@ -68,7 +68,7 @@ sum_NAME=[]
 sum_SMILES.append(str(sys.argv[1]))
 sum_NAME.append(NAME)
 
-print("CALCULATING ATOMIC PROPERTIES FOR SiRMS (STEP 2 OF 6)...")
+print("CALCULATING ATOMIC PROPERTIES FOR SiRMS (STEP 2 OF 5)...")
         
 SMI = str(sys.argv[1])
 mol = rdkit_molecule_from_smiles(SMI, minimisation_method="MMFF94")
@@ -132,7 +132,7 @@ dfx["MW"]=sum_MW
 
 dfx.to_csv("db_molstest.csv",index=False)
 
-print("CREATING FORMULATIONS (STEP 3 OF 6)...")
+print("CREATING FORMULATIONS (STEP 3 OF 5)...")
 
 command=str("Rscript "+CON+"/cxdb.R")
 os.system(command)
@@ -158,16 +158,16 @@ with open("formulations3test_db.csv","r") as f:
             else:
                 file.write("\n")
 
-print("CALCULATING SiRMS DESCRIPTORS (STEP 4 OF 6)...")
+#print("CALCULATING SiRMS DESCRIPTORS (STEP 4 OF 6)...")
+#
+#command=str("cp "+CON+"/setup.txt .")
+#os.system(command)
+#
+#os.system("sirms -i db_library_merged.sdf -a mr logp eeq alp sa sdx sdc at -o sirms_test.txt -m mixture_test.txt --max_mix_components 3 --mix_type rel -c 1 -r > /dev/null 2>&1")
+#
+#os.system("sed -i -e 's/\t/,/g' sirms_test.txt")
 
-command=str("cp "+CON+"/setup.txt .")
-os.system(command)
-
-os.system("sirms -i db_library_merged.sdf -a mr logp eeq alp sa sdx sdc at -o sirms_test.txt -m mixture_test.txt --max_mix_components 3 --mix_type rel -c 1 -r > /dev/null 2>&1")
-
-os.system("sed -i -e 's/\t/,/g' sirms_test.txt")
-
-print("CALCULATING PADEL DESCRIPTORS FOR MIXTURES (STEP 5 OF 6)...")
+print("CALCULATING PADEL DESCRIPTORS FOR MIXTURES (STEP 4 OF 5)...")
 command=str("cp "+CON+"/startdatayyy*.dat .")
 os.system(command)
 command=str("cp -r "+CON+"/import/ .")
@@ -178,7 +178,7 @@ command=str("cp "+CON+"/descriptors_padel_pol.csv .")
 os.system(command)
 command=str("Rscript "+CON+"/gtg.R > /dev/null 2>&1")
 os.system(command)
-print("CALCULATING PREDICTIONS (STEP 6 OF 6)...")
+print("CALCULATING PREDICTIONS (STEP 5 OF 5)...")
 command=str("Rscript "+CON+"/fgv3.R > /dev/null 2>&1")
 os.system(command)
 print("WRITE RESULTS TO CSV...")
