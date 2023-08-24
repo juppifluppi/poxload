@@ -358,27 +358,32 @@ if submit_button:
                 process3 = subprocess.Popen(["Rscript", "fgv3.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 result3 = process3.communicate()
                 
+                #def cooling_highlight(val):
+                #    color = 'red' if val == "X0" else 'grey' if val=="AD" else 'green'
+                #    return f'background-color: {color}'
                 def cooling_highlight(val):
-                    color = 'red' if val == "X0" else 'grey' if val=="AD" else 'green'
+                    color = 'green' if val > 7 else 'yellow' if val > 4 and val < 8 else 'red' if val < 5
                     return f'background-color: {color}'
-
 
                 df = pd.read_csv(r'fin_results.csv',index_col=0)
 
-                df = df.rename(columns={0: "Polymer", 1: "LC10", 2: "LC20", 3: "LC30", 4: "LC35", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE70", 10: "LE80"})
-                df1 = df[["LC10","LC20","LC30","LC35","LC40"]]
-                df2 = df[["LE20","LE40","LE60","LE70","LE80"]]
+                df = df.rename(columns={0: "Polymer", 1: "LC10", 2: "LC20", 3: "LC30", 4: "LC35", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE70", 10: "LE80", 11:"Passed"})
+                #df1 = df[["LC10","LC20","LC30","LC35","LC40"]]
+                #df2 = df[["LE20","LE40","LE60","LE70","LE80"]]
 
 
-                col1, col2 = st.columns(2)
-                with col1:
-                    st.dataframe(df1.style.applymap(cooling_highlight))
-                    #st.dataframe(df2)
-                with col2:
-                    st.dataframe(df2.style.applymap(cooling_highlight))
-                    #st.dataframe(df1)
-                st.image(im)            
-                
+                #col1, col2 = st.columns(2)
+                #with col1:
+                #    st.dataframe(df1.style.applymap(cooling_highlight))
+                #    #st.dataframe(df2)
+                #with col2:
+                #    st.dataframe(df2.style.applymap(cooling_highlight))
+                #    #st.dataframe(df1)
+                #st.image(im)            
+
+                st.dataframe(df.style.applymap(cooling_highlight))
+                st.image
+               
             # reference
             
             st.caption("[github page](https://github.com/juppifluppi/poxload)")
