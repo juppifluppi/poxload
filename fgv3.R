@@ -357,7 +357,7 @@ b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
 ck=t(apply(a, 1, function(u) table(factor(u, levels=c("X1","X0","AD")))))
-a=cbind(a,ck)
+a=cbind(a,ck[,1])
            
 colnames(a)=c("POL","LC10","LC20","LC30","LC35","LC40","LE20","LE40","LE60","LE70","LE80","Passed")
 write.csv(a,"fin_results.csv",row.names=F)
