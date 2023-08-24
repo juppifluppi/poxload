@@ -10,9 +10,9 @@ fill$DMW2=0
 fill$MR2=0
 fill$D2FRAC=0
 
-fill=fill[fill$POL%in%c("A-nPrOzi-A","A-nBuOx-A","A-nBuOzi-A","A-PentOx-A","A-PhOx-A-H","A-BzOx-A-H","A-nPrOx-A"),]
-fill[fill$POL=="A-BzOx-A-H",1]=="A-BzOx-A"
-fill[fill$POL=="A-PhOx-A-H",1]=="A-PhOx-A"
+#fill=fill[fill$POL%in%c("A-nPrOzi-A","A-nBuOx-A","A-nBuOzi-A","A-PentOx-A","A-PhOx-A-H","A-BzOx-A-H","A-nPrOx-A"),]
+#fill[fill$POL=="A-BzOx-A-H",1]=="A-BzOx-A"
+#fill[fill$POL=="A-PhOx-A-H",1]=="A-PhOx-A"
 
 full=rep(NA,ncol(fill))
 
