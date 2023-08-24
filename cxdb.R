@@ -10,7 +10,7 @@ fill$DMW2=0
 fill$MR2=0
 fill$D2FRAC=0
 
-#fill=fill[fill$POL%in%c("A-nPrOzi-A","A-nBuOx-A","A-nBuOzi-A","A-PentOx-A"),]
+fill=fill[fill$POL%in%c("A-nPrOzi-A","A-nBuOx-A","A-nBuOzi-A","A-PentOx-A"),]
 
 full=rep(NA,ncol(fill))
 
