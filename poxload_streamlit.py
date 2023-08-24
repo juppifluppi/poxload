@@ -362,7 +362,7 @@ if submit_button:
                 #    color = 'red' if val == "X0" else 'grey' if val=="AD" else 'green'
                 #    return f'background-color: {color}'
                 def cooling_highlight(val):
-                    color = 'green' if val > 7 else "white"
+                    color = 'green' if val == "10" else "green" if val == "9" else "green" if val == "8" else "yellow" if val == "7" else "yellow" if val == "6" else "yellow" if val == "5" else "red" if val == "4"  else "red" if val == "3" else "red" if val == "2" else "red" if val == "1" else "red" if val == "0" else "white"                    
                     return f'background-color: {color}'
 
                 df = pd.read_csv(r'fin_results.csv',index_col=0)
