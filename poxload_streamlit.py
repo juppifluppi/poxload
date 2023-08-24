@@ -357,7 +357,6 @@ if submit_button:
             with st.spinner('CALCULATING PREDICTIONS (STEP 5 OF 5)...'):
                 process3 = subprocess.Popen(["Rscript", "fgv3.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 result3 = process3.communicate()
-                st.write(result3)
                 
                 #def cooling_highlight(val):
                 #    color = 'red' if val == "X0" else 'grey' if val=="AD" else 'green'
