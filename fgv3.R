@@ -356,7 +356,7 @@ gzy=gzy<thr8_3
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
-ck=t(apply(df, 1, function(u) table(factor(u, levels=c("X1","X0","AD")))))
+ck=t(apply(a, 1, function(u) table(factor(u, levels=c("X1","X0","AD")))))
 a=cbind(a,ck)
            
 colnames(a)=c("POL","LC10","LC20","LC30","LC35","LC40","LE20","LE40","LE60","LE70","LE80","Passed")
