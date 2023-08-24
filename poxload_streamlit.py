@@ -390,8 +390,8 @@ if submit_button:
                
                 st.dataframe(df.style.applymap(cooling_highlight))
                 #st.caption("Polymer names: A = poly(2-methyl-2-oxazoline); PrOx = poly(2-propyl-2-oxazoline); PrOzi = poly(2-propyl-2-oxazinen; BuOx = poly(2-butyl-2-oxazoline); BuOzi = poly(2-butyl-2-oxazine); PentOx = poly(2-pentyl-2-oxazoline); PhOx = poly(2-phenyl-2-oxazoline); BzOx = poly(2-benzyl-2-oxazoline)")
-                st.caption("Polymer names: A = poly(2-methyl-2-oxazoline); A* = poly(2-ethyl-2-oxazoline); Ox = poly(2-alkyl-2-oxazoline); Ozi = poly(2-alkyl-2-oxazine); n = linear; c = cyclo; i = iso; s = sec; Pr = propyl; Bu = butyl; EtHep = 3-etyhl heptyl; PrMe = propyl methylene; Ph = phenyl; Bz = benzyl; Pent = pentyl; Phen = phenetyhl; Non = nonyl; Px, Py and P1-P8 = A-nBuOx-A with different chain lengths") 
-                st.caption("Sources: -L = Biomacromolecules 2019, 20, 8, 3041–3056; -H = Biomacromolecules 2018, 19, 7, 3119–3128; -M = in-house data; Px, Py and P1-P8 = Sci. Adv. 2019, 5, eaav9784; no suffix = 10.26434/chemrxiv-2022-s8xc3")
+                st.caption("Polymer names: A = poly(2-methyl-2-oxazoline); A* = poly(2-ethyl-2-oxazoline); Ox = poly(2-alkyl-2-oxazoline); Ozi = poly(2-alkyl-2-oxazine); n = linear alkyl; c = cyclo alkyl; i = iso-alkyl; s = sec-alkyl; Pr = propyl; Bu = butyl; EtHep = 3-etyhl heptyl; PrMe = propyl methylene; Ph = phenyl; Bz = benzyl; Pent = pentyl; Phen = phenetyhl; Non = nonyl; Px, Py and P1-P8 = A-nBuOx-A with different chain lengths.") 
+                st.caption("Sources for polymer structures: -L = Biomacromolecules 2019, 20, 8, 3041–3056; -H = Biomacromolecules 2018, 19, 7, 3119–3128; -M = in-house data; Px, Py and P1-P8 = Sci. Adv. 2019, 5, eaav9784; no suffix = 10.26434/chemrxiv-2022-s8xc3.")
                 #st.dataframe(df)
                 st.image(im)
                
