@@ -362,9 +362,9 @@ if submit_button:
                 #def cooling_highlight(val):
                 #    color = 'red' if val == "X0" else 'grey' if val=="AD" else 'green'
                 #    return f'background-color: {color}'
-                def cooling_highlight(val):
-                    color = 'green' if val > 7 else 'yellow' if (val > 4 and val < 8) else 'red' if val < 5 else "white"
-                    return f'background-color: {color}'
+                #def cooling_highlight(val):
+                #    color = 'green' if val > 7 else 'yellow' if (val > 4 and val < 8) else 'red' if val < 5 else "white"
+                #    return f'background-color: {color}'
 
                 df = pd.read_csv(r'fin_results.csv',index_col=0)
 
@@ -383,7 +383,8 @@ if submit_button:
                 #    #st.dataframe(df1)
                 #st.image(im)            
 
-                st.dataframe(df.style.applymap(cooling_highlight))
+                #st.dataframe(df.style.applymap(cooling_highlight))
+                st.dataframe(df)
                 st.image
                
             # reference
