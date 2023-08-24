@@ -369,6 +369,7 @@ if submit_button:
                 df = pd.read_csv(r'fin_results.csv',index_col=0)
 
                 df = df.rename(columns={0: "Polymer", 1: "LC10", 2: "LC20", 3: "LC30", 4: "LC35", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE70", 10: "LE80", 11:"Passed"})
+                df = df.sort_values(by=['Passed'], ascending=False)
                 #df1 = df[["LC10","LC20","LC30","LC35","LC40"]]
                 #df2 = df[["LE20","LE40","LE60","LE70","LE80"]]
 
