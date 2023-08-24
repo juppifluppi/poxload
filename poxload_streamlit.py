@@ -389,9 +389,7 @@ if submit_button:
                 #st.image(im)           
                
                 st.dataframe(df.style.applymap(cooling_highlight))
-                st.caption("A = poly(2-methyl-2-oxazoline); PrOx = poly(2-propyl-2-oxazoline);
-                PrOzi = poly(2-propyl-2-oxazine); BuOx = poly(2-butyl-2-oxazoline); BuOzi = poly(2-butyl-2-oxazine); PentOx = poly(2-pentyl-2-oxazoline);
-                PhOx = poly(2-phenyl-2-oxazoline); BzOx = poly(2-benzyl-2-oxazoline)")
+                st.caption("A = poly(2-methyl-2-oxazoline); PrOx = poly(2-propyl-2-oxazoline); PrOzi = poly(2-propyl-2-oxazine); BuOx = poly(2-butyl-2-oxazoline); BuOzi = poly(2-butyl-2-oxazine); PentOx = poly(2-pentyl-2-oxazoline); PhOx = poly(2-phenyl-2-oxazoline); BzOx = poly(2-benzyl-2-oxazoline)")
                 #st.dataframe(df)
                 st.image(im)
                
