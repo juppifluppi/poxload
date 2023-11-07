@@ -4,10 +4,16 @@ smi=read.csv("db_test.csv")
 names=smi[,1]
 formulations=read.csv("db_formulations.csv",dec=".",sep="\t")
 
+formulations$MR1=(formulations$DF/formulations$DMW)/(formulations$PF/formulationsPMW)
+formulations$POLFRAC=formulations$PMR/(formulations$PMR+formulations$MR1)
+formulationsx$D1FRAC=formulations$MR1/(formulations$PMR+formulations$MR1)
+
 formulations$Solvent[is.na(formulations$Solvent)]<-0
 formulations$Temperature[is.na(formulations$Temperature)]<-0
 formulations$Hydration[is.na(formulations$Hydration)]<-0
 formulations$VOL[is.na(formulations$VOL)]<-0
+
+print(formulations$DF)
 
 descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 bbb=paste0(formulations$A1,"+",formulations$B,"+",formulations$A2,"+",formulations$D,"+",formulations$B2,"+",formulations$D2)
