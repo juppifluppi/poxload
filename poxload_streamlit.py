@@ -105,16 +105,15 @@ if submit_button:
                 
           df = pd.read_csv(r'fin_results.csv',index_col=0)
 
-                df = df.rename(columns={0: "Polymer", 1: "LC10", 2: "LC20", 3: "LC30", 4: "LC40", 5: "LE20", 6: "LE40", 7: "LE60", 8: "LE80", 11:"Passed"})
-                df = df.sort_values(by=['Passed'], ascending=False)    
+          df = df.rename(columns={0: "Polymer", 1: "LC10", 2: "LC20", 3: "LC30", 4: "LC40", 5: "LE20", 6: "LE40", 7: "LE60", 8: "LE80", 11:"Passed"})
+          df = df.sort_values(by=['Passed'], ascending=False)    
 
-                st.dataframe(df.style.applymap(cooling_highlight))
-                #st.dataframe(df)
-                st.image(im)
-                                     
-            # reference
-            
-            st.caption("[github page](https://github.com/juppifluppi/poxload)")
+          st.dataframe(df.style.applymap(cooling_highlight))
+          st.image(im)
+                                    
+          # reference
+           
+          st.caption("[github page](https://github.com/juppifluppi/poxload)")
               
     except:
         st.write("Cannot parse SMILES string!")
