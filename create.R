@@ -14,8 +14,10 @@ formulations=read.csv("db_formulations.csv",dec=".",sep="\t")
 descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 bbb=paste0(formulations$A1,"+",formulations$B,"+",formulations$A2,"+",formulations$D,"+",formulations$B2,"+",formulations$D2)
 
-formulations=cbind(rep(0,nrow(formulations)),formulations)
-formulations=cbind(rep(0,nrow(formulations)),formulations)
+LC=rep(0,nrow(formulations))
+LE=rep(0,nrow(formulations))
+formulations=cbind(LC,formulations)
+formulations=cbind(LE,formulations)
 
 load("model1.rda")
 m1=model
