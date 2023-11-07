@@ -97,7 +97,7 @@ if submit_button:
 
         dfx.to_csv("db_test.csv",index=False)
 
-        tune_DF=str("sed -i -e 's/OOO/"+set_DF+"/g' db_test.csv")
+        tune_DF=str("sed -i -e 's/OOO/"+set_DF+"/g' db_smiles.csv")
         os.system(tune_DF)
     
                             
