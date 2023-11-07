@@ -32,17 +32,16 @@ load("model8.rda")
 m8=model
 
 af=read.csv("testformulations.dat")
-print(ncol(af))
 afx=af
 #uix=read.csv("startdatayyyxmod_rdk2.dat",check.names = F)
 
-ui=m1$trainingData[-1]
-afx2=afx[,colnames(afx)%in%colnames(ui)]
-Missing <- setdiff(colnames(ui), colnames(afx2))
-afx2[Missing] <- 0
-afx2 <- afx2[colnames(ui)]
-is.na(afx2)<-sapply(afx2, is.infinite)
-afx2[is.na(afx2)]<-0
+#ui=m1$trainingData[-1]
+#afx2=afx[,colnames(afx)%in%colnames(ui)]
+#Missing <- setdiff(colnames(ui), colnames(afx2))
+#afx2[Missing] <- 0
+#afx2 <- afx2[colnames(ui)]
+#is.na(afx2)<-sapply(afx2, is.infinite)
+#afx2[is.na(afx2)]<-0
 #
 #preproc <- preProcess(ui, method=c("center","scale"))
 #uix <- predict(preproc, newdata = ui)
@@ -56,7 +55,7 @@ afx2[is.na(afx2)]<-0
 #}
 
 a=af$POL
-print(a)
+#print(a)
 a=as.data.frame(a)
 
 b=as.character(unlist(predict(m1,newdata=afx2)))
@@ -68,13 +67,13 @@ a=cbind(a,b)
 
 
 
-ui=m2$trainingData[-1]
-afx2=afx[,colnames(afx)%in%colnames(ui)]
-Missing <- setdiff(colnames(ui), colnames(afx2))
-afx2[Missing] <- 0
-afx2 <- afx2[colnames(ui)]
-is.na(afx2)<-sapply(afx2, is.infinite)
-afx2[is.na(afx2)]<-0
+#ui=m2$trainingData[-1]
+#afx2=afx[,colnames(afx)%in%colnames(ui)]
+#Missing <- setdiff(colnames(ui), colnames(afx2))
+#afx2[Missing] <- 0
+#afx2 <- afx2[colnames(ui)]
+#is.na(afx2)<-sapply(afx2, is.infinite)
+#afx2[is.na(afx2)]<-0
 #
 #preproc <- preProcess(ui, method=c("center","scale"))
 #uix <- predict(preproc, newdata = ui)
@@ -97,13 +96,13 @@ a=cbind(a,b)
 
 
 
-ui=m3$trainingData[-1]
-afx2=afx[,colnames(afx)%in%colnames(ui)]
-Missing <- setdiff(colnames(ui), colnames(afx2))
-afx2[Missing] <- 0
-afx2 <- afx2[colnames(ui)]
-is.na(afx2)<-sapply(afx2, is.infinite)
-afx2[is.na(afx2)]<-0
+#ui=m3$trainingData[-1]
+#afx2=afx[,colnames(afx)%in%colnames(ui)]
+#Missing <- setdiff(colnames(ui), colnames(afx2))
+#afx2[Missing] <- 0
+#afx2 <- afx2[colnames(ui)]
+#is.na(afx2)<-sapply(afx2, is.infinite)
+#afx2[is.na(afx2)]<-0
 #
 #preproc <- preProcess(ui, method=c("center","scale"))
 #uix <- predict(preproc, newdata = ui)
@@ -124,13 +123,13 @@ a=cbind(a,b)
 
 
 
-ui=m4$trainingData[-1]
-afx2=afx[,colnames(afx)%in%colnames(ui)]
-Missing <- setdiff(colnames(ui), colnames(afx2))
-afx2[Missing] <- 0
-afx2 <- afx2[colnames(ui)]
-is.na(afx2)<-sapply(afx2, is.infinite)
-afx2[is.na(afx2)]<-0
+#ui=m4$trainingData[-1]
+#afx2=afx[,colnames(afx)%in%colnames(ui)]
+#Missing <- setdiff(colnames(ui), colnames(afx2))
+#afx2[Missing] <- 0
+#afx2 <- afx2[colnames(ui)]
+#is.na(afx2)<-sapply(afx2, is.infinite)
+#afx2[is.na(afx2)]<-0
 #
 #preproc <- preProcess(ui, method=c("center","scale"))
 #uix <- predict(preproc, newdata = ui)
@@ -151,13 +150,13 @@ b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
 
-ui=m5$trainingData[-1]
-afx2=afx[,colnames(afx)%in%colnames(ui)]
-Missing <- setdiff(colnames(ui), colnames(afx2))
-afx2[Missing] <- 0
-afx2 <- afx2[colnames(ui)]
-is.na(afx2)<-sapply(afx2, is.infinite)
-afx2[is.na(afx2)]<-0
+#ui=m5$trainingData[-1]
+#afx2=afx[,colnames(afx)%in%colnames(ui)]
+#Missing <- setdiff(colnames(ui), colnames(afx2))
+#afx2[Missing] <- 0
+#afx2 <- afx2[colnames(ui)]
+#is.na(afx2)<-sapply(afx2, is.infinite)
+#afx2[is.na(afx2)]<-0
 #
 #preproc <- preProcess(ui, method=c("center","scale"))
 #uix <- predict(preproc, newdata = ui)
@@ -178,13 +177,13 @@ a=cbind(a,b)
 
 
 
-ui=m6$trainingData[-1]
-afx2=afx[,colnames(afx)%in%colnames(ui)]
-Missing <- setdiff(colnames(ui), colnames(afx2))
-afx2[Missing] <- 0
-afx2 <- afx2[colnames(ui)]
-is.na(afx2)<-sapply(afx2, is.infinite)
-afx2[is.na(afx2)]<-0
+#ui=m6$trainingData[-1]
+#afx2=afx[,colnames(afx)%in%colnames(ui)]
+#Missing <- setdiff(colnames(ui), colnames(afx2))
+#afx2[Missing] <- 0
+#afx2 <- afx2[colnames(ui)]
+#is.na(afx2)<-sapply(afx2, is.infinite)
+#afx2[is.na(afx2)]<-0
 #
 #preproc <- preProcess(ui, method=c("center","scale"))
 #uix <- predict(preproc, newdata = ui)
@@ -216,13 +215,13 @@ a=cbind(a,b)
 #}
 
 
-ui=m7$trainingData[-1]
-afx2=afx[,colnames(afx)%in%colnames(ui)]
-Missing <- setdiff(colnames(ui), colnames(afx2))
-afx2[Missing] <- 0
-afx2 <- afx2[colnames(ui)]
-is.na(afx2)<-sapply(afx2, is.infinite)
-afx2[is.na(afx2)]<-0
+#ui=m7$trainingData[-1]
+#afx2=afx[,colnames(afx)%in%colnames(ui)]
+#Missing <- setdiff(colnames(ui), colnames(afx2))
+#afx2[Missing] <- 0
+#afx2 <- afx2[colnames(ui)]
+#is.na(afx2)<-sapply(afx2, is.infinite)
+#afx2[is.na(afx2)]<-0
 
 #preproc <- preProcess(ui, method=c("center","scale"))
 #uix <- predict(preproc, newdata = ui)
@@ -242,13 +241,13 @@ b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
 
-ui=m8$trainingData[-1]
-afx2=afx[,colnames(afx)%in%colnames(ui)]
-Missing <- setdiff(colnames(ui), colnames(afx2))
-afx2[Missing] <- 0
-afx2 <- afx2[colnames(ui)]
-is.na(afx2)<-sapply(afx2, is.infinite)
-afx2[is.na(afx2)]<-0
+#ui=m8$trainingData[-1]
+#afx2=afx[,colnames(afx)%in%colnames(ui)]
+#Missing <- setdiff(colnames(ui), colnames(afx2))
+#afx2[Missing] <- 0
+#afx2 <- afx2[colnames(ui)]
+#is.na(afx2)<-sapply(afx2, is.infinite)
+#afx2[is.na(afx2)]<-0
 
 #preproc <- preProcess(ui, method=c("center","scale"))
 #uix <- predict(preproc, newdata = ui)
