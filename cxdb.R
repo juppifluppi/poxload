@@ -1,21 +1,21 @@
 dr=read.csv("descriptors_rdk7.csv",check.names = F,sep = "\t")
 test=read.csv("db_test.csv")
-fill=read.csv("db_smiles.csv")
+formulations=read.csv("db_smiles.csv")
 dr=cbind(test,dr)
 
-fill$DF=8
-fill$D2="None"
-fill$DF2=0
-fill$DRUGNAME2="None"
-fill$SD2="None"
-fill$DMW2=0
-fill$MR2=0
-fill$D2FRAC=0
+formulations$DF=8
+formulations$D2="None"
+formulations$DF2=0
+formulations$DRUGNAME2="None"
+formulations$SD2="None"
+formulations$DMW2=0
+formulations$MR2=0
+formulations$D2FRAC=0
 
-full=rep(NA,ncol(fill))
+full=rep(NA,ncol(formulations))
 
 for(i in c(1:nrow(dr))){
-  fillx=fill
+  fillx=formulations
   fillx$Source=dr[i,colnames(dr)%in%"NAME"]
   fillx$D=dr[i,colnames(dr)%in%"NAME"]
   fillx$DMW=dr[i,colnames(dr)%in%"MW"]
@@ -25,7 +25,7 @@ for(i in c(1:nrow(dr))){
   fillx$D1FRAC=fillx$MR1/(fillx$PMR+fillx$MR1)
   full=rbind(full,fillx)
 }
-colnames(full)=colnames(fill)
+colnames(full)=colnames(formulations)
 full=full[-1,]
 
 write.table(full,file="db_formulations.csv",row.names = F,sep="\t",quote=F)
