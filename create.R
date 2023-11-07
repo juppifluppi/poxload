@@ -153,7 +153,7 @@ for(ij in c(1:ncol(dm2))){
   }
 
 g=cbind(formulations,totm,bm,am,dmx)
-g=g[,-c(3:9,16:19,20:22,24,26:28,32:35,38)]
+g=g[,-c(3:9,16:19,20:22,24,26:28,32:35,38,39)]
 
 gx=cbind(bbb,g)
 colnames(gx)=c("Mixture",colnames(g))
