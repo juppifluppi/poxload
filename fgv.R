@@ -1,14 +1,14 @@
 #2
-thr1_3=9999
-thr2_3=9999
-thr3_3=9999
-thr35_3=9999
-thr4_3=9999
-thr5_3=9999
-thr6_3=9999
-thr7_3=9999
-thr75_3=9999
-thr8_3=9999
+thr1_3=9999999
+thr2_3=9999999
+thr3_3=9999999
+thr35_3=9999999
+thr4_3=9999999
+thr5_3=9999999
+thr6_3=9999999
+thr7_3=9999999
+thr75_3=999999
+thr8_3=9999999
 
 library("caret")
 library("randomForest")
@@ -32,9 +32,9 @@ m8=model
 
 af=read.csv("testformulations.dat")
 afx=af
+uix=read.csv("startdatayyyxmod_rdk2.dat",check.names = F)
 
-ui=read.csv("startdatayyyxmod_rdk2.dat",check.names = F)
-ui=ui[,colnames(ui)%in%colnames(m1$trainingData)]
+ui=uix[,colnames(uix)%in%colnames(m1$trainingData)]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -56,10 +56,7 @@ for(huh in 1:nrow(afx2)){
 a=af$POL
 a=as.data.frame(a)
 
-
-
-load("model1.rda")
-b=as.character(unlist(predict(model,newdata=afx2)))
+b=as.character(unlist(predict(m1,newdata=afx2)))
 gzy=as.numeric(unlist(as.vector(z1)))
 gzy=gzy<thr1_3
 b[gzy==FALSE]="AD"
@@ -67,8 +64,8 @@ a=cbind(a,b)
 
 
 
-ui=read.csv("startdatayyyxmod_rdk2.dat",check.names = F)
-ui=ui[,colnames(ui)%in%colnames(m2$trainingData)]
+
+ui=uix[,colnames(uix)%in%colnames(m2$trainingData)]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -87,8 +84,7 @@ for(huh in 1:nrow(afx2)){
   z1=append(z1,aggg)
 }
 
-load("model2.rda")
-b=as.character(unlist(predict(model,newdata=afx2)))
+b=as.character(unlist(predict(m2,newdata=afx2)))
 gzy=as.numeric(unlist(as.vector(z1)))
 gzy=gzy<thr2_3
 b[gzy==FALSE]="AD"
@@ -98,8 +94,7 @@ a=cbind(a,b)
 
 
 
-ui=read.csv("startdatayyyxmod_rdk2.dat",check.names = F)
-ui=ui[,colnames(ui)%in%colnames(m3$trainingData)]
+ui=uix[,colnames(uix)%in%colnames(m3$trainingData)]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -118,16 +113,15 @@ for(huh in 1:nrow(afx2)){
   z1=append(z1,aggg)
 }
 
-load("model3.rda")
-b=as.character(unlist(predict(model,newdata=afx2)))
+b=as.character(unlist(predict(m3,newdata=afx2)))
 gzy=as.numeric(unlist(as.vector(z1)))
 gzy=gzy<thr3_3
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
 
-ui=read.csv("startdatayyyxmod_rdk2.dat",check.names = F)
-ui=ui[,colnames(ui)%in%colnames(m4$trainingData)]
+
+ui=uix[,colnames(uix)%in%colnames(m4$trainingData)]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -147,14 +141,14 @@ for(huh in 1:nrow(afx2)){
 }
 
 load("model4.rda")
-b=as.character(unlist(predict(model,newdata=afx2)))
+b=as.character(unlist(predict(m4,newdata=afx2)))
 gzy=as.numeric(unlist(as.vector(z1)))
 gzy=gzy<thr4_3
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
-ui=read.csv("startdatayyyxmod_rdk2.dat",check.names = F)
-ui=ui[,colnames(ui)%in%colnames(m5$trainingData)]
+
+ui=uix[,colnames(uix)%in%colnames(m5$trainingData)]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -173,15 +167,15 @@ for(huh in 1:nrow(afx2)){
   z1=append(z1,aggg)
 }
 
-load("model5.rda")
-b=as.character(unlist(predict(model,newdata=afx2)))
+b=as.character(unlist(predict(m5,newdata=afx2)))
 gzy=as.numeric(unlist(as.vector(z1)))
 gzy=gzy<thr5_3
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
-ui=read.csv("startdatayyyxmod_rdk2.dat",check.names = F)
-ui=ui[,colnames(ui)%in%colnames(m6$trainingData)]
+
+
+ui=uix[,colnames(uix)%in%colnames(m6$trainingData)]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -200,8 +194,8 @@ for(huh in 1:nrow(afx2)){
   z1=append(z1,aggg)
 }
 
-load("model6.rda")
-b=as.character(unlist(predict(model,newdata=afx2)))
+
+b=as.character(unlist(predict(m6,newdata=afx2)))
 gzy=as.numeric(unlist(as.vector(z1)))
 gzy=gzy<thr6_3
 b[gzy==FALSE]="AD"
@@ -218,8 +212,8 @@ for(huh in 1:nrow(afx2)){
   z1=append(z1,aggg)
 }
 
-ui=read.csv("startdatayyyxmod_rdk2.dat",check.names = F)
-ui=ui[,colnames(ui)%in%colnames(m7$trainingData)]
+
+ui=uix[,colnames(uix)%in%colnames(m7$trainingData)]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -238,15 +232,14 @@ for(huh in 1:nrow(afx2)){
   z1=append(z1,aggg)
 }
 
-load("model7.rda")
-b=as.character(unlist(predict(model,newdata=afx2)))
+b=as.character(unlist(predict(m7,newdata=afx2)))
 gzy=as.numeric(unlist(as.vector(z1)))
 gzy=gzy<thr7_3
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
-ui=read.csv("startdatayyyxmod_rdk2.dat",check.names = F)
-ui=ui[,colnames(ui)%in%colnames(m8$trainingData)]
+
+ui=uix[,colnames(uix)%in%colnames(m8$trainingData)]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -265,8 +258,7 @@ for(huh in 1:nrow(afx2)){
   z1=append(z1,aggg)
 }
 
-load("model8.rda")
-b=as.character(unlist(predict(model,newdata=afx2)))
+b=as.character(unlist(predict(m8,newdata=afx2)))
 gzy=as.numeric(unlist(as.vector(z1)))
 gzy=gzy<thr8_3
 b[gzy==FALSE]="AD"
@@ -274,6 +266,7 @@ a=cbind(a,b)
 
 ck=t(apply(a, 1, function(u) table(factor(u, levels=c("X1","X0","AD")))))
 a=cbind(a,ck[,1])
-           
+         
 colnames(a)=c("POL","LC10","LC20","LC30","LC40","LE20","LE40","LE60","LE80","Passed")
+print(a)
 write.csv(a,"fin_results.csv",row.names=F)
