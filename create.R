@@ -42,7 +42,7 @@ ref=ref[!(ref%in%colnames(formulations))]
 refnames=paste(sapply(strsplit(ref,"_"), "[[", 2),sapply(strsplit(ref,"_"), "[[", 3),sep = "_")
 descriptors=descriptors[,colnames(descriptors)%in%refnames]
 
-print(colnames(formulations))
+
 am1=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
   bx=descriptors[names%in%formulations[ij,]$A1,]
@@ -95,13 +95,13 @@ for(ij in c(1:ncol(bm1))){
 
 bm2=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
-  if(formulations[ij,]$B2 == "None"){
+#  if(formulations[ij,]$B2 == "None"){
     bx=rep(0,ncol(descriptors))
-    names(bx)=colnames(descriptors)
-  }
-  if(formulations[ij,]$B2 != "None"){
-    bx=descriptors[names%in%formulations[ij,]$B2,]
-  }
+#    names(bx)=colnames(descriptors)
+#  }
+#  if(formulations[ij,]$B2 != "None"){
+#    bx=descriptors[names%in%formulations[ij,]$B2,]
+#  }
   bm2=rbind(bm2,bx)
 }
 bm2=bm2[-1,]
