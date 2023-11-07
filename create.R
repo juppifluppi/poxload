@@ -17,6 +17,10 @@ bbb=paste0(formulations$A1,"+",formulations$B,"+",formulations$A2,"+",formulatio
 formulations=cbind(rep(0,nrow(formulations)),formulations)
 formulations=cbind(rep(0,nrow(formulations)),formulations)
 
+print(ncol(descriptors))
+print(ncol(formulations))
+print(nrow(descriptors))
+print(nrow(formulations))
 
 am1=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
