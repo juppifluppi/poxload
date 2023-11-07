@@ -79,7 +79,8 @@ if submit_button:
                 f.write("\n")
 
              mj = Chem.Descriptors.ExactMolWt(mol)
-             MW.append(mj[0])
+             MW.append(mj)
+             print(mj)
       
           dfx = pd.DataFrame(columns=['NAME', "SMILES","MW"])
           dfx["NAME"]=NAMES
