@@ -93,6 +93,7 @@ if submit_button:
         dfx["NAME"]=NAMES
         dfx["SMILES"]=SMILES
         dfx["MW"]=MW[0]
+        st.write(MW[0])
 
         dfx.to_csv("db_test.csv",index=False)
 
