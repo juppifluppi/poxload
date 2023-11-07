@@ -56,6 +56,7 @@ afx2[is.na(afx2)]<-0
 #}
 
 a=af$POL
+print(a)
 a=as.data.frame(a)
 
 b=as.character(unlist(predict(m1,newdata=afx2)))
