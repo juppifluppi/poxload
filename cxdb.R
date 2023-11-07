@@ -25,5 +25,5 @@ for(i in nrow(dr)){
 }
 colnames(full)=colnames(formulations)
 full=full[-1,]
-
+print(colnames(full))
 write.table(full,file="db_formulations.csv",row.names = F,sep="\t")
