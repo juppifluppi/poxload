@@ -28,4 +28,4 @@ full=full[-1,]
 print(ncol(full))
 print(nrow(full))
 print(full)
-write.csv(full,file="db_formulations.csv",row.names = F,sep="\t")
+write.table(full,file="db_formulations.csv",row.names = F,sep="\t")
