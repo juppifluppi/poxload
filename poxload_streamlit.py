@@ -86,7 +86,7 @@ if submit_button:
 
             mj = Chem.Descriptors.ExactMolWt(mol)
             MW.append(mj)
-            if molecule == len(SMILES):
+            if molecule == len(SMILES)-1:
                 im = Draw.MolToImage(mol,fitImage=True) 
       
         dfx = pd.DataFrame(columns=['NAME', "SMILES","MW"])
