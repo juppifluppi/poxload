@@ -36,11 +36,11 @@ m7=model
 load("model8.rda")
 m8=model
 
-ref=c(colnames(m1$trainingData)[-1],colnames(m2$trainingData)[-1],colnames(m3$trainingData)[-1],colnames(m4$trainingData)[-1],colnames(m5$trainingData)[-1],colnames(m6$trainingData)[-1],colnames(m7$trainingData)[-1],colnames(m8$trainingData)[-1])
-ref=unique(ref)
-ref=ref[!(ref%in%colnames(formulations))]
-refnames=paste(sapply(strsplit(ref,"_"), "[[", 2),sapply(strsplit(ref,"_"), "[[", 3),sep = "_")
-descriptors=descriptors[,colnames(descriptors)%in%refnames]
+#ref=c(colnames(m1$trainingData)[-1],colnames(m2$trainingData)[-1],colnames(m3$trainingData)[-1],colnames(m4$trainingData)[-1],colnames(m5$trainingData)[-1],colnames(m6$trainingData)[-1],colnames(m7$trainingData)[-1],colnames(m8$trainingData)[-1])
+#ref=unique(ref)
+#ref=ref[!(ref%in%colnames(formulations))]
+#refnames=paste(sapply(strsplit(ref,"_"), "[[", 2),sapply(strsplit(ref,"_"), "[[", 3),sep = "_")
+#descriptors=descriptors[,colnames(descriptors)%in%refnames]
 
 print(colnames(formulations))
 am1=rep(NA,ncol(descriptors))
