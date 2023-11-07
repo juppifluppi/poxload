@@ -107,7 +107,7 @@ if submit_button:
                 
        with st.spinner('CALCULATING PREDICTIONS (STEP 3 OF 3)...'):
           process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-          st.write(process3.communicate())
+          process3.communicate()
                 
           df = pd.read_csv(r'fin_results.csv',index_col=0)
 
@@ -124,28 +124,30 @@ if submit_button:
     except:
        #st.write("Cannot parse SMILES string!")
         
-       with st.spinner('CALCULATING FINGERPRINTS (STEP 1 OF 6)...'):
+       with st.spinner('CALCULATING FINGERPRINTS (STEP 1 OF 3)...'):
 
           for molecule in range(0,len(SMILES)):
-          
-             mol = standardize(SMILES[molecule])
-             AllChem.EmbedMolecule(mol,useRandomCoords=True)
-             AllChem.MMFFOptimizeMolecule(mol, "MMFF94s", maxIters=5000)
-             rdkitfp = fingerprint_rdk7(mol)
+                        
+              mol = standardize(SMILES[molecule])
+              AllChem.EmbedMolecule(mol,useRandomCoords=True)
+              AllChem.MMFFOptimizeMolecule(mol, "MMFF94s", maxIters=5000)
+              rdkitfp = fingerprint_rdk7(mol)
 
-             if molecule == 0:
-                with open("descriptors_rdk7.csv","a") as f:
-                    for o in range(0,len(rdkitfp)):
-                        f.write("rdk7_"+str(o)+"\t")
-                    f.write("\n")
+              if molecule == 0:
+                 with open("descriptors_rdk7.csv","a") as f:
+                     for o in range(0,len(rdkitfp)):
+                         f.write("rdk7_"+str(o)+"\t")
+                     f.write("\n")
 
-             with open("descriptors_rdk7.csv","a") as f:
-                for o in range(0,len(rdkitfp)):
-                   f.write(str(rdkitfp[o])+"\t")
-                f.write("\n")
+              with open("descriptors_rdk7.csv","a") as f:
+                 for o in range(0,len(rdkitfp)):
+                    f.write(str(rdkitfp[o])+"\t")
+                 f.write("\n")
 
-             mj = Chem.Descriptors.ExactMolWt(mol)
-             MW.append(mj)
+              mj = Chem.Descriptors.ExactMolWt(mol)
+              MW.append(mj)
+              if molecule == len(SMILES):
+                  im = Draw.MolToImage(mol,fitImage=True) 
       
           dfx = pd.DataFrame(columns=['NAME', "SMILES","MW"])
           dfx["NAME"]=NAMES
@@ -155,19 +157,19 @@ if submit_button:
           dfx.to_csv("db_test.csv",index=False)
 
                              
-       with st.spinner('CREATING FORMULATIONS (STEP 2 OF 6)...'):
+       with st.spinner('CREATING FORMULATIONS (STEP 2 OF 3)...'):
           process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
           result1 = process1.communicate()
-          os.system("sed -i -e 's/\"//g' db_formulations.csv")
-          tune_DF=str("sed -i -e 's/10\\t8\t/10\\t"+set_DF+"\\t/g' db_formulations.csv")
-          os.system(tune_DF)
+          #os.system("sed -i -e 's/\"//g' db_formulations.csv")
+          #tune_DF=str("sed -i -e 's/10\\t8\t/10\\t"+set_DF+"\\t/g' db_formulations.csv")
+          #os.system(tune_DF)
       
           process2 = subprocess.Popen(["Rscript", "create.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-          result2 = process1.communicate()
+          result2 = process2.communicate()
                 
-       with st.spinner('CALCULATING PREDICTIONS (STEP 6 OF 6)...'):
+       with st.spinner('CALCULATING PREDICTIONS (STEP 3 OF 3)...'):
           process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-          result3 = process3.communicate()
+          st.write(process3.communicate())
                 
           df = pd.read_csv(r'fin_results.csv',index_col=0)
 
@@ -178,8 +180,5 @@ if submit_button:
           st.image(im)
                                     
           # reference
-           
+
           st.caption("[github page](https://github.com/juppifluppi/poxload)")
-
-
-        
