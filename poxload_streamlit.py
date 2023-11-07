@@ -1,4 +1,4 @@
-from rdkit import Chem, RDConfig
+from rdkit import Chem, RDConfig, Descriptors
 from rdkit.Chem import AllChem, rdFingerprintGenerator
 from rdkit.Chem.MolStandardize import rdMolStandardize
 from rdkit.Chem.Fingerprints import FingerprintMols
