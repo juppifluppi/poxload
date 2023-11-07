@@ -1,5 +1,5 @@
 from rdkit import Chem, RDConfig
-from rdkit.Chem import AllChem, rdFingerprintGenerator, Descriptors
+from rdkit.Chem import AllChem, rdFingerprintGenerator, Descriptors, Draw
 from rdkit.Chem.MolStandardize import rdMolStandardize
 from rdkit.Chem.Fingerprints import FingerprintMols
 from rdkit.DataStructs import cDataStructs
