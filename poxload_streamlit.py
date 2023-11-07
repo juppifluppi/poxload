@@ -95,13 +95,13 @@ if submit_button:
                              
        with st.spinner('CREATING FORMULATIONS (STEP 2 OF 6)...'):
           process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-          st.write(process1.communicate())
+          result1 = process1.communicate())
           #os.system("sed -i -e 's/\"//g' db_formulations.csv")
           #tune_DF=str("sed -i -e 's/10\\t8\t/10\\t"+set_DF+"\\t/g' db_formulations.csv")
           #os.system(tune_DF)
       
           process2 = subprocess.Popen(["Rscript", "create.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-          st.write(process2.communicate())
+          result2 = process2.communicate())
                 
        with st.spinner('CALCULATING PREDICTIONS (STEP 6 OF 6)...'):
           process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
