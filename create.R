@@ -152,8 +152,6 @@ for(ij in c(1:ncol(dm2))){
     colnames(dmx)[ij]=paste0("DRUG_",colnames(descriptors)[ij])
   }
 
-print(formulations)
-
 g=cbind(formulations,totm,bm,am,dmx)
 g=g[,-c(3:9,16:19,20:22,24,26:28,32:35,38)]
 
