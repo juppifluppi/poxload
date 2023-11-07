@@ -26,4 +26,4 @@ for(i in nrow(dr)){
 colnames(full)=colnames(formulations)
 full=full[-1,]
 
-write.table(full,file="db_formulations.csv",row.names = F,sep="\t")
+write.table(full,file="db_formulations.csv",row.names = F,sep="\t",quote=F)
