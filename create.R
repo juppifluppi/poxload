@@ -156,6 +156,7 @@ g=cbind(formulations,totm,bm,am,dmx)
 #print(colnames(g))
 g=g[,-c(4:9,16:19,20:22,24,26:28,32:35,38)]
 
+print(formulations)
 gx=cbind(bbb,g)
 colnames(gx)=c("Mixture",colnames(g))
 #print(colnames(g))
