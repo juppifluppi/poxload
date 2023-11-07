@@ -104,7 +104,7 @@ if submit_button:
                              
     with st.spinner('CREATING FORMULATIONS (STEP 2 OF 3)...'):
         process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        result1 = process1.communicate()
+        st.write(process1.communicate())
         #os.system("sed -i -e 's/OOO//g' db_formulations.csv")
         #tune_DF=str("sed -i -e 's/OOO/"+set_DF+"/g' db_test.csv")
         #os.system(tune_DF)
