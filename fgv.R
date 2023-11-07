@@ -32,9 +32,9 @@ m8=model
 
 af=read.csv("testformulations.dat")
 afx=af
-uix=read.csv("startdatayyyxmod_rdk2.dat",check.names = F)
+#uix=read.csv("startdatayyyxmod_rdk2.dat",check.names = F)
 
-ui=uix[,colnames(uix)%in%colnames(m1$trainingData)]
+ui=m1$trainingData[-1]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -65,7 +65,7 @@ a=cbind(a,b)
 
 
 
-ui=uix[,colnames(uix)%in%colnames(m2$trainingData)]
+ui=m2$trainingData[-1]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -94,7 +94,7 @@ a=cbind(a,b)
 
 
 
-ui=uix[,colnames(uix)%in%colnames(m3$trainingData)]
+ui=m3$trainingData[-1]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -121,7 +121,7 @@ a=cbind(a,b)
 
 
 
-ui=uix[,colnames(uix)%in%colnames(m4$trainingData)]
+ui=m4$trainingData[-1]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -148,7 +148,7 @@ b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
 
-ui=uix[,colnames(uix)%in%colnames(m5$trainingData)]
+ui=m5$trainingData[-1]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -175,7 +175,7 @@ a=cbind(a,b)
 
 
 
-ui=uix[,colnames(uix)%in%colnames(m6$trainingData)]
+ui=m6$trainingData[-1]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -213,7 +213,7 @@ for(huh in 1:nrow(afx2)){
 }
 
 
-ui=uix[,colnames(uix)%in%colnames(m7$trainingData)]
+ui=m7$trainingData[-1]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
@@ -239,7 +239,7 @@ b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
 
-ui=uix[,colnames(uix)%in%colnames(m8$trainingData)]
+ui=m8$trainingData[-1]
 afx2=afx[,colnames(afx)%in%colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
