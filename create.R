@@ -4,7 +4,7 @@ smi=read.csv("db_test.csv")
 names=smi[,1]
 formulations=read.csv("db_formulations.csv",dec=".",sep="\t")
 
-formulations$MR1=(formulations$DF/formulations$DMW)/(formulations$PF/formulationsPMW)
+formulations$MR1=(formulations$DF/formulations$DMW)/(formulations$PF/formulations$PMW)
 formulations$POLFRAC=formulations$PMR/(formulations$PMR+formulations$MR1)
 formulations$D1FRAC=formulations$MR1/(formulations$PMR+formulations$MR1)
 
