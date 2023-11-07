@@ -12,8 +12,6 @@ formulations$D2FRAC=0
 
 full=rep(NA,ncol(formulations))
 
-print(formulations$DF)
-
 for(i in nrow(dr)){
   fillx=formulations
   fillx$Source=dr[i,colnames(dr)%in%"NAME"]
