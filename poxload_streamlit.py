@@ -120,3 +120,65 @@ if submit_button:
           # reference
            
           st.caption("[github page](https://github.com/juppifluppi/poxload)")
+
+    else:
+
+       with st.spinner('CALCULATING FINGERPRINTS (STEP 1 OF 3)...'):
+
+          for molecule in range(0,len(SMILES)):
+                        
+              mol = standardize(SMILES[molecule])
+              AllChem.EmbedMolecule(mol,useRandomCoords=True)
+              AllChem.MMFFOptimizeMolecule(mol, "MMFF94s", maxIters=5000)
+              rdkitfp = fingerprint_rdk7(mol)
+
+              if molecule == 0:
+                 with open("descriptors_rdk7.csv","a") as f:
+                     for o in range(0,len(rdkitfp)):
+                         f.write("rdk7_"+str(o)+"\t")
+                     f.write("\n")
+
+              with open("descriptors_rdk7.csv","a") as f:
+                 for o in range(0,len(rdkitfp)):
+                    f.write(str(rdkitfp[o])+"\t")
+                 f.write("\n")
+
+              mj = Chem.Descriptors.ExactMolWt(mol)
+              MW.append(mj)
+              if molecule == len(SMILES):
+                  im = Draw.MolToImage(mol,fitImage=True) 
+      
+          dfx = pd.DataFrame(columns=['NAME', "SMILES","MW"])
+          dfx["NAME"]=NAMES
+          dfx["SMILES"]=SMILES
+          dfx["MW"]=MW[0]
+
+          dfx.to_csv("db_test.csv",index=False)
+
+                             
+       with st.spinner('CREATING FORMULATIONS (STEP 2 OF 3)...'):
+          process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+          result1 = process1.communicate()
+          #os.system("sed -i -e 's/\"//g' db_formulations.csv")
+          #tune_DF=str("sed -i -e 's/10\\t8\t/10\\t"+set_DF+"\\t/g' db_formulations.csv")
+          #os.system(tune_DF)
+      
+          process2 = subprocess.Popen(["Rscript", "create.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+          result2 = process2.communicate()
+                
+       with st.spinner('CALCULATING PREDICTIONS (STEP 3 OF 3)...'):
+          process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+          result3 = process3.communicate()
+                
+          df = pd.read_csv(r'fin_results.csv',index_col=0)
+
+          df = df.rename(columns={0: "Polymer", 1: "LC10", 2: "LC20", 3: "LC30", 4: "LC40", 5: "LE20", 6: "LE40", 7: "LE60", 8: "LE80", 11:"Passed"})
+          df = df.sort_values(by=['Passed'], ascending=False)    
+
+          st.dataframe(df.style.applymap(cooling_highlight))
+          st.image(im)
+                                    
+          # reference
+           
+          st.caption("[github page](https://github.com/juppifluppi/poxload)")
+
