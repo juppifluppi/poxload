@@ -4,11 +4,6 @@ smi=read.csv("db_test.csv")
 names=smi[,1]
 formulations=read.csv("db_formulations.csv",dec=".",sep="\t")
 
-print(ncol(descriptors))
-print(ncol(formulations))
-print(nrow(descriptors))
-print(nrow(formulations))
-
 #formulations$Solvent[is.na(formulations$Solvent)]<-0
 #formulations$Temperature[is.na(formulations$Temperature)]<-0
 #formulations$Hydration[is.na(formulations$Hydration)]<-0
@@ -22,10 +17,28 @@ bbb=paste0(formulations$A1,"+",formulations$B,"+",formulations$A2,"+",formulatio
 formulations=cbind(rep(0,nrow(formulations)),formulations)
 formulations=cbind(rep(0,nrow(formulations)),formulations)
 
-print(ncol(descriptors))
-print(ncol(formulations))
-print(nrow(descriptors))
-print(nrow(formulations))
+load("model1.rda")
+m1=model
+load("model2.rda")
+m2=model
+load("model3.rda")
+m3=model
+load("model4.rda")
+m4=model
+load("model5.rda")
+m5=model
+load("model6.rda")
+m6=model
+load("model7.rda")
+m7=model
+load("model8.rda")
+m8=model
+
+ref=c(colnames(m1$trainingData)[-1],colnames(m2$trainingData)[-1],colnames(m3$trainingData)[-1],colnames(m4$trainingData)[-1],colnames(m5$trainingData)[-1],colnames(m6$trainingData)[-1],colnames(m7$trainingData)[-1],colnames(m8$trainingData)[-1])
+ref=unique(ref)
+refnames=paste(sapply(strsplit(ref,"_"), "[[", 2),sapply(strsplit(ref,"_"), "[[", 3),sep = "_")
+descriptors=descriptors[,colnames(descriptors)%in%refnames]
+
 
 am1=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
