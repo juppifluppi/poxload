@@ -101,7 +101,7 @@ if submit_button:
           #os.system(tune_DF)
       
           process2 = subprocess.Popen(["Rscript", "create.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-          result2 = process2.communicate())
+          result2 = process2.communicate()
                 
        with st.spinner('CALCULATING PREDICTIONS (STEP 6 OF 6)...'):
           process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
