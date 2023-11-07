@@ -30,10 +30,8 @@ m7=model
 load("model8.rda")
 m8=model
 
-af=read.csv("db_formulations.csv",sep="\t")
-af2=read.csv("descriptors_rdk7.csv")
-
-afx=cbind(af,af2)
+af=read.csv("testformulations.dat")
+afx=af
 
 ui=read.csv("startdatayyyxmod_rdk2.dat",check.names = F)
 ui=ui[,colnames(ui)%in%colnames(m1$trainingData)]
