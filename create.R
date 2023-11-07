@@ -154,9 +154,9 @@ for(ij in c(1:ncol(dm2))){
 
 g=cbind(formulations,totm,bm,am,dmx)
 print(colnames(g))
-g=g[,-c(3:9,16:19,20:22,24,26:28,32:35,38)]
+g=g[,-c(4:9,16:19,20:22,24,26:28,32:35,38)]
 
 #gx=cbind(bbb,g)
 #colnames(gx)=c("Mixture",colnames(g))
-print(colnames(g))
+#print(colnames(g))
 write.csv(g,file=paste0("testformulations.dat"),row.names = F)
