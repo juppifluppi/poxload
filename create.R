@@ -29,7 +29,6 @@ print(nrow(formulations))
 
 am1=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
-  print(paste0("am1_",ij,"/",nrow(formulations)))
   bx=descriptors[names%in%formulations[ij,]$A1,]
   am1=rbind(am1,bx)
 }
@@ -40,7 +39,6 @@ colnames(am1)[ij]=paste0("ABLOCK1_",colnames(am1)[ij])
 
 am2=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
-  print(paste0("am2_",ij,"/",nrow(formulations)))
   bx=descriptors[names%in%formulations[ij,]$A2,]
   am2=rbind(am2,bx)
 }
@@ -51,7 +49,6 @@ for(ij in c(1:ncol(am2))){
 
 t1m=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
-  print(paste0("t1m_",ij,"/",nrow(formulations)))
   bx=descriptors[names%in%formulations[ij,]$T1,]
   t1m=rbind(t1m,bx)
 }
@@ -62,7 +59,6 @@ for(ij in c(1:ncol(t1m))){
 
 t2m=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
-  print(paste0("t2m_",ij,"/",nrow(formulations)))
   bx=descriptors[names%in%formulations[ij,]$T2,]
   t2m=rbind(t2m,bx)
 }
@@ -73,7 +69,6 @@ for(ij in c(1:ncol(t2m))){
 
 bm1=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
-  print(paste0("bm1_",ij,"/",nrow(formulations)))
   bx=descriptors[names%in%formulations[ij,]$B,]
   bm1=rbind(bm1,bx)
 }
@@ -84,7 +79,6 @@ for(ij in c(1:ncol(bm1))){
 
 bm2=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
-  print(paste0("bm2_",ij,"/",nrow(formulations)))
   if(formulations[ij,]$B2 == "None"){
     bx=rep(0,ncol(descriptors))
     names(bx)=colnames(descriptors)
@@ -101,7 +95,6 @@ for(ij in c(1:ncol(bm2))){
 
 dm=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
-  print(paste0("dm_",ij,"/",nrow(formulations)))
   bx=descriptors[names%in%formulations[ij,]$D,]
   dm=rbind(dm,bx)
 }
@@ -112,7 +105,6 @@ for(ij in c(1:ncol(dm))){
 
 dm2=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
-  print(paste0("dm2_",ij,"/",nrow(formulations)))
   if(formulations[ij,]$D2 == "None"){
     bx=rep(0,ncol(descriptors))
     names(bx)=colnames(descriptors)
