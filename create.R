@@ -6,7 +6,7 @@ formulations=read.csv("db_formulations.csv",dec=".",sep="\t")
 
 formulations$MR1=(formulations$DF/formulations$DMW)/(formulations$PF/formulationsPMW)
 formulations$POLFRAC=formulations$PMR/(formulations$PMR+formulations$MR1)
-formulationsx$D1FRAC=formulations$MR1/(formulations$PMR+formulations$MR1)
+formulations$D1FRAC=formulations$MR1/(formulations$PMR+formulations$MR1)
 
 formulations$Solvent[is.na(formulations$Solvent)]<-0
 formulations$Temperature[is.na(formulations$Temperature)]<-0
