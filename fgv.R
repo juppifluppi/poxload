@@ -31,7 +31,7 @@ m7=model
 load("model8.rda")
 m8=model
 
-af=read.csv("testformulations.dat")
+af=read.csv("testformulations.dat",check.names = F)
 afx=af
 #uix=read.csv("startdatayyyxmod_rdk2.dat",check.names = F)
 
@@ -64,8 +64,14 @@ b=as.character(unlist(predict(m1,newdata=afx)))
 #b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
-
-
+print(predict(m1,newdata=afx))
+print(predict(m2,newdata=afx))
+print(predict(m3,newdata=afx))
+print(predict(m4,newdata=afx))
+print(predict(m5,newdata=afx))
+print(predict(m6,newdata=afx))
+print(predict(m7,newdata=afx))
+print(predict(m8,newdata=afx))
 
 #ui=m2$trainingData[-1]
 #afx2=afx[,colnames(afx)%in%colnames(ui)]
@@ -266,7 +272,7 @@ b=as.character(unlist(predict(m8,newdata=afx)))
 #b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
-ck=t(apply(a, 1, function(u) table(factor(u, levels=c("X0","X1")))))
+ck=t(apply(a, 1, function(u) table(factor(u, levels=c("X1","X0")))))
 a=cbind(a,ck[,1])
          
 colnames(a)=c("POL","LC10","LC20","LC30","LC40","LE20","LE40","LE60","LE80","Passed")
