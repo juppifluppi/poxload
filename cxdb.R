@@ -1,7 +1,5 @@
-dr=read.csv("descriptors_rdk7.csv",check.names = F,sep = "\t")
-test=read.csv("db_test.csv")
+dr=read.csv("db_test.csv")
 formulations=read.csv("db_smiles.csv")
-dr=cbind(test,dr)
 
 formulations$DF=8
 formulations$D2="None"
@@ -14,7 +12,7 @@ formulations$D2FRAC=0
 
 full=rep(NA,ncol(formulations))
 
-for(i in c(1:nrow(dr))){
+for(i in nrow(dr)){
   fillx=formulations
   fillx$Source=dr[i,colnames(dr)%in%"NAME"]
   fillx$D=dr[i,colnames(dr)%in%"NAME"]
