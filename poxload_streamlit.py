@@ -75,9 +75,9 @@ if submit_button:
 
             if molecule == 0:
                 with open("descriptors_rdk7.csv","a") as f:
-                for o in range(0,len(rdkitfp)):
-                    f.write("rdk7_"+str(o)+"\t")
-                f.write("\n")
+                    for o in range(0,len(rdkitfp)):
+                        f.write("rdk7_"+str(o)+"\t")
+                    f.write("\n")
 
             with open("descriptors_rdk7.csv","a") as f:
                 for o in range(0,len(rdkitfp)):
