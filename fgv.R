@@ -32,7 +32,7 @@ load("model8.rda")
 m8=model
 
 af=read.csv("testformulations.dat")
-afx=af
+afx2=af
 #uix=read.csv("startdatayyyxmod_rdk2.dat",check.names = F)
 
 #ui=m1$trainingData[-1]
