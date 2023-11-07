@@ -14,8 +14,8 @@ formulations=na.omit(formulations)
 descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 bbb=paste0(formulations$A1,"+",formulations$B,"+",formulations$A2,"+",formulations$D,"+",formulations$B2,"+",formulations$D2)
 
-LC=rep(0,nrow(formulations))
-LE=rep(0,nrow(formulations))
+LC=rep(NA,nrow(formulations))
+LE=rep(NA,nrow(formulations))
 formulations=cbind(LC,formulations)
 formulations=cbind(LE,formulations)
 
