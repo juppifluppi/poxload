@@ -9,8 +9,6 @@ formulations$Temperature[is.na(formulations$Temperature)]<-0
 formulations$Hydration[is.na(formulations$Hydration)]<-0
 formulations$VOL[is.na(formulations$VOL)]<-0
 
-#formulations=na.omit(formulations)
-
 descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
 bbb=paste0(formulations$A1,"+",formulations$B,"+",formulations$A2,"+",formulations$D,"+",formulations$B2,"+",formulations$D2)
 
@@ -153,11 +151,8 @@ for(ij in c(1:ncol(dm2))){
   }
 
 g=cbind(formulations,totm,bm,am,dmx)
-#print(colnames(g))
 g=g[,-c(4:9,16:19,20:22,24,26:28,32:35,38)]
 
-print(formulations)
 gx=cbind(bbb,g)
 colnames(gx)=c("Mixture",colnames(g))
-#print(colnames(g))
 write.csv(gx,file=paste0("testformulations.dat"),row.names = F)
