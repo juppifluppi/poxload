@@ -109,7 +109,7 @@ if submit_button:
                 
     with st.spinner('CALCULATING PREDICTIONS (STEP 3 OF 3)...'):
         process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        process3.communicate()
+        st.write(process3.communicate())
                 
         df = pd.read_csv(r'fin_results.csv',index_col=0)
 
