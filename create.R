@@ -42,7 +42,7 @@ ref=ref[!(ref%in%colnames(formulations))]
 refnames=paste(sapply(strsplit(ref,"_"), "[[", 2),sapply(strsplit(ref,"_"), "[[", 3),sep = "_")
 descriptors=descriptors[,colnames(descriptors)%in%refnames]
 
-
+print(colnames(formulations))
 am1=rep(NA,ncol(descriptors))
 for(ij in c(1:nrow(formulations))){
   bx=descriptors[names%in%formulations[ij,]$A1,]
@@ -153,6 +153,7 @@ for(ij in c(1:ncol(dm2))){
   }
 
 g=cbind(formulations,totm,bm,am,dmx)
+print(colnames(g))
 g=g[,-c(3:9,16:19,20:22,24,26:28,32:35,38)]
 
 #gx=cbind(bbb,g)
