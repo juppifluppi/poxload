@@ -150,4 +150,4 @@ g=g[,-c(3:9,16:19,20:22,24,26:28,32:35,38)]
 gx=cbind(bbb,g)
 colnames(gx)=c("Mixture",colnames(g))
 
-write.csv(startdata,file=paste0("testformulations.dat"),row.names = F)
+write.csv(gx,file=paste0("testformulations.dat"),row.names = F)
