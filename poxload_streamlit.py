@@ -65,25 +65,27 @@ if submit_button:
        with st.spinner('CALCULATING FINGERPRINTS (STEP 1 OF 3)...'):
 
           for molecule in range(0,len(SMILES)):
-          
-             mol = standardize(SMILES[molecule])
-             AllChem.EmbedMolecule(mol,useRandomCoords=True)
-             AllChem.MMFFOptimizeMolecule(mol, "MMFF94s", maxIters=5000)
-             rdkitfp = fingerprint_rdk7(mol)
+                        
+              mol = standardize(SMILES[molecule])
+              AllChem.EmbedMolecule(mol,useRandomCoords=True)
+              AllChem.MMFFOptimizeMolecule(mol, "MMFF94s", maxIters=5000)
+              rdkitfp = fingerprint_rdk7(mol)
 
-             if molecule == 0:
-                with open("descriptors_rdk7.csv","a") as f:
-                    for o in range(0,len(rdkitfp)):
-                        f.write("rdk7_"+str(o)+"\t")
-                    f.write("\n")
+              if molecule == 0:
+                 with open("descriptors_rdk7.csv","a") as f:
+                     for o in range(0,len(rdkitfp)):
+                         f.write("rdk7_"+str(o)+"\t")
+                     f.write("\n")
 
-             with open("descriptors_rdk7.csv","a") as f:
-                for o in range(0,len(rdkitfp)):
-                   f.write(str(rdkitfp[o])+"\t")
-                f.write("\n")
+              with open("descriptors_rdk7.csv","a") as f:
+                 for o in range(0,len(rdkitfp)):
+                    f.write(str(rdkitfp[o])+"\t")
+                 f.write("\n")
 
-             mj = Chem.Descriptors.ExactMolWt(mol)
-             MW.append(mj)
+              mj = Chem.Descriptors.ExactMolWt(mol)
+              MW.append(mj)
+              if molecule == len(SMILES):
+                  im = Draw.MolToImage(mol,fitImage=True) 
       
           dfx = pd.DataFrame(columns=['NAME', "SMILES","MW"])
           dfx["NAME"]=NAMES
