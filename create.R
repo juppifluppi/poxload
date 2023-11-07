@@ -153,9 +153,9 @@ for(ij in c(1:ncol(dm2))){
   }
 
 g=cbind(formulations,totm,bm,am,dmx)
-g=g[,-c(3:9,16:19,20:22,24,26:28,32:35,38,39)]
+g=g[,-c(3:9,16:19,20:22,24,26:28,32:35,38)]
 
-gx=cbind(bbb,g)
-colnames(gx)=c("Mixture",colnames(g))
-
-write.csv(gx,file=paste0("testformulations.dat"),row.names = F)
+#gx=cbind(bbb,g)
+#colnames(gx)=c("Mixture",colnames(g))
+print(colnames(g))
+write.csv(g,file=paste0("testformulations.dat"),row.names = F)
