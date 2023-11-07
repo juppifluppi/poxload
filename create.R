@@ -3,7 +3,7 @@ descriptors=read.csv("descriptors_rdk7.csv",sep="\t")
 smi=read.csv("db_test.csv")
 names=smi[,1]
 formulations=read.csv("db_formulations.csv",dec=".",sep="\t")
-
+print(colnames(formulations))
 #formulations$Solvent[is.na(formulations$Solvent)]<-0
 #formulations$Temperature[is.na(formulations$Temperature)]<-0
 #formulations$Hydration[is.na(formulations$Hydration)]<-0
