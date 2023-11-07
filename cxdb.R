@@ -1,7 +1,7 @@
 dr=read.csv("db_test.csv")
 formulations=read.csv("db_smiles.csv")
 
-formulations$DF=8
+#formulations$DF=8
 formulations$D2="None"
 formulations$DF2=0
 formulations$DRUGNAME2="None"
