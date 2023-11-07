@@ -92,7 +92,7 @@ if submit_button:
         dfx = pd.DataFrame(columns=['NAME', "SMILES","MW"])
         dfx["NAME"]=NAMES
         dfx["SMILES"]=SMILES
-        dfx["MW"]=MW[0]
+        dfx["MW"]=MW
         st.write(MW)
 
         dfx.to_csv("db_test.csv",index=False)
