@@ -58,7 +58,7 @@ a=af$POL
 #print(a)
 a=as.data.frame(a)
 
-b=as.character(unlist(predict(m1,newdata=afx2)))
+b=as.character(unlist(predict(m1,newdata=afx)))
 #gzy=as.numeric(unlist(as.vector(z1)))
 #gzy=gzy<thr1_3
 #b[gzy==FALSE]="AD"
@@ -86,7 +86,7 @@ a=cbind(a,b)
 #  z1=append(z1,aggg)
 #}
 
-b=as.character(unlist(predict(m2,newdata=afx2)))
+b=as.character(unlist(predict(m2,newdata=afx)))
 #gzy=as.numeric(unlist(as.vector(z1)))
 #gzy=gzy<thr2_3
 #b[gzy==FALSE]="AD"
@@ -115,7 +115,7 @@ a=cbind(a,b)
 #  z1=append(z1,aggg)
 #}
 #
-b=as.character(unlist(predict(m3,newdata=afx2)))
+b=as.character(unlist(predict(m3,newdata=afx)))
 #gzy=as.numeric(unlist(as.vector(z1)))
 #gzy=gzy<thr3_3
 #b[gzy==FALSE]="AD"
@@ -143,7 +143,7 @@ a=cbind(a,b)
 #}
 #
 
-b=as.character(unlist(predict(m4,newdata=afx2)))
+b=as.character(unlist(predict(m4,newdata=afx)))
 #gzy=as.numeric(unlist(as.vector(z1)))
 #gzy=gzy<thr4_3
 #b[gzy==FALSE]="AD"
@@ -169,7 +169,7 @@ a=cbind(a,b)
 #  z1=append(z1,aggg)
 #}
 
-b=as.character(unlist(predict(m5,newdata=afx2)))
+b=as.character(unlist(predict(m5,newdata=afx)))
 #gzy=as.numeric(unlist(as.vector(z1)))
 #gzy=gzy<thr5_3
 #b[gzy==FALSE]="AD"
@@ -197,7 +197,7 @@ a=cbind(a,b)
 #}
 
 
-b=as.character(unlist(predict(m6,newdata=afx2)))
+b=as.character(unlist(predict(m6,newdata=afx)))
 #gzy=as.numeric(unlist(as.vector(z1)))
 #gzy=gzy<thr6_3
 #b[gzy==FALSE]="AD"
@@ -234,7 +234,7 @@ a=cbind(a,b)
 #  z1=append(z1,aggg)
 #}
 
-b=as.character(unlist(predict(m7,newdata=afx2)))
+b=as.character(unlist(predict(m7,newdata=afx)))
 #gzy=as.numeric(unlist(as.vector(z1)))
 #gzy=gzy<thr7_3
 #b[gzy==FALSE]="AD"
@@ -260,7 +260,7 @@ a=cbind(a,b)
 #  z1=append(z1,aggg)
 #}
 
-b=as.character(unlist(predict(m8,newdata=afx2)))
+b=as.character(unlist(predict(m8,newdata=afx)))
 #gzy=as.numeric(unlist(as.vector(z1)))
 #gzy=gzy<thr8_3
 #b[gzy==FALSE]="AD"
