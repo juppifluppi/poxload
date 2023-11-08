@@ -141,13 +141,36 @@ if submit_button:
         #chart_data = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
         #st.line_chart(chart_data)
         st.write(df2)
-        
-        arrays = [df2["POL"],df2["DF"]]
-        index = pd.MultiIndex.from_arrays(arrays, names=('POL', 'DF'))
-        dfx = pd.DataFrame(df2["LC"],index=index)
 
-        ax = dfx.unstack(level=0).plot(kind='bar', subplots=True, rot=0, figsize=(9, 7), layout=(7, 3))
-        st.pyplot(ax)
+        
+        grouped = df2.groupby('DF').agg({'LC': 'mean', 'LE': 'mean', 'POL': 'first'})
+        
+        grouped.reset_index(inplace=True)
+        
+        categories = grouped['Category'].unique()
+        colors = plt.cm.viridis(np.linspace(0, 1, len(categories)))
+
+        
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 6))
+
+        for i, category in enumerate(categories):
+            sub_data = grouped[grouped['POL'] == category]
+            x = np.arange(len(sub_data))
+            ax1.bar(x + i * 0.2, sub_data['LC'], width=0.2, label=category, color=colors[i])
+            ax2.bar(x + i * 0.2, sub_data['LE'], width=0.2, label=category, color=colors[i])
+        ax1.set_title('Value3 by Unique')
+        ax2.set_title('Value4 by Unique')
+        ax1.set_xticks(x + 0.2)
+        ax1.set_xticklabels(sub_data['DF'])
+        ax2.set_xticks(x + 0.2)
+        ax2.set_xticklabels(sub_data['DF'])
+        ax1.legend(title='Category')
+        ax2.legend(title='Category')
+
+        plt.tight_layout()
+        plt.show()
+        st.pyplot(fig)
+
 
         st.dataframe(df.style.applymap(cooling_highlight))
         st.image(im)
