@@ -126,7 +126,7 @@ if submit_button:
                            
     with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
         process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        st.write(process3.communicate())
+        result3 = process3.communicate()
                 
         df = pd.read_csv(r'fin_results.csv',index_col=0)
 
@@ -134,8 +134,9 @@ if submit_button:
         #df = df.sort_values(by=['Passed'], ascending=False)    
 
         df2 = pd.read_csv(r'fin_results2.csv',index_col=0)
+        df2 = df.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
         df3 = pd.read_csv(r'fin_results3.csv',index_col=0)
-
+        df3 = df.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
         
         arrays = [df2["POL"],df2["DF"]]
         index = pd.MultiIndex.from_arrays(arrays, names=('POL', 'DF'))
