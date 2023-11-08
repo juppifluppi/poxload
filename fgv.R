@@ -14,21 +14,21 @@ gzy=99
 library("caret")
 library("randomForest")
 
-load("model1.rda")
+load("alt_model1.rda")
 m1=model
-load("model2.rda")
+load("alt_model2.rda")
 m2=model
-load("model3.rda")
+load("alt_model3.rda")
 m3=model
-load("model4.rda")
+load("alt_model4.rda")
 m4=model
-load("model5.rda")
+load("alt_model5.rda")
 m5=model
-load("model6.rda")
+load("alt_model6.rda")
 m6=model
-load("model7.rda")
+load("alt_model7.rda")
 m7=model
-load("model8.rda")
+load("alt_model8.rda")
 m8=model
 
 af=read.csv("testformulations.dat",check.names = F)
