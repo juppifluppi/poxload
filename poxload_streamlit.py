@@ -197,7 +197,7 @@ if submit_button:
             group.plot(x='POL', y='LE', kind='bar', ax=ax2, color=[colors[p] for p in group['POL']], width=0.4, position=0.5, label=key)
 
         # Set up the x-axis labels and legend for the second subplot
-        ax2.set_xticks(np.arange(len(df2['POL'].unique()))
+        ax2.set_xticks(np.arange(len(df2['POL'].unique())))
         ax2.set_xticklabels(df2['POL'].unique())
         ax2.set_xlabel("POL")
         ax2.set_ylabel("LE")
