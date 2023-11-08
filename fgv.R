@@ -312,6 +312,10 @@ b[b[,9]=="X0",9]=0
 b[b[,9]=="X1",9]=80
 b[b[,10]=="X0",10]=0
 b[b[,10]=="X1",10]=100
-       
+
+a=a[,c(1,2,apply(a, 1, function(x) max(x[,c(3:6)])),apply(a, 1, function(x) max(x[,c(7:10)])))]
+b=b[,c(1,2,apply(b, 1, function(x) max(x[,c(3:6)])),apply(b, 1, function(x) max(x[,c(7:10)])))]
+colnames(a)=c("POL","DF","LC","LE")
+colnames(b)=c("POL","DF","LC","LE")
 write.csv(a,"fin_results2.csv",row.names=F)
 write.csv(b,"fin_results3.csv",row.names=F)
