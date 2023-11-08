@@ -191,9 +191,9 @@ if submit_button:
                 ax.bar(j + 0.4, le[category], width=0.4, hatch=patterns[j % len(patterns)])
 
                 ax.set_xticks(range(len(categories))  # Proper indentation here
-        ax.set_xticklabels(categories)
-        ax.set_title(f'DF: {df_value}')
-        ax.legend(title='POL')
+                ax.set_xticklabels(categories)
+                ax.set_title(f'DF: {df_value}')
+                ax.legend(title='POL')
 
         
 
