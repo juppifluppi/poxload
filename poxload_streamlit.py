@@ -130,9 +130,9 @@ if submit_button:
         process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         result3 = process3.communicate()
                 
-        df = pd.read_csv(r'fin_results.csv',index_col=0)
+        #df = pd.read_csv(r'fin_results.csv',index_col=0)
 
-        df = df.rename(columns={0: "POL", 1: "DF", 2: "LC10", 3: "LC20", 4: "LC30", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE80", 10:"Passed"})
+        #df = df.rename(columns={0: "POL", 1: "DF", 2: "LC10", 3: "LC20", 4: "LC30", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE80", 10:"Passed"})
         #df = df.sort_values(by=['Passed'], ascending=False)    
 
         st.dataframe(df.style.applymap(cooling_highlight))
