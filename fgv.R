@@ -13,6 +13,8 @@ gzy=99
 
 library("caret")
 library("randomForest")
+library("kernlab")
+library("xgboost")
 
 load("alt_model1.rda")
 m1=model
