@@ -175,11 +175,11 @@ if submit_button:
 
         # Create subplots for each 'DF' value
         unique_values = df['DF'].unique()
-        fig, axes = plt.subplots(len(unique_values), figsize=(10, 6)
+        fig, axes = plt.subplots(len(unique_values), figsize=(10, 6))
 
         for i, df_value in enumerate(unique_values):
             ax = axes[i]
-            sub_data = grouped.loc[unique]
+            sub_data = grouped.loc[df_value]
             categories = sub_data.index
             lc = sub_data['LC']
             le = sub_data['LE']
@@ -188,11 +188,11 @@ if submit_button:
             patterns = ['/', '\\', '|', '-', '+', 'x', 'o', 'O', '.', '*']
             for j, category in enumerate(categories):
                 ax.bar(j, lc[category], width=0.4, label=category, hatch=patterns[j % len(patterns)])
-                ax.bar(j + 0.4, le[category], width=0.4, hatch=patterns[j % len(patterns])
+                ax.bar(j + 0.4, le[category], width=0.4, hatch=patterns[j % len(patterns)])
 
-                ax.set_xticks(range(len(categories))
+                ax.set_xticks(range(len(categories))  # Proper indentation here
                 ax.set_xticklabels(categories)
-                ax.set_title(f'DF: {unique}')
+                ax.set_title(f'DF: {df_value}')
                 ax.legend(title='POL')
 
         
