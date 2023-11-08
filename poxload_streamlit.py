@@ -172,24 +172,23 @@ if submit_button:
 
         
 
+        # Create a grouped barplot for "LC" by "DF" with different "POL" categories
+        plt.figure(figsize=(10, 6))
+        sns.barplot(x="DF", y="LC", hue="POL", data=df2)
+        plt.xlabel("DF")
+        plt.ylabel("LC")
+        plt.title("Grouped Barplot for LC by DF")
 
-        # Pivot the DataFrame to use "POL" as columns
-        df2_pivot = df2.pivot(index="DF", columns="POL", values=["LC", "LE"])
+        # Create a grouped barplot for "LE" by "DF" with different "POL" categories
+        plt.figure(figsize=(10, 6))
+        sns.barplot(x="DF", y="LE", hue="POL", data=df2)
+        plt.xlabel("DF")
+        plt.ylabel("LE")
+        plt.title("Grouped Barplot for LE by DF")
 
-        # Create a figure with two subplots
-        fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True, figsize=(8, 8)
-
-        # Plot "LC" for each "DF" using seaborn
-        sns.barplot(data=df2_pivot["LC"], ax=ax1)
-        ax1.set_xlabel("DF")
-        ax1.set_ylabel("LC")
-        ax1.set_title("Barplots for LC by DF")
-
-        # Plot "LE" for each "DF" using seaborn
-        sns.barplot(data=df2_pivot["LE"], ax=ax2)
-        ax2.set_xlabel("DF")
-        ax2.set_ylabel("LE")
-        ax2.set_title("Barplots for LE by DF")
+        # Show the plots
+        plt.tight_layout()
+        plt.show()
 
         
 
