@@ -172,29 +172,36 @@ if submit_button:
         
 
 
-        # Pivot the DataFrame
-        pivoted = df2.pivot_table(index='DF', columns='POL', values=['LC', 'LE'])
+        # Group the DataFrame by "DF"
+        grouped = df2.groupby("DF")  # Change df to df2
 
-        # Create subplots for each 'DF' value
-        unique_values = df2['DF'].unique()
-        fig, axes = plt.subplots(len(unique_values), figsize=(10, 6)
+        # Create a figure with two subplots
+        fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True, figsize=(8, 8))
 
-        for i, df_value in enumerate(unique_values):
-            ax = axes[i]
-            sub_data = pivoted.loc[df_value]
+        # Set up color mapping for "POL" categories
+        colors = {"A": 'b', "B": 'g'}
 
-            # Create bars with different patterns for each category
-            patterns = ['/', '\\', '|', '-', '+', 'x', 'o', 'O', '.', '*']
-            for j, category in enumerate(sub_data.columns.levels[1]):
-                lc = sub_data[('LC', category)]
-                le = sub_data[('LE', category)]
-                ax.bar(j, lc, width=0.4, label=category, hatch=patterns[j % len(patterns)])
-                ax.bar(j + 0.4, le, width=0.4, hatch=patterns[j % len(patterns)])
+        # Plot "LC" for each "DF"
+        for key, group in grouped:
+            group.plot(x='POL', y='LC', kind='bar', ax=ax1, color=[colors[p] for p in group['POL']], width=0.4, position=0.5, label=key)
 
-            ax.set_xticks(range(len(sub_data.columns.levels[1]))
-            ax.set_xticklabels(sub_data.columns.levels[1])
-            ax.set_title(f'DF: {df_value}')
-            ax.legend(title='POL')
+        # Set up the x-axis labels and legend for the first subplot
+        ax1.set_xticks(np.arange(len(df2['POL'].unique())))
+        ax1.set_xticklabels(df2['POL'].unique())
+        ax1.set_xlabel("POL")
+        ax1.set_ylabel("LC")
+        ax1.set_title("Barplots for LC by DF")
+
+        # Plot "LE" for each "DF"
+        for key, group in grouped:
+            group.plot(x='POL', y='LE', kind='bar', ax=ax2, color=[colors[p] for p in group['POL']], width=0.4, position=0.5, label=key)
+
+        # Set up the x-axis labels and legend for the second subplot
+        ax2.set_xticks(np.arange(len(df2['POL'].unique()))
+        ax2.set_xticklabels(df2['POL'].unique())
+        ax2.set_xlabel("POL")
+        ax2.set_ylabel("LE")
+        ax2.set_title("Barplots for LE by DF")
         
 
 
