@@ -130,13 +130,17 @@ if submit_button:
                 
         df = pd.read_csv(r'fin_results.csv',index_col=0)
 
-        df = df.rename(columns={0: "Polymer", 1: "DF", 2: "LC10", 3: "LC20", 4: "LC30", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE80", 10:"Passed"})
+        df = df.rename(columns={0: "POL", 1: "DF", 2: "LC10", 3: "LC20", 4: "LC30", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE80", 10:"Passed"})
         #df = df.sort_values(by=['Passed'], ascending=False)    
 
         df2 = pd.read_csv(r'fin_results2.csv',index_col=0)
-        df2 = df.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
+        df2 = df2.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
         df3 = pd.read_csv(r'fin_results3.csv',index_col=0)
-        df3 = df.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
+        df3 = df3.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
+
+        #chart_data = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
+        #st.line_chart(chart_data)
+        st.write(df2)
         
         arrays = [df2["POL"],df2["DF"]]
         index = pd.MultiIndex.from_arrays(arrays, names=('POL', 'DF'))
