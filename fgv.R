@@ -14,7 +14,9 @@ gzy=99
 library("caret")
 library("randomForest")
 library("kernlab")
-library("xgboost")
+library("devtools")
+
+devtools::load_all('xgboost')
 
 load("alt_model1.rda")
 m1=model
