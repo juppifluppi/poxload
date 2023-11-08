@@ -1,3 +1,10 @@
+library("caret")
+library("randomForest")
+library("kernlab")
+library("devtools")
+
+devtools::load_all('xgboost')
+
 descriptors=read.csv("descriptors.csv",sep="\t")
 
 smi=read.csv("db_test.csv")
