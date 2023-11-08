@@ -312,5 +312,6 @@ b[b[,9]=="X0",9]=0
 b[b[,9]=="X1",9]=80
 b[b[,10]=="X0",10]=0
 b[b[,10]=="X1",10]=100
-
+       
 write.csv(a,"fin_results2.csv",row.names=F)
+write.csv(b,"fin_results3.csv",row.names=F)
