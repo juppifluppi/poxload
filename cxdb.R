@@ -12,6 +12,10 @@ formulations$D2FRAC=0
 
 full=rep(NA,ncol(formulations))
 
+for(k in c(2,4,6,8,10)){
+
+  formulations$DF=k
+  
 for(i in nrow(dr)){
   fillx=formulations
   fillx$Source=dr[i,colnames(dr)%in%"NAME"]
@@ -22,6 +26,7 @@ for(i in nrow(dr)){
   fillx$POLFRAC=fillx$PMR/(fillx$PMR+fillx$MR1)
   fillx$D1FRAC=fillx$MR1/(fillx$PMR+fillx$MR1)
   full=rbind(full,fillx)
+}
 }
 colnames(full)=colnames(formulations)
 full=full[-1,]
