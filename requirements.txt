@@ -1,7 +1,7 @@
 rdkit-pypi
 stmol
-pandas
+pandas==1.4.4
 matplotlib
-scipy
-mordred
+scipy==1.9.2
+mordred==1.2.0
 numpy==1.19
