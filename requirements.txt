@@ -4,4 +4,4 @@ pandas==1.4.4
 matplotlib
 scipy==1.9.2
 mordred==1.2.0
-numpy==1.19
+numpy==1.19.5
