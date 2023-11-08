@@ -3,5 +3,6 @@ stmol
 pandas
 matplotlib
 scipy
+seaborn
 numpy
 mordredcommunity
