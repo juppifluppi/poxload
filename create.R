@@ -7,6 +7,8 @@
 
 descriptors=read.csv("descriptors.csv",sep="\t")
 
+print(ncol(descriptors))
+
 smi=read.csv("db_test.csv")
 names=smi[,1]
 formulations=read.csv("db_formulations.csv",dec=".",sep="\t")
@@ -61,6 +63,8 @@ formulations=cbind(LE,formulations)
 
 #ref=unique(c(ref,ref2))
 #ref=ref[!(ref%in%colnames(formulations))]
+
+print(ncol(descriptors))
 
 desc=read.csv("desc.dat")[,1]
 
