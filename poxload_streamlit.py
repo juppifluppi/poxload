@@ -69,7 +69,7 @@ if submit_button:
     
     
 
-    with st.spinner('CALCULATING FINGERPRINTS (STEP 1 OF 3)...'):
+    with st.spinner('CALCULATING DESCRIPTORS (STEP 1 OF 4)...'):
         
 
         for molecule in range(0,len(SMILES)):
@@ -114,16 +114,17 @@ if submit_button:
         dfx.to_csv("db_test.csv",index=False)
    
                             
-    with st.spinner('CREATING FORMULATIONS (STEP 2 OF 3)...'):
+    with st.spinner('CREATING FORMULATION DATABASE (STEP 2 OF 4)...'):
         process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         result1 = process1.communicate()
         tune_DF=str("sed -i -e 's/\\t10\\t8/\\t10\\t"+set_DF+"/g' db_formulations.csv")
         os.system(tune_DF)
-      
+
+    with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):        
         process2 = subprocess.Popen(["Rscript", "create.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         result2 = process2.communicate()
                            
-    with st.spinner('CALCULATING PREDICTIONS (STEP 3 OF 3)...'):
+    with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
         process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         result3 = process3.communicate()
                 
