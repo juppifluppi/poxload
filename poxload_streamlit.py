@@ -61,7 +61,7 @@ with st.form(key='my_form_to_submit'):
     NAMES.append("COMPOUND")
     SMILES.append(SMI)
     try:
-        os.remove("descriptors_rdk7.csv")
+        os.remove("descriptors.csv")
     except:
         pass
 
