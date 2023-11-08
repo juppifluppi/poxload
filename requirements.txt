@@ -3,5 +3,5 @@ stmol
 pandas
 matplotlib
 scipy
-numpy==1.19
 mordred
+numpy==1.19
