@@ -184,16 +184,16 @@ if submit_button:
             lc = sub_data['LC']
             le = sub_data['LE']
     
-        # Create bars with different patterns for each category
-        patterns = ['/', '\\', '|', '-', '+', 'x', 'o', 'O', '.', '*']
-        for j, category in enumerate(categories):
-            ax.bar(j, lc[category], width=0.4, label=category, hatch=patterns[j % len(patterns)])
-            ax.bar(j + 0.4, le[category], width=0.4, hatch=patterns[j % len(patterns])
+            # Create bars with different patterns for each category
+            patterns = ['/', '\\', '|', '-', '+', 'x', 'o', 'O', '.', '*']
+            for j, category in enumerate(categories):
+                ax.bar(j, lc[category], width=0.4, label=category, hatch=patterns[j % len(patterns)])
+                ax.bar(j + 0.4, le[category], width=0.4, hatch=patterns[j % len(patterns])
 
-        ax.set_xticks(range(len(categories))
-        ax.set_xticklabels(categories)
-        ax.set_title(f'DF: {unique}')
-        ax.legend(title='POL')
+                ax.set_xticks(range(len(categories))
+                ax.set_xticklabels(categories)
+                ax.set_title(f'DF: {unique}')
+                ax.legend(title='POL')
 
         
 
