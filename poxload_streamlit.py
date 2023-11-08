@@ -147,7 +147,7 @@ if submit_button:
         
         grouped.reset_index(inplace=True)
         
-        categories = grouped['Category'].unique()
+        categories = grouped['POL'].unique()
         colors = plt.cm.viridis(np.linspace(0, 1, len(categories)))
 
         
@@ -164,8 +164,8 @@ if submit_button:
         ax1.set_xticklabels(sub_data['DF'])
         ax2.set_xticks(x + 0.2)
         ax2.set_xticklabels(sub_data['DF'])
-        ax1.legend(title='Category')
-        ax2.legend(title='Category')
+        ax1.legend(title='POL')
+        ax2.legend(title='POL')
 
         plt.tight_layout()
         plt.show()
