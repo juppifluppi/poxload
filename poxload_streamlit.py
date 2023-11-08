@@ -171,10 +171,10 @@ if submit_button:
 
         
         # Group by 'DF' and 'POL' and calculate the mean of 'LC' and 'LE'
-        grouped = df.groupby(['DF', 'POL'])[['LC', 'LE']].mean().unstack()
+        grouped = df2.groupby(['DF', 'POL'])[['LC', 'LE']].mean().unstack()
 
         # Create subplots for each 'DF' value
-        unique_values = df['DF'].unique()
+        unique_values = df2['DF'].unique()
         fig, axes = plt.subplots(len(unique_values), figsize=(10, 6))
 
         for i, df_value in enumerate(unique_values):
