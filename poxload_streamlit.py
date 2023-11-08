@@ -135,49 +135,25 @@ if submit_button:
         df = df.rename(columns={0: "POL", 1: "DF", 2: "LC10", 3: "LC20", 4: "LC30", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE80", 10:"Passed"})
         #df = df.sort_values(by=['Passed'], ascending=False)    
 
+        st.dataframe(df.style.applymap(cooling_highlight))
+        st.image(im)
+
+
         df2 = pd.read_csv(r'fin_results2.csv')
         df2 = df2.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
         df3 = pd.read_csv(r'fin_results3.csv')
         df3 = df3.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
 
-        #chart_data = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
-        #st.line_chart(chart_data)
-        st.write(df2)
-
-        
-        #grouped = df2.groupby('DF').agg({'LC': 'mean', 'LE': 'mean', 'POL': 'first'})
-        
-        #grouped.reset_index(inplace=True)
-        
-        #categories = grouped['POL'].unique()
-        #colors = plt.cm.viridis(np.linspace(0, 1, len(categories)))
-
-        
-        #fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 6))
-
-        #for i, category in enumerate(categories):
-        #    sub_data = grouped[grouped['POL'] == category]
-        #    x = np.arange(len(sub_data))
-        #    ax1.bar(x + i * 0.2, sub_data['LC'], width=0.2, label=category, color=colors[i])
-        #    ax2.bar(x + i * 0.2, sub_data['LE'], width=0.2, label=category, color=colors[i])
-        #ax1.set_title('Value3 by Unique')
-        #ax2.set_title('Value4 by Unique')
-        #ax1.set_xticks(x + 0.2)
-        #ax1.set_xticklabels(sub_data['DF'])
-        #ax2.set_xticks(x + 0.2)
-        #ax2.set_xticklabels(sub_data['DF'])
-        #ax1.legend(title='POL')
-        #ax2.legend(title='POL')
-
-
-        
+        st.write(df2)      
 
         # Create a grouped barplot for "LC" by "DF" with different "POL" categories
         fig=plt.figure(figsize=(10, 6))
         sns.barplot(x="DF", y="LC", hue="POL", data=df2)
         plt.xlabel("DF")
         plt.ylabel("LC")
-        plt.title("Grouped Barplot for LC by DF")
+        plt.title("Grouped Barplot for LC by DF")  
+        # Move the legend to the right
+        ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         st.pyplot(fig)
         # Create a grouped barplot for "LE" by "DF" with different "POL" categories
         fig2=plt.figure(figsize=(10, 6))
@@ -185,17 +161,10 @@ if submit_button:
         plt.xlabel("DF")
         plt.ylabel("LE")
         plt.title("Grouped Barplot for LE by DF")
+        # Move the legend to the right
+        ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         st.pyplot(fig2)
 
-        
-
-
-
-
-        st.dataframe(df.style.applymap(cooling_highlight))
-        st.image(im)
-
-        
-                                    
+                     
         # reference
         st.caption("[github page](https://github.com/juppifluppi/poxload)")
