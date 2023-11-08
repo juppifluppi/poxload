@@ -88,7 +88,7 @@ if submit_button:
                     for o in range(0,len(rdkitfp2)):
                         f.write("rdk5_"+str(o)+"\t")
                     for o in calc(mol).asdict().keys():
-                        f.write("mordred_"+str(o)+"\t")
+                        f.write(str(o)+"\t")
                     f.write("\n")
 
             with open("descriptors.csv","a") as f:
