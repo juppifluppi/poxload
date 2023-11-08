@@ -144,29 +144,59 @@ if submit_button:
         st.write(df2)
 
         
-        grouped = df2.groupby('DF').agg({'LC': 'mean', 'LE': 'mean', 'POL': 'first'})
+        #grouped = df2.groupby('DF').agg({'LC': 'mean', 'LE': 'mean', 'POL': 'first'})
         
-        grouped.reset_index(inplace=True)
+        #grouped.reset_index(inplace=True)
         
-        categories = grouped['POL'].unique()
-        colors = plt.cm.viridis(np.linspace(0, 1, len(categories)))
+        #categories = grouped['POL'].unique()
+        #colors = plt.cm.viridis(np.linspace(0, 1, len(categories)))
 
         
-        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 6))
+        #fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 6))
 
-        for i, category in enumerate(categories):
-            sub_data = grouped[grouped['POL'] == category]
-            x = np.arange(len(sub_data))
-            ax1.bar(x + i * 0.2, sub_data['LC'], width=0.2, label=category, color=colors[i])
-            ax2.bar(x + i * 0.2, sub_data['LE'], width=0.2, label=category, color=colors[i])
-        ax1.set_title('Value3 by Unique')
-        ax2.set_title('Value4 by Unique')
-        ax1.set_xticks(x + 0.2)
-        ax1.set_xticklabels(sub_data['DF'])
-        ax2.set_xticks(x + 0.2)
-        ax2.set_xticklabels(sub_data['DF'])
-        ax1.legend(title='POL')
-        ax2.legend(title='POL')
+        #for i, category in enumerate(categories):
+        #    sub_data = grouped[grouped['POL'] == category]
+        #    x = np.arange(len(sub_data))
+        #    ax1.bar(x + i * 0.2, sub_data['LC'], width=0.2, label=category, color=colors[i])
+        #    ax2.bar(x + i * 0.2, sub_data['LE'], width=0.2, label=category, color=colors[i])
+        #ax1.set_title('Value3 by Unique')
+        #ax2.set_title('Value4 by Unique')
+        #ax1.set_xticks(x + 0.2)
+        #ax1.set_xticklabels(sub_data['DF'])
+        #ax2.set_xticks(x + 0.2)
+        #ax2.set_xticklabels(sub_data['DF'])
+        #ax1.legend(title='POL')
+        #ax2.legend(title='POL')
+
+
+        
+        # Group by 'DF' and 'POL' and calculate the mean of 'LC' and 'LE'
+        grouped = df.groupby(['DF', 'POL'])[['LC', 'LE']].mean().unstack()
+
+        # Create subplots for each 'DF' value
+        unique_values = df['DF'].unique()
+        fig, axes = plt.subplots(len(unique_values), figsize=(10, 6)
+
+        for i, unique in enumerate(unique_values):
+            ax = axes[i]
+            sub_data = grouped.loc[unique]
+            categories = sub_data.index
+            lc = sub_data['LC']
+            le = sub_data['LE']
+    
+        # Create bars with different patterns for each category
+        patterns = ['/', '\\', '|', '-', '+', 'x', 'o', 'O', '.', '*']
+        for j, category in enumerate(categories):
+            ax.bar(j, lc[category], width=0.4, label=category, hatch=patterns[j % len(patterns)])
+            ax.bar(j + 0.4, le[category], width=0.4, hatch=patterns[j % len(patterns])
+
+        ax.set_xticks(range(len(categories))
+        ax.set_xticklabels(categories)
+        ax.set_title(f'DF: {unique}')
+        ax.legend(title='POL')
+
+        
+
 
         st.pyplot(fig)
 
