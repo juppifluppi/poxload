@@ -170,6 +170,8 @@ if submit_button:
 
 
         
+
+
         # Pivot the DataFrame
         pivoted = df2.pivot_table(index='DF', columns='POL', values=['LC', 'LE'])
 
@@ -184,12 +186,12 @@ if submit_button:
             # Create bars with different patterns for each category
             patterns = ['/', '\\', '|', '-', '+', 'x', 'o', 'O', '.', '*']
             for j, category in enumerate(sub_data.columns.levels[1]):
-                lc = sub_data['LC'][category]
-                le = sub_data['LE'][category]
+                lc = sub_data[('LC', category)]
+                le = sub_data[('LE', category)]
                 ax.bar(j, lc, width=0.4, label=category, hatch=patterns[j % len(patterns)])
-                ax.bar(j + 0.4, le, width=0.4, hatch=patterns[j % len(patterns])
+                ax.bar(j + 0.4, le, width=0.4, hatch=patterns[j % len(patterns)])
 
-            ax.set_xticks(range(len(sub_data.columns.levels[1])))
+            ax.set_xticks(range(len(sub_data.columns.levels[1]))
             ax.set_xticklabels(sub_data.columns.levels[1])
             ax.set_title(f'DF: {df_value}')
             ax.legend(title='POL')
