@@ -316,13 +316,17 @@ b[b[,9]=="X1",9]=80
 b[b[,10]=="X0",10]=0
 b[b[,10]=="X1",10]=100
 
-fg1=a[,c(3:6)]
-fg2=a[,c(7:10)]
-fg3=b[,c(3:6)]
-fg4=b[,c(7:10)]
+fg1=as.data.frame(a[,c(3:6)])
+fg2=as.data.frame(a[,c(7:10)])
+fg3=as.data.frame(b[,c(3:6)])
+fg4=as.data.frame(b[,c(7:10)])
+fg1=apply(fg1, 1, max)
+fg2=apply(fg2, 1, max)
+fg3=apply(fg3, 1, max)
+fg4=apply(fg4, 1, max)
 
-a=a[,c(1,2,apply(fg1, 1, max),apply(fg2, 1, max))]
-b=b[,c(1,2,apply(fg3, 1, max),apply(fg4, 1, max))]
+a=cbind(a[,1],a[,2],fg1,fg2)
+b=cbind(b[,1],b[,2],fg3,fg4)
 colnames(a)=c("POL","DF","LC","LE")
 colnames(b)=c("POL","DF","LC","LE")
 write.csv(a,"fin_results2.csv",row.names=F)
