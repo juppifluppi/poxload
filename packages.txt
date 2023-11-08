@@ -1,7 +1,6 @@
 libxrender1
 r-base
 r-base-dev
-r-cran-xgboost
 r-cran-kernlab
 r-cran-devtools
 r-cran-caret
