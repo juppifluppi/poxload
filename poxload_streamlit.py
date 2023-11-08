@@ -117,8 +117,8 @@ if submit_button:
     with st.spinner('CREATING FORMULATION DATABASE (STEP 2 OF 4)...'):
         process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         result1 = process1.communicate()
-        tune_DF=str("sed -i -e 's/\\t10\\t8/\\t10\\t"+set_DF+"/g' db_formulations.csv")
-        os.system(tune_DF)
+        #tune_DF=str("sed -i -e 's/\\t10\\t8/\\t10\\t"+set_DF+"/g' db_formulations.csv")
+        #os.system(tune_DF)
 
     with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):        
         process2 = subprocess.Popen(["Rscript", "create.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
