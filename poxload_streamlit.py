@@ -170,30 +170,27 @@ if submit_button:
 
 
         
-        # Group by 'DF' and 'POL' and calculate the mean of 'LC' and 'LE'
-        grouped = df2.groupby(['DF', 'POL'])[['LC', 'LE']].mean().unstack()
+        # Pivot the DataFrame
+        pivoted = df2.pivot_table(index='DF', columns='POL', values=['LC', 'LE'])
 
         # Create subplots for each 'DF' value
         unique_values = df2['DF'].unique()
-        fig, axes = plt.subplots(len(unique_values), figsize=(10, 6))
+        fig, axes = plt.subplots(len(unique_values), figsize=(10, 6)
 
         for i, df_value in enumerate(unique_values):
             ax = axes[i]
-            sub_data = grouped.loc[df_value]
-            categories = sub_data.index
-            lc = sub_data['LC']
-            le = sub_data['LE']
+            sub_data = pivoted.loc[df_value]
     
-            # Create bars with different patterns for each category
-            patterns = ['/', '\\', '|', '-', '+', 'x', 'o', 'O', '.', '*']
-            for j, category in enumerate(categories):
-                ax.bar(j, lc[category], width=0.4, label=category, hatch=patterns[j % len(patterns)])
-                ax.bar(j + 0.4, le[category], width=0.4, hatch=patterns[j % len(patterns)])
+        # Create bars with different patterns for each category
+        patterns = ['/', '\\', '|', '-', '+', 'x', 'o', 'O', '.', '*']
+        for j, (category, lc, le) in enumerate(sub_data.columns):
+            ax.bar(j, lc, width=0.4, label=category, hatch=patterns[j % len(patterns)])
+            ax.bar(j + 0.4, le, width=0.4, hatch=patterns[j % len(patterns)])
 
-                ax.set_xticks(range(len(categories)))  # Proper indentation here
-                ax.set_xticklabels(categories)
-                ax.set_title(f'DF: {df_value}')
-                ax.legend(title='POL')
+        ax.set_xticks(range(len(sub_data.columns))
+        ax.set_xticklabels(sub_data.columns.get_level_values('POL'))
+        ax.set_title(f'DF: {df_value}')
+        ax.legend(title='POL')
 
         
 
