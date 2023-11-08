@@ -145,11 +145,11 @@ if submit_button:
         df3 = df3.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
 
        
-        custom_palette = sns.color_palette("colorblind")
+        custom_palette = sns.color_palette("Paired")
 
         # Create a grouped barplot for "LC" by "DF" with different "POL" categories
         fig=plt.figure(figsize=(10, 6))
-        sns.barplot(x="DF", y="LC", hue="POL", data=df2)
+        sns.barplot(x="DF", y="LC", hue="POL", data=df3)
         plt.xlabel("DF")
         plt.ylabel("LC")
         plt.title("Maximum predicted LC values per drug feed [g/L]")  
@@ -158,7 +158,7 @@ if submit_button:
         st.pyplot(fig)
         # Create a grouped barplot for "LE" by "DF" with different "POL" categories
         fig2=plt.figure(figsize=(10, 6))
-        sns.barplot(x="DF", y="LE", hue="POL", data=df2)
+        sns.barplot(x="DF", y="LE", hue="POL", data=df3)
         plt.xlabel("DF")
         plt.ylabel("LE")
         plt.title("Maximum predicted LE values per drug feed [g/L]")
