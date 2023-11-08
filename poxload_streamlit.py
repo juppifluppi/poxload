@@ -36,7 +36,7 @@ def standardize(smiles):
     return taut_uncharged_parent_clean_mol_addH
 
 def cooling_highlight(val):
-   color = 'green' if val == 10 else "green" if val == 9 else "green" if val == 8 else "yellow" if val == 7 else "yellow" if val == 6 else "yellow" if val == 5 else "red" if val == 4  else "red" if val == 3 else "red" if val == 2 else "red" if val == 1 else "red" if val == 0 else "white"                    
+   color = 'green' if val == 8 else "green" if val == 7 else "green" if val == 6 else "yellow" if val == 5 else "yellow" if val == 4  else "yellow" if val == 3 else "red" if val == 2 else "red" if val == 1 else "red" if val == 0 else "white"                    
    return f'background-color: {color}'
 
 NAMES=["MeOx","EtOx","nPrOx","nBuOx","iBuOx","cPrOx","iPrOx","cPrMeOx","sBuOx","EtHepOx","nNonOx","PhOx","PentOx","nPrOzi","nBuOzi","iBuOzi","cPrOzi","iPrOzi","cPrMeOzi","sBuOzi","EtHepOzi","nNonOzi","PhOzi","BzOx","BzOzi","PhenOx","PhenOzi","Pid","EIP","PgMeOx","Pip","PipBoc","nBuEnOx","nBuOxPh","nBuOxNH2","nBuOxCOOH","PcBOx","OH","NH2","rEtEtOx","sEtEtOx","EtEtOx","rPrMeOx","sPrMeOx","PrMeOx","Bz"]
@@ -117,7 +117,6 @@ if submit_button:
     with st.spinner('CREATING FORMULATIONS (STEP 2 OF 3)...'):
         process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         process1.communicate()
-        #os.system("sed -i -e 's/OOO//g' db_formulations.csv")
         tune_DF=str("sed -i -e 's/\\t10\\t8/\\t10\\t"+set_DF+"/g' db_formulations.csv")
         os.system(tune_DF)
       
@@ -137,5 +136,4 @@ if submit_button:
         st.image(im)
                                     
         # reference
-           
         st.caption("[github page](https://github.com/juppifluppi/poxload)")
