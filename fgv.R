@@ -18,21 +18,21 @@ library("devtools")
 
 devtools::load_all('xgboost')
 
-load("alt_model1.rda")
+load("model_LC10.rda")
 m1=model
-load("alt_model2.rda")
+load("model_LC20.rda")
 m2=model
-load("alt_model3.rda")
+load("model_LC30.rda")
 m3=model
-load("alt_model4.rda")
+load("model_LC40.rda")
 m4=model
-load("alt_model5.rda")
+load("model_LE20.rda")
 m5=model
-load("alt_model6.rda")
+load("model_LE40.rda")
 m6=model
-load("alt_model7.rda")
+load("model_LE60.rda")
 m7=model
-load("alt_model8.rda")
+load("model_LE80.rda")
 m8=model
 
 af=read.csv("testformulations.dat",check.names = F)
