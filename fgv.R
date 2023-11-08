@@ -279,7 +279,9 @@ a=cbind(a,ck[,1])
 colnames(a)=c("POL","DF","LC10","LC20","LC30","LC40","LE20","LE40","LE60","LE80","Passed")
 a=a[with(a, order(DF, POL)),]
 write.csv(a,"fin_results.csv",row.names=F)
-           
+
+b=a
+         
 a[a[,3]=="X0",3]=0
 a[a[,3]=="X1",3]=10
 a[a[,4]=="X0",4]=0
