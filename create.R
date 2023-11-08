@@ -7,9 +7,6 @@
 
 descriptors=read.csv("descriptors.csv",sep="\t")
 
-print(ncol(descriptors))
-print(descriptors[1,])
-
 smi=read.csv("db_test.csv")
 names=smi[,1]
 formulations=read.csv("db_formulations.csv",dec=".",sep="\t")
@@ -65,13 +62,9 @@ formulations=cbind(LE,formulations)
 #ref=unique(c(ref,ref2))
 #ref=ref[!(ref%in%colnames(formulations))]
 
-print(ncol(descriptors))
-
 desc=read.csv("desc.dat")[,1]
 
 descriptors=descriptors[,colnames(descriptors)%in%desc]
-
-print(ncol(descriptors))
 
 totx=c()
 pmw=c()
@@ -284,7 +277,6 @@ rk_dmx=dmx[,c(grep("rdk5_", colnames(dmx)),grep("rdk7_", colnames(dmx)))]
 g=cbind(formulations,mr_totm,mr_bm,mr_am,mr_dmx,rk_totm,rk_bm,rk_am,rk_dmx)
 g=g[,-c(4:9,16:19,20:22,24,26:28,32:35,38)]
 
-print(ncol(g))
 print(colnames(g))
 gx=cbind(bbb,g)
 colnames(gx)=c("Mixture",colnames(g))
