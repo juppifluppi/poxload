@@ -171,11 +171,11 @@ if submit_button:
 
         
         # Pivot the DataFrame
-        pivoted = df2.pivot_table(index='DF', columns='POL', values=['LC', 'LE'])
+        pivoted = df.pivot_table(index='DF', columns='POL', values=['LC', 'LE'])
 
         # Create subplots for each 'DF' value
-        unique_values = df2['DF'].unique()
-        fig, axes = plt.subplots(len(unique_values), figsize=(10, 6)
+        unique_values = df['DF'].unique()
+        fig, axes = plt.subplots(len(unique_values), figsize=(10, 6))
 
         for i, df_value in enumerate(unique_values):
             ax = axes[i]
