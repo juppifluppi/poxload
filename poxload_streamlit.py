@@ -4,6 +4,7 @@ from rdkit.Chem.MolStandardize import rdMolStandardize
 from rdkit.Chem.Fingerprints import FingerprintMols
 from rdkit.DataStructs import cDataStructs
 from io import StringIO
+from mordred import Calculator, descriptors
 import numpy as np
 import pandas as pd
 import sys, os
@@ -11,6 +12,12 @@ import streamlit as st
 import time
 import subprocess
 from PIL import Image
+
+calc = Calculator(descriptors, ignore_3D=False)
+
+def fingerprint_rdk5(self) -> np.ndarray:
+    fp_gen = rdFingerprintGenerator.GetRDKitFPGenerator(maxPath=5,fpSize=16384)
+    return fp_gen.GetCountFingerprintAsNumPy(self).astype(int)
 
 def fingerprint_rdk7(self) -> np.ndarray:
     fp_gen = rdFingerprintGenerator.GetRDKitFPGenerator(maxPath=7,fpSize=16384)
@@ -72,18 +79,27 @@ if submit_button:
             AllChem.EmbedMolecule(mol,useRandomCoords=True)
             AllChem.MMFFOptimizeMolecule(mol, "MMFF94s", maxIters=5000)
             rdkitfp = fingerprint_rdk7(mol)
+            rdkitfp2 = fingerprint_rdk5(mol)
 
             if molecule == 0:
-                with open("descriptors_rdk7.csv","a") as f:
+                with open("descriptors.csv","a") as f:
                     for o in range(0,len(rdkitfp)):
                         f.write("rdk7_"+str(o)+"\t")
+                    for o in range(0,len(rdkitfp2)):
+                        f.write("rdk5_"+str(o)+"\t")
+                    for o in calc(mol).asdict().keys():
+                        f.write("mordred_"+str(o)+"\t")
                     f.write("\n")
 
-            with open("descriptors_rdk7.csv","a") as f:
+            with open("descriptors.csv","a") as f:
                 for o in range(0,len(rdkitfp)):
                     f.write(str(rdkitfp[o])+"\t")
+                for o in range(0,len(rdkitfp2)):
+                    f.write(str(rdkitfp2[o])+"\t")
+                for o in calc(mol).asdict().values():
+                    f.write(str(o)+"\t")                
                 f.write("\n")
-
+            
             mj = Chem.Descriptors.ExactMolWt(mol)
             MW.append(mj)
             if molecule == len(SMILES)-1:
