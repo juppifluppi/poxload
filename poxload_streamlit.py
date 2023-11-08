@@ -189,10 +189,10 @@ if submit_button:
                 ax.bar(j, lc, width=0.4, label=category, hatch=patterns[j % len(patterns)])
                 ax.bar(j + 0.4, le, width=0.4, hatch=patterns[j % len(patterns])
 
-        ax.set_xticks(range(len(sub_data.columns.levels[1])))
-        ax.set_xticklabels(sub_data.columns.levels[1])
-        ax.set_title(f'DF: {df_value}')
-        ax.legend(title='POL')
+            ax.set_xticks(range(len(sub_data.columns.levels[1])))
+            ax.set_xticklabels(sub_data.columns.levels[1])
+            ax.set_title(f'DF: {df_value}')
+            ax.legend(title='POL')
         
 
 
