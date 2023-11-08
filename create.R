@@ -8,6 +8,7 @@
 descriptors=read.csv("descriptors.csv",sep="\t")
 
 print(ncol(descriptors))
+print(descriptors[1,])
 
 smi=read.csv("db_test.csv")
 names=smi[,1]
