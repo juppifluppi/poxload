@@ -193,7 +193,6 @@ if submit_button:
         ax.set_xticklabels(sub_data.columns.levels[1])
         ax.set_title(f'DF: {df_value}')
         ax.legend(title='POL')
-
         
 
 
