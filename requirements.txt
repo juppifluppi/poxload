@@ -3,5 +3,5 @@ stmol
 pandas
 matplotlib
 scipy
-mordredcommunity
 numpy
+mordredcommunity
