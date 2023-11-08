@@ -7,6 +7,7 @@ from io import StringIO
 from mordred import Calculator, descriptors
 import numpy as np
 import pandas as pd
+import seaborn as sns
 import sys, os
 import matplotlib.pyplot as plt
 import streamlit as st
@@ -172,36 +173,24 @@ if submit_button:
         
 
 
-        # Group the DataFrame by "DF"
-        grouped = df2.groupby("DF")  # Change df to df2
+        # Pivot the DataFrame to use "POL" as columns
+        df2_pivot = df2.pivot(index="DF", columns="POL", values=["LC", "LE"])
 
         # Create a figure with two subplots
-        fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True, figsize=(8, 8))
+        fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True, figsize=(8, 8)
 
-        # Set up color mapping for "POL" categories
-        colors = {"A": 'b', "B": 'g'}
-
-        # Plot "LC" for each "DF"
-        for key, group in grouped:
-            group.plot(x='POL', y='LC', kind='bar', ax=ax1, color=[colors[p] for p in group['POL']], width=0.4, position=0.5, label=key)
-
-        # Set up the x-axis labels and legend for the first subplot
-        ax1.set_xticks(np.arange(len(df2['POL'].unique())))
-        ax1.set_xticklabels(df2['POL'].unique())
-        ax1.set_xlabel("POL")
+        # Plot "LC" for each "DF" using seaborn
+        sns.barplot(data=df2_pivot["LC"], ax=ax1)
+        ax1.set_xlabel("DF")
         ax1.set_ylabel("LC")
         ax1.set_title("Barplots for LC by DF")
 
-        # Plot "LE" for each "DF"
-        for key, group in grouped:
-            group.plot(x='POL', y='LE', kind='bar', ax=ax2, color=[colors[p] for p in group['POL']], width=0.4, position=0.5, label=key)
-
-        # Set up the x-axis labels and legend for the second subplot
-        ax2.set_xticks(np.arange(len(df2['POL'].unique())))
-        ax2.set_xticklabels(df2['POL'].unique())
-        ax2.set_xlabel("POL")
+        # Plot "LE" for each "DF" using seaborn
+        sns.barplot(data=df2_pivot["LE"], ax=ax2)
+        ax2.set_xlabel("DF")
         ax2.set_ylabel("LE")
         ax2.set_title("Barplots for LE by DF")
+
         
 
 
