@@ -177,7 +177,7 @@ if submit_button:
         unique_values = df['DF'].unique()
         fig, axes = plt.subplots(len(unique_values), figsize=(10, 6)
 
-        for i, unique in enumerate(unique_values):
+        for i, df_value in enumerate(unique_values):
             ax = axes[i]
             sub_data = grouped.loc[unique]
             categories = sub_data.index
