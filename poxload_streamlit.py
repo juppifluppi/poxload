@@ -173,27 +173,24 @@ if submit_button:
         
 
         # Create a grouped barplot for "LC" by "DF" with different "POL" categories
-        plt.figure(figsize=(10, 6))
+        fig=plt.figure(figsize=(10, 6))
         sns.barplot(x="DF", y="LC", hue="POL", data=df2)
         plt.xlabel("DF")
         plt.ylabel("LC")
         plt.title("Grouped Barplot for LC by DF")
-
+        st.pyplot(fig)
         # Create a grouped barplot for "LE" by "DF" with different "POL" categories
-        plt.figure(figsize=(10, 6))
+        fig2=plt.figure(figsize=(10, 6))
         sns.barplot(x="DF", y="LE", hue="POL", data=df2)
         plt.xlabel("DF")
         plt.ylabel("LE")
         plt.title("Grouped Barplot for LE by DF")
-
-        # Show the plots
-        plt.tight_layout()
-        plt.show()
+        st.pyplot(fig2)
 
         
 
 
-        st.pyplot(fig)
+
 
         st.dataframe(df.style.applymap(cooling_highlight))
         st.image(im)
