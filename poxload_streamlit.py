@@ -8,6 +8,7 @@ from mordred import Calculator, descriptors
 import numpy as np
 import pandas as pd
 import sys, os
+import matplotlib.pyplot as plt
 import streamlit as st
 import time
 import subprocess
@@ -167,10 +168,7 @@ if submit_button:
         ax1.legend(title='POL')
         ax2.legend(title='POL')
 
-        plt.tight_layout()
-        plt.show()
         st.pyplot(fig)
-
 
         st.dataframe(df.style.applymap(cooling_highlight))
         st.image(im)
