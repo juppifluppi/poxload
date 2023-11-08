@@ -62,7 +62,8 @@ al=unique(af$POL)
 a=af$POL
 ld=af$DF
 #print(a)
-a=as.data.frame(a,ld)
+a=as.data.frame(a)
+a=cbind(a,ld)
 
 b=as.character(unlist(predict(m1,newdata=afx)))
 #gzy=as.numeric(unlist(as.vector(z1)))
