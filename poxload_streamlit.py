@@ -120,7 +120,9 @@ if submit_button:
         process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         result3 = process3.communicate()
 
-        st.image(im)
+        
+
+        #st.image(im)
 
         df2 = pd.read_csv(r'fin_results2.csv')
         df2 = df2.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
@@ -131,6 +133,17 @@ if submit_button:
         df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': (df2["DF"]/100)*df2["LE"]}
         df3=pd.DataFrame(df3,columns=["POL","DF","SD"])
         custom_palette = sns.color_palette("deep")
+
+        
+        col1, col2 = st.columns(2)
+
+        with col1: 
+            st.header("Formulation report")
+            st.image(im)
+
+        with col2:
+             st.writer(str("SMILES: "+SMI))
+             st.writer(str("SMaximum solubilized dru: "+str(max((df2["DF"]/100)*df2["LE"]))))
 
         fig3=plt.figure(figsize=(10, 6))
         ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3)
