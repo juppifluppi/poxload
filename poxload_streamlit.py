@@ -145,7 +145,7 @@ if submit_button:
         with col2:
              st.write(str("SMILES: "+str(SMI)))
              st.write(str("Maximum solubilized dru: "+str(max(SDc))+" /L, for "+str(df2["POL"][SDc.index(max(SDc))])))
-             st.write(str("Maximum LC: "+str(max(df2["LC"])))
+             st.write("Maximum LC: "+str(max(df2["LC"])))
             
         fig3=plt.figure(figsize=(10, 6))
         ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3)
