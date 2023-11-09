@@ -321,3 +321,7 @@ fg2=apply(fg2, 1, getLastNonZeroBeforeFirstZero)
 a=cbind(a[,1],a[,2],fg1,fg2)
 colnames(a)=c("POL","DF","LC","LE")
 write.csv(a,"fin_results2.csv",row.names=F)
+
+a=cbind(a[,1],a[,2],(a[,4]/100)*a[,2])
+colnames(a)=c("POL","DF","SD")
+write.csv(a,"fin_results3.csv",row.names=F)
