@@ -323,6 +323,6 @@ a=cbind(a[,1],a[,2],fg1,fg2)
 colnames(a)=c("POL","DF","LC","LE")
 write.csv(a,"fin_results2.csv",row.names=F)
 
-a=cbind(a[,1],a[,2],(as.numeric(a[,4])/100)*a[,2])
+a=cbind(a[,1],a[,2],(as.numeric(a[,4])/100)*as.numeric(a[,2]))
 colnames(a)=c("POL","DF","SD")
 write.csv(a,"fin_results3.csv",row.names=F)
