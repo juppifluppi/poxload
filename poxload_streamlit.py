@@ -128,21 +128,28 @@ if submit_button:
      
         df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDcx}
         df3=pd.DataFrame(df3,columns=["POL","DF","SD"])
+        
+        df4={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDc}
+        df4=pd.DataFrame(df4,columns=["POL","DF","SD"])
+
+        df5={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDc2}
+        df5=pd.DataFrame(df5,columns=["POL","DF","SD"])
+        
         custom_palette = sns.color_palette("deep")
 
-        max_indexes = SDc[SDc == max(SDc)].index.tolist()
+        max_indexes = SDcx[SDcx == max(SDcx)].index.tolist()
         
         col1, col2 = st.columns(2)
 
         with col1: 
             st.header("Formulation report")
-            st.write("Maximum solubilized drug: "+str(round(max(SDc),1))+" g/L, for " + " /".join([str(df2.loc[index, 'POL']) for index in max_indexes]) + " at "+str(df3.loc[SDc.idxmax(), "DF"])+" g/L drug feed (LE: "+str(int(df2.loc[SDc.idxmax(), "LE"]-10))+"-"+str(int(df2.loc[SDc.idxmax(), "LE"]+10))+" %; LC: " + "/".join([str(str(int(df2.loc[index, 'LC']-5))+"-"+str(int(df2.loc[index, 'LC']+5))) for index in max_indexes]) +" %)")
+            st.write("Maximum solubilized drug: "+str(round(max(SDcx),1))+" g/L, for " + " /".join([str(df2.loc[index, 'POL']) for index in max_indexes]) + " at "+str(df3.loc[SDcx.idxmax(), "DF"])+" g/L drug feed (LE: "+str(int(df2.loc[SDcx.idxmax(), "LE"]-10))+"-"+str(int(df2.loc[SDcx.idxmax(), "LE"]+10))+" %; LC: " + "/".join([str(str(int(df2.loc[index, 'LC']-5))+"-"+str(int(df2.loc[index, 'LC']+5))) for index in max_indexes]) +" %)")
 
         with col2:
             st.image(im)
                
         fig3=plt.figure(figsize=(10, 6))
-        ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3,errorbar=('ci', 10))
+        ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3)
         plt.xlabel("Drug feed [g/L]")
         plt.ylabel("Solubilized drug [g/L]")
         plt.title("Predicted amount of solubilized drug at each drug feed")
@@ -153,7 +160,7 @@ if submit_button:
         col1, col2 = st.columns(2)
         with col1:
             fig1a=plt.figure(figsize=(10, 6))
-            ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3,errorbar=('ci', 10))
+            ax = sns.barplot(x="DF", y="SD", hue="POL", data=df4)
             plt.xlabel("Drug feed [g/L]")
             plt.ylabel("Solubilized drug [g/L]")
             plt.title("Predicted amount of solubilized drug based on LE models")
@@ -173,7 +180,7 @@ if submit_button:
         
         with col2:                   
             fig2a=plt.figure(figsize=(10, 6))
-            ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3,errorbar=('ci', 10))
+            ax = sns.barplot(x="DF", y="SD", hue="POL", data=df5)
             plt.xlabel("Drug feed [g/L]")
             plt.ylabel("Solubilized drug [g/L]")
             plt.title("Predicted amount of solubilized drug based on LC models")
