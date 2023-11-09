@@ -279,55 +279,45 @@ a=cbind(a,ck[,1])
 colnames(a)=c("POL","DF","LC10","LC20","LC30","LC40","LE20","LE40","LE60","LE80","Passed")
 a=a[with(a, order(DF, POL)),]
 write.csv(a,"fin_results.csv",row.names=F)
-
-b=a
          
 a[a[,3]=="X0",3]=0
-a[a[,3]=="X1",3]=10
+a[a[,3]=="X1",3]=15
 a[a[,4]=="X0",4]=0
-a[a[,4]=="X1",4]=20
+a[a[,4]=="X1",4]=25
 a[a[,5]=="X0",5]=0
-a[a[,5]=="X1",5]=30
+a[a[,5]=="X1",5]=35
 a[a[,6]=="X0",6]=0
-a[a[,6]=="X1",6]=40
+a[a[,6]=="X1",6]=45
 a[a[,7]=="X0",7]=0
-a[a[,7]=="X1",7]=20
+a[a[,7]=="X1",7]=30
 a[a[,8]=="X0",8]=0
-a[a[,8]=="X1",8]=40
+a[a[,8]=="X1",8]=50
 a[a[,9]=="X0",9]=0
-a[a[,9]=="X1",9]=60
+a[a[,9]=="X1",9]=70
 a[a[,10]=="X0",10]=0
-a[a[,10]=="X1",10]=80
-
-b[b[,3]=="X0",3]=0
-b[b[,3]=="X1",3]=20
-b[b[,4]=="X0",4]=0
-b[b[,4]=="X1",4]=30
-b[b[,5]=="X0",5]=0
-b[b[,5]=="X1",5]=40
-b[b[,6]=="X0",6]=0
-b[b[,6]=="X1",6]=50
-b[b[,7]=="X0",7]=0
-b[b[,7]=="X1",7]=40
-b[b[,8]=="X0",8]=0
-b[b[,8]=="X1",8]=60
-b[b[,9]=="X0",9]=0
-b[b[,9]=="X1",9]=80
-b[b[,10]=="X0",10]=0
-b[b[,10]=="X1",10]=100
-
+a[a[,10]=="X1",10]=90
+           
 fg1=as.data.frame(a[,c(3:6)])
 fg2=as.data.frame(a[,c(7:10)])
-fg3=as.data.frame(b[,c(3:6)])
-fg4=as.data.frame(b[,c(7:10)])
-fg1=apply(fg1, 1, max)
-fg2=apply(fg2, 1, max)
-fg3=apply(fg3, 1, max)
-fg4=apply(fg4, 1, max)
+
+# Function to get the last non-zero element before the first zero
+getLastNonZeroBeforeFirstZero <- function(row) {
+  first_zero_index <- which(row == 0)[1]  # Find the index of the first zero
+  if (is.na(first_zero_index)) {
+    return(tail(row, 1))  # If there's no zero, return the last element
+  } else {
+    last_non_zero_index <- max(which(row[1:first_zero_index - 1] != 0))
+    if (!is.na(last_non_zero_index)) {
+      return(row[last_non_zero_index])
+    } else {
+      return(0)  # If there are no non-zero elements before the first zero
+    }
+  }
+}
+           
+fg1=apply(fg1, 1, getLastNonZeroBeforeFirstZero)
+fg2=apply(fg2, 1, getLastNonZeroBeforeFirstZero)
 
 a=cbind(a[,1],a[,2],fg1,fg2)
-b=cbind(b[,1],b[,2],fg3,fg4)
 colnames(a)=c("POL","DF","LC","LE")
-colnames(b)=c("POL","DF","LC","LE")
 write.csv(a,"fin_results2.csv",row.names=F)
-write.csv(b,"fin_results3.csv",row.names=F)
