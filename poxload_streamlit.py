@@ -125,15 +125,18 @@ if submit_button:
         df2 = pd.read_csv(r'fin_results2.csv')
         df2 = df2.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
 
+        df3 = pd.read_csv(r'fin_results3.csv')
+        df3 = df3.rename(columns={0: "POL", 1: "DF", 2: "SD"})
+        
         custom_palette = sns.color_palette("deep")
 
-        fig=plt.figure(figsize=(10, 6))
-        ax = sns.barplot(x="DF", y="LC", hue="POL", data=df2)
+        fig3=plt.figure(figsize=(10, 6))
+        ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3)
         plt.xlabel("DF")
-        plt.ylabel("LC")
-        plt.title("Maximum predicted LC values per drug feed [g/L]")  
+        plt.ylabel("SD")
+        plt.title("Solubilized drug [g/L]")
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-        st.pyplot(fig)
+        st.pyplot(fig3)
 
         fig2=plt.figure(figsize=(10, 6))
         ax = sns.barplot(x="DF", y="LE", hue="POL", data=df2)
@@ -142,6 +145,14 @@ if submit_button:
         plt.title("Maximum predicted LE values per drug feed [g/L]")
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         st.pyplot(fig2)
+        
+        fig=plt.figure(figsize=(10, 6))
+        ax = sns.barplot(x="DF", y="LC", hue="POL", data=df2)
+        plt.xlabel("DF")
+        plt.ylabel("LC")
+        plt.title("Maximum predicted LC values per drug feed [g/L]")  
+        ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+        st.pyplot(fig)
 
         df = pd.read_csv(r'fin_results.csv',index_col=0)
         df = df.rename(columns={0: "POL", 1: "DF", 2: "LC10", 3: "LC20", 4: "LC30", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE80", 10:"Passed"})
