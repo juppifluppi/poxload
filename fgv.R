@@ -300,69 +300,44 @@ a[a[,10]=="X1",10]=100
 fg1=as.data.frame(a[,c(3:6)])
 fg2=as.data.frame(a[,c(7:10)])
 
-## Function to get the last non-zero element before the first zero
-#getLastNonZeroBeforeFirstZero <- function(row) {
-#  first_zero_index <- which(row == 0)[1]  # Find the index of the first zero
-#  if (is.na(first_zero_index)) {
-#    return(tail(row, 1))  # If there's no zero, return the last element
-#  } else {
-#    last_non_zero_index <- max(which(row[1:first_zero_index - 1] != 0))
-#    if (!is.na(last_non_zero_index)) {
-#      return(row[last_non_zero_index])
-#    } else {
-#      return(0)  # If there are no non-zero elements before the first zero
-#    }
-#  }
-#}
-
-getLastNonZeroBeforeFirstZero <- function(row) {
-  first_zero_index <- which(row == 0)[1]  # Find the index of the first zero
-
-  if (is.na(first_zero_index)) {
-    return(tail(row, 1))  # If there's no zero, return the last element
-  }
-
-  # Check if there are at least two consecutive zero elements before the first zero
-  if (sum(diff(which(row == 0)) == 1) >= 2) {
-    last_non_zero_index <- max(which(row[1:first_zero_index - 1] != 0))
-  
-    if (!is.na(last_non_zero_index)) {
-      return(row[last_non_zero_index])
-    }
-  }
-  return(0)  # If there are no non-zero elements before the first zero
-}
-
-getLastNonZeroBeforeTwoConsecutiveZeros <- function(df) {
-  last_non_zero_values <- c()
+           
+getLastNonZeroBeforeFirstZero <- function(df) {
+  last_non_zero_values <- numeric(nrow(df))
   
   for (i in 1:nrow(df)) {
-    row <- df[i, ]
-    first_zero_index <- which(row == 0)[1]  # Find the index of the first zero
-
-    if (is.na(first_zero_index)) {
-      last_non_zero_values <- c(last_non_zero_values, tail(row, 1))  # If there's no zero, return the last element
-    } else {
-      # Check if there are at least two consecutive zero elements before the first zero
-      consecutive_zeros <- diff(which(row == 0)) == 1
-      if (sum(consecutive_zeros) >= 2) {
-        last_non_zero_index <- max(which(row[1:(first_zero_index - 1)] != 0))
-        
-        if (!is.na(last_non_zero_index)) {
-          last_non_zero_values <- c(last_non_zero_values, row[last_non_zero_index])
-        } else {
-          last_non_zero_values <- c(last_non_zero_values, 0)  # If there are no non-zero elements before the first zero
+    row <- df[i,]
+    last_non_zero_index <- 0
+    zero_count <- 0
+    in_sequence <- FALSE
+    
+    for (j in length(row):1) {
+      if (row[j] != 0) {
+        if (in_sequence) {
+          zero_count <- 0
+          in_sequence <- FALSE
         }
-      } else {
-        last_non_zero_values <- c(last_non_zero_values, tail(row, 1))  # If not enough consecutive zeros, return the last element
+        last_non_zero_index <- j
+      } else if (row[j] == 0) {
+        zero_count <- zero_count + 1
+        if (zero_count == 1 && last_non_zero_index > 0) {
+          in_sequence <- TRUE
+        } else if (zero_count == 2) {
+          break
+        }
       }
+    }
+    
+    if (zero_count == 1 && in_sequence) {
+      last_non_zero_values[i] <- 0
+    } else {
+      last_non_zero_values[i] <- ifelse(last_non_zero_index > 0, row[last_non_zero_index], 0)
     }
   }
   
   return(last_non_zero_values)
 }
-fg1=getLastNonZeroBeforeTwoConsecutiveZeros(fg1)
-fg2=getLastNonZeroBeforeTwoConsecutiveZeros(fg2)        
+fg1=getLastNonZeroBeforeFirstZero(fg1)
+fg2=getLastNonZeroBeforeFirstZero(fg2)
 #fg1=apply(fg1, 1, getLastNonZeroBeforeFirstZero)
 #fg2=apply(fg2, 1, getLastNonZeroBeforeFirstZero)
 #fg1[!is.finite(fg1)]<-0
