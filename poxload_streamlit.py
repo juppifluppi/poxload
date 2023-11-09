@@ -197,62 +197,40 @@ if submit_button:
         #    # Draw error bars using upper and lower error values
         #    ax.errorbar(x_pos, ax.patches[i].get_height(), yerr=[[lower_error], [upper_error]], color='red', fmt='o', capsize=5)
 
+        col1, col2 = st.columns(2)
+        with col1:
+            plt.xlabel("Drug feed [g/L]")
+            plt.ylabel("Ligand efficiency [%]")
+            plt.ylim(0, 100)
+            plt.title("Predicted LE values at each drug feed")
+            ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+            st.pyplot(fig2)
+        
+        
+            fig=plt.figure(figsize=(10, 6))
+            ax = sns.barplot(x="DF", y="LC", hue="POL", data=df2,errorbar=('ci', 10))
 
-        st.write("Solubilization is derived from LE predictions:")
-        plt.xlabel("Drug feed [g/L]")
-        plt.ylabel("Ligand efficiency [%]")
-        plt.ylim(0, 100)
-        plt.title("Predicted LE values at each drug feed")
-        ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-        st.pyplot(fig2)
         
+            df2["LC_lower"] = df2["LC"] - 5
+            df2["LC_upper"] = df2["LC"] + 5
         
-        fig=plt.figure(figsize=(10, 6))
-        ax = sns.barplot(x="DF", y="LC", hue="POL", data=df2,errorbar=('ci', 10))
-
-        
-        df2["LC_lower"] = df2["LC"] - 5
-        df2["LC_upper"] = df2["LC"] + 5
-        
-        ## Manually add error bars to each bar
-        #for i in range(len(df2)):
-        #    lower_error = df2["LC_lower"].iloc[i]
-        #    upper_error = df2["LC_upper"].iloc[i]
+            ## Manually add error bars to each bar
+            #for i in range(len(df2)):
+            #    lower_error = df2["LC_lower"].iloc[i]
+            #    upper_error = df2["LC_upper"].iloc[i]
     
-        #    # Calculate the x-position for each bar
-        #    x_pos = i % len(df2["DF"].unique()) + ax.patches[i].get_x() + ax.patches[i].get_width() / 2
+            #    # Calculate the x-position for each bar
+            #    x_pos = i % len(df2["DF"].unique()) + ax.patches[i].get_x() + ax.patches[i].get_width() / 2
     
-        #    # Draw error bars using upper and lower error values
-        #    ax.errorbar(x_pos, ax.patches[i].get_height(), yerr=[[lower_error], [upper_error]], color='red', fmt='o', capsize=5)
-        
-        st.write("Predictions of LC values:")
-        plt.xlabel("Drug feed [g/L]")
-        plt.ylabel("Loading capacity [%]")
-        plt.ylim(0, 50)
-        plt.title("Predicted LC values at each drug feed")  
-        ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-        st.pyplot(fig)
-
-        
-        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 12), sharex=True)
-        
-        # First barplot facing upwards
-        sns.barplot(x="DF", y="LE", hue="POL", data=df2, ax=ax1, capsize=0.1, ci=None)  # Set ci=None to disable the default error bars
-        ax1.set_ylim(0, 100)
-        ax1.set_ylabel("Loading efficiency [%]")
-        ax1.set_title("Predicted LE values at each drug feed")
-
-        # Second barplot facing downwards
-        sns.barplot(x="DF", y=-df2["LC"], hue="POL", data=df2, ax=ax2, capsize=0.1, ci=None)  # Set ci=None to disable the default error bars
-        ax2.set_ylim(-50, 0)
-        ax2.set_ylabel("Loading capacity [%]")
-
-        # Adjust the legend's position as needed
-        ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-        ax2.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-
-        plt.xlabel("Drug feed [g/L]")
-        st.pyplot(fig)
+            #    # Draw error bars using upper and lower error values
+            #    ax.errorbar(x_pos, ax.patches[i].get_height(), yerr=[[lower_error], [upper_error]], color='red', fmt='o', capsize=5)
+        with col2:        
+            plt.xlabel("Drug feed [g/L]")
+            plt.ylabel("Loading capacity [%]")
+            plt.ylim(0, 50)
+            plt.title("Predicted LC values at each drug feed")  
+            ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+            st.pyplot(fig)
 
 
         st.write("Table of predictions for all classification models:")
