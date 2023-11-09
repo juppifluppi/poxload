@@ -23,8 +23,18 @@ for(i in nrow(dr)){
   fillx$DMW=dr[i,colnames(dr)%in%"MW"]
   fillx$DRUGNAME1=dr[i,colnames(dr)%in%"NAME"]
   fillx$MR1=(fillx$DF/fillx$DMW)/(fillx$PF/fillx$PMW)
-  fillx$POLFRAC=fillx$PMR/(fillx$PMR+fillx$MR1)
-  fillx$D1FRAC=fillx$MR1/(fillx$PMR+fillx$MR1)
+  if(dr[1,colnames(dr)%in%"NAME"] != "MeOx"){
+  fillx$DF2=XXXX
+  fillx$D2=dr[1,colnames(dr)%in%"NAME"]
+  fillx$DRUGNAME2=dr[1,colnames(dr)%in%"NAME"]
+  fillx$DMW2=dr[1,colnames(dr)%in%"MW"]
+  fillx$MR2=(fillx$DF2/fillx$DMW2)/(fillx$PF/fillx$PMW)
+  }
+  fillx$POLFRAC=fillx$PMR/(fillx$PMR+fillx$MR1+fillx$MR2)
+  fillx$D1FRAC=fillx$MR1/(fillx$PMR+fillx$MR1+fillx$MR2)  
+  if(dr[1,colnames(dr)%in%"NAME"] != "MeOx"){
+  fillx$D2FRAC=fillx$MR2/(fillx$PMR+fillx$MR1+fillx$MR2)
+  } 
   full=rbind(full,fillx)
 }
 }
