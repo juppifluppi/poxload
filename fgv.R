@@ -300,19 +300,22 @@ a[a[,10]=="X1",10]=100
 fg1=as.data.frame(a[,c(3:6)])
 fg2=as.data.frame(a[,c(7:10)])
 
-# Function to get the last non-zero element before two consecutive zeros
 get_last_nonzero <- function(row) {
-  # Find the first occurrence of two consecutive zeros
-  first_zeros <- which(row == 0 & cumsum(row == 0) == 2)
+  # Find the positions of consecutive zeros
+  zero_positions <- which(row == 0)
   
-  # If there are no two consecutive zeros, return the last non-zero element
-  if (length(first_zeros) == 0) {
-    last_nonzero <- tail(row[row != 0], 1)
-  } else {
-    # If two consecutive zeros are found, return the element just before them
-    last_nonzero <- row[first_zeros[1] - 1]
+  if (length(zero_positions) >= 2) {
+    # Find the last position where there are two consecutive zeros
+    last_consecutive_zeros <- zero_positions[which(diff(zero_positions) == 1)][length(zero_positions) >= 2]
+    
+    if (length(last_consecutive_zeros) > 0) {
+      last_nonzero <- row[last_consecutive_zeros[1] - 1]
+      return(last_nonzero)
+    }
   }
   
+  # If no two consecutive zeros are found, return the last non-zero element
+  last_nonzero <- tail(row[row != 0], 1)
   return(last_nonzero)
 }
 fg1 <- apply(fg1, 1, get_last_nonzero)
