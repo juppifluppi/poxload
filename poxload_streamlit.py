@@ -150,8 +150,12 @@ if submit_button:
             st.write("Maximum solubilized drug: "+str(round(max(SDcx),0))+" g/L at "+str(df3.loc[SDcx.idxmax(), "DF"])+" g/L drug feed (LE: "+str(df2.loc[SDcx.idxmax(), "LE"])+" %, LC: "+str(df2.loc[SDcx.idxmax(), "LC"])+" %)")
             
             max_values = df3.groupby('POL')['SD'].max()
-            for key, value in max_values.items():
-                st.write(f"{key}: {value}")
+            top_5_max_values = max_values.sort_values(ascending=False).head(5)
+
+            for key, value in top_5_max_values.items():
+                rounded_value = round(value, 0)
+                st.write(f"{key}: {rounded_value}")
+
                 
         with col2:
             st.image(im)
