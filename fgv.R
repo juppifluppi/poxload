@@ -313,14 +313,17 @@ find_last_nonzero_before_first_zero <- function(matrix) {
         last_nonzero <- row[j]
       } else if (!is.na(last_nonzero)) {
         result[i] <- last_nonzero
-        break
       }
+    }
+    
+    if (is.na(result[i])) {
+      # If the loop didn't find a zero, return the last non-zero element
+      result[i] <- last_nonzero
     }
   }
   
   return(result)
 }
-           
 fg1 <- find_last_nonzero_before_first_zero(fg1)
 fg2 <- find_last_nonzero_before_first_zero(fg2)           
 a=cbind(a[,1],a[,2],fg1,fg2)
