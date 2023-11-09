@@ -129,8 +129,9 @@ if submit_button:
 
         #df3 = pd.read_csv(r'fin_results3.csv')
         #df3 = df3.rename(columns={0: "POL", 1: "DF", 2: "SD"})
+        SDc = (df2["DF"]/100)*df2["LE"]
 
-        df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': (df2["DF"]/100)*df2["LE"]}
+        df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDc}
         df3=pd.DataFrame(df3,columns=["POL","DF","SD"])
         custom_palette = sns.color_palette("deep")
 
@@ -142,9 +143,10 @@ if submit_button:
             st.image(im)
 
         with col2:
-             st.write(str("SMILES: "+SMI))
-             st.write(str("Maximum solubilized dru: "+str(max((df2["DF"]/100)*df2["LE"]))))
-
+             st.write(str("SMILES: "+str(SMI)))
+             st.write(str("Maximum solubilized dru: "+str(max(SDc)+" /L, for "+str(df2["POL"][SDc.index(max(SDc)]))))
+             st.write(str("Maximum LC: "+str(max(df2["LC"])))
+            
         fig3=plt.figure(figsize=(10, 6))
         ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3)
         plt.xlabel("DF")
