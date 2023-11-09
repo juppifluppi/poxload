@@ -146,7 +146,7 @@ if submit_button:
             st.header("Formulation report")
             #st.write(str("SMILES: "+str(SMI)))
             st.write("Maximum solubilized drug: "+str(round(max(SDc),1))+" g/L, for " + " /".join([str(df2.loc[index, 'POL']) for index in max_indexes]) + " at "+str(df3.loc[SDc.idxmax(), "DF"])+" g/L drug feed (LE: "+str(df2.loc[SDc.idxmax(), "LE"]-10)+" - "+str(df2.loc[SDc.idxmax(), "LE"]+10)+" %)")
-            st.write("LC: "+str(df2.loc[SDc.idxmax(), "LC"]-5)+" - "+str(df2.loc[SDc.idxmax(), "LC"]+5)+" %")
+            st.write("LC at this feed: " + " /".join([str(str(df2.loc[index, 'LC']-5)+"-"+str(df2.loc[index, 'LC']+5)) for index in max_indexes]) +" %")
 
         with col2:
             st.image(im)
