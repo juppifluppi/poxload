@@ -126,9 +126,9 @@ if submit_button:
         df2 = pd.read_csv(r'fin_results2.csv')
         df2 = df2.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
 
-        SDc = int((df2["DF"])*((df2["LE"])/100))
-        SDc2 = int(((df2["LC"]/100)*10)/(1-(df2["LC"]/100)))
-        SDcx = int((SDc+SDc2)/2)
+        SDc = ((df2["DF"])*((df2["LE"])/100))
+        SDc2 = (((df2["LC"]/100)*10)/(1-(df2["LC"]/100)))
+        SDcx = ((SDc+SDc2)/2)
      
         df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDcx}
         df3=pd.DataFrame(df3,columns=["POL","DF","SD"])
@@ -147,7 +147,7 @@ if submit_button:
 
         with col1: 
             st.header("Formulation report")
-            st.write("Maximum solubilized drug: "+str(int(max(SDcx)))+" g/L at "+str(df3.loc[SDcx.idxmax(), "DF"])+" g/L drug feed (LE: "+str(df2.loc[SDcx.idxmax(), "LE"])+" %, LC: "+str(df2.loc[SDcx.idxmax(), "LC"])+" %)")
+            st.write("Maximum solubilized drug: "+str(round(max(SDcx),0))+" g/L at "+str(df3.loc[SDcx.idxmax(), "DF"])+" g/L drug feed (LE: "+str(df2.loc[SDcx.idxmax(), "LE"])+" %, LC: "+str(df2.loc[SDcx.idxmax(), "LC"])+" %)")
             
             # Group by the 'first_column' and get the maximum value in 'third_column' for each group
             max_values = df3.groupby('POL')['SD'].max()
