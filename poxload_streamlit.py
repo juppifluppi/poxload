@@ -119,60 +119,29 @@ if submit_button:
         process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         result3 = process3.communicate()
 
-        
-
-        #st.image(im)
-
         df2 = pd.read_csv(r'fin_results2.csv')
         df2 = df2.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
 
-        #df3 = pd.read_csv(r'fin_results3.csv')
-        #df3 = df3.rename(columns={0: "POL", 1: "DF", 2: "SD"})
         SDc = (df2["DF"])*(df2["LE"]/100)
         SDc2 = ((df2["LC"]/100)*10)/(1-(df2["LC"]/100))
-        #SDc = [(x + y) / 2 for x, y in zip(SDc, SDc2)]
-        
-        pols = df2["POL"]
 
         df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDc2}
         df3=pd.DataFrame(df3,columns=["POL","DF","SD"])
         custom_palette = sns.color_palette("deep")
 
-        
-        # Find all indexes with the maximum value in SDc
         max_indexes = SDc[SDc == max(SDc)].index.tolist()
         
         col1, col2 = st.columns(2)
 
         with col1: 
             st.header("Formulation report")
-            #st.write(str("SMILES: "+str(SMI)))
             st.write("Maximum solubilized drug: "+str(round(max(SDc),1))+" g/L, for " + " /".join([str(df2.loc[index, 'POL']) for index in max_indexes]) + " at "+str(df3.loc[SDc.idxmax(), "DF"])+" g/L drug feed (LE: "+str(int(df2.loc[SDc.idxmax(), "LE"]-10))+"-"+str(int(df2.loc[SDc.idxmax(), "LE"]+10))+" %; LC: " + "/".join([str(str(int(df2.loc[index, 'LC']-5))+"-"+str(int(df2.loc[index, 'LC']+5))) for index in max_indexes]) +" %)")
-            #st.write("LC at this feed: " + " /".join([str(str(int(df2.loc[index, 'LC']-5))+"-"+str(int(df2.loc[index, 'LC']+5))) for index in max_indexes]) +" %")
 
         with col2:
             st.image(im)
-        
-        df3["SD_lower"] = df3["SD"] - (df2["DF"])*((df2["LE"]-10)/100)
-        df3["SD_upper"] = df3["SD"] + (df2["DF"])*((df2["LE"]+10)/100)
-        
+               
         fig3=plt.figure(figsize=(10, 6))
         ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3,errorbar=('ci', 10))
-
-        ## Manually add error bars to each bar
-        #for i in range(len(df3)):
-        #    lower_error = df3["SD_lower"].iloc[i]
-        #    upper_error = df3["SD_upper"].iloc[i]
-        
-        #    # Calculate the x-position for each bar
-        #    x_pos = i % len(df3["DF"].unique()) + ax.patches[i].get_x() + ax.patches[i].get_width() / 2
-    
-        #    # Draw error bars using upper and lower error values
-        #    ax.errorbar(x_pos, ax.patches[i].get_height(), yerr=[[lower_error], [upper_error]], color='red', fmt='o', capsize=5)
-
-
-
-        
         plt.xlabel("Drug feed [g/L]")
         plt.ylabel("Solubilized drug [g/L]")
         plt.title("Predicted amount of solubilized drug at each drug feed")
@@ -180,58 +149,27 @@ if submit_button:
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         st.pyplot(fig3)
 
-        fig2=plt.figure(figsize=(10, 6))
-        ax = sns.barplot(x="DF", y="LE", hue="POL", data=df2,errorbar=('ci', 10))
-
-        df2["LE_lower"] = df2["LE"] - 10
-        df2["LE_upper"] = df2["LE"] + 10
-        
-        ## Manually add error bars to each bar
-        #for i in range(len(df2)):
-        #    lower_error = df2["LE_lower"].iloc[i]
-        #    upper_error = df2["LE_upper"].iloc[i]
-    
-        #    # Calculate the x-position for each bar
-        #    x_pos = i % len(df2["DF"].unique()) + ax.patches[i].get_x() + ax.patches[i].get_width() / 2
-    
-        #    # Draw error bars using upper and lower error values
-        #    ax.errorbar(x_pos, ax.patches[i].get_height(), yerr=[[lower_error], [upper_error]], color='red', fmt='o', capsize=5)
-
         col1, col2 = st.columns(2)
         with col1:
+            fig2=plt.figure(figsize=(10, 6))
+            ax = sns.barplot(x="DF", y="LE", hue="POL", data=df2)
             plt.xlabel("Drug feed [g/L]")
             plt.ylabel("Ligand efficiency [%]")
             plt.ylim(0, 100)
             plt.title("Predicted LE values at each drug feed")
-            ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+            ax.legend.remove()
             st.pyplot(fig2)
         
         
+        with col2:                   
             fig=plt.figure(figsize=(10, 6))
-            ax = sns.barplot(x="DF", y="LC", hue="POL", data=df2,errorbar=('ci', 10))
-
-        
-            df2["LC_lower"] = df2["LC"] - 5
-            df2["LC_upper"] = df2["LC"] + 5
-        
-            ## Manually add error bars to each bar
-            #for i in range(len(df2)):
-            #    lower_error = df2["LC_lower"].iloc[i]
-            #    upper_error = df2["LC_upper"].iloc[i]
-    
-            #    # Calculate the x-position for each bar
-            #    x_pos = i % len(df2["DF"].unique()) + ax.patches[i].get_x() + ax.patches[i].get_width() / 2
-    
-            #    # Draw error bars using upper and lower error values
-            #    ax.errorbar(x_pos, ax.patches[i].get_height(), yerr=[[lower_error], [upper_error]], color='red', fmt='o', capsize=5)
-        with col2:        
+            ax = sns.barplot(x="DF", y="LC", hue="POL", data=df2)
             plt.xlabel("Drug feed [g/L]")
             plt.ylabel("Loading capacity [%]")
             plt.ylim(0, 50)
             plt.title("Predicted LC values at each drug feed")  
-            ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+            ax.legend.remove()
             st.pyplot(fig)
-
 
         st.write("Table of predictions for all classification models:")
         df = pd.read_csv(r'fin_results.csv',index_col=0)
