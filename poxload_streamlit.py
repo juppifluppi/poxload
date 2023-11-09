@@ -46,13 +46,13 @@ SMILES=["CC(=O)N(C)CC","CCC(=O)N(C)CC","CCCC(=O)N(C)CC","CCCCC(=O)N(C)CC","CC(C)
 MW=[]
 
 st.image('logo2.png')
-    st.caption("""Input a [molecule SMILES code](https://pubchem.ncbi.nlm.nih.gov/edit3/index.html).""")
+st.caption("""Input a [molecule SMILES code](https://pubchem.ncbi.nlm.nih.gov/edit3/index.html).""")
 
 with st.form(key='my_form_to_submit'):
     SMI = st.text_input('Enter SMILES code of drug to load (paclitaxel given as example)', 'CC1=C2[C@@]([C@]([C@H]([C@@H]3[C@]4([C@H](OC4)C[C@@H]([C@]3(C(=O)[C@@H]2OC(=O)C)C)O)OC(=O)C)OC(=O)c5ccccc5)(C[C@@H]1OC(=O)[C@H](O)[C@@H](NC(=O)c6ccccc6)c7ccccc7)O)(C)C') 
     submit_button = st.form_submit_button(label='Submit')
 
-    on = st.toggle('Co-formulation')
+    on = st.toggle('Co-formulate with other drug')
     if on:
         SMI2 = st.text_input('Enter SMILES code of additional drug', 'CCC') 
     
