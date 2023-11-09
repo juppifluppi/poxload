@@ -230,6 +230,29 @@ if submit_button:
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         st.pyplot(fig)
 
+        
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 12), sharex=True)
+        
+        # First barplot facing upwards
+        sns.barplot(x="DF", y="LE", hue="POL", data=df2, ax=ax1, capsize=0.1, ci=None)  # Set ci=None to disable the default error bars
+        ax1.set_ylim(0, 100)
+        ax1.set_ylabel("Loading efficiency [%]")
+        ax1.set_title("Predicted LE values at each drug feed")
+
+        # Second barplot facing downwards
+        sns.barplot(x="DF", y=-df2["LC"], hue="POL", data=df2, ax=ax2, capsize=0.1, ci=None)  # Set ci=None to disable the default error bars
+        ax2.set_ylim(-50, 0)
+        ax2.set_ylabel("Loading capacity [%]")
+        ax2.set_title("Predicted LC values at each drug feed")
+
+        # Adjust the legend's position as needed
+        ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+        ax2.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+
+        plt.xlabel("Drug feed [g/L]")
+        st.pyplot(fig)
+
+
         st.write("Table of predictions for all classification models:")
         df = pd.read_csv(r'fin_results.csv',index_col=0)
         df = df.rename(columns={0: "POL", 1: "DF", 2: "LC10", 3: "LC20", 4: "LC30", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE80", 10:"Passed"})
