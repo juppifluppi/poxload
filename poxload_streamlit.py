@@ -137,13 +137,17 @@ if submit_button:
         custom_palette = sns.color_palette("deep")
 
         
+        # Find all indexes with the maximum value in SDc
+        max_indexes = SDc[SDc == max(SDc)].index.tolist()
+
+        
         col1, col2 = st.columns(2)
 
         with col1: 
             st.header("Formulation report")
             st.write(str("SMILES: "+str(SMI)))
-            st.write("Maximum solubilized dru: "+str(max(SDc))+" /L, for "+str(df3.loc[SDc.idxmax(), "POL"])+" at "+str(df3.loc[SDc.idxmax(), "DF"])+" /L dru feed")
-            st.write("LC: "+str(df2.loc[SDc.idxmax(), "LC"]))
+            st.write("Maximum solubilized drug: "+str(max(SDc))+" /L, for " + " ,".join([str(df2.loc[index, 'POL']) for index in max_indexes]) + " at "+str(df3.loc[SDc.idxmax(), "DF"])+" /L drug feed ("+str(df2.loc[SDc.idxmax(), "LE"])+" %)")
+            st.write("LC: "+str(df2.loc[SDc.idxmax(), "LC"])+" %")
 
         with col2:
             st.image(im)
