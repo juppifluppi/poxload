@@ -297,27 +297,32 @@ a[a[,9]=="X1",9]=80
 a[a[,10]=="X0",10]=0
 a[a[,10]=="X1",10]=100
            
-fg1=as.data.frame(a[,c(3:6)])
-fg2=as.data.frame(a[,c(7:10)])
+fg1=as.matrix(a[,c(3:6)])
+fg2=as.matrix(a[,c(7:10)])
 print(fg1)
          
-get_last_nonzero <- function(row) {
-  zero_positions <- which(row == 0)
+find_last_nonzero_before_first_zero <- function(matrix) {
+  result <- vector("numeric", length = nrow(matrix))
   
-  if (length(zero_positions) >= 2) {
-    last_consecutive_zeros <- zero_positions[which(diff(zero_positions) == 1)][length(zero_positions) >= 2]
+  for (i in 1:nrow(matrix)) {
+    row <- matrix[i, ]
+    last_nonzero <- NA
     
-    if (length(last_consecutive_zeros) > 0) {
-      last_nonzero <- row[last_consecutive_zeros[1] - 1]
-      return(as.numeric(last_nonzero))
+    for (j in 1:(length(row) - 1)) {
+      if (row[j] != 0) {
+        last_nonzero <- row[j]
+      } else if (!is.na(last_nonzero)) {
+        result[i] <- last_nonzero
+        break
+      }
     }
   }
   
-  last_nonzero <- tail(row[row != 0], 1)
-  return(as.numeric(last_nonzero))
+  return(result)
 }
-fg1 <- apply(fg1, 1, get_last_nonzero)
-fg2 <- apply(fg2, 1, get_last_nonzero)               
+           
+fg1 <- find_last_nonzero_before_first_zero(fg1)
+fg2 <- find_last_nonzero_before_first_zero(fg2)           
 a=cbind(a[,1],a[,2],fg1,fg2)
 print(a)
 colnames(a)=c("POL","DF","LC","LE")
