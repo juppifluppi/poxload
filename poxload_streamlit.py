@@ -156,18 +156,18 @@ if submit_button:
         df3["SD_upper"] = df3["SD"] + (df2["DF"])*((df2["LE"]+10)/100)
         
         fig3=plt.figure(figsize=(10, 6))
-        ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3)
+        ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3,errorbar=('ci', 10))
 
-        # Manually add error bars to each bar
-        for i in range(len(df3)):
-            lower_error = df3["SD_lower"].iloc[i]
-            upper_error = df3["SD_upper"].iloc[i]
+        ## Manually add error bars to each bar
+        #for i in range(len(df3)):
+        #    lower_error = df3["SD_lower"].iloc[i]
+        #    upper_error = df3["SD_upper"].iloc[i]
+        
+        #    # Calculate the x-position for each bar
+        #    x_pos = i % len(df3["DF"].unique()) + ax.patches[i].get_x() + ax.patches[i].get_width() / 2
     
-            # Calculate the x-position for each bar
-            x_pos = i % len(df3["DF"].unique()) + ax.patches[i].get_x() + ax.patches[i].get_width() / 2
-    
-            # Draw error bars using upper and lower error values
-            ax.errorbar(x_pos, ax.patches[i].get_height(), yerr=[[lower_error], [upper_error]], color='red', fmt='o', capsize=5)
+        #    # Draw error bars using upper and lower error values
+        #    ax.errorbar(x_pos, ax.patches[i].get_height(), yerr=[[lower_error], [upper_error]], color='red', fmt='o', capsize=5)
 
 
 
@@ -180,21 +180,21 @@ if submit_button:
         st.pyplot(fig3)
 
         fig2=plt.figure(figsize=(10, 6))
-        ax = sns.barplot(x="DF", y="LE", hue="POL", data=df2,ci=10)
+        ax = sns.barplot(x="DF", y="LE", hue="POL", data=df2,errorbar=('ci', 10))
 
         df2["LE_lower"] = df2["LE"] - 10
         df2["LE_upper"] = df2["LE"] + 10
         
-        # Manually add error bars to each bar
-        for i in range(len(df2)):
-            lower_error = df2["LE_lower"].iloc[i]
-            upper_error = df2["LE_upper"].iloc[i]
+        ## Manually add error bars to each bar
+        #for i in range(len(df2)):
+        #    lower_error = df2["LE_lower"].iloc[i]
+        #    upper_error = df2["LE_upper"].iloc[i]
     
-            # Calculate the x-position for each bar
-            x_pos = i % len(df2["DF"].unique()) + ax.patches[i].get_x() + ax.patches[i].get_width() / 2
+        #    # Calculate the x-position for each bar
+        #    x_pos = i % len(df2["DF"].unique()) + ax.patches[i].get_x() + ax.patches[i].get_width() / 2
     
-            # Draw error bars using upper and lower error values
-            ax.errorbar(x_pos, ax.patches[i].get_height(), yerr=[[lower_error], [upper_error]], color='red', fmt='o', capsize=5)
+        #    # Draw error bars using upper and lower error values
+        #    ax.errorbar(x_pos, ax.patches[i].get_height(), yerr=[[lower_error], [upper_error]], color='red', fmt='o', capsize=5)
         
         plt.xlabel("DF")
         plt.ylabel("LE")
@@ -205,22 +205,22 @@ if submit_button:
         
         
         fig=plt.figure(figsize=(10, 6))
-        ax = sns.barplot(x="DF", y="LC", hue="POL", data=df2,ci=5)
+        ax = sns.barplot(x="DF", y="LC", hue="POL", data=df2,errorbar=('ci', 10))
 
         
         df2["LC_lower"] = df2["LC"] - 5
         df2["LC_upper"] = df2["LC"] + 5
         
-        # Manually add error bars to each bar
-        for i in range(len(df2)):
-            lower_error = df2["LC_lower"].iloc[i]
-            upper_error = df2["LC_upper"].iloc[i]
+        ## Manually add error bars to each bar
+        #for i in range(len(df2)):
+        #    lower_error = df2["LC_lower"].iloc[i]
+        #    upper_error = df2["LC_upper"].iloc[i]
     
-            # Calculate the x-position for each bar
-            x_pos = i % len(df2["DF"].unique()) + ax.patches[i].get_x() + ax.patches[i].get_width() / 2
+        #    # Calculate the x-position for each bar
+        #    x_pos = i % len(df2["DF"].unique()) + ax.patches[i].get_x() + ax.patches[i].get_width() / 2
     
-            # Draw error bars using upper and lower error values
-            ax.errorbar(x_pos, ax.patches[i].get_height(), yerr=[[lower_error], [upper_error]], color='red', fmt='o', capsize=5)
+        #    # Draw error bars using upper and lower error values
+        #    ax.errorbar(x_pos, ax.patches[i].get_height(), yerr=[[lower_error], [upper_error]], color='red', fmt='o', capsize=5)
         
         
         plt.xlabel("DF")
