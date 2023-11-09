@@ -17,6 +17,7 @@ library("kernlab")
 library("devtools")
 
 #devtools::load_all('xgboost')
+library("xgboost", lib.loc = '~/')
 
 load("model_LC10.rda")
 m1=model
