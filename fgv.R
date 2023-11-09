@@ -16,7 +16,7 @@ library("randomForest")
 library("kernlab")
 library("devtools")
 
-devtools::load_all('xgboost')
+#devtools::load_all('xgboost')
 
 load("model_LC10.rda")
 m1=model
