@@ -139,15 +139,14 @@ if submit_button:
         
         # Find all indexes with the maximum value in SDc
         max_indexes = SDc[SDc == max(SDc)].index.tolist()
-
         
         col1, col2 = st.columns(2)
 
         with col1: 
             st.header("Formulation report")
-            st.write(str("SMILES: "+str(SMI)))
-            st.write("Maximum solubilized drug: "+str(round(max(SDc),1))+" /L, for " + " ,".join([str(df2.loc[index, 'POL']) for index in max_indexes]) + " at "+str(df3.loc[SDc.idxmax(), "DF"])+" /L drug feed (LE: "+str(df2.loc[SDc.idxmax(), "LE"])+" %)")
-            st.write("LC: "+str(df2.loc[SDc.idxmax(), "LC"])+" %")
+            #st.write(str("SMILES: "+str(SMI)))
+            st.write("Maximum solubilized drug: "+str(round(max(SDc),1))+" g/L, for " + " /".join([str(df2.loc[index, 'POL']) for index in max_indexes]) + " at "+str(df3.loc[SDc.idxmax(), "DF"])+" g/L drug feed (LE: "+str(df2.loc[SDc.idxmax(), "LE"]-10)+" - "+str(df2.loc[SDc.idxmax(), "LE"]+10)+" %)")
+            st.write("LC: "+str(df2.loc[SDc.idxmax(), "LC"]-5)+" - "+str(df2.loc[SDc.idxmax(), "LC"]+5)+" %")
 
         with col2:
             st.image(im)
