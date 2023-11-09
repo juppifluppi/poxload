@@ -301,22 +301,19 @@ fg1=as.data.frame(a[,c(3:6)])
 fg2=as.data.frame(a[,c(7:10)])
 
 get_last_nonzero <- function(row) {
-  # Find the positions of consecutive zeros
   zero_positions <- which(row == 0)
   
   if (length(zero_positions) >= 2) {
-    # Find the last position where there are two consecutive zeros
     last_consecutive_zeros <- zero_positions[which(diff(zero_positions) == 1)][length(zero_positions) >= 2]
     
     if (length(last_consecutive_zeros) > 0) {
       last_nonzero <- row[last_consecutive_zeros[1] - 1]
-      return(last_nonzero)
+      return(as.numeric(last_nonzero))
     }
   }
   
-  # If no two consecutive zeros are found, return the last non-zero element
   last_nonzero <- tail(row[row != 0], 1)
-  return(last_nonzero)
+  return(as.numeric(last_nonzero))
 }
 fg1 <- apply(fg1, 1, get_last_nonzero)
 fg2 <- apply(fg2, 1, get_last_nonzero)               
