@@ -129,7 +129,7 @@ if submit_button:
 
         #df3 = pd.read_csv(r'fin_results3.csv')
         #df3 = df3.rename(columns={0: "POL", 1: "DF", 2: "SD"})
-        SDc = (df2["DF"]/100)*df2["LE"]
+        SDc = (df2["DF"])*(df2["LE"]/100)
         pols = df2["POL"]
 
         df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDc}
@@ -152,25 +152,22 @@ if submit_button:
         with col2:
             st.image(im)
         
-        df3["SD_lower"] = df3["SD"] - (df2["DF"]/100)*(df2["LE"]-10)
-        df3["SD_upper"] = df3["SD"] + (df2["DF"]/100)*(df2["LE"]+10)
+        df3["SD_lower"] = df3["SD"] - (df2["DF"])*((df2["LE"]-10)/100)
+        df3["SD_upper"] = df3["SD"] + (df2["DF"])*((df2["LE"]+10)/100)
         
         fig3=plt.figure(figsize=(10, 6))
         ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3)
 
-        # Manually add error bars
+        # Manually add error bars to each bar
         for i, bar in enumerate(ax.patches):
-            error_low = df3["SD_lower"].iloc[i % len(df3)]  # Use modulo to loop through the error values
-            error_high = df3["SD_upper"].iloc[i % len(df3)]
-    
-        if i < len(df3):
-            # For the first set of bars, use error_low
-            ax.errorbar(bar.get_x() + bar.get_width() / 2, bar.get_height(), yerr=error_low,
-                    fmt='o', color='red', capsize=0)
-        else:
-            # For the second set of bars, use error_high
-            ax.errorbar(bar.get_x() + bar.get_width() / 2, bar.get_height(), yerr=error_high,
-                    fmt='o', color='red', capsize=0)
+            lower_error = df3["SD_lower"].iloc[i]
+            upper_error = df3["SD_upper"].iloc[i]
+
+            x_pos = bar.get_x() + bar.get_width() / 2
+
+            # Draw error bars using upper and lower error values
+            ax.errorbar(x_pos, bar.get_height(), yerr=[[lower_error], [upper_error]], color='red', fmt='o', capsize=5)
+
 
         
         plt.xlabel("DF")
@@ -186,19 +183,15 @@ if submit_button:
         df2["LE_lower"] = df2["LE"] - 10
         df2["LE_upper"] = df2["LE"] + 10
         
-        # Manually add error bars
+        # Manually add error bars to each bar
         for i, bar in enumerate(ax.patches):
-            error_low = df2["LE_lower"].iloc[i % len(df2)]  # Use modulo to loop through the error values
-            error_high = df2["LE_upper"].iloc[i % len(df2)]
-    
-        if i < len(df2):
-            # For the first set of bars, use error_low
-            ax.errorbar(bar.get_x() + bar.get_width() / 2, bar.get_height(), yerr=error_low,
-                    fmt='o', color='red', capsize=0)
-        else:
-            # For the second set of bars, use error_high
-            ax.errorbar(bar.get_x() + bar.get_width() / 2, bar.get_height(), yerr=error_high,
-                    fmt='o', color='red', capsize=0)
+            lower_error = df3["LE_lower"].iloc[i]
+            upper_error = df3["LE_upper"].iloc[i]
+
+            x_pos = bar.get_x() + bar.get_width() / 2
+
+            # Draw error bars using upper and lower error values
+            ax.errorbar(x_pos, bar.get_height(), yerr=[[lower_error], [upper_error]], color='red', fmt='o', capsize=5)
         
         plt.xlabel("DF")
         plt.ylabel("LE")
@@ -215,19 +208,15 @@ if submit_button:
         df2["LC_lower"] = df2["LC"] - 5
         df2["LC_upper"] = df2["LC"] + 5
         
-        # Manually add error bars
+        # Manually add error bars to each bar
         for i, bar in enumerate(ax.patches):
-            error_low = df2["LC_lower"].iloc[i % len(df2)]  # Use modulo to loop through the error values
-            error_high = df2["LC_upper"].iloc[i % len(df2)]
-    
-        if i < len(df2):
-            # For the first set of bars, use error_low
-            ax.errorbar(bar.get_x() + bar.get_width() / 2, bar.get_height(), yerr=error_low,
-                    fmt='o', color='red', capsize=0)
-        else:
-            # For the second set of bars, use error_high
-            ax.errorbar(bar.get_x() + bar.get_width() / 2, bar.get_height(), yerr=error_high,
-                    fmt='o', color='red', capsize=0)
+            lower_error = df3["LC_lower"].iloc[i]
+            upper_error = df3["LC_upper"].iloc[i]
+
+            x_pos = bar.get_x() + bar.get_width() / 2
+
+            # Draw error bars using upper and lower error values
+            ax.errorbar(x_pos, bar.get_height(), yerr=[[lower_error], [upper_error]], color='red', fmt='o', capsize=5)
         
         
         plt.xlabel("DF")
