@@ -300,48 +300,23 @@ a[a[,10]=="X1",10]=100
 fg1=as.data.frame(a[,c(3:6)])
 fg2=as.data.frame(a[,c(7:10)])
 
-           
-getLastNonZeroBeforeFirstZero <- function(df) {
-  last_non_zero_values <- numeric(nrow(df))
+# Function to get the last non-zero element before two consecutive zeros
+get_last_nonzero <- function(row) {
+  # Find the first occurrence of two consecutive zeros
+  first_zeros <- which(row == 0 & cumsum(row == 0) == 2)
   
-  for (i in 1:nrow(df)) {
-    row <- df[i,]
-    last_non_zero_index <- 0
-    zero_count <- 0
-    in_sequence <- FALSE
-    
-    for (j in length(row):1) {
-      if (row[j] != 0) {
-        if (in_sequence) {
-          zero_count <- 0
-          in_sequence <- FALSE
-        }
-        last_non_zero_index <- j
-      } else if (row[j] == 0) {
-        zero_count <- zero_count + 1
-        if (zero_count == 1 && last_non_zero_index > 0) {
-          in_sequence <- TRUE
-        } else if (zero_count == 2) {
-          break
-        }
-      }
-    }
-    
-    if (zero_count == 1 && in_sequence) {
-      last_non_zero_values[i] <- 0
-    } else {
-      last_non_zero_values[i] <- ifelse(last_non_zero_index > 0, row[last_non_zero_index], 0)
-    }
+  # If there are no two consecutive zeros, return the last non-zero element
+  if (length(first_zeros) == 0) {
+    last_nonzero <- tail(row[row != 0], 1)
+  } else {
+    # If two consecutive zeros are found, return the element just before them
+    last_nonzero <- row[first_zeros[1] - 1]
   }
   
-  return(last_non_zero_values)
+  return(last_nonzero)
 }
-fg1=getLastNonZeroBeforeFirstZero(fg1)
-fg2=getLastNonZeroBeforeFirstZero(fg2)
-#fg1=apply(fg1, 1, getLastNonZeroBeforeFirstZero)
-#fg2=apply(fg2, 1, getLastNonZeroBeforeFirstZero)
-#fg1[!is.finite(fg1)]<-0
-#fg2[!is.finite(fg2)]<-0           
+fg1 <- apply(fg1, 1, get_last_nonzero)
+fg2 <- apply(fg2, 1, get_last_nonzero)               
 a=cbind(a[,1],a[,2],fg1,fg2)
 colnames(a)=c("POL","DF","LC","LE")
 write.csv(a,"fin_results2.csv",row.names=F)
