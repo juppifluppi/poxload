@@ -147,7 +147,7 @@ if submit_button:
 
         with col1: 
             st.header("Formulation report")
-            st.write("Maximum solubilized drug: "+str(round(max(SDcx),1))+" g/L, for " + " /".join([str(df2.loc[index, 'POL']) for index in max_indexes]) + " at "+str(df3.loc[SDcx.idxmax(), "DF"])+" g/L drug feed (LE: "+str(int(df2.loc[SDcx.idxmax(), "LE"]-10))+"-"+str(int(df2.loc[SDcx.idxmax(), "LE"]+10))+" %; LC: " + "/".join([str(str(int(df2.loc[index, 'LC']-5))+"-"+str(int(df2.loc[index, 'LC']+5))) for index in max_indexes]) +" %)")
+            st.write("Maximum solubilized drug: "+str(round(max(SDcx),1))+" g/L at "+str(df3.loc[SDcx.idxmax(), "DF"])+" g/L drug feed (LE: "+str(df2.loc[SDcx.idxmax(), "LE"])+" %, LC: "+str(df2.loc[SDcx.idxmax(), "LC"])+" %)"
 
         with col2:
             st.image(im)
