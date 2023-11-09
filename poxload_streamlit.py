@@ -126,9 +126,9 @@ if submit_button:
         df2 = pd.read_csv(r'fin_results2.csv')
         df2 = df2.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
 
-        SDc = (df2["DF"])*((df2["LE"])/100)
-        SDc2 = ((df2["LC"]/100)*10)/(1-(df2["LC"]/100))
-        SDcx = (SDc+SDc2)/2
+        SDc = int((df2["DF"])*((df2["LE"])/100))
+        SDc2 = int(((df2["LC"]/100)*10)/(1-(df2["LC"]/100)))
+        SDcx = int((SDc+SDc2)/2)
      
         df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDcx}
         df3=pd.DataFrame(df3,columns=["POL","DF","SD"])
