@@ -137,6 +137,7 @@ if submit_button:
         plt.xlabel("DF")
         plt.ylabel("SD")
         plt.title("Solubilized drug [g/L]")
+        plt.ylim(0, 10)
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         st.pyplot(fig3)
 
@@ -144,6 +145,7 @@ if submit_button:
         ax = sns.barplot(x="DF", y="LE", hue="POL", data=df2)
         plt.xlabel("DF")
         plt.ylabel("LE")
+        plt.ylim(0, 100)
         plt.title("Maximum predicted LE values per drug feed [g/L]")
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         st.pyplot(fig2)
@@ -152,6 +154,7 @@ if submit_button:
         ax = sns.barplot(x="DF", y="LC", hue="POL", data=df2)
         plt.xlabel("DF")
         plt.ylabel("LC")
+        plt.ylim(0, 50)
         plt.title("Maximum predicted LC values per drug feed [g/L]")  
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         st.pyplot(fig)
