@@ -134,7 +134,7 @@ if submit_button:
         custom_palette = sns.color_palette("deep")
 
         fig=plt.figure(figsize=(10, 6))
-        ax = sns.barplot(x="DF", y="LC", hue="POL", data=df3)
+        ax = sns.barplot(x="DF", y="LC", hue="POL", data=df2)
         plt.xlabel("DF")
         plt.ylabel("LC")
         plt.title("Maximum predicted LC values per drug feed [g/L]")  
@@ -142,7 +142,7 @@ if submit_button:
         st.pyplot(fig)
 
         fig2=plt.figure(figsize=(10, 6))
-        ax = sns.barplot(x="DF", y="LE", hue="POL", data=df3)
+        ax = sns.barplot(x="DF", y="LE", hue="POL", data=df2)
         plt.xlabel("DF")
         plt.ylabel("LE")
         plt.title("Maximum predicted LE values per drug feed [g/L]")
