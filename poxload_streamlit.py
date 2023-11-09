@@ -142,8 +142,8 @@ if submit_button:
         with col1: 
             st.header("Formulation report")
             st.write(str("SMILES: "+str(SMI)))
-            st.write(str("Maximum solubilized dru: "+str(max(SDc))+" /L, for "+str(df3.loc[SDc.idxmax(), "POL"])))
-            st.write("Maximum LC: "+str(max(df2["LC"])))
+            st.write("Maximum solubilized dru: "+str(max(SDc))+" /L, for "+str(df3.loc[SDc.idxmax(), "POL"])+" at "+str(df3.loc[SDc.idxmax(), "DF"])+" /L dru feed")
+            st.write("LC: "+str(df2.loc[SDc.idxmax(), "LC"]))
 
         with col2:
             st.image(im)
