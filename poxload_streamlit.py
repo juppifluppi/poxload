@@ -157,7 +157,7 @@ if submit_button:
             plt.ylabel("Ligand efficiency [%]")
             plt.ylim(0, 100)
             plt.title("Predicted LE values at each drug feed")
-            ax.legend.remove()
+            ax.get_legend().remove()
             st.pyplot(fig2)
         
         
@@ -168,7 +168,7 @@ if submit_button:
             plt.ylabel("Loading capacity [%]")
             plt.ylim(0, 50)
             plt.title("Predicted LC values at each drug feed")  
-            ax.legend.remove()
+            ax.get_legend().remove()
             st.pyplot(fig)
 
         st.write("Table of predictions for all classification models:")
