@@ -148,7 +148,11 @@ if submit_button:
         with col1: 
             st.header("Formulation report")
             st.write("Maximum solubilized drug: "+str(round(max(SDcx),0))+" g/L at "+str(df3.loc[SDcx.idxmax(), "DF"])+" g/L drug feed (LE: "+str(df2.loc[SDcx.idxmax(), "LE"])+" %, LC: "+str(df2.loc[SDcx.idxmax(), "LC"])+" %)")
-
+            
+            max_values = df3.groupby('POL')['SDcx'].max()
+            for key, value in max_values.items():
+                print(f"{key}: {value}\n")
+                
         with col2:
             st.image(im)
                
