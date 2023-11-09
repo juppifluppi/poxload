@@ -317,11 +317,12 @@ getLastNonZeroBeforeFirstZero <- function(row) {
            
 fg1=apply(fg1, 1, getLastNonZeroBeforeFirstZero)
 fg2=apply(fg2, 1, getLastNonZeroBeforeFirstZero)
-
+fg1[!is.finite(fg1)]<-0
+fg2[!is.finite(fg2)]<-0           
 a=cbind(a[,1],a[,2],fg1,fg2)
 colnames(a)=c("POL","DF","LC","LE")
 write.csv(a,"fin_results2.csv",row.names=F)
 
-a=cbind(a[,1],a[,2],(a[,4]/100)*a[,2])
+a=cbind(a[,1],a[,2],(as.numeric(a[,4])/100)*a[,2])
 colnames(a)=c("POL","DF","SD")
 write.csv(a,"fin_results3.csv",row.names=F)
