@@ -142,7 +142,7 @@ if submit_button:
         st.pyplot(fig3)
 
         fig2=plt.figure(figsize=(10, 6))
-        ax = sns.barplot(x="DF", y="LE", hue="POL", data=df2)
+        ax = sns.barplot(x="DF", y="LE", hue="POL", data=df2,ci=10)
         plt.xlabel("DF")
         plt.ylabel("LE")
         plt.ylim(0, 100)
@@ -151,7 +151,7 @@ if submit_button:
         st.pyplot(fig2)
         
         fig=plt.figure(figsize=(10, 6))
-        ax = sns.barplot(x="DF", y="LC", hue="POL", data=df2)
+        ax = sns.barplot(x="DF", y="LC", hue="POL", data=df2,ci=5)
         plt.xlabel("DF")
         plt.ylabel("LC")
         plt.ylim(0, 50)
