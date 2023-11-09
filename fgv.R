@@ -300,15 +300,15 @@ a[a[,10]=="X1",10]=100
 fg1=as.matrix(a[,c(3:6)])
 fg2=as.matrix(a[,c(7:10)])
 
-# Function to get the last non-zero element from a vector
 get_last_non_zero <- function(vec) {
-  last_non_zero <- tail(vec[vec != 0], 1)
-  if (length(last_non_zero) == 0) {
-    return(NA)  # If there are no non-zero elements, return NA
+  non_zero_elements <- vec[vec != 0]
+  if (length(non_zero_elements) == 0) {
+    return(0)  # If there are no non-zero elements, return 0
   } else {
-    return(last_non_zero)
+    return(tail(non_zero_elements, 1))
   }
 }
+
 
 # Apply the function to each row of the dataframe
 last_non_zero_elements <- apply(fg1, 1, get_last_non_zero)
