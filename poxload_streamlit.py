@@ -48,9 +48,8 @@ MW=[]
 st.image('logo.png')
 
 st.caption("""Input a [molecule SMILES code](https://pubchem.ncbi.nlm.nih.gov/edit3/index.html). Predictions for loading efficencies (LE) and
-loading capacities (LC) for different ABA-triblock poly(2-oxazoline)- and poly(2-oxazine)-based micelles are listed, given a polymer feed of 10 g/L and a standard drug feed of 8 g/L.
-Random forest classifications for different thresholds are listed (LE ≥ 20, 40, 60, 70 and 80%; LC ≥ 10, 20, 30, 35 and 40%).
-Mixtures that exceed these thresholds are labeled "X1". Mixtures outside of the applicability domain of the respective model are labeled with "AD".
+loading capacities (LC) for different ABA-triblock poly(2-oxazoline)- and poly(2-oxazine)-based micelles are calculated, given a polymer feed of 10 g/L and drug feeds of 2-12 g/L. From the predicted LE values,
+the amount of solubilized drug is calculated. Mixtures that exceed these thresholds are labeled "X1". Mixtures outside of the applicability domain of the respective model are labeled with "AD".
 Formulations that pass at least 8 out of 10 thresholds are marked green, indicating high solubility; those that pass 5-7 are colored yellow and those that pass less than 5 thresholds are marked red.
 Predictions with PaDEL descriptors usually take around 30 seconds, calculations for models including SiRMS descriptors are slower.""")
 
@@ -145,8 +144,8 @@ if submit_button:
         with col1: 
             st.header("Formulation report")
             #st.write(str("SMILES: "+str(SMI)))
-            st.write("Maximum solubilized drug: "+str(round(max(SDc),1))+" g/L, for " + " /".join([str(df2.loc[index, 'POL']) for index in max_indexes]) + " at "+str(df3.loc[SDc.idxmax(), "DF"])+" g/L drug feed (LE: "+str(df2.loc[SDc.idxmax(), "LE"]-10)+" - "+str(df2.loc[SDc.idxmax(), "LE"]+10)+" %)")
-            st.write("LC at this feed: " + " /".join([str(str(df2.loc[index, 'LC']-5)+"-"+str(df2.loc[index, 'LC']+5)) for index in max_indexes]) +" %")
+            st.write("Maximum solubilized drug: "+str(round(max(SDc),1))+" g/L, for " + " /".join([str(df2.loc[index, 'POL']) for index in max_indexes]) + " at "+str(df3.loc[SDc.idxmax(), "DF"])+" g/L drug feed (LE: "+str(int(df2.loc[SDc.idxmax(), "LE"]-10))+" - "+str(int(df2.loc[SDc.idxmax(), "LE"]+10))+" %)")
+            st.write("LC at this feed: " + " /".join([str(str(int(df2.loc[index, 'LC']-5))+"-"+str(int(df2.loc[index, 'LC']+5))) for index in max_indexes]) +" %")
 
         with col2:
             st.image(im)
@@ -171,9 +170,9 @@ if submit_button:
 
 
         
-        plt.xlabel("DF")
-        plt.ylabel("SD")
-        plt.title("Solubilized drug [g/L]")
+        plt.xlabel("Drug feed [g/L]")
+        plt.ylabel("Solubilized drug [g/L]")
+        plt.title("Predicted amount of solubilized drug at each drug feed")
         plt.ylim(0, 10)
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         st.pyplot(fig3)
@@ -194,11 +193,13 @@ if submit_button:
     
         #    # Draw error bars using upper and lower error values
         #    ax.errorbar(x_pos, ax.patches[i].get_height(), yerr=[[lower_error], [upper_error]], color='red', fmt='o', capsize=5)
-        
-        plt.xlabel("DF")
-        plt.ylabel("LE")
+
+
+        st.write("Solubilization is derived from LE predictions:")
+        plt.xlabel("Drug feed [g/L]")
+        plt.ylabel("Ligand efficiency [%]")
         plt.ylim(0, 100)
-        plt.title("Maximum predicted LE values per drug feed [g/L]")
+        plt.title("Predicted LE values at each drug feed")
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         st.pyplot(fig2)
         
@@ -221,14 +222,15 @@ if submit_button:
         #    # Draw error bars using upper and lower error values
         #    ax.errorbar(x_pos, ax.patches[i].get_height(), yerr=[[lower_error], [upper_error]], color='red', fmt='o', capsize=5)
         
-        
-        plt.xlabel("DF")
-        plt.ylabel("LC")
+        st.write("Predictions of LC values:")
+        plt.xlabel("Drug feed [g/L]")
+        plt.ylabel("Loading capacity [%]")
         plt.ylim(0, 50)
-        plt.title("Maximum predicted LC values per drug feed [g/L]")  
+        plt.title("Predicted LC values at each drug feed")  
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         st.pyplot(fig)
 
+        st.write("Table of predictions for all classification models:")
         df = pd.read_csv(r'fin_results.csv',index_col=0)
         df = df.rename(columns={0: "POL", 1: "DF", 2: "LC10", 3: "LC20", 4: "LC30", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE80", 10:"Passed"})
         #df = df.sort_values(by=['Passed'], ascending=False)    
