@@ -121,12 +121,6 @@ if submit_button:
         result3 = process3.communicate()
 
         st.image(im)
-        df = pd.read_csv(r'fin_results.csv',index_col=0)
-        df = df.rename(columns={0: "POL", 1: "DF", 2: "LC10", 3: "LC20", 4: "LC30", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE80", 10:"Passed"})
-        #df = df.sort_values(by=['Passed'], ascending=False)    
-        st.write(df)
-        #st.dataframe(df.style.applymap(cooling_highlight))
-
 
         df2 = pd.read_csv(r'fin_results2.csv')
         df2 = df2.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
@@ -149,4 +143,10 @@ if submit_button:
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         st.pyplot(fig2)
 
+        df = pd.read_csv(r'fin_results.csv',index_col=0)
+        df = df.rename(columns={0: "POL", 1: "DF", 2: "LC10", 3: "LC20", 4: "LC30", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE80", 10:"Passed"})
+        #df = df.sort_values(by=['Passed'], ascending=False)    
+        st.write(df)
+        #st.dataframe(df.style.applymap(cooling_highlight))
+        
         st.caption("[github page](https://github.com/juppifluppi/poxload)")
