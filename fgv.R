@@ -308,18 +308,13 @@ find_last_nonzero_before_first_zero <- function(matrix) {
     row <- matrix[i, ]
     last_nonzero <- NA
     
-    for (j in 1:(length(row) - 1)) {
+    for (j in 1:length(row)) {
       if (row[j] != 0) {
         last_nonzero <- row[j]
       } else if (!is.na(last_nonzero)) {
         result[i] <- last_nonzero
-        break
+        last_nonzero <- NA
       }
-    }
-    
-    if (is.na(result[i])) {
-      # If the loop didn't find a zero, return the last non-zero element
-      result[i] <- last_nonzero
     }
   }
   
