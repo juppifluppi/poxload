@@ -130,11 +130,11 @@ if submit_button:
         #df3 = df3.rename(columns={0: "POL", 1: "DF", 2: "SD"})
         SDc = (df2["DF"])*(df2["LE"]/100)
         SDc2 = ((df2["LC"]/100)*10)/(1-(df2["LC"]/100))
-        SDc = [(x + y) / 2 for x, y in zip(SDc, SDc2)]
+        #SDc = [(x + y) / 2 for x, y in zip(SDc, SDc2)]
         
         pols = df2["POL"]
 
-        df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDc}
+        df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDc2}
         df3=pd.DataFrame(df3,columns=["POL","DF","SD"])
         custom_palette = sns.color_palette("deep")
 
