@@ -318,6 +318,7 @@ get_last_nonzero <- function(row) {
 fg1 <- apply(fg1, 1, get_last_nonzero)
 fg2 <- apply(fg2, 1, get_last_nonzero)               
 a=cbind(a[,1],a[,2],fg1,fg2)
+print(a)
 colnames(a)=c("POL","DF","LC","LE")
 write.csv(a,"fin_results2.csv",row.names=F)
 
