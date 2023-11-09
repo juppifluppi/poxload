@@ -156,7 +156,7 @@ if submit_button:
             max_value = max_values.max()
 
             # Filter and print only the keys with the maximum value
-            keys_with_max_value = max_values[max_values == max_value]
+            keys_with_max_value = max_values[max_values == max_value].index.tolist()
             comma_separated_keys = ', '.join(str(key) for key in keys_with_max_value)
             st.write(comma_separated_keys)
 
