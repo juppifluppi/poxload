@@ -146,14 +146,19 @@ if submit_button:
         with col1: 
             st.header("Formulation report")
             st.write(str("SMILES: "+str(SMI)))
-            st.write("Maximum solubilized drug: "+str(max(SDc))+" /L, for " + " ,".join([str(df2.loc[index, 'POL']) for index in max_indexes]) + " at "+str(df3.loc[SDc.idxmax(), "DF"])+" /L drug feed ("+str(df2.loc[SDc.idxmax(), "LE"])+" %)")
+            st.write("Maximum solubilized drug: "+str(round(max(SDc),1))+" /L, for " + " ,".join([str(df2.loc[index, 'POL']) for index in max_indexes]) + " at "+str(df3.loc[SDc.idxmax(), "DF"])+" /L drug feed (LE: "+str(df2.loc[SDc.idxmax(), "LE"])+" %)")
             st.write("LC: "+str(df2.loc[SDc.idxmax(), "LC"])+" %")
 
         with col2:
             st.image(im)
-            
+        
+        error_margin = 5
+        df3["SD_lower"] = df3["SD"] - error_margin
+        df3["SD_upper"] = df3["SD"] + error_margin
+        
         fig3=plt.figure(figsize=(10, 6))
-        ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3)
+        ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3,yerr=[df3["SD_lower"], df3["SD_upper"]], capsize=0)
+
         plt.xlabel("DF")
         plt.ylabel("SD")
         plt.title("Solubilized drug [g/L]")
