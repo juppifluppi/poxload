@@ -129,6 +129,9 @@ if submit_button:
         #df3 = pd.read_csv(r'fin_results3.csv')
         #df3 = df3.rename(columns={0: "POL", 1: "DF", 2: "SD"})
         SDc = (df2["DF"])*(df2["LE"]/100)
+        SDc2 = ((df2["LC"]/100)*10)/(1-(df2["LC"]/100))
+        SDc = [(x + y) / 2 for x, y in zip(SDc, SDc2)]
+        
         pols = df2["POL"]
 
         df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDc}
@@ -243,7 +246,6 @@ if submit_button:
         sns.barplot(x="DF", y=-df2["LC"], hue="POL", data=df2, ax=ax2, capsize=0.1, ci=None)  # Set ci=None to disable the default error bars
         ax2.set_ylim(-50, 0)
         ax2.set_ylabel("Loading capacity [%]")
-        ax2.set_title("Predicted LC values at each drug feed")
 
         # Adjust the legend's position as needed
         ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5))
