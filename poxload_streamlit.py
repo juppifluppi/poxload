@@ -118,7 +118,7 @@ if submit_button:
                            
     with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
         process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        st.write(process3.communicate())
+        result3 = process3.communicate()
 
         st.image(im)
 
