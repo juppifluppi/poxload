@@ -125,9 +125,11 @@ if submit_button:
         df2 = pd.read_csv(r'fin_results2.csv')
         df2 = df2.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
 
-        df3 = pd.read_csv(r'fin_results3.csv')
-        df3 = df3.rename(columns={0: "POL", 1: "DF", 2: "SD"})
-        
+        #df3 = pd.read_csv(r'fin_results3.csv')
+        #df3 = df3.rename(columns={0: "POL", 1: "DF", 2: "SD"})
+
+        df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': (df2["DF"]/100)*df2["LE"]}
+        df3=pd.DataFrame(df3,columns=["POL","DF","SD"])
         custom_palette = sns.color_palette("deep")
 
         fig3=plt.figure(figsize=(10, 6))
