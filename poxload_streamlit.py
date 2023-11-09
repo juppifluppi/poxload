@@ -157,8 +157,23 @@ if submit_button:
         df3["SD_upper"] = df3["SD"] + error_margin
         
         fig3=plt.figure(figsize=(10, 6))
-        ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3,yerr=[df3["SD_lower"], df3["SD_upper"]], capsize=0)
+        ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3)
 
+        # Manually add error bars
+        for i, bar in enumerate(ax.patches):
+            error_low = df3["SD_lower"].iloc[i % len(df3)]  # Use modulo to loop through the error values
+            error_high = df3["SD_upper"].iloc[i % len(df3)]
+    
+        if i < len(df3):
+            # For the first set of bars, use error_low
+            ax.errorbar(bar.get_x() + bar.get_width() / 2, bar.get_height(), yerr=error_low,
+                    fmt='o', color='red', capsize=5)
+        else:
+            # For the second set of bars, use error_high
+            ax.errorbar(bar.get_x() + bar.get_width() / 2, bar.get_height(), yerr=error_high,
+                    fmt='o', color='red', capsize=5)
+
+        
         plt.xlabel("DF")
         plt.ylabel("SD")
         plt.title("Solubilized drug [g/L]")
