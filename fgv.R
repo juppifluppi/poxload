@@ -299,30 +299,31 @@ a[a[,10]=="X1",10]=100
            
 fg1=as.matrix(a[,c(3:6)])
 fg2=as.matrix(a[,c(7:10)])
-print(fg2)
-         
-find_last_nonzero_before_first_zero <- function(matrix) {
-  result <- vector("numeric", length = nrow(matrix))
-  
-  for (i in 1:nrow(matrix)) {
-    row <- matrix[i, ]
-    last_nonzero <- NA
-    
-    for (j in 1:length(row)) {
-      if (row[j] != 0) {
-        last_nonzero <- row[j]
-      } else if (!is.na(last_nonzero)) {
-        result[i] <- last_nonzero
-        last_nonzero <- NA
-      }
-    }
+
+# Function to get the last non-zero element from a vector
+get_last_non_zero <- function(vec) {
+  last_non_zero <- tail(vec[vec != 0], 1)
+  if (length(last_non_zero) == 0) {
+    return(NA)  # If there are no non-zero elements, return NA
+  } else {
+    return(last_non_zero)
   }
-  
-  return(result)
 }
 
-fg1 <- find_last_nonzero_before_first_zero(fg1)
-fg2 <- find_last_nonzero_before_first_zero(fg2)           
+# Apply the function to each row of the dataframe
+last_non_zero_elements <- apply(fg1, 1, get_last_non_zero)
+
+# Create a new dataframe with the last non-zero elements
+fg1 <- data.frame(LastNonZero = last_non_zero_elements)
+
+# Apply the function to each row of the dataframe
+last_non_zero_elements <- apply(fg2, 1, get_last_non_zero)
+
+# Create a new dataframe with the last non-zero elements
+fg2 <- data.frame(LastNonZero = last_non_zero_elements)
+
+print(fg2)
+           
 a=cbind(a[,1],a[,2],fg1,fg2)
 print(a)
 colnames(a)=c("POL","DF","LC","LE")
