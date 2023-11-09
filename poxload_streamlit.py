@@ -54,8 +54,6 @@ Mixtures that exceed these thresholds are labeled "X1". Mixtures outside of the 
 Formulations that pass at least 8 out of 10 thresholds are marked green, indicating high solubility; those that pass 5-7 are colored yellow and those that pass less than 5 thresholds are marked red.
 Predictions with PaDEL descriptors usually take around 30 seconds, calculations for models including SiRMS descriptors are slower.""")
 
-set_DF = st.selectbox('Drug feed (g/L):',('8', '2', '4', '6', '10', '12'))   
-
 with st.form(key='my_form_to_submit'):
     SMI = st.text_input('Enter SMILES code of drug to load (paclitaxel given as example)', 'CC1=C2[C@@]([C@]([C@H]([C@@H]3[C@]4([C@H](OC4)C[C@@H]([C@]3(C(=O)[C@@H]2OC(=O)C)C)O)OC(=O)C)OC(=O)c5ccccc5)(C[C@@H]1OC(=O)[C@H](O)[C@@H](NC(=O)c6ccccc6)c7ccccc7)O)(C)C') 
     submit_button = st.form_submit_button(label='Submit')
@@ -119,8 +117,6 @@ if submit_button:
     with st.spinner('CREATING FORMULATION DATABASE (STEP 2 OF 4)...'):
         process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         result1 = process1.communicate()
-        #tune_DF=str("sed -i -e 's/\\t10\\t8/\\t10\\t"+set_DF+"/g' db_formulations.csv")
-        #os.system(tune_DF)
 
     with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):        
         process2 = subprocess.Popen(["Rscript", "create.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
