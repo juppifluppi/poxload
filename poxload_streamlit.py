@@ -124,8 +124,9 @@ if submit_button:
 
         SDc = (df2["DF"])*(df2["LE"]/100)
         SDc2 = ((df2["LC"]/100)*10)/(1-(df2["LC"]/100))
-
-        df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDc2}
+        SDcx = (SDc+SDc2)/2
+     
+        df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDcx}
         df3=pd.DataFrame(df3,columns=["POL","DF","SD"])
         custom_palette = sns.color_palette("deep")
 
@@ -151,25 +152,43 @@ if submit_button:
 
         col1, col2 = st.columns(2)
         with col1:
-            fig2=plt.figure(figsize=(10, 6))
+            fig1a=plt.figure(figsize=(10, 6))
+            ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3,errorbar=('ci', 10))
+            plt.xlabel("Drug feed [g/L]")
+            plt.ylabel("Solubilized drug [g/L]")
+            plt.title("Predicted amount of solubilized drug based on LE models")
+            plt.ylim(0, 10)
+            ax.get_legend().remove()
+            st.pyplot(fig1a)
+         
+            fig1b=plt.figure(figsize=(10, 6))
             ax = sns.barplot(x="DF", y="LE", hue="POL", data=df2)
             plt.xlabel("Drug feed [g/L]")
             plt.ylabel("Ligand efficiency [%]")
             plt.ylim(0, 100)
-            plt.title("Predicted LE values at each drug feed")
+            plt.title("Predicted LE values")
             ax.get_legend().remove()
-            st.pyplot(fig2)
+            st.pyplot(fig1b)
         
         
         with col2:                   
-            fig=plt.figure(figsize=(10, 6))
+            fig2a=plt.figure(figsize=(10, 6))
+            ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3,errorbar=('ci', 10))
+            plt.xlabel("Drug feed [g/L]")
+            plt.ylabel("Solubilized drug [g/L]")
+            plt.title("Predicted amount of solubilized drug based on LC models")
+            plt.ylim(0, 10)
+            ax.get_legend().remove()
+            st.pyplot(fig2a)
+            
+            fig2b=plt.figure(figsize=(10, 6))
             ax = sns.barplot(x="DF", y="LC", hue="POL", data=df2)
             plt.xlabel("Drug feed [g/L]")
             plt.ylabel("Loading capacity [%]")
             plt.ylim(0, 50)
-            plt.title("Predicted LC values at each drug feed")  
+            plt.title("Predicted LC values")  
             ax.get_legend().remove()
-            st.pyplot(fig)
+            st.pyplot(fig2b)
 
         st.write("Table of predictions for all classification models:")
         df = pd.read_csv(r'fin_results.csv',index_col=0)
