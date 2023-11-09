@@ -151,7 +151,7 @@ if submit_button:
             
             max_values = df3.groupby('POL')['SD'].max()
             for key, value in max_values.items():
-                print(f"{key}: {value}\n")
+                st.write(f"{key}: {value}")
                 
         with col2:
             st.image(im)
