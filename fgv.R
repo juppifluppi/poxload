@@ -333,9 +333,38 @@ getLastNonZeroBeforeFirstZero <- function(row) {
   return(0)  # If there are no non-zero elements before the first zero
 }
 
-           
-fg1=apply(fg1, 1, getLastNonZeroBeforeFirstZero)
-fg2=apply(fg2, 1, getLastNonZeroBeforeFirstZero)
+getLastNonZeroBeforeTwoConsecutiveZeros <- function(df) {
+  last_non_zero_values <- c()
+  
+  for (i in 1:nrow(df)) {
+    row <- df[i, ]
+    first_zero_index <- which(row == 0)[1]  # Find the index of the first zero
+
+    if (is.na(first_zero_index)) {
+      last_non_zero_values <- c(last_non_zero_values, tail(row, 1))  # If there's no zero, return the last element
+    } else {
+      # Check if there are at least two consecutive zero elements before the first zero
+      consecutive_zeros <- diff(which(row == 0)) == 1
+      if (sum(consecutive_zeros) >= 2) {
+        last_non_zero_index <- max(which(row[1:(first_zero_index - 1)] != 0))
+        
+        if (!is.na(last_non_zero_index)) {
+          last_non_zero_values <- c(last_non_zero_values, row[last_non_zero_index])
+        } else {
+          last_non_zero_values <- c(last_non_zero_values, 0)  # If there are no non-zero elements before the first zero
+        }
+      } else {
+        last_non_zero_values <- c(last_non_zero_values, tail(row, 1))  # If not enough consecutive zeros, return the last element
+      }
+    }
+  }
+  
+  return(last_non_zero_values)
+}
+fg1=getLastNonZeroBeforeTwoConsecutiveZeros(fg1)
+fg2=getLastNonZeroBeforeTwoConsecutiveZeros(fg2)        
+#fg1=apply(fg1, 1, getLastNonZeroBeforeFirstZero)
+#fg2=apply(fg2, 1, getLastNonZeroBeforeFirstZero)
 #fg1[!is.finite(fg1)]<-0
 #fg2[!is.finite(fg2)]<-0           
 a=cbind(a[,1],a[,2],fg1,fg2)
