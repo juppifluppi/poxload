@@ -117,7 +117,7 @@ if submit_button:
                            
     with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
         process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        result3 = process3.communicate()
+        stwrite(process3.communicate())
 
         df2 = pd.read_csv(r'fin_results2.csv')
         df2 = df2.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
