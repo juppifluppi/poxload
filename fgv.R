@@ -299,7 +299,7 @@ a[a[,10]=="X1",10]=100
            
 fg1=as.matrix(a[,c(3:6)])
 fg2=as.matrix(a[,c(7:10)])
-print(fg1)
+print(fg2)
          
 find_last_nonzero_before_first_zero <- function(matrix) {
   result <- vector("numeric", length = nrow(matrix))
