@@ -152,9 +152,8 @@ if submit_button:
         with col2:
             st.image(im)
         
-        error_margin = 5
-        df3["SD_lower"] = df3["SD"] - error_margin
-        df3["SD_upper"] = df3["SD"] + error_margin
+        df3["SD_lower"] = df3["SD"] - (df2["DF"]/100)*(df2["LE"]-10)
+        df3["SD_upper"] = df3["SD"] + (df2["DF"]/100)*(df2["LE"]+10)
         
         fig3=plt.figure(figsize=(10, 6))
         ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3)
@@ -167,11 +166,11 @@ if submit_button:
         if i < len(df3):
             # For the first set of bars, use error_low
             ax.errorbar(bar.get_x() + bar.get_width() / 2, bar.get_height(), yerr=error_low,
-                    fmt='o', color='red', capsize=5)
+                    fmt='o', color='red', capsize=0)
         else:
             # For the second set of bars, use error_high
             ax.errorbar(bar.get_x() + bar.get_width() / 2, bar.get_height(), yerr=error_high,
-                    fmt='o', color='red', capsize=5)
+                    fmt='o', color='red', capsize=0)
 
         
         plt.xlabel("DF")
@@ -183,6 +182,24 @@ if submit_button:
 
         fig2=plt.figure(figsize=(10, 6))
         ax = sns.barplot(x="DF", y="LE", hue="POL", data=df2,ci=10)
+
+        df2["LE_lower"] = df2["LE"] - 10
+        df2["LE_upper"] = df2["LE"] + 10
+        
+        # Manually add error bars
+        for i, bar in enumerate(ax.patches):
+            error_low = df2["LE_lower"].iloc[i % len(df2)]  # Use modulo to loop through the error values
+            error_high = df2["LE_upper"].iloc[i % len(df2)]
+    
+        if i < len(df2):
+            # For the first set of bars, use error_low
+            ax.errorbar(bar.get_x() + bar.get_width() / 2, bar.get_height(), yerr=error_low,
+                    fmt='o', color='red', capsize=0)
+        else:
+            # For the second set of bars, use error_high
+            ax.errorbar(bar.get_x() + bar.get_width() / 2, bar.get_height(), yerr=error_high,
+                    fmt='o', color='red', capsize=0)
+        
         plt.xlabel("DF")
         plt.ylabel("LE")
         plt.ylim(0, 100)
@@ -190,8 +207,29 @@ if submit_button:
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         st.pyplot(fig2)
         
+        
         fig=plt.figure(figsize=(10, 6))
         ax = sns.barplot(x="DF", y="LC", hue="POL", data=df2,ci=5)
+
+        
+        df2["LC_lower"] = df2["LC"] - 5
+        df2["LC_upper"] = df2["LC"] + 5
+        
+        # Manually add error bars
+        for i, bar in enumerate(ax.patches):
+            error_low = df2["LC_lower"].iloc[i % len(df2)]  # Use modulo to loop through the error values
+            error_high = df2["LC_upper"].iloc[i % len(df2)]
+    
+        if i < len(df2):
+            # For the first set of bars, use error_low
+            ax.errorbar(bar.get_x() + bar.get_width() / 2, bar.get_height(), yerr=error_low,
+                    fmt='o', color='red', capsize=0)
+        else:
+            # For the second set of bars, use error_high
+            ax.errorbar(bar.get_x() + bar.get_width() / 2, bar.get_height(), yerr=error_high,
+                    fmt='o', color='red', capsize=0)
+        
+        
         plt.xlabel("DF")
         plt.ylabel("LC")
         plt.ylim(0, 50)
