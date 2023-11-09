@@ -300,20 +300,39 @@ a[a[,10]=="X1",10]=99
 fg1=as.data.frame(a[,c(3:6)])
 fg2=as.data.frame(a[,c(7:10)])
 
-# Function to get the last non-zero element before the first zero
+## Function to get the last non-zero element before the first zero
+#getLastNonZeroBeforeFirstZero <- function(row) {
+#  first_zero_index <- which(row == 0)[1]  # Find the index of the first zero
+#  if (is.na(first_zero_index)) {
+#    return(tail(row, 1))  # If there's no zero, return the last element
+#  } else {
+#    last_non_zero_index <- max(which(row[1:first_zero_index - 1] != 0))
+#    if (!is.na(last_non_zero_index)) {
+#      return(row[last_non_zero_index])
+#    } else {
+#      return(0)  # If there are no non-zero elements before the first zero
+#    }
+#  }
+#}
+
 getLastNonZeroBeforeFirstZero <- function(row) {
   first_zero_index <- which(row == 0)[1]  # Find the index of the first zero
+
   if (is.na(first_zero_index)) {
     return(tail(row, 1))  # If there's no zero, return the last element
-  } else {
+  }
+
+  # Check if there are at least two consecutive zero elements before the first zero
+  if (sum(diff(which(row == 0)) == 1) >= 2) {
     last_non_zero_index <- max(which(row[1:first_zero_index - 1] != 0))
+  
     if (!is.na(last_non_zero_index)) {
       return(row[last_non_zero_index])
-    } else {
-      return(0)  # If there are no non-zero elements before the first zero
     }
   }
+  return(0)  # If there are no non-zero elements before the first zero
 }
+
            
 fg1=apply(fg1, 1, getLastNonZeroBeforeFirstZero)
 fg2=apply(fg2, 1, getLastNonZeroBeforeFirstZero)
