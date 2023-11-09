@@ -61,7 +61,7 @@ if submit_button:
     if len(SMI2) > 2:
         NAMES.insert(0, "CO-COMPOUND")
         SMILES.insert(0, SMI2)
-        tune_DF=str("sed -i -e 's/XXXX/"+numberSD2+"/g' cxdb.R")
+        tune_DF=str("sed -i -e 's/XXXX/"+str(numberSD2)+"/g' cxdb.R")
         os.system(tune_DF)
     
     NAMES.append("COMPOUND")
