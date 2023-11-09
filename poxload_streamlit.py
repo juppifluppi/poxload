@@ -142,8 +142,8 @@ if submit_button:
             st.image(im)
 
         with col2:
-             st.writer(str("SMILES: "+SMI))
-             st.writer(str("SMaximum solubilized dru: "+str(max((df2["DF"]/100)*df2["LE"]))))
+             st.write(str("SMILES: "+SMI))
+             st.write(str("Maximum solubilized dru: "+str(max((df2["DF"]/100)*df2["LE"]))))
 
         fig3=plt.figure(figsize=(10, 6))
         ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3)
