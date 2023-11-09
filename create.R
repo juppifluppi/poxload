@@ -21,7 +21,7 @@ LE=rep(NA,nrow(formulations))
 formulations=cbind(LC,formulations)
 formulations=cbind(LE,formulations)
 
-desc=read.csv("descrf.dat")[,1]
+desc=read.csv("desc.dat")[,1]
 descriptors=descriptors[,colnames(descriptors)%in%desc]
 
 totx=c()
