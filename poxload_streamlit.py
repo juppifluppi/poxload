@@ -141,12 +141,12 @@ if submit_button:
 
         with col1: 
             st.header("Formulation report")
-            st.image(im)
+            st.write(str("SMILES: "+str(SMI)))
+            st.write(str("Maximum solubilized dru: "+str(max(SDc))+" /L, for "+str(pols[SDc.index(max(SDc))])))
+            st.write("Maximum LC: "+str(max(df2["LC"])))
 
         with col2:
-             st.write(str("SMILES: "+str(SMI)))
-             st.write(str("Maximum solubilized dru: "+str(max(SDc))+" /L, for "+str(pols[SDc.index(max(SDc))])))
-             st.write("Maximum LC: "+str(max(df2["LC"])))
+            st.image(im)
             
         fig3=plt.figure(figsize=(10, 6))
         ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3)
