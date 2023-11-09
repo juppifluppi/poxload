@@ -297,8 +297,8 @@ a[a[,9]=="X1",9]=80
 a[a[,10]=="X0",10]=0
 a[a[,10]=="X1",10]=100
            
-fg1=as.data.frame(a[,c(3:6)])
-fg2=as.data.frame(a[,c(7:10)])
+fg1=as.matrix(a[,c(3:6)])
+fg2=as.matrix(a[,c(7:10)])
 
 get_last_nonzero <- function(row) {
   zero_positions <- which(row == 0)
