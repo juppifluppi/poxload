@@ -65,15 +65,11 @@ with st.form(key='my_form_to_submit'):
     except:
         pass
 
-if submit_button:
+if submit_button:   
     
-    
-
     with st.spinner('CALCULATING DESCRIPTORS (STEP 1 OF 4)...'):
         
-
-        for molecule in range(0,len(SMILES)):
-            
+        for molecule in range(0,len(SMILES)):            
                         
             mol = standardize(SMILES[molecule])
             AllChem.EmbedMolecule(mol,useRandomCoords=True)
@@ -110,10 +106,8 @@ if submit_button:
         dfx["SMILES"]=SMILES
         dfx["MW"]=MW
         
-
         dfx.to_csv("db_test.csv",index=False)
-   
-                            
+                               
     with st.spinner('CREATING FORMULATION DATABASE (STEP 2 OF 4)...'):
         process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         result1 = process1.communicate()
@@ -125,43 +119,34 @@ if submit_button:
     with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
         process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         result3 = process3.communicate()
-                
-        df = pd.read_csv(r'fin_results.csv',index_col=0)
 
+        st.image(im)
+        df = pd.read_csv(r'fin_results.csv',index_col=0)
         df = df.rename(columns={0: "POL", 1: "DF", 2: "LC10", 3: "LC20", 4: "LC30", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE80", 10:"Passed"})
         #df = df.sort_values(by=['Passed'], ascending=False)    
         st.write(df)
         #st.dataframe(df.style.applymap(cooling_highlight))
-        st.image(im)
 
 
         df2 = pd.read_csv(r'fin_results2.csv')
         df2 = df2.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
-        df3 = pd.read_csv(r'fin_results3.csv')
-        df3 = df3.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
 
-       
-        custom_palette = sns.color_palette("Paired")
+        custom_palette = sns.color_palette("deep")
 
-        # Create a grouped barplot for "LC" by "DF" with different "POL" categories
         fig=plt.figure(figsize=(10, 6))
         ax = sns.barplot(x="DF", y="LC", hue="POL", data=df3)
         plt.xlabel("DF")
         plt.ylabel("LC")
         plt.title("Maximum predicted LC values per drug feed [g/L]")  
-        # Move the legend to the right
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         st.pyplot(fig)
-        # Create a grouped barplot for "LE" by "DF" with different "POL" categories
+
         fig2=plt.figure(figsize=(10, 6))
         ax = sns.barplot(x="DF", y="LE", hue="POL", data=df3)
         plt.xlabel("DF")
         plt.ylabel("LE")
         plt.title("Maximum predicted LE values per drug feed [g/L]")
-        # Move the legend to the right
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         st.pyplot(fig2)
 
-                     
-        # reference
         st.caption("[github page](https://github.com/juppifluppi/poxload)")
