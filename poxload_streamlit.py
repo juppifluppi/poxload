@@ -149,12 +149,16 @@ if submit_button:
             st.header("Formulation report")
             st.write("Maximum solubilized drug: "+str(round(max(SDcx),0))+" g/L at "+str(df3.loc[SDcx.idxmax(), "DF"])+" g/L drug feed (LE: "+str(df2.loc[SDcx.idxmax(), "LE"])+" %, LC: "+str(df2.loc[SDcx.idxmax(), "LC"])+" %)")
             
+            # Group by the 'first_column' and get the maximum value in 'third_column' for each group
             max_values = df3.groupby('POL')['SD'].max()
-            top_5_max_values = max_values.sort_values(ascending=False).head(5)
 
-            for key, value in top_5_max_values.items():
-                rounded_value = round(value, 0)
-                st.write(f"{key}: {rounded_value}")
+            # Find the maximum value in the entire 'max_values' Series
+            max_value = max_values.max()
+
+            # Filter and print only the keys with the maximum value
+            keys_with_max_value = max_values[max_values == max_value]
+
+            st.write(keys_with_max_value.index.tolist())
 
                 
         with col2:
