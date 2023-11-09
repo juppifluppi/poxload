@@ -38,7 +38,7 @@ m8=model
 af=read.csv("testformulations.dat",check.names = F)
 afx=af
 #uix=read.csv("startdatayyyxmod_rdk2.dat",check.names = F)
-print(af[1,])
+
 #ui=m1$trainingData[-1]
 #afx2=afx[,colnames(afx)%in%colnames(ui)]
 #Missing <- setdiff(colnames(ui), colnames(afx2))
