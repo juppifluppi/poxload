@@ -130,7 +130,7 @@ if submit_button:
         SDc2 = (((df2["LC"]/100)*10)/(1-(df2["LC"]/100)))
         #SDcx = ((SDc+SDc2)/2)
         dx = pd.DataFrame([SDc,SDc2],columns=["SDc","SDc2"])
-        SDcx = dx[["SDc", "SDcx"]].min(axis=1)
+        SDcx = dx[["SDc", "SDc2"]].min(axis=1)
 
         #SDcx = [min(x, y) for x, y in zip(SDc, SDc2)]
      
