@@ -1,5 +1,5 @@
 dr=read.csv("db_test.csv")
-formulations=read.csv("db_smiles.csv")
+formulations=read.csv("db_smiles3.csv")
 
 formulations$DF=8
 formulations$D2="None"
