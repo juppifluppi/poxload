@@ -12,7 +12,7 @@ formulations$D2FRAC=0
 
 full=rep(NA,ncol(formulations))
 
-for(k in c(2,4,6,8,10,12)){
+for(k in c(2,4,6,8,10)){
 
   formulations$DF=k
   
