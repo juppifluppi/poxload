@@ -175,14 +175,14 @@ if submit_button:
 
         col1, col2 = st.columns(2)
         with col1:
-        #    fig1a=plt.figure(figsize=(10, 6))
-        #    ax = sns.barplot(x="DF", y="SD", hue="POL", data=df4)
-        #    plt.xlabel("Drug feed [g/L]")
-        #    plt.ylabel("Solubilized drug [g/L]")
-        #    plt.title("Predicted amount of solubilized drug based on LE models")
-        #    plt.ylim(0, 10)
-        #    ax.get_legend().remove()
-        #    st.pyplot(fig1a)
+            fig1a=plt.figure(figsize=(10, 6))
+            ax = sns.barplot(x="DF", y="SD", hue="POL", data=df4)
+            plt.xlabel("Drug feed [g/L]")
+            plt.ylabel("Solubilized drug [g/L]")
+            plt.title("Predicted amount of solubilized drug based on LE models")
+            plt.ylim(0, 10)
+            ax.get_legend().remove()
+            st.pyplot(fig1a)
          
             fig1b=plt.figure(figsize=(10, 6))
             ax = sns.barplot(x="DF", y="LE", hue="POL", data=df2)
@@ -195,14 +195,14 @@ if submit_button:
         
         
         with col2:                   
-        #    fig2a=plt.figure(figsize=(10, 6))
-        #    ax = sns.barplot(x="DF", y="SD", hue="POL", data=df5)
-        #    plt.xlabel("Drug feed [g/L]")
-        #    plt.ylabel("Solubilized drug [g/L]")
-        #    plt.title("Predicted amount of solubilized drug based on LC models")
-        #    plt.ylim(0, 10)
-        #    ax.get_legend().remove()
-        #    st.pyplot(fig2a)
+            fig2a=plt.figure(figsize=(10, 6))
+            ax = sns.barplot(x="DF", y="SD", hue="POL", data=df5)
+            plt.xlabel("Drug feed [g/L]")
+            plt.ylabel("Solubilized drug [g/L]")
+            plt.title("Predicted amount of solubilized drug based on LC models")
+            plt.ylim(0, 10)
+            ax.get_legend().remove()
+            st.pyplot(fig2a)
             
             fig2b=plt.figure(figsize=(10, 6))
             ax = sns.barplot(x="DF", y="LC", hue="POL", data=df2)
