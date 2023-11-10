@@ -129,6 +129,9 @@ if submit_button:
         SDc = ((df2["DF"])*((df2["LE"])/100))
         SDc2 = (((df2["LC"]/100)*10)/(1-(df2["LC"]/100)))
         #SDcx = ((SDc+SDc2)/2)
+        dx = pd.DataFrame([SDc,SDcx],columns=["SDc","SDc2"])
+        SDcx = dx[["SDc", "SDcx"]].min(axis=1)
+
         SDcx = [min(x, y) for x, y in zip(SDc, SDc2)]
      
         df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDcx}
