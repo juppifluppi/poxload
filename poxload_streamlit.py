@@ -233,13 +233,26 @@ if submit_button:
             st.image(im)
 
         st.write("Predicted amount of solubilized drug (maximum detected by both LE and LC models, see below)")
-        fig3=plt.figure(figsize=(10, 6))
-        ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3)
+        fig3, ax = plt.subplots(figsize=(10, 6))
+        #fig3=plt.figure(figsize=(10, 6))
+        sns.barplot(x="DF", y="SD", hue="POL", data=df3,ax=ax)
         plt.xlabel("Drug feed [g/L]")
         plt.ylabel("Solubilized drug [g/L]")
         #plt.title("Predicted maximum amount of solubilized drug based on LE and LC models")
         plt.ylim(0, 10)
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+
+        # Add scatter lines on the right side
+        ax2 = ax.twinx()
+        sns.scatterplot(x="DF", y="SD", hue="POL", data=df4, ax=ax2, marker='o', s=100)
+        sns.scatterplot(x="DF", y="SD", hue="POL", data=df5, ax=ax2, marker='x', s=100)
+        ax2.set_ylabel("Another y metric (SDc)")
+        ax2.legend().set_visible(False)
+
+        # Adjust legend position
+        ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+
+        
         st.pyplot(fig3)
 
         col1, col2 = st.columns(2)
