@@ -71,7 +71,7 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
         SMI2 = st.text_input('Add potential co-formulated drug:', '')
         
         with st.expander("SMILES editor"):
-            drawer2 = st_ketcher()
+            drawer2 = st_ketcher('')
         on2 = st.toggle('Use drawn structure')
         if on2:
             SMI2=drawer2
