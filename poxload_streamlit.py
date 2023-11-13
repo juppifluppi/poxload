@@ -69,10 +69,13 @@ if submit_button:
         os.system(tune_DF)
 
     
-    # Enclose each element in single quotes and join them with commas
-    formatted_list = ', '.join(f"\\'{item}\\'" for item in options)
-    tune_DF=str("sed -i -e 's/FGFG/"+str(formatted_list)+"/g' cxdb.R")
-    os.system(tune_DF)
+    # Specify the file path
+    file_path = 'options.csv'
+
+    # Write the list to the CSV file as a single column
+    with open(file_path, 'w') as file:
+        for item in options:
+            file.write(str(item) + '\n')
     
     NAMES.append("COMPOUND")
     SMILES.append(SMI)
