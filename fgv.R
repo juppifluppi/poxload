@@ -53,24 +53,47 @@ m8=model
 af=read.csv("testformulations.dat",check.names = F)
 afx=af
 
-ui=m1$trainingData[-1]
-afx2=afx[,colnames(afx)%in%colnames(ui)]
+#ui=m1$trainingData[-1]
+#afx2=afx[,colnames(afx)%in%colnames(ui)]
+#Missing <- setdiff(colnames(ui), colnames(afx2))
+#afx2[Missing] <- 0
+#afx2 <- afx2[colnames(ui)]
+#is.na(afx2)<-sapply(afx2, is.infinite)
+#afx2[is.na(afx2)]<-0
+#
+#preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+#uix <- predict(preproc, newdata = ui)
+#z1=c()
+#for(huh in 1:nrow(afx2)){
+#  scaled.new <- predict(preproc, newdata = afx2[huh,])
+#  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
+#  aggg=abs(sort(aggg)[1:15])
+#  aggg=mean(aggg,na.rm=T)
+#  z1=append(z1,aggg)
+#}
+
+ui <- m1$trainingData[-1]
+afx2 <- afx[, colnames(afx) %in% colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
 afx2 <- afx2[colnames(ui)]
-is.na(afx2)<-sapply(afx2, is.infinite)
-afx2[is.na(afx2)]<-0
+is.na(afx2) <- sapply(afx2, is.infinite)
+afx2[is.na(afx2)] <- 0
 
-preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
-z1=c()
-for(huh in 1:nrow(afx2)){
-  scaled.new <- predict(preproc, newdata = afx2[huh,])
-  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
-  aggg=abs(sort(aggg)[1:15])
-  aggg=mean(aggg,na.rm=T)
-  z1=append(z1,aggg)
-}
+scaled_new <- predict(preproc, newdata = afx2)
+
+# Use matrix operations to calculate distances
+distances <- Matrix::crossprod(scaled_new, uix)
+distances <- as.matrix(distances)[, 1]
+
+# Take the top 15 distances and calculate the mean
+z1 <- sapply(1:nrow(afx2), function(huh) {
+  aggg = abs(sort(distances[huh, ])[1:15])
+  mean(aggg, na.rm = TRUE)
+})
+
 
 al=unique(af$POL)
 a=af$POL
@@ -87,24 +110,47 @@ a=cbind(a,b)
 
 
 
-ui=m2$trainingData[-1]
-afx2=afx[,colnames(afx)%in%colnames(ui)]
+#ui=m2$trainingData[-1]
+#afx2=afx[,colnames(afx)%in%colnames(ui)]
+#Missing <- setdiff(colnames(ui), colnames(afx2))
+#afx2[Missing] <- 0
+#afx2 <- afx2[colnames(ui)]
+#is.na(afx2)<-sapply(afx2, is.infinite)
+#afx2[is.na(afx2)]<-0
+#
+#preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+#uix <- predict(preproc, newdata = ui)
+#z1=c()
+#for(huh in 1:nrow(afx2)){
+#  scaled.new <- predict(preproc, newdata = afx2[huh,])
+#  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
+#  aggg=abs(sort(aggg)[1:15])
+#  aggg=mean(aggg,na.rm=T)
+#  z1=append(z1,aggg)
+#}
+
+ui <- m2$trainingData[-1]
+afx2 <- afx[, colnames(afx) %in% colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
 afx2 <- afx2[colnames(ui)]
-is.na(afx2)<-sapply(afx2, is.infinite)
-afx2[is.na(afx2)]<-0
+is.na(afx2) <- sapply(afx2, is.infinite)
+afx2[is.na(afx2)] <- 0
 
-preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
-z1=c()
-for(huh in 1:nrow(afx2)){
-  scaled.new <- predict(preproc, newdata = afx2[huh,])
-  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
-  aggg=abs(sort(aggg)[1:15])
-  aggg=mean(aggg,na.rm=T)
-  z1=append(z1,aggg)
-}
+scaled_new <- predict(preproc, newdata = afx2)
+
+# Use matrix operations to calculate distances
+distances <- Matrix::crossprod(scaled_new, uix)
+distances <- as.matrix(distances)[, 1]
+
+# Take the top 15 distances and calculate the mean
+z1 <- sapply(1:nrow(afx2), function(huh) {
+  aggg = abs(sort(distances[huh, ])[1:15])
+  mean(aggg, na.rm = TRUE)
+})
+
 
 b=as.character(unlist(predict(m2,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
@@ -116,24 +162,47 @@ a=cbind(a,b)
 
 
 
-ui=m3$trainingData[-1]
-afx2=afx[,colnames(afx)%in%colnames(ui)]
+#ui=m3$trainingData[-1]
+#afx2=afx[,colnames(afx)%in%colnames(ui)]
+#Missing <- setdiff(colnames(ui), colnames(afx2))
+#afx2[Missing] <- 0
+#afx2 <- afx2[colnames(ui)]
+#is.na(afx2)<-sapply(afx2, is.infinite)
+#afx2[is.na(afx2)]<-0
+#
+#preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+#uix <- predict(preproc, newdata = ui)
+#z1=c()
+#for(huh in 1:nrow(afx2)){
+#  scaled.new <- predict(preproc, newdata = afx2[huh,])
+#  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
+#  aggg=abs(sort(aggg)[1:15])
+#  aggg=mean(aggg,na.rm=T)
+#  z1=append(z1,aggg)
+#}
+
+ui <- m3$trainingData[-1]
+afx2 <- afx[, colnames(afx) %in% colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
 afx2 <- afx2[colnames(ui)]
-is.na(afx2)<-sapply(afx2, is.infinite)
-afx2[is.na(afx2)]<-0
+is.na(afx2) <- sapply(afx2, is.infinite)
+afx2[is.na(afx2)] <- 0
 
-preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
-z1=c()
-for(huh in 1:nrow(afx2)){
-  scaled.new <- predict(preproc, newdata = afx2[huh,])
-  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
-  aggg=abs(sort(aggg)[1:15])
-  aggg=mean(aggg,na.rm=T)
-  z1=append(z1,aggg)
-}
+scaled_new <- predict(preproc, newdata = afx2)
+
+# Use matrix operations to calculate distances
+distances <- Matrix::crossprod(scaled_new, uix)
+distances <- as.matrix(distances)[, 1]
+
+# Take the top 15 distances and calculate the mean
+z1 <- sapply(1:nrow(afx2), function(huh) {
+  aggg = abs(sort(distances[huh, ])[1:15])
+  mean(aggg, na.rm = TRUE)
+})
+
 
 b=as.character(unlist(predict(m3,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
@@ -143,24 +212,47 @@ a=cbind(a,b)
 
 
 
-ui=m4$trainingData[-1]
-afx2=afx[,colnames(afx)%in%colnames(ui)]
+#ui=m4$trainingData[-1]
+#afx2=afx[,colnames(afx)%in%colnames(ui)]
+#Missing <- setdiff(colnames(ui), colnames(afx2))
+#afx2[Missing] <- 0
+#afx2 <- afx2[colnames(ui)]
+#is.na(afx2)<-sapply(afx2, is.infinite)
+#afx2[is.na(afx2)]<-0
+#
+#preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+#uix <- predict(preproc, newdata = ui)
+#z1=c()
+#for(huh in 1:nrow(afx2)){
+#  scaled.new <- predict(preproc, newdata = afx2[huh,])
+#  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
+#  aggg=abs(sort(aggg)[1:15])
+#  aggg=mean(aggg,na.rm=T)
+#  z1=append(z1,aggg)
+#}
+
+ui <- m4$trainingData[-1]
+afx2 <- afx[, colnames(afx) %in% colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
 afx2 <- afx2[colnames(ui)]
-is.na(afx2)<-sapply(afx2, is.infinite)
-afx2[is.na(afx2)]<-0
+is.na(afx2) <- sapply(afx2, is.infinite)
+afx2[is.na(afx2)] <- 0
 
-preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
-z1=c()
-for(huh in 1:nrow(afx2)){
-  scaled.new <- predict(preproc, newdata = afx2[huh,])
-  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
-  aggg=abs(sort(aggg)[1:15])
-  aggg=mean(aggg,na.rm=T)
-  z1=append(z1,aggg)
-}
+scaled_new <- predict(preproc, newdata = afx2)
+
+# Use matrix operations to calculate distances
+distances <- Matrix::crossprod(scaled_new, uix)
+distances <- as.matrix(distances)[, 1]
+
+# Take the top 15 distances and calculate the mean
+z1 <- sapply(1:nrow(afx2), function(huh) {
+  aggg = abs(sort(distances[huh, ])[1:15])
+  mean(aggg, na.rm = TRUE)
+})
+
 
 b=as.character(unlist(predict(m4,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
@@ -169,24 +261,47 @@ b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
 
-ui=m5$trainingData[-1]
-afx2=afx[,colnames(afx)%in%colnames(ui)]
+#ui=m5$trainingData[-1]
+#afx2=afx[,colnames(afx)%in%colnames(ui)]
+#Missing <- setdiff(colnames(ui), colnames(afx2))
+#afx2[Missing] <- 0
+#afx2 <- afx2[colnames(ui)]
+#is.na(afx2)<-sapply(afx2, is.infinite)
+#afx2[is.na(afx2)]<-0
+#
+#preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+#uix <- predict(preproc, newdata = ui)
+#z1=c()
+#for(huh in 1:nrow(afx2)){
+#  scaled.new <- predict(preproc, newdata = afx2[huh,])
+#  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
+#  aggg=abs(sort(aggg)[1:15])
+#  aggg=mean(aggg,na.rm=T)
+#  z1=append(z1,aggg)
+#}
+
+ui <- m5$trainingData[-1]
+afx2 <- afx[, colnames(afx) %in% colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
 afx2 <- afx2[colnames(ui)]
-is.na(afx2)<-sapply(afx2, is.infinite)
-afx2[is.na(afx2)]<-0
+is.na(afx2) <- sapply(afx2, is.infinite)
+afx2[is.na(afx2)] <- 0
 
-preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
-z1=c()
-for(huh in 1:nrow(afx2)){
-  scaled.new <- predict(preproc, newdata = afx2[huh,])
-  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
-  aggg=abs(sort(aggg)[1:15])
-  aggg=mean(aggg,na.rm=T)
-  z1=append(z1,aggg)
-}
+scaled_new <- predict(preproc, newdata = afx2)
+
+# Use matrix operations to calculate distances
+distances <- Matrix::crossprod(scaled_new, uix)
+distances <- as.matrix(distances)[, 1]
+
+# Take the top 15 distances and calculate the mean
+z1 <- sapply(1:nrow(afx2), function(huh) {
+  aggg = abs(sort(distances[huh, ])[1:15])
+  mean(aggg, na.rm = TRUE)
+})
+
 
 b=as.character(unlist(predict(m5,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
@@ -196,24 +311,46 @@ a=cbind(a,b)
 
 
 
-ui=m6$trainingData[-1]
-afx2=afx[,colnames(afx)%in%colnames(ui)]
+#ui=m6$trainingData[-1]
+#afx2=afx[,colnames(afx)%in%colnames(ui)]
+#Missing <- setdiff(colnames(ui), colnames(afx2))
+#afx2[Missing] <- 0
+#afx2 <- afx2[colnames(ui)]
+#is.na(afx2)<-sapply(afx2, is.infinite)
+#afx2[is.na(afx2)]<-0
+#
+#preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+#uix <- predict(preproc, newdata = ui)
+#z1=c()
+#for(huh in 1:nrow(afx2)){
+#  scaled.new <- predict(preproc, newdata = afx2[huh,])
+#  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
+#  aggg=abs(sort(aggg)[1:15])
+#  aggg=mean(aggg,na.rm=T)
+#  z1=append(z1,aggg)
+#}
+
+ui <- m6$trainingData[-1]
+afx2 <- afx[, colnames(afx) %in% colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
 afx2 <- afx2[colnames(ui)]
-is.na(afx2)<-sapply(afx2, is.infinite)
-afx2[is.na(afx2)]<-0
+is.na(afx2) <- sapply(afx2, is.infinite)
+afx2[is.na(afx2)] <- 0
 
-preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
-z1=c()
-for(huh in 1:nrow(afx2)){
-  scaled.new <- predict(preproc, newdata = afx2[huh,])
-  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
-  aggg=abs(sort(aggg)[1:15])
-  aggg=mean(aggg,na.rm=T)
-  z1=append(z1,aggg)
-}
+scaled_new <- predict(preproc, newdata = afx2)
+
+# Use matrix operations to calculate distances
+distances <- Matrix::crossprod(scaled_new, uix)
+distances <- as.matrix(distances)[, 1]
+
+# Take the top 15 distances and calculate the mean
+z1 <- sapply(1:nrow(afx2), function(huh) {
+  aggg = abs(sort(distances[huh, ])[1:15])
+  mean(aggg, na.rm = TRUE)
+})
 
 
 b=as.character(unlist(predict(m6,newdata=afx)))
@@ -225,24 +362,47 @@ a=cbind(a,b)
 
 
 
-ui=m7$trainingData[-1]
-afx2=afx[,colnames(afx)%in%colnames(ui)]
+#ui=m7$trainingData[-1]
+#afx2=afx[,colnames(afx)%in%colnames(ui)]
+#Missing <- setdiff(colnames(ui), colnames(afx2))
+#afx2[Missing] <- 0
+#afx2 <- afx2[colnames(ui)]
+#is.na(afx2)<-sapply(afx2, is.infinite)
+#afx2[is.na(afx2)]<-0
+#
+#preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+#uix <- predict(preproc, newdata = ui)
+#z1=c()
+#for(huh in 1:nrow(afx2)){
+#  scaled.new <- predict(preproc, newdata = afx2[huh,])
+#  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
+#  aggg=abs(sort(aggg)[1:15])
+#  aggg=mean(aggg,na.rm=T)
+#  z1=append(z1,aggg)
+#}
+
+ui <- m7$trainingData[-1]
+afx2 <- afx[, colnames(afx) %in% colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
 afx2 <- afx2[colnames(ui)]
-is.na(afx2)<-sapply(afx2, is.infinite)
-afx2[is.na(afx2)]<-0
+is.na(afx2) <- sapply(afx2, is.infinite)
+afx2[is.na(afx2)] <- 0
 
-preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
-z1=c()
-for(huh in 1:nrow(afx2)){
-  scaled.new <- predict(preproc, newdata = afx2[huh,])
-  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
-  aggg=abs(sort(aggg)[1:15])
-  aggg=mean(aggg,na.rm=T)
-  z1=append(z1,aggg)
-}
+scaled_new <- predict(preproc, newdata = afx2)
+
+# Use matrix operations to calculate distances
+distances <- Matrix::crossprod(scaled_new, uix)
+distances <- as.matrix(distances)[, 1]
+
+# Take the top 15 distances and calculate the mean
+z1 <- sapply(1:nrow(afx2), function(huh) {
+  aggg = abs(sort(distances[huh, ])[1:15])
+  mean(aggg, na.rm = TRUE)
+})
+
 
 b=as.character(unlist(predict(m7,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
@@ -251,24 +411,47 @@ b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
 
-ui=m8$trainingData[-1]
-afx2=afx[,colnames(afx)%in%colnames(ui)]
+#ui=m8$trainingData[-1]
+#afx2=afx[,colnames(afx)%in%colnames(ui)]
+#Missing <- setdiff(colnames(ui), colnames(afx2))
+#afx2[Missing] <- 0
+#afx2 <- afx2[colnames(ui)]
+#is.na(afx2)<-sapply(afx2, is.infinite)
+#afx2[is.na(afx2)]<-0
+#
+#preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+#uix <- predict(preproc, newdata = ui)
+#z1=c()
+#for(huh in 1:nrow(afx2)){
+#  scaled.new <- predict(preproc, newdata = afx2[huh,])
+#  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
+#  aggg=abs(sort(aggg)[1:15])
+#  aggg=mean(aggg,na.rm=T)
+#  z1=append(z1,aggg)
+#}
+
+ui <- m8$trainingData[-1]
+afx2 <- afx[, colnames(afx) %in% colnames(ui)]
 Missing <- setdiff(colnames(ui), colnames(afx2))
 afx2[Missing] <- 0
 afx2 <- afx2[colnames(ui)]
-is.na(afx2)<-sapply(afx2, is.infinite)
-afx2[is.na(afx2)]<-0
+is.na(afx2) <- sapply(afx2, is.infinite)
+afx2[is.na(afx2)] <- 0
 
-preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
-z1=c()
-for(huh in 1:nrow(afx2)){
-  scaled.new <- predict(preproc, newdata = afx2[huh,])
-  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
-  aggg=abs(sort(aggg)[1:15])
-  aggg=mean(aggg,na.rm=T)
-  z1=append(z1,aggg)
-}
+scaled_new <- predict(preproc, newdata = afx2)
+
+# Use matrix operations to calculate distances
+distances <- Matrix::crossprod(scaled_new, uix)
+distances <- as.matrix(distances)[, 1]
+
+# Take the top 15 distances and calculate the mean
+z1 <- sapply(1:nrow(afx2), function(huh) {
+  aggg = abs(sort(distances[huh, ])[1:15])
+  mean(aggg, na.rm = TRUE)
+})
+
 
 b=as.character(unlist(predict(m8,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
