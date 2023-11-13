@@ -152,12 +152,8 @@ if submit_button:
 
         SDc = ((df2["DF"])*((df2["LE"])/100))
         SDc2 = (((df2["LC"]/100)*10)/(1-(df2["LC"]/100)))
-        #SDcx = ((SDc+SDc2)/2)
-        #dx = pd.DataFrame([SDc,SDc2],columns=["SDc","SDc2"])
-        #SDcx = dx[["SDc", "SDc2"]].min(axis=1)
-
-        #SDcx = [min(x, y) for x, y in zip(SDc, SDc2)]
-        SDcx = pd.concat([SDc, SDc2], axis=1).min(axis=1)
+        SDcx = ((SDc+SDc2)/2)
+        #SDcx = pd.concat([SDc, SDc2], axis=1).min(axis=1)
      
         df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDcx}
         df3=pd.DataFrame(df3,columns=["POL","DF","SD"])
@@ -180,7 +176,7 @@ if submit_button:
         with col1: 
             st.header("Formulation report")
             #st.write("Maximum solubilized drug: "+str(round(max(SDcx),1))+" g/L at "+str(df3.loc[SDcx.idxmax(), "DF"])+" g/L drug feed (LE: "+str(df2.loc[SDcx.idxmax(), "LE"])+" %, LC: "+str(df2.loc[SDcx.idxmax(), "LC"])+" %)")
-            st.write("Maximum solubilized drug: "+str(round(max(SDcx),1))+" g/L at "+str(df3.loc[SDcx.idxmax(), "DF"])+" g/L drug feed (LE: "+finalLE+" %, LC: "+finalLC+" %)")
+            st.write("Maximum solubilized drug: "+str(round(max(SDcx),1))+" g/L at "+str(df3.loc[SDcx.idxmax(), "DF"])+" g/L drug feed (LE: "+str(finalLE)+" %, LC: "+str(finalLC)+" %)")
             
             
             # Group by the 'first_column' and get the maximum value in 'third_column' for each group
