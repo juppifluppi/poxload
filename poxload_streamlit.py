@@ -110,7 +110,7 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
 
 
 if submit_button:
-    if on3 == FALSE:
+    if on3 is False:
         if len(SMI2) > 2:
             NAMES.insert(0, "CO-COMPOUND")
             SMILES.insert(0, SMI2)
@@ -296,7 +296,7 @@ if submit_button:
             df = df.rename(columns={0: "POL", 1: "DF", 2: "LC10", 3: "LC20", 4: "LC30", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE80", 10:"Passed"})
             df.reset_index(inplace=True)
             st.dataframe(df.style.applymap(cooling_highlight,subset=['Passed']))    
-    if on3 == TRUE:
+    if on3:
         file_path = 'options.csv'
         with open(file_path, 'w') as file:
             for item in options:
