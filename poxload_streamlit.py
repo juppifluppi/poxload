@@ -68,7 +68,7 @@ with st.form(key='my_form_to_submit'):
     submit_button = st.form_submit_button(label='Submit')
 
     
-    with st.expander("Information"):
+    with st.expander("More info"):
         
         st.caption("""POxload is a web tool to evaluate the amount of drug solubilized by amphiphilic, triblock copolymeric poly(oxazoline)/poly(oxazine) (pOx/pOzi) micelles.
 It is based on predictions for loading efficiency (LE) and loading capacity (LC) using four differen thresholds for each parameter (LC10, LC20, LC30, LC40, LE20, LE40, LE60, LE80).
