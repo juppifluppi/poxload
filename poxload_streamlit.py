@@ -173,24 +173,24 @@ if submit_button:
                                    
         with st.spinner('CREATING FORMULATION DATABASE (STEP 2 OF 4)...'):
             process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-            result1 = process1.communicate()
+            st.write(process1.communicate())
     
         with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
             if choosemodel == 'RDK7-RF (faster)':
                 process2 = subprocess.Popen(["Rscript", "create.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                result2 = process2.communicate()
+                st.write(rocess2.communicate())
 
             if choosemodel == 'Final models':
                 process2 = subprocess.Popen(["Rscript", "create2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                result2 = process2.communicate()
+                st.write(process2.communicate())
         
         with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
             if choosemodel == 'RDK7-RF (faster)':
                 process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                result3 = process3.communicate()
+                st.write(process3.communicate())
             if choosemodel == 'Final models':
                 process3 = subprocess.Popen(["Rscript", "fgv2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                result3 = process3.communicate()
+                st.write(process3.communicate())
             
             df2 = pd.read_csv(r'fin_results2.csv')
             df2 = df2.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
