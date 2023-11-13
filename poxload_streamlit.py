@@ -110,272 +110,272 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
 
 
 if submit_button:
-#    try:
-    if on3 is False:
-        if len(SMI2) > 2:
-            NAMES.insert(0, "CO-COMPOUND")
-            SMILES.insert(0, SMI2)
-            tune_DF=str("sed -i -e 's/XXXX/"+str(numberSD2)+"/g' cxdb.R")
-            os.system(tune_DF)
-    
-        file_path = 'options.csv'
-        with open(file_path, 'w') as file:
-            for item in options:
-                file.write(str(item) + '\n')
+    try:
+        if on3 is False:
+            if len(SMI2) > 2:
+                NAMES.insert(0, "CO-COMPOUND")
+                SMILES.insert(0, SMI2)
+                tune_DF=str("sed -i -e 's/XXXX/"+str(numberSD2)+"/g' cxdb.R")
+                os.system(tune_DF)
         
-        NAMES.append("COMPOUND")
-        SMILES.append(SMI)
-        try:
-            os.remove("descriptors.csv")
-        except:
-            pass
-        
-        with st.spinner('CALCULATING DESCRIPTORS (STEP 1 OF 4)...'):
+            file_path = 'options.csv'
+            with open(file_path, 'w') as file:
+                for item in options:
+                    file.write(str(item) + '\n')
             
-            for molecule in range(0,len(SMILES)):            
-                            
-                mol = standardize(SMILES[molecule])
-                AllChem.EmbedMolecule(mol,useRandomCoords=True)
-                AllChem.MMFFOptimizeMolecule(mol, "MMFF94s", maxIters=5000)
-                rdkitfp = fingerprint_rdk7(mol)
-                rdkitfp2 = fingerprint_rdk5(mol)
-    
-                if molecule == 0:
+            NAMES.append("COMPOUND")
+            SMILES.append(SMI)
+            try:
+                os.remove("descriptors.csv")
+            except:
+                pass
+            
+            with st.spinner('CALCULATING DESCRIPTORS (STEP 1 OF 4)...'):
+                
+                for molecule in range(0,len(SMILES)):            
+                                
+                    mol = standardize(SMILES[molecule])
+                    AllChem.EmbedMolecule(mol,useRandomCoords=True)
+                    AllChem.MMFFOptimizeMolecule(mol, "MMFF94s", maxIters=5000)
+                    rdkitfp = fingerprint_rdk7(mol)
+                    rdkitfp2 = fingerprint_rdk5(mol)
+        
+                    if molecule == 0:
+                        with open("descriptors.csv","a") as f:
+                            for o in range(0,len(rdkitfp)):
+                                f.write("rdk7_"+str(o)+"\t")
+                            for o in range(0,len(rdkitfp2)):
+                                f.write("rdk5_"+str(o)+"\t")
+                            for o in calc(mol).asdict().keys():
+                                f.write(str(o)+"\t")
+                            f.write("\n")
+        
                     with open("descriptors.csv","a") as f:
                         for o in range(0,len(rdkitfp)):
-                            f.write("rdk7_"+str(o)+"\t")
+                            f.write(str(rdkitfp[o])+"\t")
                         for o in range(0,len(rdkitfp2)):
-                            f.write("rdk5_"+str(o)+"\t")
-                        for o in calc(mol).asdict().keys():
-                            f.write(str(o)+"\t")
+                            f.write(str(rdkitfp2[o])+"\t")
+                        for o in calc(mol).asdict().values():
+                            f.write(str(o)+"\t")                
                         f.write("\n")
-    
-                with open("descriptors.csv","a") as f:
-                    for o in range(0,len(rdkitfp)):
-                        f.write(str(rdkitfp[o])+"\t")
-                    for o in range(0,len(rdkitfp2)):
-                        f.write(str(rdkitfp2[o])+"\t")
-                    for o in calc(mol).asdict().values():
-                        f.write(str(o)+"\t")                
-                    f.write("\n")
+                    
+                    mj = Chem.Descriptors.ExactMolWt(mol)
+                    MW.append(mj)
+                    if molecule == len(SMILES)-1:
+                        im = Draw.MolToImage(Chem.MolFromSmiles(SMILES[molecule]),fitImage=True) 
+              
+                dfx = pd.DataFrame(columns=['NAME', "SMILES","MW"])
+                dfx["NAME"]=NAMES
+                dfx["SMILES"]=SMILES
+                dfx["MW"]=MW
                 
-                mj = Chem.Descriptors.ExactMolWt(mol)
-                MW.append(mj)
-                if molecule == len(SMILES)-1:
-                    im = Draw.MolToImage(Chem.MolFromSmiles(SMILES[molecule]),fitImage=True) 
-          
-            dfx = pd.DataFrame(columns=['NAME', "SMILES","MW"])
-            dfx["NAME"]=NAMES
-            dfx["SMILES"]=SMILES
-            dfx["MW"]=MW
-            
-            dfx.to_csv("db_test.csv",index=False)
-                                   
-        with st.spinner('CREATING FORMULATION DATABASE (STEP 2 OF 4)...'):
-            process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-            st.write(process1.communicate())
-    
-        with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
-            if choosemodel == 'RDK7-RF (faster)':
-                process2 = subprocess.Popen(["Rscript", "create.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                st.write(rocess2.communicate())
-
-            if choosemodel == 'Final models':
-                process2 = subprocess.Popen(["Rscript", "create2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                st.write(process2.communicate())
+                dfx.to_csv("db_test.csv",index=False)
+                                       
+            with st.spinner('CREATING FORMULATION DATABASE (STEP 2 OF 4)...'):
+                process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                result1 = process1.communicate()
         
-        with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
-            if choosemodel == 'RDK7-RF (faster)':
-                process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                st.write(process3.communicate())
-            if choosemodel == 'Final models':
-                process3 = subprocess.Popen(["Rscript", "fgv2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                st.write(process3.communicate())
-            
-            df2 = pd.read_csv(r'fin_results2.csv')
-            df2 = df2.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
+            with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
+                if choosemodel == 'RDK7-RF (around 1 min)':
+                    process2 = subprocess.Popen(["Rscript", "create.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    result2 = process2.communicate()
     
-            SDc = ((df2["DF"])*((df2["LE"])/100))
-            SDc2 = (((df2["LC"]/100)*10)/(1-(df2["LC"]/100)))
-            #SDcx = ((SDc+SDc2)/2)
-            SDcx = pd.concat([SDc, SDc2], axis=1).min(axis=1)
+                if choosemodel == 'Final models (around 7 min)':
+                    process2 = subprocess.Popen(["Rscript", "create2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    result2 = process2.communicate()
             
-            if len(SMI2) > 2:
+            with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
+                if choosemodel == 'RDK7-RF (faster)':
+                    process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    result3 = process3.communicate()
+                if choosemodel == 'Final models':
+                    process3 = subprocess.Popen(["Rscript", "fgv2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    result3 = process3.communicate()
+                
+                df2 = pd.read_csv(r'fin_results2.csv')
+                df2 = df2.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
+        
                 SDc = ((df2["DF"])*((df2["LE"])/100))
-                SDc2 = (((df2["LC"]/100)*(10))/(1-(df2["LC"]/100)))
+                SDc2 = (((df2["LC"]/100)*10)/(1-(df2["LC"]/100)))
                 #SDcx = ((SDc+SDc2)/2)
                 SDcx = pd.concat([SDc, SDc2], axis=1).min(axis=1)
-    
-            calcLE=(SDcx/df2["DF"])*100
-            calcLC=(SDcx/(SDcx+10))*100
-            
-            df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDcx}
-            df3=pd.DataFrame(df3,columns=["POL","DF","SD"])
-            
-            df4={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDc}
-            df4=pd.DataFrame(df4,columns=["POL","DF","SD"])
-    
-            df5={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDc2}
-            df5=pd.DataFrame(df5,columns=["POL","DF","SD"])
-    
-            df6={'POL' : df2["POL"], 'DF' : df2["DF"], 'LE': calcLE,'LC': calcLC}
-            df6=pd.DataFrame(df6,columns=["POL","DF","LE","LC"])
-            
-            custom_palette = sns.color_palette("deep")
-    
-            max_indexes = SDcx[SDcx == max(SDcx)].index.tolist()
-            
-            col1, col2 = st.columns(2)
-    
-            finalLE=round((round(max(SDcx),1)/df3.loc[SDcx.idxmax(), "DF"])*100,0)
-            finalLC=round((round(max(SDcx),1)/(df3.loc[SDcx.idxmax(), "DF"]+10))*100,0)
-    
-            with col1: 
-                st.header("Formulation report")
-                st.write("Maximum solubilized drug: "+str(round(max(SDcx),1))+" g/L at "+str(df3.loc[SDcx.idxmax(), "DF"])+" g/L drug feed (LE: "+str(finalLE)+" %, LC: "+str(finalLC)+" %)")
-                max_values = df3.groupby('POL')['SD'].max()
-                max_value = max_values.max()
-                keys_with_max_value = max_values[max_values == max_value].index.tolist()
-                comma_separated_keys = ', '.join(str(key) for key in keys_with_max_value)
-                st.write(comma_separated_keys)
-    
-                    
-            with col2:
-                st.image(im)
-    
-            st.write("Predicted amount of solubilized drug (maximum detected by both LE and LC models, see below)")
-            fig3=plt.figure(figsize=(10, 6))
-            ax=sns.barplot(x="DF", y="SD", hue="POL", data=df3)
-            plt.xlabel("Drug feed [g/L]")
-            plt.ylabel("Solubilized drug [g/L]")
-            plt.ylim(0, 10)
-            ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-            st.pyplot(fig3)
-    
-            col1, col2 = st.columns(2)
-            with col1:
-                st.write("Amount based on LE models:")
-                fig1a=plt.figure(figsize=(10, 6))
-                ax = sns.barplot(x="DF", y="SD", hue="POL", data=df4)
+                
+                if len(SMI2) > 2:
+                    SDc = ((df2["DF"])*((df2["LE"])/100))
+                    SDc2 = (((df2["LC"]/100)*(10))/(1-(df2["LC"]/100)))
+                    #SDcx = ((SDc+SDc2)/2)
+                    SDcx = pd.concat([SDc, SDc2], axis=1).min(axis=1)
+        
+                calcLE=(SDcx/df2["DF"])*100
+                calcLC=(SDcx/(SDcx+10))*100
+                
+                df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDcx}
+                df3=pd.DataFrame(df3,columns=["POL","DF","SD"])
+                
+                df4={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDc}
+                df4=pd.DataFrame(df4,columns=["POL","DF","SD"])
+        
+                df5={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDc2}
+                df5=pd.DataFrame(df5,columns=["POL","DF","SD"])
+        
+                df6={'POL' : df2["POL"], 'DF' : df2["DF"], 'LE': calcLE,'LC': calcLC}
+                df6=pd.DataFrame(df6,columns=["POL","DF","LE","LC"])
+                
+                custom_palette = sns.color_palette("deep")
+        
+                max_indexes = SDcx[SDcx == max(SDcx)].index.tolist()
+                
+                col1, col2 = st.columns(2)
+        
+                finalLE=round((round(max(SDcx),1)/df3.loc[SDcx.idxmax(), "DF"])*100,0)
+                finalLC=round((round(max(SDcx),1)/(df3.loc[SDcx.idxmax(), "DF"]+10))*100,0)
+        
+                with col1: 
+                    st.header("Formulation report")
+                    st.write("Maximum solubilized drug: "+str(round(max(SDcx),1))+" g/L at "+str(df3.loc[SDcx.idxmax(), "DF"])+" g/L drug feed (LE: "+str(finalLE)+" %, LC: "+str(finalLC)+" %)")
+                    max_values = df3.groupby('POL')['SD'].max()
+                    max_value = max_values.max()
+                    keys_with_max_value = max_values[max_values == max_value].index.tolist()
+                    comma_separated_keys = ', '.join(str(key) for key in keys_with_max_value)
+                    st.write(comma_separated_keys)
+        
+                        
+                with col2:
+                    st.image(im)
+        
+                st.write("Predicted amount of solubilized drug (maximum detected by both LE and LC models, see below)")
+                fig3=plt.figure(figsize=(10, 6))
+                ax=sns.barplot(x="DF", y="SD", hue="POL", data=df3)
                 plt.xlabel("Drug feed [g/L]")
                 plt.ylabel("Solubilized drug [g/L]")
                 plt.ylim(0, 10)
-                ax.get_legend().remove()
-                st.pyplot(fig1a)
-    
-                st.write("Calculated from LE predictions:")
-                fig1b=plt.figure(figsize=(10, 6))
-                ax = sns.barplot(x="DF", y="LE", hue="POL", data=df2)
-                plt.xlabel("Drug feed [g/L]")
-                plt.ylabel("Ligand efficiency [%]")
-                plt.ylim(0, 100)
-                ax.get_legend().remove()
-                st.pyplot(fig1b)
-            
-            
-            with col2:
-                st.write("Amount based on LC models:")
-                fig2a=plt.figure(figsize=(10, 6))
-                ax = sns.barplot(x="DF", y="SD", hue="POL", data=df5)
-                plt.xlabel("Drug feed [g/L]")
-                plt.ylabel("Solubilized drug [g/L]")
-                plt.ylim(0, 10)
-                ax.get_legend().remove()
-                st.pyplot(fig2a)
-    
-                st.write("Calculated from LC predictions:")
-                fig2b=plt.figure(figsize=(10, 6))
-                ax = sns.barplot(x="DF", y="LC", hue="POL", data=df2)
-                plt.xlabel("Drug feed [g/L]")
-                plt.ylabel("Loading capacity [%]")
-                plt.ylim(0, 50)
-                ax.get_legend().remove()
-                st.pyplot(fig2b)
-    
-            st.write("Table of predictions for all classification models:")
-            df = pd.read_csv(r'fin_results.csv',index_col=0)
-            df = df.rename(columns={0: "POL", 1: "DF", 2: "LC10", 3: "LC20", 4: "LC30", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE80", 10:"Passed"})
-            df.reset_index(inplace=True)
-            st.dataframe(df.style.applymap(cooling_highlight,subset=['Passed']))    
-    if on3:
-        file_path = 'options.csv'
-        with open(file_path, 'w') as file:
-            for item in options:
-                file.write(str(item) + '\n')
-
-        NAMESx=NAMESx.split('\n')
-        SMILESx=SMILESx.split('\n')
-
-        NAMES.extend(NAMESx)
-        SMILES.extend(SMILESx)
+                ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+                st.pyplot(fig3)
         
-        try:
-            os.remove("descriptors.csv")
-        except:
-            pass
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.write("Amount based on LE models:")
+                    fig1a=plt.figure(figsize=(10, 6))
+                    ax = sns.barplot(x="DF", y="SD", hue="POL", data=df4)
+                    plt.xlabel("Drug feed [g/L]")
+                    plt.ylabel("Solubilized drug [g/L]")
+                    plt.ylim(0, 10)
+                    ax.get_legend().remove()
+                    st.pyplot(fig1a)
         
-        with st.spinner('CALCULATING DESCRIPTORS (STEP 1 OF 4)...'):
-            
-            for molecule in range(0,len(SMILES)):            
-                            
-                mol = standardize(SMILES[molecule])
-                AllChem.EmbedMolecule(mol,useRandomCoords=True)
-                AllChem.MMFFOptimizeMolecule(mol, "MMFF94s", maxIters=5000)
-                rdkitfp = fingerprint_rdk7(mol)
-                rdkitfp2 = fingerprint_rdk5(mol)
+                    st.write("Calculated from LE predictions:")
+                    fig1b=plt.figure(figsize=(10, 6))
+                    ax = sns.barplot(x="DF", y="LE", hue="POL", data=df2)
+                    plt.xlabel("Drug feed [g/L]")
+                    plt.ylabel("Ligand efficiency [%]")
+                    plt.ylim(0, 100)
+                    ax.get_legend().remove()
+                    st.pyplot(fig1b)
+                
+                
+                with col2:
+                    st.write("Amount based on LC models:")
+                    fig2a=plt.figure(figsize=(10, 6))
+                    ax = sns.barplot(x="DF", y="SD", hue="POL", data=df5)
+                    plt.xlabel("Drug feed [g/L]")
+                    plt.ylabel("Solubilized drug [g/L]")
+                    plt.ylim(0, 10)
+                    ax.get_legend().remove()
+                    st.pyplot(fig2a)
+        
+                    st.write("Calculated from LC predictions:")
+                    fig2b=plt.figure(figsize=(10, 6))
+                    ax = sns.barplot(x="DF", y="LC", hue="POL", data=df2)
+                    plt.xlabel("Drug feed [g/L]")
+                    plt.ylabel("Loading capacity [%]")
+                    plt.ylim(0, 50)
+                    ax.get_legend().remove()
+                    st.pyplot(fig2b)
+        
+                st.write("Table of predictions for all classification models:")
+                df = pd.read_csv(r'fin_results.csv',index_col=0)
+                df = df.rename(columns={0: "POL", 1: "DF", 2: "LC10", 3: "LC20", 4: "LC30", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE80", 10:"Passed"})
+                df.reset_index(inplace=True)
+                st.dataframe(df.style.applymap(cooling_highlight,subset=['Passed']))    
+        if on3:
+            file_path = 'options.csv'
+            with open(file_path, 'w') as file:
+                for item in options:
+                    file.write(str(item) + '\n')
     
-                if molecule == 0:
+            NAMESx=NAMESx.split('\n')
+            SMILESx=SMILESx.split('\n')
+    
+            NAMES.extend(NAMESx)
+            SMILES.extend(SMILESx)
+            
+            try:
+                os.remove("descriptors.csv")
+            except:
+                pass
+            
+            with st.spinner('CALCULATING DESCRIPTORS (STEP 1 OF 4)...'):
+                
+                for molecule in range(0,len(SMILES)):            
+                                
+                    mol = standardize(SMILES[molecule])
+                    AllChem.EmbedMolecule(mol,useRandomCoords=True)
+                    AllChem.MMFFOptimizeMolecule(mol, "MMFF94s", maxIters=5000)
+                    rdkitfp = fingerprint_rdk7(mol)
+                    rdkitfp2 = fingerprint_rdk5(mol)
+        
+                    if molecule == 0:
+                        with open("descriptors.csv","a") as f:
+                            for o in range(0,len(rdkitfp)):
+                                f.write("rdk7_"+str(o)+"\t")
+                            for o in range(0,len(rdkitfp2)):
+                                f.write("rdk5_"+str(o)+"\t")
+                            for o in calc(mol).asdict().keys():
+                                f.write(str(o)+"\t")
+                            f.write("\n")
+        
                     with open("descriptors.csv","a") as f:
                         for o in range(0,len(rdkitfp)):
-                            f.write("rdk7_"+str(o)+"\t")
+                            f.write(str(rdkitfp[o])+"\t")
                         for o in range(0,len(rdkitfp2)):
-                            f.write("rdk5_"+str(o)+"\t")
-                        for o in calc(mol).asdict().keys():
-                            f.write(str(o)+"\t")
+                            f.write(str(rdkitfp2[o])+"\t")
+                        for o in calc(mol).asdict().values():
+                            f.write(str(o)+"\t")                
                         f.write("\n")
-    
-                with open("descriptors.csv","a") as f:
-                    for o in range(0,len(rdkitfp)):
-                        f.write(str(rdkitfp[o])+"\t")
-                    for o in range(0,len(rdkitfp2)):
-                        f.write(str(rdkitfp2[o])+"\t")
-                    for o in calc(mol).asdict().values():
-                        f.write(str(o)+"\t")                
-                    f.write("\n")
+                    
+                    mj = Chem.Descriptors.ExactMolWt(mol)
+                    MW.append(mj)
+              
+                dfx = pd.DataFrame(columns=['NAME', "SMILES","MW"])
+                dfx["NAME"]=NAMES
+                dfx["SMILES"]=SMILES
+                dfx["MW"]=MW
                 
-                mj = Chem.Descriptors.ExactMolWt(mol)
-                MW.append(mj)
-          
-            dfx = pd.DataFrame(columns=['NAME', "SMILES","MW"])
-            dfx["NAME"]=NAMES
-            dfx["SMILES"]=SMILES
-            dfx["MW"]=MW
-            
-            dfx.to_csv("db_test.csv",index=False)
+                dfx.to_csv("db_test.csv",index=False)
+                                       
+            with st.spinner('CREATING FORMULATION DATABASE (STEP 2 OF 4)...'):
+                process1 = subprocess.Popen(["Rscript", "cxdb2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                result1 = process1.communicate()
+        
+            with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
+                if choosemodel == 'RDK7-RF (around 1 min)':
+                    process2 = subprocess.Popen(["Rscript", "create.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    result2 = process2.communicate()
+                if choosemodel == 'Final models (around 7 min)':
+                    process2 = subprocess.Popen(["Rscript", "create2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    result2 = process2.communicate()
                                    
-        with st.spinner('CREATING FORMULATION DATABASE (STEP 2 OF 4)...'):
-            process1 = subprocess.Popen(["Rscript", "cxdb2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-            result1 = process1.communicate()
-    
-        with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
-            if choosemodel == 'RDK7-RF (around 1 minute)':
-                process2 = subprocess.Popen(["Rscript", "create.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                result2 = process2.communicate()
-            if choosemodel == 'Final models (around 7 minutes)':
-                process2 = subprocess.Popen(["Rscript", "create2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                result2 = process2.communicate()
-                               
-        with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
-            if choosemodel == 'RDK7-RF (around 1 minute)':
-                process3 = subprocess.Popen(["Rscript", "fgv3.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                result3 = process3.communicate()
-            if choosemodel == 'Final models (around 7 minutes)':
-                process3 = subprocess.Popen(["Rscript", "fgv4.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                result3 = process3.communicate()
-            
-            df = pd.read_csv(r'fin_results.csv',index_col=0)
-            df = df.rename(columns={0: "POL", 1: "DRUG", 2:"DF", 3: "LC10", 4: "LC20", 5: "LC30", 6: "LC40", 7: "LE20", 8: "LE40", 9: "LE60", 10: "LE80", 11:"Passed"})
-            df.reset_index(inplace=True)
-            st.dataframe(df.style.applymap(cooling_highlight,subset=['Passed']))    
-#    except:
-#        st.write("Something went wrong. Cannot parse molecules! Please verify your structures.")  
+            with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
+                if choosemodel == 'RDK7-RF (around 1 min)':
+                    process3 = subprocess.Popen(["Rscript", "fgv3.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    result3 = process3.communicate()
+                if choosemodel == 'Final models (around 7 min)':
+                    process3 = subprocess.Popen(["Rscript", "fgv4.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    result3 = process3.communicate()
+                
+                df = pd.read_csv(r'fin_results.csv',index_col=0)
+                df = df.rename(columns={0: "POL", 1: "DRUG", 2:"DF", 3: "LC10", 4: "LC20", 5: "LC30", 6: "LC40", 7: "LE20", 8: "LE40", 9: "LE60", 10: "LE80", 11:"Passed"})
+                df.reset_index(inplace=True)
+                st.dataframe(df.style.applymap(cooling_highlight,subset=['Passed']))    
+    except:
+        st.write("Something went wrong. Cannot parse molecules! Please verify your structures.")  
