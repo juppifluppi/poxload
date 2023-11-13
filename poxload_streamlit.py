@@ -68,8 +68,10 @@ if submit_button:
         tune_DF=str("sed -i -e 's/XXXX/"+str(numberSD2)+"/g' cxdb.R")
         os.system(tune_DF)
 
-    comma_separated = ', '.join(map(str, options))
-    tune_DF=str("sed -i -e 's/FGFG/"+str(comma_separated)+"/g' cxdb.R")
+    
+    # Enclose each element in single quotes and join them with commas
+    formatted_list = ', '.join(f"'{item}'" for item in options)
+    tune_DF=str("sed -i -e 's/FGFG/"+str(formatted_list)+"/g' cxdb.R")
     os.system(tune_DF)
     
     NAMES.append("COMPOUND")
