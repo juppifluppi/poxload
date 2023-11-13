@@ -122,7 +122,7 @@ if submit_button:
                                
     with st.spinner('CREATING FORMULATION DATABASE (STEP 2 OF 4)...'):
         process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        result1 = process1.communicate()
+        st.write(process1.communicate())
 
     with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):        
         process2 = subprocess.Popen(["Rscript", "create.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
