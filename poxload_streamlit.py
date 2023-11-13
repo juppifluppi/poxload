@@ -60,19 +60,21 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
 
     SMI = st.text_input('Enter [SMILES code](https://pubchem.ncbi.nlm.nih.gov/edit3/index.html) of drug to load', 'COc2cc(/C=C/C(=O)/C=C(O)/C=C/c1ccc(O)c(OC)c1)ccc2O') 
 
-    agree = st.checkbox('Use drawer')
-    if agree:
-            SMI = st_ketcher(SMI)
-
     with st.expander("SMILES editor"):
         drawer = st_ketcher()
-    on = st.toggle('Use drawer')
+    on = st.toggle('Use drawn structure')
     if on:
         SMI=drawer
     
     col1, col2 = st.columns(2)
     with col1:
         SMI2 = st.text_input('Add potential co-formulated drug:', '')
+        
+        with st.expander("SMILES editor"):
+            drawer2 = st_ketcher()
+        on2 = st.toggle('Use drawn structure')
+        if on:
+            SMI2=drawer2
     with col2:
         numberSD2 = st.number_input('Drug feed of co-formulated drug',min_value=0, max_value=12, value="min", step=2)
 
