@@ -11,6 +11,7 @@ import seaborn as sns
 import sys, os
 import matplotlib.pyplot as plt
 import streamlit as st
+from streamlit_ketcher import st_ketcher
 import time
 import subprocess
 from PIL import Image
@@ -57,6 +58,8 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
  and drug feeds of 2-10 g/L. The software is hosted at our [github page](https://github.com/juppifluppi/poxload).""")
     
     SMI = st.text_input('Enter [SMILES code](https://pubchem.ncbi.nlm.nih.gov/edit3/index.html) of drug to load', 'COc2cc(/C=C/C(=O)/C=C(O)/C=C/c1ccc(O)c(OC)c1)ccc2O') 
+    with st.expander("Draw"):
+        SMI = st_ketcher(SMI)
     col1, col2 = st.columns(2)
     with col1:
         SMI2 = st.text_input('Add potential co-formulated drug:', '')
