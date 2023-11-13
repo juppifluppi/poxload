@@ -247,9 +247,14 @@ if submit_button:
         plt.ylim(0, 10)
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 
+        
+        # Manually adjusting the x-axis positions for line plots
+        x_positions = np.linspace(0, len(df3["DF"].unique()) - 1, len(df3["DF"].unique()))
+
+
         # Add scatter lines on the right side
         ax2 = ax.twinx()
-        sns.lineplot(x="DF", y="LE", hue="POL", data=df6, ax=ax2,position=0.5)
+        sns.lineplot(x=x_positions, y="LE", hue="POL", data=df6, ax=ax2,style="--")
         #sns.scatterplot(x="DF", y="SD", hue="POL", data=df5, ax=ax2, marker='x', s=10)
         ax2.set_ylabel("LE [%]")
         ax2.legend().set_visible(False)
