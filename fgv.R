@@ -1,15 +1,30 @@
+#05
+thr05_1=12.713983
+thr05_2=12.540893
+thr05_3=10.051199
+thr05_4=6.991115
+thr05_5=13.183467
+thr05_6=11.724952
+thr05_7=11.724952
+thr05_8=11.724952
+#1
+thr1_1=16.439715
+thr1_2=16.183039
+thr1_3=13.146608
+thr1_4=9.215794
+thr1_5=17.161885
+thr1_6=15.094306
+thr1_7=15.094306
+thr1_8=15.094306
 #2
-thr1_3=9999999
-thr2_3=9999999
-thr3_3=9999999
-thr35_3=9999999
-thr4_3=9999999
-thr5_3=9999999
-thr6_3=9999999
-thr7_3=9999999
-thr75_3=999999
-thr8_3=9999999
-gzy=99
+thr2_1=23.89118
+thr2_2=23.46733
+thr2_3=19.33742
+thr2_4=13.66515
+thr2_5=25.11872
+thr2_6=21.83301
+thr2_7=21.83301
+thr2_8=21.83301
 
 library("caret")
 library("randomForest")
@@ -37,242 +52,231 @@ m8=model
 
 af=read.csv("testformulations.dat",check.names = F)
 afx=af
-#uix=read.csv("startdatayyyxmod_rdk2.dat",check.names = F)
 
-#ui=m1$trainingData[-1]
-#afx2=afx[,colnames(afx)%in%colnames(ui)]
-#Missing <- setdiff(colnames(ui), colnames(afx2))
-#afx2[Missing] <- 0
-#afx2 <- afx2[colnames(ui)]
-#is.na(afx2)<-sapply(afx2, is.infinite)
-#afx2[is.na(afx2)]<-0
-#
-#preproc <- preProcess(ui, method=c("center","scale"))
-#uix <- predict(preproc, newdata = ui)
-#z1=c()
-#for(huh in 1:nrow(afx2)){
-#  scaled.new <- predict(preproc, newdata = afx2[huh,])
-#  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
-#  aggg=abs(sort(aggg)[1:14])
-#  aggg=mean(aggg,na.rm=T)
-#  z1=append(z1,aggg)
-#}
+ui=m1$trainingData[-1]
+afx2=afx[,colnames(afx)%in%colnames(ui)]
+Missing <- setdiff(colnames(ui), colnames(afx2))
+afx2[Missing] <- 0
+afx2 <- afx2[colnames(ui)]
+is.na(afx2)<-sapply(afx2, is.infinite)
+afx2[is.na(afx2)]<-0
+
+preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+uix <- predict(preproc, newdata = ui)
+z1=c()
+for(huh in 1:nrow(afx2)){
+  scaled.new <- predict(preproc, newdata = afx2[huh,])
+  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
+  aggg=abs(sort(aggg)[1:15])
+  aggg=mean(aggg,na.rm=T)
+  z1=append(z1,aggg)
+}
 
 al=unique(af$POL)
 a=af$POL
 ld=af$DF
-#print(a)
+
 a=as.data.frame(a)
 a=cbind(a,ld)
 
 b=as.character(unlist(predict(m1,newdata=afx)))
-#gzy=as.numeric(unlist(as.vector(z1)))
-#gzy=gzy<thr1_3
-#b[gzy==FALSE]="AD"
+gzy=as.numeric(unlist(as.vector(z1)))
+gzy=gzy<thr1_1
+b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
 
 
-#ui=m2$trainingData[-1]
-#afx2=afx[,colnames(afx)%in%colnames(ui)]
-#Missing <- setdiff(colnames(ui), colnames(afx2))
-#afx2[Missing] <- 0
-#afx2 <- afx2[colnames(ui)]
-#is.na(afx2)<-sapply(afx2, is.infinite)
-#afx2[is.na(afx2)]<-0
-#
-#preproc <- preProcess(ui, method=c("center","scale"))
-#uix <- predict(preproc, newdata = ui)
-#z1=c()
-#for(huh in 1:nrow(afx2)){
-#  scaled.new <- predict(preproc, newdata = afx2[huh,])
-#  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
-#  aggg=abs(sort(aggg)[1:14])
-#  aggg=mean(aggg,na.rm=T)
-#  z1=append(z1,aggg)
-#}
+ui=m2$trainingData[-1]
+afx2=afx[,colnames(afx)%in%colnames(ui)]
+Missing <- setdiff(colnames(ui), colnames(afx2))
+afx2[Missing] <- 0
+afx2 <- afx2[colnames(ui)]
+is.na(afx2)<-sapply(afx2, is.infinite)
+afx2[is.na(afx2)]<-0
+
+preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+uix <- predict(preproc, newdata = ui)
+z1=c()
+for(huh in 1:nrow(afx2)){
+  scaled.new <- predict(preproc, newdata = afx2[huh,])
+  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
+  aggg=abs(sort(aggg)[1:15])
+  aggg=mean(aggg,na.rm=T)
+  z1=append(z1,aggg)
+}
 
 b=as.character(unlist(predict(m2,newdata=afx)))
-#gzy=as.numeric(unlist(as.vector(z1)))
-#gzy=gzy<thr2_3
-#b[gzy==FALSE]="AD"
+gzy=as.numeric(unlist(as.vector(z1)))
+gzy=gzy<thr1_2
+b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
 
 
 
 
-#ui=m3$trainingData[-1]
-#afx2=afx[,colnames(afx)%in%colnames(ui)]
-#Missing <- setdiff(colnames(ui), colnames(afx2))
-#afx2[Missing] <- 0
-#afx2 <- afx2[colnames(ui)]
-#is.na(afx2)<-sapply(afx2, is.infinite)
-#afx2[is.na(afx2)]<-0
-#
-#preproc <- preProcess(ui, method=c("center","scale"))
-#uix <- predict(preproc, newdata = ui)
-#z1=c()
-#for(huh in 1:nrow(afx2)){
-#  scaled.new <- predict(preproc, newdata = afx2[huh,])
-#  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
-#  aggg=abs(sort(aggg)[1:14])
-#  aggg=mean(aggg,na.rm=T)
-#  z1=append(z1,aggg)
-#}
-#
+ui=m3$trainingData[-1]
+afx2=afx[,colnames(afx)%in%colnames(ui)]
+Missing <- setdiff(colnames(ui), colnames(afx2))
+afx2[Missing] <- 0
+afx2 <- afx2[colnames(ui)]
+is.na(afx2)<-sapply(afx2, is.infinite)
+afx2[is.na(afx2)]<-0
+
+preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+uix <- predict(preproc, newdata = ui)
+z1=c()
+for(huh in 1:nrow(afx2)){
+  scaled.new <- predict(preproc, newdata = afx2[huh,])
+  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
+  aggg=abs(sort(aggg)[1:15])
+  aggg=mean(aggg,na.rm=T)
+  z1=append(z1,aggg)
+}
+
 b=as.character(unlist(predict(m3,newdata=afx)))
-#gzy=as.numeric(unlist(as.vector(z1)))
-#gzy=gzy<thr3_3
-#b[gzy==FALSE]="AD"
+gzy=as.numeric(unlist(as.vector(z1)))
+gzy=gzy<thr1_3
+b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
 
 
-#ui=m4$trainingData[-1]
-#afx2=afx[,colnames(afx)%in%colnames(ui)]
-#Missing <- setdiff(colnames(ui), colnames(afx2))
-#afx2[Missing] <- 0
-#afx2 <- afx2[colnames(ui)]
-#is.na(afx2)<-sapply(afx2, is.infinite)
-#afx2[is.na(afx2)]<-0
-#
-#preproc <- preProcess(ui, method=c("center","scale"))
-#uix <- predict(preproc, newdata = ui)
-#z1=c()
-#for(huh in 1:nrow(afx2)){
-#  scaled.new <- predict(preproc, newdata = afx2[huh,])
-#  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
-#  aggg=abs(sort(aggg)[1:14])
-#  aggg=mean(aggg,na.rm=T)
-#  z1=append(z1,aggg)
-#}
-#
+ui=m4$trainingData[-1]
+afx2=afx[,colnames(afx)%in%colnames(ui)]
+Missing <- setdiff(colnames(ui), colnames(afx2))
+afx2[Missing] <- 0
+afx2 <- afx2[colnames(ui)]
+is.na(afx2)<-sapply(afx2, is.infinite)
+afx2[is.na(afx2)]<-0
+
+preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+uix <- predict(preproc, newdata = ui)
+z1=c()
+for(huh in 1:nrow(afx2)){
+  scaled.new <- predict(preproc, newdata = afx2[huh,])
+  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
+  aggg=abs(sort(aggg)[1:15])
+  aggg=mean(aggg,na.rm=T)
+  z1=append(z1,aggg)
+}
 
 b=as.character(unlist(predict(m4,newdata=afx)))
-#gzy=as.numeric(unlist(as.vector(z1)))
-#gzy=gzy<thr4_3
-#b[gzy==FALSE]="AD"
+gzy=as.numeric(unlist(as.vector(z1)))
+gzy=gzy<thr1_4
+b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
 
-#ui=m5$trainingData[-1]
-#afx2=afx[,colnames(afx)%in%colnames(ui)]
-#Missing <- setdiff(colnames(ui), colnames(afx2))
-#afx2[Missing] <- 0
-#afx2 <- afx2[colnames(ui)]
-#is.na(afx2)<-sapply(afx2, is.infinite)
-#afx2[is.na(afx2)]<-0
-#
-#preproc <- preProcess(ui, method=c("center","scale"))
-#uix <- predict(preproc, newdata = ui)
-#z1=c()
-#for(huh in 1:nrow(afx2)){
-#  scaled.new <- predict(preproc, newdata = afx2[huh,])
-#  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
-#  aggg=abs(sort(aggg)[1:14])
-#  aggg=mean(aggg,na.rm=T)
-#  z1=append(z1,aggg)
-#}
+ui=m5$trainingData[-1]
+afx2=afx[,colnames(afx)%in%colnames(ui)]
+Missing <- setdiff(colnames(ui), colnames(afx2))
+afx2[Missing] <- 0
+afx2 <- afx2[colnames(ui)]
+is.na(afx2)<-sapply(afx2, is.infinite)
+afx2[is.na(afx2)]<-0
+
+preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+uix <- predict(preproc, newdata = ui)
+z1=c()
+for(huh in 1:nrow(afx2)){
+  scaled.new <- predict(preproc, newdata = afx2[huh,])
+  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
+  aggg=abs(sort(aggg)[1:15])
+  aggg=mean(aggg,na.rm=T)
+  z1=append(z1,aggg)
+}
 
 b=as.character(unlist(predict(m5,newdata=afx)))
-#gzy=as.numeric(unlist(as.vector(z1)))
-#gzy=gzy<thr5_3
-#b[gzy==FALSE]="AD"
+gzy=as.numeric(unlist(as.vector(z1)))
+gzy=gzy<thr1_5
+b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
 
 
-#ui=m6$trainingData[-1]
-#afx2=afx[,colnames(afx)%in%colnames(ui)]
-#Missing <- setdiff(colnames(ui), colnames(afx2))
-#afx2[Missing] <- 0
-#afx2 <- afx2[colnames(ui)]
-#is.na(afx2)<-sapply(afx2, is.infinite)
-#afx2[is.na(afx2)]<-0
-#
-#preproc <- preProcess(ui, method=c("center","scale"))
-#uix <- predict(preproc, newdata = ui)
-#z1=c()
-#for(huh in 1:nrow(afx2)){
-#  scaled.new <- predict(preproc, newdata = afx2[huh,])
-#  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
-#  aggg=abs(sort(aggg)[1:14])
-#  aggg=mean(aggg,na.rm=T)
-#  z1=append(z1,aggg)
-#}
+ui=m6$trainingData[-1]
+afx2=afx[,colnames(afx)%in%colnames(ui)]
+Missing <- setdiff(colnames(ui), colnames(afx2))
+afx2[Missing] <- 0
+afx2 <- afx2[colnames(ui)]
+is.na(afx2)<-sapply(afx2, is.infinite)
+afx2[is.na(afx2)]<-0
+
+preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+uix <- predict(preproc, newdata = ui)
+z1=c()
+for(huh in 1:nrow(afx2)){
+  scaled.new <- predict(preproc, newdata = afx2[huh,])
+  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
+  aggg=abs(sort(aggg)[1:15])
+  aggg=mean(aggg,na.rm=T)
+  z1=append(z1,aggg)
+}
 
 
 b=as.character(unlist(predict(m6,newdata=afx)))
-#gzy=as.numeric(unlist(as.vector(z1)))
-#gzy=gzy<thr6_3
-#b[gzy==FALSE]="AD"
+gzy=as.numeric(unlist(as.vector(z1)))
+gzy=gzy<thr1_6
+b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
-#preproc <- preProcess(ui, method=c("center","scale"))
-#uix <- predict(preproc, newdata = ui)
-#z1=c()
-#for(huh in 1:nrow(afx2)){
-#  scaled.new <- predict(preproc, newdata = afx2[huh,])
-#  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
-#  aggg=abs(sort(aggg)[1:14])
-#  aggg=mean(aggg,na.rm=T)
-#  z1=append(z1,aggg)
-#}
 
 
-#ui=m7$trainingData[-1]
-#afx2=afx[,colnames(afx)%in%colnames(ui)]
-#Missing <- setdiff(colnames(ui), colnames(afx2))
-#afx2[Missing] <- 0
-#afx2 <- afx2[colnames(ui)]
-#is.na(afx2)<-sapply(afx2, is.infinite)
-#afx2[is.na(afx2)]<-0
 
-#preproc <- preProcess(ui, method=c("center","scale"))
-#uix <- predict(preproc, newdata = ui)
-#z1=c()
-#for(huh in 1:nrow(afx2)){
-#  scaled.new <- predict(preproc, newdata = afx2[huh,])
-#  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
-#  aggg=abs(sort(aggg)[1:14])
-#  aggg=mean(aggg,na.rm=T)
-#  z1=append(z1,aggg)
-#}
+ui=m7$trainingData[-1]
+afx2=afx[,colnames(afx)%in%colnames(ui)]
+Missing <- setdiff(colnames(ui), colnames(afx2))
+afx2[Missing] <- 0
+afx2 <- afx2[colnames(ui)]
+is.na(afx2)<-sapply(afx2, is.infinite)
+afx2[is.na(afx2)]<-0
+
+preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+uix <- predict(preproc, newdata = ui)
+z1=c()
+for(huh in 1:nrow(afx2)){
+  scaled.new <- predict(preproc, newdata = afx2[huh,])
+  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
+  aggg=abs(sort(aggg)[1:15])
+  aggg=mean(aggg,na.rm=T)
+  z1=append(z1,aggg)
+}
 
 b=as.character(unlist(predict(m7,newdata=afx)))
-#gzy=as.numeric(unlist(as.vector(z1)))
-#gzy=gzy<thr7_3
-#b[gzy==FALSE]="AD"
+gzy=as.numeric(unlist(as.vector(z1)))
+gzy=gzy<thr1_7
+b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
 
-#ui=m8$trainingData[-1]
-#afx2=afx[,colnames(afx)%in%colnames(ui)]
-#Missing <- setdiff(colnames(ui), colnames(afx2))
-#afx2[Missing] <- 0
-#afx2 <- afx2[colnames(ui)]
-#is.na(afx2)<-sapply(afx2, is.infinite)
-#afx2[is.na(afx2)]<-0
+ui=m8$trainingData[-1]
+afx2=afx[,colnames(afx)%in%colnames(ui)]
+Missing <- setdiff(colnames(ui), colnames(afx2))
+afx2[Missing] <- 0
+afx2 <- afx2[colnames(ui)]
+is.na(afx2)<-sapply(afx2, is.infinite)
+afx2[is.na(afx2)]<-0
 
-#preproc <- preProcess(ui, method=c("center","scale"))
-#uix <- predict(preproc, newdata = ui)
-#z1=c()
-#for(huh in 1:nrow(afx2)){
-#  scaled.new <- predict(preproc, newdata = afx2[huh,])
-#  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
-#  aggg=abs(sort(aggg)[1:14])
-#  aggg=mean(aggg,na.rm=T)
-#  z1=append(z1,aggg)
-#}
+preproc <- preProcess(ui, method=c("center","scale","YeoJohnson"))
+uix <- predict(preproc, newdata = ui)
+z1=c()
+for(huh in 1:nrow(afx2)){
+  scaled.new <- predict(preproc, newdata = afx2[huh,])
+  aggg=as.matrix(dist(rbind(scaled.new,uix)))[1,-1]
+  aggg=abs(sort(aggg)[1:15])
+  aggg=mean(aggg,na.rm=T)
+  z1=append(z1,aggg)
+}
 
 b=as.character(unlist(predict(m8,newdata=afx)))
-#gzy=as.numeric(unlist(as.vector(z1)))
-#gzy=gzy<thr8_3
-#b[gzy==FALSE]="AD"
+gzy=as.numeric(unlist(as.vector(z1)))
+gzy=gzy<thr1_8
+b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
-ck=t(apply(a, 1, function(u) table(factor(u, levels=c("X1","X0")))))
+ck=t(apply(a, 1, function(u) table(factor(u, levels=c("X1","X0","AD")))))
 a=cbind(a,ck[,1])
 
          
@@ -282,20 +286,28 @@ write.csv(a,"fin_results.csv",row.names=F)
          
 a[a[,3]=="X0",3]=0
 a[a[,3]=="X1",3]=20
+a[a[,3]=="AD",3]=0
 a[a[,4]=="X0",4]=0
 a[a[,4]=="X1",4]=30
+a[a[,4]=="AD",4]=0
 a[a[,5]=="X0",5]=0
 a[a[,5]=="X1",5]=40
+a[a[,5]=="AD",5]=0
 a[a[,6]=="X0",6]=0
 a[a[,6]=="X1",6]=50
+a[a[,6]=="AD",6]=0
 a[a[,7]=="X0",7]=0
 a[a[,7]=="X1",7]=20
+a[a[,7]=="AD",7]=0
 a[a[,8]=="X0",8]=0
 a[a[,8]=="X1",8]=40
+a[a[,8]=="AD",8]=0
 a[a[,9]=="X0",9]=0
 a[a[,9]=="X1",9]=80
+a[a[,9]=="AD",9]=0           
 a[a[,10]=="X0",10]=0
 a[a[,10]=="X1",10]=100
+a[a[,10]=="AD",10]=0           
            
 fg1=as.matrix(a[,c(3:6)])
 fg2=as.matrix(a[,c(7:10)])
