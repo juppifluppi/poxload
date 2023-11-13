@@ -93,7 +93,7 @@ smallest_distances <- numeric(nrow(uix))
 
 # Extract the smallest 15 distances for each data point
 for (i in 1:nrow(uix)) {
-  aggg <- abs(sort(distances[i, ])[1:15])
+  aggg <- abs(sort(as.matrix(distances[i, ]))[1:15])
   smallest_distances[i] <- mean(aggg, na.rm = TRUE)
 }
 
@@ -173,7 +173,7 @@ smallest_distances <- numeric(nrow(uix))
 
 # Extract the smallest 15 distances for each data point
 for (i in 1:nrow(uix)) {
-  aggg <- abs(sort(distances[i, ])[1:15])
+  aggg <- abs(sort(as.matrix(distances[i, ]))[1:15])
   smallest_distances[i] <- mean(aggg, na.rm = TRUE)
 }
 
@@ -244,7 +244,7 @@ smallest_distances <- numeric(nrow(uix))
 
 # Extract the smallest 15 distances for each data point
 for (i in 1:nrow(uix)) {
-  aggg <- abs(sort(distances[i, ])[1:15])
+  aggg <- abs(sort(as.matrix(distances[i, ]))[1:15])
   smallest_distances[i] <- mean(aggg, na.rm = TRUE)
 }
 
@@ -313,7 +313,7 @@ smallest_distances <- numeric(nrow(uix))
 
 # Extract the smallest 15 distances for each data point
 for (i in 1:nrow(uix)) {
-  aggg <- abs(sort(distances[i, ])[1:15])
+  aggg <- abs(sort(as.matrix(distances[i, ]))[1:15])
   smallest_distances[i] <- mean(aggg, na.rm = TRUE)
 }
 
@@ -380,7 +380,7 @@ smallest_distances <- numeric(nrow(uix))
 
 # Extract the smallest 15 distances for each data point
 for (i in 1:nrow(uix)) {
-  aggg <- abs(sort(distances[i, ])[1:15])
+  aggg <- abs(sort(as.matrix(distances[i, ]))[1:15])
   smallest_distances[i] <- mean(aggg, na.rm = TRUE)
 }
 
@@ -449,7 +449,7 @@ smallest_distances <- numeric(nrow(uix))
 
 # Extract the smallest 15 distances for each data point
 for (i in 1:nrow(uix)) {
-  aggg <- abs(sort(distances[i, ])[1:15])
+  aggg <- abs(sort(as.matrix(distances[i, ]))[1:15])
   smallest_distances[i] <- mean(aggg, na.rm = TRUE)
 }
 
@@ -518,7 +518,7 @@ smallest_distances <- numeric(nrow(uix))
 
 # Extract the smallest 15 distances for each data point
 for (i in 1:nrow(uix)) {
-  aggg <- abs(sort(distances[i, ])[1:15])
+  aggg <- abs(sort(as.matrix(distances[i, ]))[1:15])
   smallest_distances[i] <- mean(aggg, na.rm = TRUE)
 }
 
@@ -586,7 +586,7 @@ smallest_distances <- numeric(nrow(uix))
 
 # Extract the smallest 15 distances for each data point
 for (i in 1:nrow(uix)) {
-  aggg <- abs(sort(distances[i, ])[1:15])
+  aggg <- abs(sort(as.matrix(distances[i, ]))[1:15])
   smallest_distances[i] <- mean(aggg, na.rm = TRUE)
 }
 
