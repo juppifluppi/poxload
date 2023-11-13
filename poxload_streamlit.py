@@ -54,12 +54,14 @@ with st.form(key='my_form_to_submit'):
         SMI2 = st.text_input('Add potential co-formulated drug:', '')
     with col2:
         numberSD2 = st.number_input('Drug feed of co-formulated drug',min_value=0, max_value=12, value="min", step=2)
-    submit_button = st.form_submit_button(label='Submit')
 
-options = st.multiselect(
-    'Polymers to calculate loading for',
-    ['A-nBuOx-A','A-nPrOzi-A','A-nPrOx-A'],
-    ['A-nBuOx-A','A-nPrOzi-A'])
+    
+    options = st.multiselect(
+        'Polymers to calculate loading for',
+        ['A-nPrOx-A','A-nPrOzi-A','A-nBuOx-A','A-nBuOzi-A'],
+        ["A-cPrOx-A","A-cPrOzi-A","A-nPrOx-A","A-nPrOzi-A","A-iPrOx-A","A-iPrOzi-A","A-cPrMeOx-A","A-cPrMeOzi-A","A-nBuOx-A","A-nBuOzi-A","A-iBuOx-A","A-iBuOzi-A","A-sBuOx-A","A-sBuOzi-A","A-PentOx-A","A*-nPrOzi-A*","A*-nBuOx-A*","A-BzOx-A","A-BzOzi-A","A-PhOx-A","A-PhOzi-A","A-EtHepOx-A","A-EtHepOzi-A","A-nNonOx-A","A-nNonOzi-A"])
+
+    submit_button = st.form_submit_button(label='Submit')
 
 if submit_button:   
     if len(SMI2) > 2:
