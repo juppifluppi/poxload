@@ -89,7 +89,7 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
 
 
     choosemodel = st.selectbox('Models to use:',
-                         ('Final models','RDK7-RF (faster)'))
+                         ('Final models (around 7 minutes)','RDK7-RF (around 1 minute)'))
 
     
     on3 = st.toggle('Perform batch calculation',key="16")    
@@ -358,18 +358,18 @@ if submit_button:
                 result1 = process1.communicate()
         
             with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
-                if choosemodel == 'RDK7-RF (faster)':
+                if choosemodel == 'RDK7-RF (around 1 minute)':
                     process2 = subprocess.Popen(["Rscript", "create.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result2 = process2.communicate()
-                if choosemodel == 'Final models':
+                if choosemodel == 'Final models (around 7 minutes)':
                     process2 = subprocess.Popen(["Rscript", "create2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result2 = process2.communicate()
                                    
             with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
-                if choosemodel == 'RDK7-RF (faster)':
+                if choosemodel == 'RDK7-RF (around 1 minute)':
                     process3 = subprocess.Popen(["Rscript", "fgv3.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result3 = process3.communicate()
-                if choosemodel == 'Final models':
+                if choosemodel == 'Final models (around 7 minutes)':
                     process3 = subprocess.Popen(["Rscript", "fgv4.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result3 = process3.communicate()
                 
