@@ -61,6 +61,10 @@ with st.form(key='my_form_to_submit'):
         options=["A-cPrOx-A","A-cPrOzi-A","A-nPrOx-A","A-nPrOzi-A","A-iPrOx-A","A-iPrOzi-A","A-cPrMeOx-A","A-cPrMeOzi-A","A-nBuOx-A","A-nBuOzi-A","A-iBuOx-A","A-iBuOzi-A","A-sBuOx-A","A-sBuOzi-A","A-PentOx-A","A*-nPrOzi-A*","A*-nBuOx-A*","A-BzOx-A","A-BzOzi-A","A-PhOx-A","A-PhOzi-A","A-EtHepOx-A","A-EtHepOzi-A","A-nNonOx-A","A-nNonOzi-A"],
         default=["A-nPrOx-A","A-nPrOzi-A","A-nBuOx-A","A-nBuOzi-A"])
 
+
+    choosemodel = st.selectbox('Models to use:',
+                         ('RDK7-RF','Best'))
+    
     submit_button = st.form_submit_button(label='Submit')
 
 if submit_button:   
@@ -136,9 +140,13 @@ if submit_button:
         result2 = process2.communicate()
                            
     with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
-        process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        result3 = process3.communicate()
-
+        if choosemodel == 'RDK7-RF':
+            process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            result3 = process3.communicate()
+        if choosemodel == 'Best':
+            process3 = subprocess.Popen(["Rscript", "fgv2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            result3 = process3.communicate()
+        
         df2 = pd.read_csv(r'fin_results2.csv')
         df2 = df2.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
 
