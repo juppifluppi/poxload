@@ -301,9 +301,10 @@ if submit_button:
         with open(file_path, 'w') as file:
             for item in options:
                 file.write(str(item) + '\n')
+
+        NAMES=NAMES.extend(NAMESx.split('\n'))
+        SMILES=SMILES.extend(NAMESx.split('\n'))
         
-        NAMES.append(NAMESx.split('\n'))
-        SMILES.append(SMILESx.split('\n'))
         try:
             os.remove("descriptors.csv")
         except:
