@@ -154,7 +154,14 @@ if submit_button:
         SDc2 = (((df2["LC"]/100)*10)/(1-(df2["LC"]/100)))
         #SDcx = ((SDc+SDc2)/2)
         SDcx = pd.concat([SDc, SDc2], axis=1).min(axis=1)
-     
+        
+        #if len(SMI2) > 2:
+        #    SDc = ((df2["DF"])*((df2["LE"])/100))
+        #    SDc2 = (((df2["LC"]/100)*(10+numberSD2))/(1-(df2["LC"]/100)))
+        #    #SDcx = ((SDc+SDc2)/2)
+        #    SDcx = pd.concat([SDc, SDc2], axis=1).min(axis=1)
+        
+        
         df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDcx}
         df3=pd.DataFrame(df3,columns=["POL","DF","SD"])
         
@@ -216,7 +223,7 @@ if submit_button:
             ax.get_legend().remove()
             st.pyplot(fig1a)
 
-            st.write("Maximum predicted LE values:")
+            st.write("Calculated from LE predictions:")
             fig1b=plt.figure(figsize=(10, 6))
             ax = sns.barplot(x="DF", y="LE", hue="POL", data=df2)
             plt.xlabel("Drug feed [g/L]")
@@ -238,7 +245,7 @@ if submit_button:
             ax.get_legend().remove()
             st.pyplot(fig2a)
 
-            st.write("Maximum predicted LC values:")
+            st.write("Calculated from LC predictions:")
             fig2b=plt.figure(figsize=(10, 6))
             ax = sns.barplot(x="DF", y="LC", hue="POL", data=df2)
             plt.xlabel("Drug feed [g/L]")
