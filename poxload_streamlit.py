@@ -175,10 +175,15 @@ if submit_button:
                 process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 result1 = process1.communicate()
         
-            with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):        
-                process2 = subprocess.Popen(["Rscript", "create.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                result2 = process2.communicate()
-                                   
+            with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
+                if choosemodel == 'RDK7-RF (recommended)':
+                    process2 = subprocess.Popen(["Rscript", "create.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    result2 = process2.communicate()
+
+                if choosemodel == 'Final (slower)':
+                    process2 = subprocess.Popen(["Rscript", "create2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    result2 = process2.communicate()
+            
             with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
                 if choosemodel == 'RDK7-RF (recommended)':
                     process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
