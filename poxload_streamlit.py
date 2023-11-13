@@ -194,7 +194,7 @@ if submit_button:
         with col2:
             st.image(im)
 
-        st.write("Predicted maximum amount of solubilized drug (averaged across on LE and LC models, see below)")
+        st.write("Predicted maximum amount of solubilized drug (averaged across LE and LC models, see below)")
         fig3=plt.figure(figsize=(10, 6))
         ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3)
         plt.xlabel("Drug feed [g/L]")
@@ -206,7 +206,7 @@ if submit_button:
 
         col1, col2 = st.columns(2)
         with col1:
-            st.write("Predicted amount of solubilized drug based on LE models")
+            st.write("Amount based on LE models:")
             fig1a=plt.figure(figsize=(10, 6))
             ax = sns.barplot(x="DF", y="SD", hue="POL", data=df4)
             plt.xlabel("Drug feed [g/L]")
@@ -216,7 +216,7 @@ if submit_button:
             ax.get_legend().remove()
             st.pyplot(fig1a)
 
-            st.write("Maximum predicted LE values")
+            st.write("Maximum predicted LE values:")
             fig1b=plt.figure(figsize=(10, 6))
             ax = sns.barplot(x="DF", y="LE", hue="POL", data=df2)
             plt.xlabel("Drug feed [g/L]")
@@ -228,7 +228,7 @@ if submit_button:
         
         
         with col2:
-            st.write("Predicted amount of solubilized drug based on LC models")
+            st.write("Amount based on LC models:")
             fig2a=plt.figure(figsize=(10, 6))
             ax = sns.barplot(x="DF", y="SD", hue="POL", data=df5)
             plt.xlabel("Drug feed [g/L]")
@@ -238,7 +238,7 @@ if submit_button:
             ax.get_legend().remove()
             st.pyplot(fig2a)
 
-            st.write("Maximum predicted LC values")
+            st.write("Maximum predicted LC values:")
             fig2b=plt.figure(figsize=(10, 6))
             ax = sns.barplot(x="DF", y="LC", hue="POL", data=df2)
             plt.xlabel("Drug feed [g/L]")
