@@ -249,8 +249,10 @@ if submit_button:
 
         
         # Manually adjusting the x-axis positions for line plots
-        x_positions = np.linspace(0, len(df3["DF"].unique()) - 1, len(df3["DF"].unique()))
-
+        unique_dfs = df3["DF"].unique()
+        num_pol = len(df3["POL"].unique())
+        x_positions = np.tile(np.linspace(0, len(unique_dfs) - 1, len(unique_dfs)), num_pol)
+        x_positions = np.repeat(x_positions, len(df3) // num_pol)
 
         # Add scatter lines on the right side
         ax2 = ax.twinx()
