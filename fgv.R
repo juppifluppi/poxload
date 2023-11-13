@@ -31,6 +31,7 @@ library("randomForest")
 library("kernlab")
 library("devtools")
 library("Matrix")
+library("proxy")
 
 #devtools::load_all('xgboost',helpers=FALSE,quiet=TRUE,export_all=FALSE)
 
@@ -85,14 +86,15 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
-# Use dist function to calculate distances
-distances <- dist(rbind(t(scaled_new), t(uix)))
+# Use proxy package for efficient distance calculation
+distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
   aggg = abs(sort(distances[huh, ])[1:15])
   mean(aggg, na.rm = TRUE)
 })
+
 
 
 al=unique(af$POL)
@@ -144,14 +146,15 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
-# Use dist function to calculate distances
-distances <- dist(rbind(t(scaled_new), t(uix)))
+# Use proxy package for efficient distance calculation
+distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
   aggg = abs(sort(distances[huh, ])[1:15])
   mean(aggg, na.rm = TRUE)
 })
+
 
 
 b=as.character(unlist(predict(m2,newdata=afx)))
@@ -195,14 +198,15 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
-# Use dist function to calculate distances
-distances <- dist(rbind(t(scaled_new), t(uix)))
+# Use proxy package for efficient distance calculation
+distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
   aggg = abs(sort(distances[huh, ])[1:15])
   mean(aggg, na.rm = TRUE)
 })
+
 
 
 b=as.character(unlist(predict(m3,newdata=afx)))
@@ -244,14 +248,15 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
-# Use dist function to calculate distances
-distances <- dist(rbind(t(scaled_new), t(uix)))
+# Use proxy package for efficient distance calculation
+distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
   aggg = abs(sort(distances[huh, ])[1:15])
   mean(aggg, na.rm = TRUE)
 })
+
 
 b=as.character(unlist(predict(m4,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
@@ -291,14 +296,15 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
-# Use dist function to calculate distances
-distances <- dist(rbind(t(scaled_new), t(uix)))
+# Use proxy package for efficient distance calculation
+distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
   aggg = abs(sort(distances[huh, ])[1:15])
   mean(aggg, na.rm = TRUE)
 })
+
 
 
 b=as.character(unlist(predict(m5,newdata=afx)))
@@ -340,8 +346,8 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
-# Use dist function to calculate distances
-distances <- dist(rbind(t(scaled_new), t(uix)))
+# Use proxy package for efficient distance calculation
+distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
@@ -390,14 +396,15 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
-# Use dist function to calculate distances
-distances <- dist(rbind(t(scaled_new), t(uix)))
+# Use proxy package for efficient distance calculation
+distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
   aggg = abs(sort(distances[huh, ])[1:15])
   mean(aggg, na.rm = TRUE)
 })
+
 
 
 b=as.character(unlist(predict(m7,newdata=afx)))
@@ -438,8 +445,8 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
-# Use dist function to calculate distances
-distances <- dist(rbind(t(scaled_new), t(uix)))
+# Use proxy package for efficient distance calculation
+distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
