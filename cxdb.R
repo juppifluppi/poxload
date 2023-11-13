@@ -1,6 +1,8 @@
 dr=read.csv("db_test.csv")
 formulations=read.csv("db_smiles3.csv")
 
+formulations=formulations[formulations$POL%in%c(FGFG),]
+
 formulations$DF=8
 formulations$D2="None"
 formulations$DF2=0
