@@ -86,26 +86,6 @@ uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
 # Use proxy package for efficient distance calculation
-distances <- proxy::dist(proxy::as.matrix(uix))
-
-# Initialize a vector to store the smallest 15 distances for each data point
-smallest_distances <- numeric(nrow(uix))
-
-# Extract the smallest 15 distances for each data point
-for (i in 1:nrow(uix)) {
-  aggg <- abs(sort(as.matrix(distances[i, ]))[1:15])
-  smallest_distances[i] <- mean(aggg, na.rm = TRUE)
-}
-
-# Calculate the overall mean and standard deviation of the smallest 15 distances
-overall_mean <- mean(smallest_distances, na.rm = TRUE)
-overall_std <- sd(smallest_distances, na.rm = TRUE)
-
-# Define the threshold as the overall mean plus twice the overall standard deviation
-thrx <- overall_mean + 2 * overall_std
-
-
-# Use proxy package for efficient distance calculation
 distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
@@ -128,7 +108,7 @@ print(z1)
 b=as.character(unlist(predict(m1,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
 print(gzy)
-gzy=gzy<thrx
+gzy=gzy<thr2_1
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -166,25 +146,6 @@ uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
 # Use proxy package for efficient distance calculation
-distances <- proxy::dist(proxy::as.matrix(uix))
-
-# Initialize a vector to store the smallest 15 distances for each data point
-smallest_distances <- numeric(nrow(uix))
-
-# Extract the smallest 15 distances for each data point
-for (i in 1:nrow(uix)) {
-  aggg <- abs(sort(as.matrix(distances[i, ]))[1:15])
-  smallest_distances[i] <- mean(aggg, na.rm = TRUE)
-}
-
-# Calculate the overall mean and standard deviation of the smallest 15 distances
-overall_mean <- mean(smallest_distances, na.rm = TRUE)
-overall_std <- sd(smallest_distances, na.rm = TRUE)
-
-# Define the threshold as the overall mean plus twice the overall standard deviation
-thrx <- overall_mean + 2 * overall_std
-
-# Use proxy package for efficient distance calculation
 distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
@@ -197,7 +158,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m2,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thrx
+gzy=gzy<thr2_2
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -237,25 +198,6 @@ uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
 # Use proxy package for efficient distance calculation
-distances <- proxy::dist(proxy::as.matrix(uix))
-
-# Initialize a vector to store the smallest 15 distances for each data point
-smallest_distances <- numeric(nrow(uix))
-
-# Extract the smallest 15 distances for each data point
-for (i in 1:nrow(uix)) {
-  aggg <- abs(sort(as.matrix(distances[i, ]))[1:15])
-  smallest_distances[i] <- mean(aggg, na.rm = TRUE)
-}
-
-# Calculate the overall mean and standard deviation of the smallest 15 distances
-overall_mean <- mean(smallest_distances, na.rm = TRUE)
-overall_std <- sd(smallest_distances, na.rm = TRUE)
-
-# Define the threshold as the overall mean plus twice the overall standard deviation
-thrx <- overall_mean + 2 * overall_std
-
-# Use proxy package for efficient distance calculation
 distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
@@ -268,7 +210,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m3,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thrx
+gzy=gzy<thr2_3
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -306,25 +248,6 @@ uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
 # Use proxy package for efficient distance calculation
-distances <- proxy::dist(proxy::as.matrix(uix))
-
-# Initialize a vector to store the smallest 15 distances for each data point
-smallest_distances <- numeric(nrow(uix))
-
-# Extract the smallest 15 distances for each data point
-for (i in 1:nrow(uix)) {
-  aggg <- abs(sort(as.matrix(distances[i, ]))[1:15])
-  smallest_distances[i] <- mean(aggg, na.rm = TRUE)
-}
-
-# Calculate the overall mean and standard deviation of the smallest 15 distances
-overall_mean <- mean(smallest_distances, na.rm = TRUE)
-overall_std <- sd(smallest_distances, na.rm = TRUE)
-
-# Define the threshold as the overall mean plus twice the overall standard deviation
-thrx <- overall_mean + 2 * overall_std
-
-# Use proxy package for efficient distance calculation
 distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
@@ -336,7 +259,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m4,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thrx
+gzy=gzy<thr2_4
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -373,25 +296,6 @@ uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
 # Use proxy package for efficient distance calculation
-distances <- proxy::dist(proxy::as.matrix(uix))
-
-# Initialize a vector to store the smallest 15 distances for each data point
-smallest_distances <- numeric(nrow(uix))
-
-# Extract the smallest 15 distances for each data point
-for (i in 1:nrow(uix)) {
-  aggg <- abs(sort(as.matrix(distances[i, ]))[1:15])
-  smallest_distances[i] <- mean(aggg, na.rm = TRUE)
-}
-
-# Calculate the overall mean and standard deviation of the smallest 15 distances
-overall_mean <- mean(smallest_distances, na.rm = TRUE)
-overall_std <- sd(smallest_distances, na.rm = TRUE)
-
-# Define the threshold as the overall mean plus twice the overall standard deviation
-thrx <- overall_mean + 2 * overall_std
-
-# Use proxy package for efficient distance calculation
 distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
@@ -404,7 +308,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m5,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thrx
+gzy=gzy<thr2_5
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -442,25 +346,6 @@ uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
 # Use proxy package for efficient distance calculation
-distances <- proxy::dist(proxy::as.matrix(uix))
-
-# Initialize a vector to store the smallest 15 distances for each data point
-smallest_distances <- numeric(nrow(uix))
-
-# Extract the smallest 15 distances for each data point
-for (i in 1:nrow(uix)) {
-  aggg <- abs(sort(as.matrix(distances[i, ]))[1:15])
-  smallest_distances[i] <- mean(aggg, na.rm = TRUE)
-}
-
-# Calculate the overall mean and standard deviation of the smallest 15 distances
-overall_mean <- mean(smallest_distances, na.rm = TRUE)
-overall_std <- sd(smallest_distances, na.rm = TRUE)
-
-# Define the threshold as the overall mean plus twice the overall standard deviation
-thrx <- overall_mean + 2 * overall_std
-
-# Use proxy package for efficient distance calculation
 distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
@@ -472,7 +357,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m6,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thrx
+gzy=gzy<thr2_6
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -511,25 +396,6 @@ uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
 # Use proxy package for efficient distance calculation
-distances <- proxy::dist(proxy::as.matrix(uix))
-
-# Initialize a vector to store the smallest 15 distances for each data point
-smallest_distances <- numeric(nrow(uix))
-
-# Extract the smallest 15 distances for each data point
-for (i in 1:nrow(uix)) {
-  aggg <- abs(sort(as.matrix(distances[i, ]))[1:15])
-  smallest_distances[i] <- mean(aggg, na.rm = TRUE)
-}
-
-# Calculate the overall mean and standard deviation of the smallest 15 distances
-overall_mean <- mean(smallest_distances, na.rm = TRUE)
-overall_std <- sd(smallest_distances, na.rm = TRUE)
-
-# Define the threshold as the overall mean plus twice the overall standard deviation
-thrx <- overall_mean + 2 * overall_std
-
-# Use proxy package for efficient distance calculation
 distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
@@ -542,7 +408,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m7,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thrx
+gzy=gzy<thr2_7
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -579,25 +445,6 @@ uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
 # Use proxy package for efficient distance calculation
-distances <- proxy::dist(proxy::as.matrix(uix))
-
-# Initialize a vector to store the smallest 15 distances for each data point
-smallest_distances <- numeric(nrow(uix))
-
-# Extract the smallest 15 distances for each data point
-for (i in 1:nrow(uix)) {
-  aggg <- abs(sort(as.matrix(distances[i, ]))[1:15])
-  smallest_distances[i] <- mean(aggg, na.rm = TRUE)
-}
-
-# Calculate the overall mean and standard deviation of the smallest 15 distances
-overall_mean <- mean(smallest_distances, na.rm = TRUE)
-overall_std <- sd(smallest_distances, na.rm = TRUE)
-
-# Define the threshold as the overall mean plus twice the overall standard deviation
-thrx <- overall_mean + 2 * overall_std
-
-# Use proxy package for efficient distance calculation
 distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
@@ -609,7 +456,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m8,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thrx
+gzy=gzy<thr2_8
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
