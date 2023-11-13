@@ -62,7 +62,7 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
 
     with st.expander("SMILES editor"):
         drawer = st_ketcher(key="12")
-    on = st.toggle('Use drawn structure',key="13")
+    on = st.toggle('Draw structure instead',key="13")
     if on:
         SMI=drawer
     
@@ -76,7 +76,7 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
     
     with st.expander("SMILES editor"):
         drawer2 = st_ketcher(key="14")
-    on2 = st.toggle('Use drawn structure',key="15")
+    on2 = st.toggle('Draw structure instead',key="15")
     if on2:
         SMI2=drawer2
     
