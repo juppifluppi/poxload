@@ -90,7 +90,7 @@ distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
-  aggg = abs(sort(distances[huh, ])[1:15])
+  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
   mean(aggg, na.rm = TRUE)
 })
 
@@ -150,7 +150,7 @@ distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
-  aggg = abs(sort(distances[huh, ])[1:15])
+  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
   mean(aggg, na.rm = TRUE)
 })
 
@@ -202,7 +202,7 @@ distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
-  aggg = abs(sort(distances[huh, ])[1:15])
+  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
   mean(aggg, na.rm = TRUE)
 })
 
@@ -252,7 +252,7 @@ distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
-  aggg = abs(sort(distances[huh, ])[1:15])
+  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
   mean(aggg, na.rm = TRUE)
 })
 
@@ -300,7 +300,7 @@ distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
-  aggg = abs(sort(distances[huh, ])[1:15])
+  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
   mean(aggg, na.rm = TRUE)
 })
 
@@ -350,7 +350,7 @@ distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
-  aggg = abs(sort(distances[huh, ])[1:15])
+  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
   mean(aggg, na.rm = TRUE)
 })
 
@@ -400,7 +400,7 @@ distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
-  aggg = abs(sort(distances[huh, ])[1:15])
+  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
   mean(aggg, na.rm = TRUE)
 })
 
@@ -449,7 +449,7 @@ distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
 # Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
-  aggg = abs(sort(distances[huh, ])[1:15])
+  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
   mean(aggg, na.rm = TRUE)
 })
 
