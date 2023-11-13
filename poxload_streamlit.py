@@ -63,7 +63,7 @@ with st.form(key='my_form_to_submit'):
 
 
     choosemodel = st.selectbox('Models to use:',
-                         ('RDK7-RF','Best'))
+                         ('RDK7-RF (recommended)','Final (slower)'))
     
     submit_button = st.form_submit_button(label='Submit')
 
@@ -140,10 +140,10 @@ if submit_button:
         result2 = process2.communicate()
                            
     with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
-        if choosemodel == 'RDK7-RF':
+        if choosemodel == 'RDK7-RF (recommended)':
             process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             result3 = process3.communicate()
-        if choosemodel == 'Best':
+        if choosemodel == 'Final (slower)':
             process3 = subprocess.Popen(["Rscript", "fgv2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             result3 = process3.communicate()
         
