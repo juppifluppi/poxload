@@ -58,7 +58,7 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
  and drug feeds of 2-10 g/L. The software is hosted at our [github page](https://github.com/juppifluppi/poxload).""")
  
 
-    SMI = st.text_input('Enter [SMILES code](https://pubchem.ncbi.nlm.nih.gov//edit3/index.html) of drug to load', 'COc2cc(/C=C/C(=O)/C=C(O)/C=C/c1ccc(O)c(OC)c1)ccc2O') 
+    SMI = st.text_input('Enter [SMILES code](https://pubchem.ncbi.nlm.nih.gov//edit3/index.html) of drug to load', 'CC1=C2[C@@]([C@]([C@H]([C@@H]3[C@]4([C@H](OC4)C[C@@H]([C@]3(C(=O)[C@@H]2OC(=O)C)C)O)OC(=O)C)OC(=O)c5ccccc5)(C[C@@H]1OC(=O)[C@H](O)[C@@H](NC(=O)c6ccccc6)c7ccccc7)O)(C)C') 
     
     on = st.toggle('Use drawn structure',key="13")
     with st.expander("SMILES editor"):
