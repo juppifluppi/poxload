@@ -74,7 +74,7 @@ with st.form(key='my_form_to_submit'):
 It is based on predictions for loading efficiency (LE) and loading capacity (LC) using four differen thresholds for each parameter (LC10, LC20, LC30, LC40, LE20, LE40, LE60, LE80).
 The formulations are assumed to be made via thin-film hydration using ethanol as solvent and an elevated temperature of 55 °C during re-hydration. Enter the SMILES code of a drug 
 (and potential co-formulated compounds) and select the polymers of interest. A formulation report is generated, outputting predictions for all models, given a polymer feed of 10 g/L
- and drug feeds of 2-10 g/L. More information can be found on our [github page](https://github.com/juppifluppi/poxload).""")
+ and drug feeds of 2-10 g/L. The software is hosted at our [github page](https://github.com/juppifluppi/poxload).""")
 
 if submit_button:   
     if len(SMI2) > 2:
