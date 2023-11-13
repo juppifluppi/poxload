@@ -304,8 +304,6 @@ if submit_button:
 
         NAMESx=NAMESx.split('\n')
         SMILESx=SMILESx.split('\n')
-        st.write(NAMESx)
-        st.write(SMILESx)
 
         NAMES.extend(NAMESx)
         SMILES.extend(SMILESx)
