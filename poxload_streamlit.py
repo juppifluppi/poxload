@@ -249,7 +249,7 @@ if submit_button:
 
         # Add scatter lines on the right side
         ax2 = ax.twinx()
-        sns.lineplot(x="DF", y="LE", hue="POL", data=df6, ax=ax2, marker='o', s=10)
+        sns.lineplot(x="DF", y="LE", hue="POL", data=df6, ax=ax2)
         #sns.scatterplot(x="DF", y="SD", hue="POL", data=df5, ax=ax2, marker='x', s=10)
         ax2.set_ylabel("LE [%]")
         ax2.legend().set_visible(False)
