@@ -239,7 +239,7 @@ if submit_button:
 
         st.write("Predicted amount of solubilized drug (maximum detected by both LE and LC models, see below)")
         fig3=plt.figure(figsize=(10, 6))
-        sns.barplot(x="DF", y="SD", hue="POL", data=df3,ax=ax)
+        ax=sns.barplot(x="DF", y="SD", hue="POL", data=df3)
         plt.xlabel("Drug feed [g/L]")
         plt.ylabel("Solubilized drug [g/L]")
         #plt.title("Predicted maximum amount of solubilized drug based on LE and LC models")
