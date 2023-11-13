@@ -121,11 +121,8 @@ ld=af$DF
 a=as.data.frame(a)
 a=cbind(a,ld)
 
-print(z1)
-
 b=as.character(unlist(predict(m1,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-print(gzy)
 gzy=gzy<thr3_1
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
