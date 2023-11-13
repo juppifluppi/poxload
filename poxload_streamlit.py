@@ -56,12 +56,13 @@ It is based on predictions for loading efficiency (LE) and loading capacity (LC)
 The formulations are assumed to be made via thin-film hydration using ethanol as solvent and an elevated temperature of 55 °C during re-hydration. Enter the SMILES code of a drug 
 (and potential co-formulated compounds) and select the polymers of interest. A formulation report is generated, outputting predictions for all models, given a polymer feed of 10 g/L
  and drug feeds of 2-10 g/L. The software is hosted at our [github page](https://github.com/juppifluppi/poxload).""")
+ 
 
-    with st.expander("Draw molecules..."):
-        smiles = st_ketcher()
-        st.write(f"```{smiles}```")
-    
     SMI = st.text_input('Enter [SMILES code](https://pubchem.ncbi.nlm.nih.gov/edit3/index.html) of drug to load', 'COc2cc(/C=C/C(=O)/C=C(O)/C=C/c1ccc(O)c(OC)c1)ccc2O') 
+
+    agree = st.checkbox('Draw instead')
+    if agree:
+            SMI = st_ketcher(SMI)
 
     col1, col2 = st.columns(2)
     with col1:
