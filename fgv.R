@@ -85,6 +85,10 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
+# Convert matrices to numeric
+uix <- as.matrix(uix)
+scaled_new <- as.matrix(scaled_new)
+
 # Use matrix operations to calculate distances
 distances <- Matrix::crossprod(scaled_new, uix)
 distances <- as.matrix(distances)[, 1]
@@ -145,6 +149,10 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
+# Convert matrices to numeric
+uix <- as.matrix(uix)
+scaled_new <- as.matrix(scaled_new)
+
 # Use matrix operations to calculate distances
 distances <- Matrix::crossprod(scaled_new, uix)
 distances <- as.matrix(distances)[, 1]
@@ -197,6 +205,10 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
+# Convert matrices to numeric
+uix <- as.matrix(uix)
+scaled_new <- as.matrix(scaled_new)
+
 # Use matrix operations to calculate distances
 distances <- Matrix::crossprod(scaled_new, uix)
 distances <- as.matrix(distances)[, 1]
@@ -247,6 +259,10 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
+# Convert matrices to numeric
+uix <- as.matrix(uix)
+scaled_new <- as.matrix(scaled_new)
+
 # Use matrix operations to calculate distances
 distances <- Matrix::crossprod(scaled_new, uix)
 distances <- as.matrix(distances)[, 1]
@@ -295,6 +311,10 @@ afx2[is.na(afx2)] <- 0
 preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
+
+# Convert matrices to numeric
+uix <- as.matrix(uix)
+scaled_new <- as.matrix(scaled_new)
 
 # Use matrix operations to calculate distances
 distances <- Matrix::crossprod(scaled_new, uix)
@@ -345,6 +365,10 @@ afx2[is.na(afx2)] <- 0
 preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
+
+# Convert matrices to numeric
+uix <- as.matrix(uix)
+scaled_new <- as.matrix(scaled_new)
 
 # Use matrix operations to calculate distances
 distances <- Matrix::crossprod(scaled_new, uix)
@@ -397,6 +421,10 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
+# Convert matrices to numeric
+uix <- as.matrix(uix)
+scaled_new <- as.matrix(scaled_new)
+
 # Use matrix operations to calculate distances
 distances <- Matrix::crossprod(scaled_new, uix)
 distances <- as.matrix(distances)[, 1]
@@ -445,6 +473,10 @@ afx2[is.na(afx2)] <- 0
 preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
+
+# Convert matrices to numeric
+uix <- as.matrix(uix)
+scaled_new <- as.matrix(scaled_new)
 
 # Use matrix operations to calculate distances
 distances <- Matrix::crossprod(scaled_new, uix)
