@@ -254,6 +254,12 @@ if submit_button:
         ax2.set_ylabel("LE [%]")
         ax2.legend().set_visible(False)
 
+        
+        # Adjust x-axis ticks to align with the bar plot
+        ax.set_xticks(range(len(df3["DF"].unique())))
+        ax.set_xticklabels(df3["DF"].unique())
+
+
         # Adjust legend position
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 
