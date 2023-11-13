@@ -90,7 +90,7 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
                          ('RDK7-RF (recommended)','Final (slower)'))
 
     emoji = '💊'
-    label = 'Formulate!'
+    label = ' Formulate!'
     
     submit_button = st.form_submit_button(label=f'{emoji} {label}')
 
