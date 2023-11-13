@@ -193,53 +193,58 @@ if submit_button:
                 
         with col2:
             st.image(im)
-               
+
+        st.write("Predicted maximum amount of solubilized drug (averaged across on LE and LC models, see below)")
         fig3=plt.figure(figsize=(10, 6))
         ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3)
         plt.xlabel("Drug feed [g/L]")
         plt.ylabel("Solubilized drug [g/L]")
-        plt.title("Predicted maximum amount of solubilized drug based on LE and LC models")
+        #plt.title("Predicted maximum amount of solubilized drug based on LE and LC models")
         plt.ylim(0, 10)
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         st.pyplot(fig3)
 
         col1, col2 = st.columns(2)
         with col1:
+            st.write("Predicted amount of solubilized drug based on LE models")
             fig1a=plt.figure(figsize=(10, 6))
             ax = sns.barplot(x="DF", y="SD", hue="POL", data=df4)
             plt.xlabel("Drug feed [g/L]")
             plt.ylabel("Solubilized drug [g/L]")
-            plt.title("Predicted amount of solubilized drug based on LE models")
+            #plt.title("Predicted amount of solubilized drug based on LE models")
             plt.ylim(0, 10)
             ax.get_legend().remove()
             st.pyplot(fig1a)
-         
+
+            st.write("Maximum predicted LE values")
             fig1b=plt.figure(figsize=(10, 6))
             ax = sns.barplot(x="DF", y="LE", hue="POL", data=df2)
             plt.xlabel("Drug feed [g/L]")
             plt.ylabel("Ligand efficiency [%]")
             plt.ylim(0, 100)
-            plt.title("Maximum predicted LE values")
+            #plt.title("Maximum predicted LE values")
             ax.get_legend().remove()
             st.pyplot(fig1b)
         
         
-        with col2:                   
+        with col2:
+            st.write("Predicted amount of solubilized drug based on LC models")
             fig2a=plt.figure(figsize=(10, 6))
             ax = sns.barplot(x="DF", y="SD", hue="POL", data=df5)
             plt.xlabel("Drug feed [g/L]")
             plt.ylabel("Solubilized drug [g/L]")
-            plt.title("Predicted amount of solubilized drug based on LC models")
+            #plt.title("Predicted amount of solubilized drug based on LC models")
             plt.ylim(0, 10)
             ax.get_legend().remove()
             st.pyplot(fig2a)
-            
+
+            st.write("Maximum predicted LC values")
             fig2b=plt.figure(figsize=(10, 6))
             ax = sns.barplot(x="DF", y="LC", hue="POL", data=df2)
             plt.xlabel("Drug feed [g/L]")
             plt.ylabel("Loading capacity [%]")
             plt.ylim(0, 50)
-            plt.title("Maximum predicted LC values")  
+            #plt.title("Maximum predicted LC values")  
             ax.get_legend().remove()
             st.pyplot(fig2b)
 
