@@ -1,6 +1,7 @@
 libxrender1
 r-base
 r-base-dev
+r-cran-proxy
 r-base-core
 r-cran-kernlab
 r-cran-devtools
