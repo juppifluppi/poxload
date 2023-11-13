@@ -302,8 +302,13 @@ if submit_button:
             for item in options:
                 file.write(str(item) + '\n')
 
-        NAMES=NAMES.extend(NAMESx.split('\n'))
-        SMILES=SMILES.extend(NAMESx.split('\n'))
+        NAMESx=NAMESx.split('\n')
+        SMILESx=SMILESx.split('\n')
+        st.write(NAMESx)
+        st.write(SMILESx)
+
+        NAMES.extend(NAMESx)
+        SMILES.extend(SMILESx)
         
         try:
             os.remove("descriptors.csv")
