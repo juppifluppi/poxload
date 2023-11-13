@@ -97,10 +97,10 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
         col1, col2 = st.columns(2)
         with col1:
             st.write("Names of compounds")
-            NAMESx = st.text_area(key="17")
+            NAMESx = st.text_area(label="Input names of compounds separated by linebreaks",key="17")
         with col2:
             st.write("SMILES codes")
-            SMILESx = st.text_area(key="18")
+            SMILESx = st.text_area(label="Input SMILES of compounds separated by linebreaks",key="18")
 
     emoji = '💊'
     label = ' Formulate!'
