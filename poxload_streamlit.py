@@ -78,7 +78,7 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
     on2 = st.toggle('Use drawn structure',key="15")    
     with st.expander("SMILES editor"):
         drawer2 = st_ketcher(key="14")
-        st.caption("Click on Apply to save the drawn structure as input.")
+        st.caption("Click on Apply to save the drawn structure as input.")  
     if on2:
         SMI2=drawer2
     
@@ -91,6 +91,17 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
     choosemodel = st.selectbox('Models to use:',
                          ('RDK7-RF (recommended)','Final (slower)'))
 
+    
+    on3 = st.toggle('Perform batch calculation',key="16")    
+    with st.expander("Batch settings"):
+        col1, col2 = st.columns(2)
+        with col1:
+            st.write("Names of compounds")
+            NAMESx = st.text_area(key="17")
+        with col2:
+            st.write("SMILES codes")
+            SMILESx = st.text_area(key="18")
+
     emoji = '💊'
     label = ' Formulate!'
     
@@ -98,7 +109,7 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
 
 
 
-if submit_button:   
+if submit_button:
     if len(SMI2) > 2:
         NAMES.insert(0, "CO-COMPOUND")
         SMILES.insert(0, SMI2)
