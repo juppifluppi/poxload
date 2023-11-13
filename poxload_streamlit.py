@@ -70,7 +70,7 @@ if submit_button:
 
     
     # Enclose each element in single quotes and join them with commas
-    formatted_list = ', '.join(f"'{item}'" for item in options)
+    formatted_list = ', '.join(f"\\'{item}\\'" for item in options)
     tune_DF=str("sed -i -e 's/FGFG/"+str(formatted_list)+"/g' cxdb.R")
     os.system(tune_DF)
     
