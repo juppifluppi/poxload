@@ -294,6 +294,7 @@ if submit_button:
         st.write("Table of predictions for all classification models:")
         df = pd.read_csv(r'fin_results.csv',index_col=0)
         df = df.rename(columns={0: "POL", 1: "DF", 2: "LC10", 3: "LC20", 4: "LC30", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE80", 10:"Passed"})
+        df.reset_index(inplace=True)
         #df = df.sort_values(by=['Passed'], ascending=False)    
         st.write(df)
         st.dataframe(df.style.applymap(cooling_highlight))
