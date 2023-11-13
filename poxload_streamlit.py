@@ -162,8 +162,8 @@ if submit_button:
 
         SDc = ((df2["DF"])*((df2["LE"])/100))
         SDc2 = (((df2["LC"]/100)*10)/(1-(df2["LC"]/100)))
-        SDcx = ((SDc+SDc2)/2)
-        #SDcx = pd.concat([SDc, SDc2], axis=1).min(axis=1)
+        #SDcx = ((SDc+SDc2)/2)
+        SDcx = pd.concat([SDc, SDc2], axis=1).min(axis=1)
         
         #if len(SMI2) > 2:
         #    SDc = ((df2["DF"])*((df2["LE"])/100))
