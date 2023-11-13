@@ -152,8 +152,8 @@ if submit_button:
 
         SDc = ((df2["DF"])*((df2["LE"])/100))
         SDc2 = (((df2["LC"]/100)*10)/(1-(df2["LC"]/100)))
-        SDcx = ((SDc+SDc2)/2)
-        #SDcx = pd.concat([SDc, SDc2], axis=1).min(axis=1)
+        #SDcx = ((SDc+SDc2)/2)
+        SDcx = pd.concat([SDc, SDc2], axis=1).min(axis=1)
      
         df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDcx}
         df3=pd.DataFrame(df3,columns=["POL","DF","SD"])
@@ -194,7 +194,7 @@ if submit_button:
         with col2:
             st.image(im)
 
-        st.write("Predicted maximum amount of solubilized drug (averaged across LE and LC models, see below)")
+        st.write("Predicted amount of solubilized drug (maximum prediction detected by both LE and LC models, see below)")
         fig3=plt.figure(figsize=(10, 6))
         ax = sns.barplot(x="DF", y="SD", hue="POL", data=df3)
         plt.xlabel("Drug feed [g/L]")
