@@ -85,15 +85,10 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
-# Convert matrices to numeric
-uix <- as.matrix(uix)
-scaled_new <- as.matrix(scaled_new)
+# Use dist function to calculate distances
+distances <- dist(rbind(t(scaled_new), t(uix)))
 
-# Use matrix operations to calculate distances
-distances <- Matrix::crossprod(scaled_new, uix)
-distances <- as.matrix(distances)[, 1]
-
-# Take the top 15 distances and calculate the mean
+# Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
   aggg = abs(sort(distances[huh, ])[1:15])
   mean(aggg, na.rm = TRUE)
@@ -149,15 +144,10 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
-# Convert matrices to numeric
-uix <- as.matrix(uix)
-scaled_new <- as.matrix(scaled_new)
+# Use dist function to calculate distances
+distances <- dist(rbind(t(scaled_new), t(uix)))
 
-# Use matrix operations to calculate distances
-distances <- Matrix::crossprod(scaled_new, uix)
-distances <- as.matrix(distances)[, 1]
-
-# Take the top 15 distances and calculate the mean
+# Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
   aggg = abs(sort(distances[huh, ])[1:15])
   mean(aggg, na.rm = TRUE)
@@ -205,15 +195,10 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
-# Convert matrices to numeric
-uix <- as.matrix(uix)
-scaled_new <- as.matrix(scaled_new)
+# Use dist function to calculate distances
+distances <- dist(rbind(t(scaled_new), t(uix)))
 
-# Use matrix operations to calculate distances
-distances <- Matrix::crossprod(scaled_new, uix)
-distances <- as.matrix(distances)[, 1]
-
-# Take the top 15 distances and calculate the mean
+# Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
   aggg = abs(sort(distances[huh, ])[1:15])
   mean(aggg, na.rm = TRUE)
@@ -259,20 +244,14 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
-# Convert matrices to numeric
-uix <- as.matrix(uix)
-scaled_new <- as.matrix(scaled_new)
+# Use dist function to calculate distances
+distances <- dist(rbind(t(scaled_new), t(uix)))
 
-# Use matrix operations to calculate distances
-distances <- Matrix::crossprod(scaled_new, uix)
-distances <- as.matrix(distances)[, 1]
-
-# Take the top 15 distances and calculate the mean
+# Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
   aggg = abs(sort(distances[huh, ])[1:15])
   mean(aggg, na.rm = TRUE)
 })
-
 
 b=as.character(unlist(predict(m4,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
@@ -312,15 +291,10 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
-# Convert matrices to numeric
-uix <- as.matrix(uix)
-scaled_new <- as.matrix(scaled_new)
+# Use dist function to calculate distances
+distances <- dist(rbind(t(scaled_new), t(uix)))
 
-# Use matrix operations to calculate distances
-distances <- Matrix::crossprod(scaled_new, uix)
-distances <- as.matrix(distances)[, 1]
-
-# Take the top 15 distances and calculate the mean
+# Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
   aggg = abs(sort(distances[huh, ])[1:15])
   mean(aggg, na.rm = TRUE)
@@ -366,15 +340,10 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
-# Convert matrices to numeric
-uix <- as.matrix(uix)
-scaled_new <- as.matrix(scaled_new)
+# Use dist function to calculate distances
+distances <- dist(rbind(t(scaled_new), t(uix)))
 
-# Use matrix operations to calculate distances
-distances <- Matrix::crossprod(scaled_new, uix)
-distances <- as.matrix(distances)[, 1]
-
-# Take the top 15 distances and calculate the mean
+# Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
   aggg = abs(sort(distances[huh, ])[1:15])
   mean(aggg, na.rm = TRUE)
@@ -421,15 +390,10 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
-# Convert matrices to numeric
-uix <- as.matrix(uix)
-scaled_new <- as.matrix(scaled_new)
+# Use dist function to calculate distances
+distances <- dist(rbind(t(scaled_new), t(uix)))
 
-# Use matrix operations to calculate distances
-distances <- Matrix::crossprod(scaled_new, uix)
-distances <- as.matrix(distances)[, 1]
-
-# Take the top 15 distances and calculate the mean
+# Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
   aggg = abs(sort(distances[huh, ])[1:15])
   mean(aggg, na.rm = TRUE)
@@ -474,15 +438,10 @@ preproc <- preProcess(ui, method = c("center", "scale", "YeoJohnson"))
 uix <- predict(preproc, newdata = ui)
 scaled_new <- predict(preproc, newdata = afx2)
 
-# Convert matrices to numeric
-uix <- as.matrix(uix)
-scaled_new <- as.matrix(scaled_new)
+# Use dist function to calculate distances
+distances <- dist(rbind(t(scaled_new), t(uix)))
 
-# Use matrix operations to calculate distances
-distances <- Matrix::crossprod(scaled_new, uix)
-distances <- as.matrix(distances)[, 1]
-
-# Take the top 15 distances and calculate the mean
+# Extract the distances for each row in afx2 and calculate the mean
 z1 <- sapply(1:nrow(afx2), function(huh) {
   aggg = abs(sort(distances[huh, ])[1:15])
   mean(aggg, na.rm = TRUE)
