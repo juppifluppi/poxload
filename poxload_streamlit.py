@@ -78,8 +78,11 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
 
     choosemodel = st.selectbox('Models to use:',
                          ('RDK7-RF (recommended)','Final (slower)'))
+
+    emoji = '💊'
+    label = 'Formulate!'
     
-    submit_button = st.form_submit_button(label='Submit')
+    submit_button = st.form_submit_button(label=f'{emoji} {label}')
 
 
 
