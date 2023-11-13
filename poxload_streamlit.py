@@ -238,34 +238,13 @@ if submit_button:
             st.image(im)
 
         st.write("Predicted amount of solubilized drug (maximum detected by both LE and LC models, see below)")
-        fig3, ax = plt.subplots(figsize=(10, 6))
-        #fig3=plt.figure(figsize=(10, 6))
+        fig3=plt.figure(figsize=(10, 6))
         sns.barplot(x="DF", y="SD", hue="POL", data=df3,ax=ax)
         plt.xlabel("Drug feed [g/L]")
         plt.ylabel("Solubilized drug [g/L]")
         #plt.title("Predicted maximum amount of solubilized drug based on LE and LC models")
         plt.ylim(0, 10)
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-
-        
-        # Manually adjusting the x-axis positions for line plots
-        unique_dfs = df3["DF"].unique()
-        num_pol = len(df3["POL"].unique())
-        x_positions = np.tile(np.linspace(0, len(unique_dfs) - 1, len(unique_dfs)), num_pol)
-        x_positions = np.repeat(x_positions, len(df3) // num_pol)
-
-        # Add scatter lines on the right side
-        ax2 = ax.twinx()
-        sns.lineplot(x=x_positions, y="LE", hue="POL", data=df6, ax=ax2,style="--")
-        #sns.scatterplot(x="DF", y="SD", hue="POL", data=df5, ax=ax2, marker='x', s=10)
-        ax2.set_ylabel("LE [%]")
-        ax2.legend().set_visible(False)
-
-
-        # Adjust legend position
-        ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-
-        
         st.pyplot(fig3)
 
         col1, col2 = st.columns(2)
