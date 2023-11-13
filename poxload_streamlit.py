@@ -55,13 +55,22 @@ with st.form(key='my_form_to_submit'):
     with col2:
         numberSD2 = st.number_input('Drug feed of co-formulated drug',min_value=0, max_value=12, value="min", step=2)
     submit_button = st.form_submit_button(label='Submit')
-  
+
+options = st.multiselect(
+    'Polymers to calculate loading for',
+    ['A-nBuOx-A','A-nPrOzi-A','A-nPrOx-A'],
+    ['A-nBuOx-A','A-nPrOzi-A'])
+
 if submit_button:   
     if len(SMI2) > 2:
         NAMES.insert(0, "CO-COMPOUND")
         SMILES.insert(0, SMI2)
         tune_DF=str("sed -i -e 's/XXXX/"+str(numberSD2)+"/g' cxdb.R")
         os.system(tune_DF)
+
+    comma_separated = ', '.join(map(str, options))
+    tune_DF=str("sed -i -e 's/FGFG/"+str(comma_separated)+"/g' cxdb.R")
+    os.system(tune_DF)
     
     NAMES.append("COMPOUND")
     SMILES.append(SMI)
