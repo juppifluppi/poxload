@@ -109,7 +109,7 @@ print(z1)
 b=as.character(unlist(predict(m1,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
 print(gzy)
-gzy=gzy<thr1_1
+gzy=gzy<thr2_1
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -159,7 +159,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m2,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thr1_2
+gzy=gzy<thr2_2
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -211,7 +211,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m3,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thr1_3
+gzy=gzy<thr2_3
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -260,7 +260,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m4,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thr1_4
+gzy=gzy<thr2_4
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -309,7 +309,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m5,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thr1_5
+gzy=gzy<thr2_5
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -358,7 +358,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m6,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thr1_6
+gzy=gzy<thr2_6
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -409,7 +409,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m7,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thr1_7
+gzy=gzy<thr2_7
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -457,7 +457,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m8,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thr1_8
+gzy=gzy<thr2_8
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
