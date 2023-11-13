@@ -191,7 +191,9 @@ if submit_button:
         #    SDc2 = (((df2["LC"]/100)*(10+numberSD2))/(1-(df2["LC"]/100)))
         #    #SDcx = ((SDc+SDc2)/2)
         #    SDcx = pd.concat([SDc, SDc2], axis=1).min(axis=1)
-        
+
+        calcLE=(SDcx/df2["DF"])*100
+        calcLC=(SDcx/(SDcx+10))*100
         
         df3={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDcx}
         df3=pd.DataFrame(df3,columns=["POL","DF","SD"])
@@ -201,6 +203,9 @@ if submit_button:
 
         df5={'POL' : df2["POL"], 'DF' : df2["DF"], 'SD': SDc2}
         df5=pd.DataFrame(df5,columns=["POL","DF","SD"])
+
+        df6={'POL' : df2["POL"], 'DF' : df2["DF"], 'LE': calcLE,'LC': calcLC}
+        df6=pd.DataFrame(df6,columns=["POL","DF","LE","LC"])
         
         custom_palette = sns.color_palette("deep")
 
@@ -244,9 +249,9 @@ if submit_button:
 
         # Add scatter lines on the right side
         ax2 = ax.twinx()
-        sns.scatterplot(x="DF", y="SD", hue="POL", data=df4, ax=ax2, marker='o', s=100)
-        sns.scatterplot(x="DF", y="SD", hue="POL", data=df5, ax=ax2, marker='x', s=100)
-        ax2.set_ylabel("Another y metric (SDc)")
+        sns.scatterplot(x="DF", y="LE", hue="POL", data=df6, ax=ax2, marker='o', s=100)
+        #sns.scatterplot(x="DF", y="SD", hue="POL", data=df5, ax=ax2, marker='x', s=100)
+        ax2.set_ylabel("LE [%]")
         ax2.legend().set_visible(False)
 
         # Adjust legend position
