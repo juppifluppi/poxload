@@ -297,6 +297,6 @@ if submit_button:
         #df.reset_index(inplace=True)
         #df = df.sort_values(by=['Passed'], ascending=False)    
         st.write(df)
-        st.dataframe(df.style.applymap(cooling_highlight),subset=['Passed'])
+        st.dataframe(df.style.applymap(cooling_highlight,subset=['Passed']))
         
         #st.caption("[github page](https://github.com/juppifluppi/poxload)")
