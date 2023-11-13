@@ -30,6 +30,7 @@ library("caret")
 library("randomForest")
 library("kernlab")
 library("devtools")
+library("Matrix")
 
 #devtools::load_all('xgboost',helpers=FALSE,quiet=TRUE,export_all=FALSE)
 
