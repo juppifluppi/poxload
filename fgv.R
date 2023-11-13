@@ -25,6 +25,24 @@ thr2_5=25.11872
 thr2_6=21.83301
 thr2_7=21.83301
 thr2_8=21.83301
+#3
+thr3_1=31.34264
+thr3_2=30.75162
+thr3_3=25.52824
+thr3_4=18.11451
+thr3_5=33.07556
+thr3_6=28.57172
+thr3_7=28.57172
+thr3_8=28.57172
+#4
+thr4_1=38.79411
+thr4_2=38.03592
+thr4_3=31.71906
+thr4_4=22.56387
+thr4_5=41.03239
+thr4_6=35.31043
+thr4_7=35.31043
+thr4_8=35.31043
 
 library("caret")
 library("randomForest")
@@ -108,7 +126,7 @@ print(z1)
 b=as.character(unlist(predict(m1,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
 print(gzy)
-gzy=gzy<thr2_1
+gzy=gzy<thr3_1
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -158,7 +176,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m2,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thr2_2
+gzy=gzy<thr3_2
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -210,7 +228,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m3,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thr2_3
+gzy=gzy<thr3_3
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -259,7 +277,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m4,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thr2_4
+gzy=gzy<thr3_4
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -308,7 +326,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m5,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thr2_5
+gzy=gzy<thr3_5
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -357,7 +375,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m6,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thr2_6
+gzy=gzy<thr3_6
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -408,7 +426,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m7,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thr2_7
+gzy=gzy<thr3_7
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
@@ -456,7 +474,7 @@ z1 <- sapply(1:nrow(afx2), function(huh) {
 
 b=as.character(unlist(predict(m8,newdata=afx)))
 gzy=as.numeric(unlist(as.vector(z1)))
-gzy=gzy<thr2_8
+gzy=gzy<thr3_8
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
