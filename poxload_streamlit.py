@@ -70,14 +70,15 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
     with col1:
         SMI2 = st.text_input('Add potential co-formulated drug:', '')
         
-        with st.expander("SMILES editor"):
-            drawer2 = st_ketcher(key="14")
-        on2 = st.toggle('Use drawn structure',key="15")
-        if on2:
-            SMI2=drawer2
-    with col2:
+    with col2:        
         numberSD2 = st.number_input('Drug feed of co-formulated drug',min_value=0, max_value=12, value="min", step=2)
 
+    
+    with st.expander("SMILES editor"):
+        drawer2 = st_ketcher(key="14")
+    on2 = st.toggle('Use drawn structure',key="15")
+    if on2:
+        SMI2=drawer2
     
     options = st.multiselect(
         'Polymers to calculate loading for',
