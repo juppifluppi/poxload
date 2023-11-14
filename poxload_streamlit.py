@@ -102,7 +102,7 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
             st.write("SMILES codes")
             SMILESx = st.text_area(label="Input SMILES of compounds separated by linebreaks",key="18")
 
-    on4 = st.toggle('Predict long-term storage',key="17")    
+    on4 = st.toggle('Predict long-term storage',key="19")    
     with st.expander("Settings"):
         options2 = st.selectbox('Select polymer:',
                          ("A-cPrOx-A","A-cPrOzi-A","A-nPrOx-A","A-nPrOzi-A","A-iPrOx-A","A-iPrOzi-A","A-cPrMeOx-A","A-cPrMeOzi-A","A-nBuOx-A","A-nBuOzi-A","A-iBuOx-A","A-iBuOzi-A","A-sBuOx-A","A-sBuOzi-A","A-PentOx-A","A*-nPrOzi-A*","A*-nBuOx-A*","A-BzOx-A","A-BzOzi-A","A-PhOx-A","A-PhOzi-A","A-EtHepOx-A","A-EtHepOzi-A","A-nNonOx-A","A-nNonOzi-A"))
