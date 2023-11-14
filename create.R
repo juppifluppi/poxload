@@ -147,7 +147,7 @@ rk_dmx=dmx[,c(grep("rdk5_", colnames(dmx)),grep("rdk7_", colnames(dmx)))]
 
 g=cbind(formulations,rk_totm,rk_bm,rk_am,rk_dmx)
 #g=g[,-c(5:9,16:19,20:22,24,26:28,32:35,38)]
-
+print(g)
 gx=cbind(bbb,g)
 colnames(gx)=c("Mixture",colnames(g))
 write.csv(gx,file=paste0("testformulations.dat"),row.names = F)
