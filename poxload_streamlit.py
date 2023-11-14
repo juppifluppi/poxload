@@ -292,11 +292,18 @@ if submit_button:
                     ax.get_legend().remove()
                     st.pyplot(fig2b)
         
-                st.write("Table of predictions for all classification models:")
-                df = pd.read_csv(r'fin_results.csv',index_col=0)
-                df = df.rename(columns={0: "POL", 1: "DF", 2: "LC10", 3: "LC20", 4: "LC30", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE80", 10:"Passed"})
-                df.reset_index(inplace=True)
+                st.write("Amount of passed thresholds:")
+                fig4=plt.figure(figsize=(10, 6))
+                ax=sns.barplot(x="DF", y="Passed", hue="POL", data=df)
+                plt.xlabel("Drug feed [g/L]")
+                plt.ylabel("Thresholds passed")
+                plt.ylim(0, 8)
+                ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+                st.pyplot(fig4)
+                st.write("Table of all predictions:")
                 st.dataframe(df.style.applymap(cooling_highlight,subset=['Passed']))    
+
+        
         if on3:
             file_path = 'options.csv'
             with open(file_path, 'w') as file:
@@ -376,8 +383,6 @@ if submit_button:
                 df = pd.read_csv(r'fin_results.csv',index_col=0)
                 df = df.rename(columns={0: "POL", 1: "DRUG", 2:"DF", 3: "LC10", 4: "LC20", 5: "LC30", 6: "LC40", 7: "LE20", 8: "LE40", 9: "LE60", 10: "LE80", 11:"Passed"})
                 df.reset_index(inplace=True)
-                st.dataframe(df.style.applymap(cooling_highlight,subset=['Passed']))    
-
                 
                 st.write("Amount of passed thresholds:")
                 fig4=plt.figure(figsize=(10, 6))
@@ -387,7 +392,8 @@ if submit_button:
                 plt.ylim(0, 8)
                 ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
                 st.pyplot(fig4)
-
+                st.write("Table of all predictions:")
+                st.dataframe(df.style.applymap(cooling_highlight,subset=['Passed']))    
     
 
     
