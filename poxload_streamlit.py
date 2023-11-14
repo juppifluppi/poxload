@@ -277,12 +277,6 @@ if submit_button:
                     st.pyplot(fig1a)
         
                     st.write("Calculated from LE predictions:")
-                    st.write("Maximum solubilized drug: "+str(round(max(SDc2),1))+" g/L at "+str(df5.loc[SDc2.idxmax(), "DF"])+" g/L drug feed (LE: "+str(finalLE3)+" %, LC: "+str(finalLC3)+" %)")
-                    max_values = df5.groupby('POL')['SD'].max()                    
-                    max_value = max_values.max()
-                    keys_with_max_value = max_values[max_values == max_value].index.tolist()
-                    comma_separated_keys = ', '.join(str(key) for key in keys_with_max_value)
-                    st.write(comma_separated_keys)
                     fig1b=plt.figure(figsize=(10, 6))
                     ax = sns.barplot(x="DF", y="LE", hue="POL", data=df2)
                     plt.xlabel("Drug feed [g/L]")
@@ -294,6 +288,12 @@ if submit_button:
                 
                 with col2:
                     st.write("Amount based on LC models:")
+                    st.write("Maximum solubilized drug: "+str(round(max(SDc2),1))+" g/L at "+str(df5.loc[SDc2.idxmax(), "DF"])+" g/L drug feed (LE: "+str(finalLE3)+" %, LC: "+str(finalLC3)+" %)")
+                    max_values = df5.groupby('POL')['SD'].max()                    
+                    max_value = max_values.max()
+                    keys_with_max_value = max_values[max_values == max_value].index.tolist()
+                    comma_separated_keys = ', '.join(str(key) for key in keys_with_max_value)
+                    st.write(comma_separated_keys)
                     fig2a=plt.figure(figsize=(10, 6))
                     ax = sns.barplot(x="DF", y="SD", hue="POL", data=df5)
                     plt.xlabel("Drug feed [g/L]")
