@@ -418,6 +418,8 @@ if submit_button:
                 
                 df2 = pd.read_csv(r'fin_results2.csv')
                 df2 = df2.rename(columns={0: "Time", 1: "DF", 2: "LC", 3: "LE"})
+
+                st.write(df2)
         
                 SDc = ((df2["DF"])*((df2["LE"])/100))
                 #Dc2 = (((df2["LC"]/100)*10)/(1-(df2["LC"]/100)))
