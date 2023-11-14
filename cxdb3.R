@@ -1,6 +1,6 @@
 dr=read.csv("db_test.csv")
 formulations=read.csv("db_smiles3.csv")
-options=read.csv("options2.csv",header=F)
+options=read.csv("options.csv",header=F)
 formulations=formulations[formulations$POL%in%options[,1],]
 
 formulations$DF=8
