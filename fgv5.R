@@ -71,6 +71,7 @@ m8=model
 
 af=read.csv("testformulations.dat",check.names = F)
 afx=af
+afx$Time=rep(c(0,5,10,30),length(unique(a[,2])))
 
 #ui=m1$trainingData[-1]
 #afx2=afx[,colnames(afx)%in%colnames(ui)]
@@ -478,7 +479,7 @@ a=cbind(a,b)
 ck=t(apply(a, 1, function(u) table(factor(u, levels=c("X1","X0","AD")))))
 a=cbind(a,ck[,1])
 
-a[,1]=rep(c(0,5,10,30),length(unique(a[,2])))
+#a[,1]=rep(c(0,5,10,30),length(unique(a[,2])))
          
 colnames(a)=c("Time","DF","LC10","LC20","LC30","LC40","LE20","LE40","LE60","LE80","Passed")
 a=a[with(a, order(DF, Time)),]
