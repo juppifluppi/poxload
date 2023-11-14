@@ -14,7 +14,7 @@ formulations$D2FRAC=0
 
 full=rep(NA,ncol(formulations))
 
-for(tm in c(0,5,10,30){
+for(tm in c(0,5,10,30)){
 
   formulations$Time=tm
 
