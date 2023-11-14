@@ -71,7 +71,7 @@ m8=model
 
 af=read.csv("testformulations.dat",check.names = F)
 afx=af
-afx$Time=rep(c(0,5,10,30),length(unique(a[,2])))
+afx$Time=rep(c(0,5,10,30),length(unique(a$DF)))
 
 #ui=m1$trainingData[-1]
 #afx2=afx[,colnames(afx)%in%colnames(ui)]
