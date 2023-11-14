@@ -325,7 +325,6 @@ if submit_button:
                 plt.ylabel("Thresholds passed")
                 plt.ylim(0, 8)
                 ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-                ax.get_legend().remove()
                 st.pyplot(fig4)
 
         
@@ -407,20 +406,8 @@ if submit_button:
                 
                 df = pd.read_csv(r'fin_results.csv',index_col=0)
                 df = df.rename(columns={0: "POL", 1: "DRUG", 2:"DF", 3: "LC10", 4: "LC20", 5: "LC30", 6: "LC40", 7: "LE20", 8: "LE40", 9: "LE60", 10: "LE80", 11:"Passed"})
-                df.reset_index(inplace=True)
-                
-                st.write("Table of all predictions:")
+                df.reset_index(inplace=True)               
                 st.dataframe(df.style.applymap(cooling_highlight,subset=['Passed']))    
-                
-                st.write("Amount of passed thresholds:")
-                fig4=plt.figure(figsize=(10, 6))
-                ax=sns.barplot(x="DF", y="Passed", hue="POL", data=df)
-                plt.xlabel("Drug feed [g/L]")
-                plt.ylabel("Thresholds passed")
-                plt.ylim(0, 8)
-                ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-                ax.get_legend().remove()
-                st.pyplot(fig4)
     
 
     
