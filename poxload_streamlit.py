@@ -345,7 +345,7 @@ if submit_button:
             file_path = 'options.csv'
             with open(file_path, 'w') as file:
                 for item in options2:
-                    file.write(str(item) + '\n')
+                    file.write("x\n" + str(item) + '\n')
             
             NAMES.append("COMPOUND")
             SMILES.append(SMI)
