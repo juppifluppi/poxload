@@ -544,7 +544,7 @@ last_non_zero_elements <- apply(fg2, 1, get_last_non_zero)
 # Create a new dataframe with the last non-zero elements
 fg2 <- data.frame(LastNonZero = last_non_zero_elements)
           
-a=cbind(a[,1],a[,2],fg1,fg2)
+a=cbind(a[,1],a[,2],a[,3],fg1,fg2)
 colnames(a)=c("POL","D","DF","LC","LE")
 write.csv(a,"fin_results2.csv",row.names=F)
 
