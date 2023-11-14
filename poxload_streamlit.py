@@ -379,14 +379,14 @@ if submit_button:
                 st.dataframe(df.style.applymap(cooling_highlight,subset=['Passed']))    
 
                 
-                st.write("Amount of passed thresholds")
-                fig3=plt.figure(figsize=(10, 6))
+                st.write("Amount of passed thresholds:")
+                fig4=plt.figure(figsize=(10, 6))
                 ax=sns.barplot(x="DF", y="Passed", hue="POL", data=df)
                 plt.xlabel("Drug feed [g/L]")
                 plt.ylabel("Thresholds passed")
-                plt.ylim(0, 10)
+                plt.ylim(0, 8)
                 ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-                st.pyplot(fig3)
+                st.pyplot(fig4)
 
     
 
