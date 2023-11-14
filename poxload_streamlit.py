@@ -250,7 +250,7 @@ if submit_button:
                 with col2:
                     st.image(im)
         
-                st.write("Predicted amount of solubilized drug (consensus by both LE and LC models)")
+                st.write("Predicted amount of solubilized drug (minimum determined by both LE and LC models)")
                 fig3=plt.figure(figsize=(10, 6))
                 ax=sns.barplot(x="DF", y="SD", hue="POL", data=df3)
                 plt.xlabel("Drug feed [g/L]")
