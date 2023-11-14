@@ -196,7 +196,8 @@ if submit_button:
                 df2 = df2.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
         
                 SDc = ((df2["DF"])*((df2["LE"])/100))
-                SDc2 = (((df2["LC"]/100)*10)/(1-(df2["LC"]/100)))
+                #Dc2 = (((df2["LC"]/100)*10)/(1-(df2["LC"]/100)))
+                SDc2 = (((df2["LC"]/100)*(-1)*10)/((df2["LC"]/100)-1))
                 #SDcx = ((SDc+SDc2)/2)
                 SDcx = pd.concat([SDc, SDc2], axis=1).min(axis=1)
                 
