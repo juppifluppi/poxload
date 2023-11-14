@@ -512,12 +512,22 @@ fg1=as.matrix(a[,c(3:6)])
 fg2=as.matrix(a[,c(7:10)])
 
 get_last_non_zero <- function(vec) {
-  non_zero_elements <- vec[vec != 0]
-  if (length(non_zero_elements) == 0) {
-    return(0)  # If there are no non-zero elements, return 0
-  } else {
-    return(tail(non_zero_elements, 1))
+  last_non_zero <- 0
+  consecutive_zeros <- 0
+  
+  for (element in vec) {
+    if (element == 0) {
+      consecutive_zeros <- consecutive_zeros + 1
+    } else {
+      if (consecutive_zeros > 1) {
+        return(last_non_zero)
+      }
+      last_non_zero <- element
+      consecutive_zeros <- 0
+    }
   }
+  
+  return(last_non_zero)
 }
 
 
