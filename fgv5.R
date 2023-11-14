@@ -543,6 +543,8 @@ last_non_zero_elements <- apply(fg2, 1, get_last_non_zero)
 
 # Create a new dataframe with the last non-zero elements
 fg2 <- data.frame(LastNonZero = last_non_zero_elements)
+
+print(a)
           
 a=cbind(a[,1],a[,2],fg1,fg2)
 colnames(a)=c("Time","D","DF","LC","LE")
