@@ -1,7 +1,9 @@
 dr=read.csv("db_test.csv")
 formulations=read.csv("db_smiles3.csv")
 options=as.data.frame(read.csv("options.csv",header=T))
+print(options)
 formulations=formulations[formulations$POL%in%options[,1],]
+print(formulations)
 
 formulations$DF=8
 formulations$D2="None"
