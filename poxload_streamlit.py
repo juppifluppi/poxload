@@ -229,7 +229,13 @@ if submit_button:
         
                 finalLE=round((round(max(SDcx),1)/df3.loc[SDcx.idxmax(), "DF"])*100,0)
                 finalLC=round((round(max(SDcx),1)/(df3.loc[SDcx.idxmax(), "DF"]+10))*100,0)
-        
+
+                finalLE2=round((round(max(SDc),1)/df4.loc[SDc.idxmax(), "DF"])*100,0)
+                finalLC2=round((round(max(SDc),1)/(df4.loc[SDc.idxmax(), "DF"]+10))*100,0)
+
+                finalLE3=round((round(max(SDc2),1)/df5.loc[SDc2.idxmax(), "DF"])*100,0)
+                finalLC3=round((round(max(SDc2),1)/(df5.loc[SDc2.idxmax(), "DF"]+10))*100,0)
+                
                 with col1: 
                     st.header("Formulation report")
                     st.write("Maximum solubilized drug: "+str(round(max(SDcx),1))+" g/L at "+str(df3.loc[SDcx.idxmax(), "DF"])+" g/L drug feed (LE: "+str(finalLE)+" %, LC: "+str(finalLC)+" %)")
@@ -254,7 +260,14 @@ if submit_button:
         
                 col1, col2 = st.columns(2)
                 with col1:
-                    st.write("Amount based on LE models:")
+                    st.write("Amount based on LE models:")                   
+                    st.write("Maximum solubilized drug: "+str(round(max(SDc),1))+" g/L at "+str(df4.loc[SDc.idxmax(), "DF"])+" g/L drug feed (LE: "+str(finalLE2)+" %, LC: "+str(finalLC2)+" %)")
+                    max_values = df4.groupby('POL')['SD'].max()                    
+                    max_value = max_values.max()
+                    keys_with_max_value = max_values[max_values == max_value].index.tolist()
+                    comma_separated_keys = ', '.join(str(key) for key in keys_with_max_value)
+                    st.write(comma_separated_keys)
+                    
                     fig1a=plt.figure(figsize=(10, 6))
                     ax = sns.barplot(x="DF", y="SD", hue="POL", data=df4)
                     plt.xlabel("Drug feed [g/L]")
@@ -264,6 +277,12 @@ if submit_button:
                     st.pyplot(fig1a)
         
                     st.write("Calculated from LE predictions:")
+                    st.write("Maximum solubilized drug: "+str(round(max(SDc2),1))+" g/L at "+str(df5.loc[SDc2.idxmax(), "DF"])+" g/L drug feed (LE: "+str(finalLE3)+" %, LC: "+str(finalLC3)+" %)")
+                    max_values = df5.groupby('POL')['SD'].max()                    
+                    max_value = max_values.max()
+                    keys_with_max_value = max_values[max_values == max_value].index.tolist()
+                    comma_separated_keys = ', '.join(str(key) for key in keys_with_max_value)
+                    st.write(comma_separated_keys)
                     fig1b=plt.figure(figsize=(10, 6))
                     ax = sns.barplot(x="DF", y="LE", hue="POL", data=df2)
                     plt.xlabel("Drug feed [g/L]")
