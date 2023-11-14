@@ -126,7 +126,7 @@ if submit_button:
         
             file_path = 'options.csv'
             with open(file_path, 'w') as file:
-                for item in options:
+                for item in options2:
                     file.write(str(item) + '\n')
             
             NAMES.append("COMPOUND")
