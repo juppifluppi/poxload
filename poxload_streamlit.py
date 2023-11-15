@@ -89,7 +89,7 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
 
 
     choosemodel = st.selectbox('Models to use:',
-                         ('Final models (around 7 min)','RDK7-RF (around 1 min)'))
+                         ('RDK7-RF (around 1 min)','Final models (around 7 min)'))
 
     
     on3 = st.toggle('Perform batch calculation',key="16")    
@@ -104,7 +104,7 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
 
     on4 = st.toggle('Predict long-term storage',key="19")    
     with st.expander("Settings"):
-        options2 = st.selectbox('Select polymer:',
+        options2 = st.selectbox('Select polymer for long-term storage evaluation:',
                          ("A-cPrOx-A","A-cPrOzi-A","A-nPrOx-A","A-nPrOzi-A","A-iPrOx-A","A-iPrOzi-A","A-cPrMeOx-A","A-cPrMeOzi-A","A-nBuOx-A","A-nBuOzi-A","A-iBuOx-A","A-iBuOzi-A","A-sBuOx-A","A-sBuOzi-A","A-PentOx-A","A*-nPrOzi-A*","A*-nBuOx-A*","A-BzOx-A","A-BzOzi-A","A-PhOx-A","A-PhOzi-A","A-EtHepOx-A","A-EtHepOzi-A","A-nNonOx-A","A-nNonOzi-A"))
 
     emoji = '💊'
@@ -410,15 +410,13 @@ if submit_button:
             with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
                 if choosemodel == 'RDK7-RF (around 1 min)':
                     process3 = subprocess.Popen(["Rscript", "fgv5.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                    st.write(process3.communicate())
+                    result3 = process3.communicate()
                 if choosemodel == 'Final models (around 7 min)':
                     process3 = subprocess.Popen(["Rscript", "fgv6.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result3 = process3.communicate()
                 
                 df2 = pd.read_csv(r'fin_results2.csv')
                 df2 = df2.rename(columns={0: "Time", 1: "DF", 2: "LC", 3: "LE"})
-
-                st.write(df2)
         
                 SDc = ((df2["DF"])*((df2["LE"])/100))
                 #Dc2 = (((df2["LC"]/100)*10)/(1-(df2["LC"]/100)))
