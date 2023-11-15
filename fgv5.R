@@ -476,7 +476,6 @@ gzy=gzy<thr3_8
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
 
-print(a)
 
 ck=t(apply(a, 1, function(u) table(factor(u, levels=c("X1","X0","AD")))))
 a=cbind(a,ck[,1])
@@ -557,6 +556,7 @@ fg2 <- data.frame(LastNonZero = last_non_zero_elements)
           
 a=cbind(a[,1],a[,2],fg1,fg2)
 colnames(a)=c("Time","DF","LC","LE")
+print(a)
 write.csv(a,"fin_results2.csv",row.names=F)
 
 #a=cbind(a[,1],a[,2],(as.numeric(a[,4])/100)*as.numeric(a[,2]))
