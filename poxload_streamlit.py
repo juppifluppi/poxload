@@ -104,7 +104,7 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
 
     on4 = st.toggle('Predict long-term storage',key="19")    
     with st.expander("Settings"):
-        options2 = st.selectbox('Select polymer for long-term storage evaluation:',
+        options2 = st.selectbox('Select polymer for 0-30 days storage:',
                          ("A-nBuOx-A","A-nBuOzi-A","A-nPrOx-A","A-nPrOzi-A","A-cPrOx-A","A-cPrOzi-A","A-iPrOx-A","A-iPrOzi-A","A-cPrMeOx-A","A-cPrMeOzi-A","A-iBuOx-A","A-iBuOzi-A","A-sBuOx-A","A-sBuOzi-A","A-PentOx-A","A*-nPrOzi-A*","A*-nBuOx-A*","A-BzOx-A","A-BzOzi-A","A-PhOx-A","A-PhOzi-A","A-EtHepOx-A","A-EtHepOzi-A","A-nNonOx-A","A-nNonOzi-A"))
 
     emoji = '💊'
@@ -463,13 +463,7 @@ if submit_button:
                 
                 with col1: 
                     st.header("Formulation report")
-                    st.write("Maximum solubilized drug: "+str(round(max(SDcx),1))+" g/L at "+str(df3.loc[SDcx.idxmax(), "DF"])+" g/L drug feed (LE: "+str(finalLE)+" %, LC: "+str(finalLC)+" %)")
-                    max_values = df3.groupby('Time')['SD'].max()
-                    max_value = max_values.max()
-                    keys_with_max_value = max_values[max_values == max_value].index.tolist()
-                    comma_separated_keys = ', '.join(str(key) for key in keys_with_max_value)
-                    st.write(comma_separated_keys)
-        
+                    st.write("Maximum solubilized drug: "+str(round(max(SDcx),1))+" g/L at "+str(df3.loc[SDcx.idxmax(), "DF"])+" g/L drug feed (LE: "+str(finalLE)+" %, LC: "+str(finalLC)+" %)")       
                         
                 with col2:
                     st.image(im)
@@ -487,11 +481,6 @@ if submit_button:
                 with col1:
                     st.write("Amount based on LE models:")                   
                     st.write("Maximum solubilized drug: "+str(round(max(SDc),1))+" g/L at "+str(df4.loc[SDc.idxmax(), "DF"])+" g/L drug feed (LE: "+str(finalLE2)+" %, LC: "+str(finalLC2)+" %)")
-                    max_values = df4.groupby('Time')['SD'].max()                    
-                    max_value = max_values.max()
-                    keys_with_max_value = max_values[max_values == max_value].index.tolist()
-                    comma_separated_keys = ', '.join(str(key) for key in keys_with_max_value)
-                    st.write(comma_separated_keys)
                     
                     fig1a=plt.figure(figsize=(10, 6))
                     ax = sns.barplot(x="DF", y="SD", hue="Time", data=df4)
@@ -514,11 +503,7 @@ if submit_button:
                 with col2:
                     st.write("Amount based on LC models:")
                     st.write("Maximum solubilized drug: "+str(round(max(SDc2),1))+" g/L at "+str(df5.loc[SDc2.idxmax(), "DF"])+" g/L drug feed (LE: "+str(finalLE3)+" %, LC: "+str(finalLC3)+" %)")
-                    max_values = df5.groupby('Time')['SD'].max()                    
-                    max_value = max_values.max()
-                    keys_with_max_value = max_values[max_values == max_value].index.tolist()
-                    comma_separated_keys = ', '.join(str(key) for key in keys_with_max_value)
-                    st.write(comma_separated_keys)
+
                     fig2a=plt.figure(figsize=(10, 6))
                     ax = sns.barplot(x="DF", y="SD", hue="Time", data=df5)
                     plt.xlabel("Drug feed [g/L]")
