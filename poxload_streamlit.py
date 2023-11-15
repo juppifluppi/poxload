@@ -396,7 +396,7 @@ if submit_button:
                                        
             with st.spinner('CREATING FORMULATION DATABASE (STEP 2 OF 4)...'):
                 process1 = subprocess.Popen(["Rscript", "cxdb3.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                st.write(process1.communicate())
+                result1 = process1.communicate()
         
             with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
                 if choosemodel == 'RDK7-RF (around 1 min)':
@@ -405,7 +405,7 @@ if submit_button:
     
                 if choosemodel == 'Final models (around 7 min)':
                     process2 = subprocess.Popen(["Rscript", "create2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                    st.write(process2.communicate())
+                    result2 = process2.communicate()
             
             with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
                 if choosemodel == 'RDK7-RF (around 1 min)':
