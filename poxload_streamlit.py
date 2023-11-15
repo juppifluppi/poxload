@@ -324,7 +324,7 @@ if submit_button:
                 df.reset_index(inplace=True)
 
                 st.write("Table of all predictions:")
-                st.dataframe(df.style.applymap(cooling_highlight,subset=['Passed']))    
+                st.dataframe(df.style.applymap(cooling_highlight,subset=["LC10","LC20","LC30","LC40","LE20","LE40","LE60","LE80","Passed"]))     
                 
                 st.write("Amount of passed thresholds:")
                 fig4=plt.figure(figsize=(10, 6))
@@ -526,7 +526,7 @@ if submit_button:
                 df.reset_index(inplace=True)
 
                 st.write("Table of all predictions:")
-                st.dataframe(df.style.applymap(cooling_highlight,subset=['Passed']))    
+                st.dataframe(df.style.applymap(cooling_highlight,subset=["LC10","LC20","LC30","LC40","LE20","LE40","LE60","LE80","Passed"]))    
                 
                 st.write("Amount of passed thresholds:")
                 fig4=plt.figure(figsize=(10, 6))
