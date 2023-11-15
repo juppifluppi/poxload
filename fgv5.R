@@ -72,7 +72,7 @@ m8=model
 af=read.csv("testformulations.dat",check.names = F)
 afx=af
 #afx$Time=rep(c(0,5,10,30),length(unique(a$DF)))
-print(af$POL)
+
 #ui=m1$trainingData[-1]
 #afx2=afx[,colnames(afx)%in%colnames(ui)]
 #Missing <- setdiff(colnames(ui), colnames(afx2))
@@ -475,6 +475,8 @@ gzy=as.numeric(unlist(as.vector(z1)))
 gzy=gzy<thr3_8
 b[gzy==FALSE]="AD"
 a=cbind(a,b)
+
+print(a)
 
 ck=t(apply(a, 1, function(u) table(factor(u, levels=c("X1","X0","AD")))))
 a=cbind(a,ck[,1])
