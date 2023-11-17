@@ -13,7 +13,12 @@ formulations$Temperature[is.na(formulations$Temperature)]<-0
 formulations$Hydration[is.na(formulations$Hydration)]<-0
 formulations$VOL[is.na(formulations$VOL)]<-0
 
-descriptors=descriptors[ , purrr::map_lgl(descriptors, is.numeric)]
+convert_to_numeric <- function(x) {
+  as.numeric(as.character(x))
+}
+descriptors[] <- lapply(descriptors, convert_to_numeric)
+is.na(descriptors) <- sapply(descriptors, is.infinite)
+descriptors[is.na(descriptors)] <- 0
 bbb=paste0(formulations$A1,"+",formulations$B,"+",formulations$A2,"+",formulations$D,"+",formulations$B2,"+",formulations$D2)
 
 LC=rep(NA,nrow(formulations))
