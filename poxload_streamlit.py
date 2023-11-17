@@ -89,7 +89,7 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
 
 
     choosemodel = st.selectbox('Models to use:',
-                         ('RDK7-RF (around 1 min)','Final models (around 7 min)'))
+                         ('Final models (around 7 min)','RDK7-RF (around 1 min)'))
 
     
     on3 = st.toggle('Perform batch calculation',key="16")    
