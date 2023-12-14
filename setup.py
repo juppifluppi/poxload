@@ -32,12 +32,9 @@ setup(
         ]
     },
     install_requires=[
-        'numpy>=1.19.0',        
+        'numpy',        
         'rdkit>=2022.09.5',    
-        'scopy>=1.2.5',
-        'jazzy>=0.0.11',
-        'padelpy',
-        'sirms',
+        'mordredcommunity',
     ],
     python_requires='>=3.7',
     classifiers=[
