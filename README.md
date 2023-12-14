@@ -1,7 +1,9 @@
-# POxload prediction tool
+# POxload
 *** WORK IN PROGRESS ***
 
-POxload predicts the loading efficiney (LE) and loading capacity (LC) of poly(2-oxazoline)-based micelles for small molecules. Random forest classification models assess different thresholds for both properties.
+POxload is a web tool to evaluate the amount of drug solubilized by amphiphilic, triblock copolymeric poly(oxazoline)/poly(oxazine) (pOx/pOzi) micelles.
+It is based on predictions for loading efficiency (LE) and loading capacity (LC) using four differen thresholds for each parameter (LC10, LC20, LC30, LC40, LE20, LE40, LE60, LE80).
+The formulations are assumed to be made via thin-film hydration using ethanol as solvent and an elevated temperature of 55 °C during re-hydration.
 
 ## Web application
 
