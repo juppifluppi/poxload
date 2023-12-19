@@ -21,7 +21,7 @@ The model can be installed as program in a new conda environment with all the ne
 5. ```conda activate poxload```
 6. ```pip install -e .```
 
-In addition, R and the package caret need to be installed.
+In addition, R and the packages caret, randomForest, kernlab, devtools and proxy need to be installed.
 
 You can then use the alias poxload:
 ```
