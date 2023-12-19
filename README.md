@@ -1,12 +1,12 @@
 # POxload
 
-POxload is a web tool to evaluate the amount of drug solubilized by amphiphilic, triblock copolymeric poly(oxazoline)/poly(oxazine) (pOx/pOzi) micelles.
+POxload is a tool to evaluate the amount of drug solubilized by amphiphilic, triblock copolymeric poly(oxazoline)/poly(oxazine) (pOx/pOzi) micelles.
 It is based on predictions for loading efficiency (LE) and loading capacity (LC) using four differen thresholds for each parameter (LC10, LC20, LC30, LC40, LE20, LE40, LE60, LE80).
 The formulations are assumed to be made via thin-film hydration using ethanol as solvent and an elevated temperature of 55 °C during re-hydration.
 
 ## Web application
 
-Streamlit web app ```poxload_streamlit.py``` is accessible at:
+The streamlit web app ```poxload_streamlit.py``` is accessible at:
 
 https://poxload.streamlit.app/
 
