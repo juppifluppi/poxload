@@ -262,7 +262,7 @@ if submit_button:
                     with col2:
                         st.image(im)
             
-                    st.write("Predicted amount of solubilized drug (average by LE and LC models)")
+                    st.write("Predicted amount of solubilized drug (average by LE and LC models, see below)")
                     fig3=plt.figure(figsize=(10, 6))
                     ax=sns.barplot(x="DF", y="SD", hue="POL", data=df3)
                     plt.xlabel("Drug feed [g/L]")
@@ -475,7 +475,7 @@ if submit_button:
                     with col2:
                         st.image(im)
             
-                    st.write("Predicted amount of solubilized drug (average by LE and LC models)")
+                    st.write("Predicted amount of solubilized drug (average by LE and LC models, see below)")
                     fig3=plt.figure(figsize=(10, 6))
                     ax=sns.barplot(x="DF", y="SD", hue="Time", data=df3)
                     plt.xlabel("Drug feed [g/L]")
