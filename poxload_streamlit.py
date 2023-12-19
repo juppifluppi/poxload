@@ -123,7 +123,7 @@ if submit_button:
                 if len(SMI2) > 2:
                     NAMES.insert(0, "CO-COMPOUND")
                     SMILES.insert(0, SMI2)
-                    tune_DF=str("sed -i -e 's/XXXX/"+str(numberSD2)+"/g' cxdb.R")
+                    tune_DF=str("sed -i -e 's/XXXX/"+str(numberSD2)+"/g' create_formulations.R")
                     os.system(tune_DF)
             
                 file_path = 'options.csv'
@@ -180,24 +180,24 @@ if submit_button:
                     dfx.to_csv("db_test.csv",index=False)
                                            
                 with st.spinner('CREATING FORMULATION DATABASE (STEP 2 OF 4)...'):
-                    process1 = subprocess.Popen(["Rscript", "cxdb.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    process1 = subprocess.Popen(["Rscript", "create_formulations.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result1 = process1.communicate()
             
                 with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
                     if choosemodel == 'RDK7-RF (around 1 min)':
-                        process2 = subprocess.Popen(["Rscript", "create.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                        process2 = subprocess.Popen(["Rscript", "create_mixtures.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result2 = process2.communicate()
         
                     if choosemodel == 'Final models (around 7 min)':
-                        process2 = subprocess.Popen(["Rscript", "create2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                        process2 = subprocess.Popen(["Rscript", "create_mixtures2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result2 = process2.communicate()
                 
                 with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
                     if choosemodel == 'RDK7-RF (around 1 min)':
-                        process3 = subprocess.Popen(["Rscript", "fgv.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                        process3 = subprocess.Popen(["Rscript", "predict.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result3 = process3.communicate()
                     if choosemodel == 'Final models (around 7 min)':
-                        process3 = subprocess.Popen(["Rscript", "fgv2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                        process3 = subprocess.Popen(["Rscript", "predict2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result3 = process3.communicate()
                     
                     df2 = pd.read_csv(r'fin_results2.csv')
@@ -344,7 +344,7 @@ if submit_button:
                 if len(SMI2) > 2:
                     NAMES.insert(0, "CO-COMPOUND")
                     SMILES.insert(0, SMI2)
-                    tune_DF=str("sed -i -e 's/XXXX/"+str(numberSD2)+"/g' cxdb3.R")
+                    tune_DF=str("sed -i -e 's/XXXX/"+str(numberSD2)+"/g' create_formulations3.R")
                     os.system(tune_DF)
             
                 file_path = 'options.csv'
@@ -400,24 +400,24 @@ if submit_button:
                     dfx.to_csv("db_test.csv",index=False)
                                            
                 with st.spinner('CREATING FORMULATION DATABASE (STEP 2 OF 4)...'):
-                    process1 = subprocess.Popen(["Rscript", "cxdb3.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    process1 = subprocess.Popen(["Rscript", "create_formulations3.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result1 = process1.communicate()
             
                 with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
                     if choosemodel == 'RDK7-RF (around 1 min)':
-                        process2 = subprocess.Popen(["Rscript", "create.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                        process2 = subprocess.Popen(["Rscript", "create_mixtures.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result2 = process2.communicate()
         
                     if choosemodel == 'Final models (around 7 min)':
-                        process2 = subprocess.Popen(["Rscript", "create2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                        process2 = subprocess.Popen(["Rscript", "create_mixtures2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result2 = process2.communicate()
                 
                 with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
                     if choosemodel == 'RDK7-RF (around 1 min)':
-                        process3 = subprocess.Popen(["Rscript", "fgv5.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                        process3 = subprocess.Popen(["Rscript", "predict5.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result3 = process3.communicate()
                     if choosemodel == 'Final models (around 7 min)':
-                        process3 = subprocess.Popen(["Rscript", "fgv6.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                        process3 = subprocess.Popen(["Rscript", "predict6.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result3 = process3.communicate()
                     
                     df2 = pd.read_csv(r'fin_results2.csv')
@@ -601,23 +601,23 @@ if submit_button:
                 dfx.to_csv("db_test.csv",index=False)
                                        
             with st.spinner('CREATING FORMULATION DATABASE (STEP 2 OF 4)...'):
-                process1 = subprocess.Popen(["Rscript", "cxdb2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                process1 = subprocess.Popen(["Rscript", "create_formulations2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 result1 = process1.communicate()
         
             with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
                 if choosemodel == 'RDK7-RF (around 1 min)':
-                    process2 = subprocess.Popen(["Rscript", "create.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    process2 = subprocess.Popen(["Rscript", "create_mixtures.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result2 = process2.communicate()
                 if choosemodel == 'Final models (around 7 min)':
-                    process2 = subprocess.Popen(["Rscript", "create2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    process2 = subprocess.Popen(["Rscript", "create_mixtures2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result2 = process2.communicate()
                                    
             with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
                 if choosemodel == 'RDK7-RF (around 1 min)':
-                    process3 = subprocess.Popen(["Rscript", "fgv3.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    process3 = subprocess.Popen(["Rscript", "predict3.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result3 = process3.communicate()
                 if choosemodel == 'Final models (around 7 min)':
-                    process3 = subprocess.Popen(["Rscript", "fgv4.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    process3 = subprocess.Popen(["Rscript", "predict4.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result3 = process3.communicate()
                 
                 df = pd.read_csv(r'fin_results.csv',index_col=0)
