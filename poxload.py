@@ -99,7 +99,7 @@ try:
     command=str("cp -r "+CON+"/xgboost/ .")
     os.system(command)   
     
-    command=str("cp "+CON+"/db_smiles3.csv .")
+    command=str("cp "+CON+"/db_smiles.csv .")
     os.system(command)   
     
     command=str("cp "+CON+"/model_*rda .")
@@ -108,24 +108,24 @@ try:
     command=str("cp "+CON+"/desc.dat .")
     os.system(command)    
     
-    print("CALCULATING DESCRIPTORS...")
+    print("CREATING FORMULATION DATABASE...")
     
-    command=str("Rscript "+CON+"/cxdb.R > /dev/null 2>&1")
+    command=str("Rscript "+CON+"/create_formulations.R > /dev/null 2>&1")
     os.system(command)
     
-    print("CREATING FORMULATIONS...")
+    print("CALCULATING MIXTURE DESCRIPTORS...")
     
-    command=str("Rscript "+CON+"/create2.R > /dev/null 2>&1")
+    command=str("Rscript "+CON+"/create_mixtures2.R > /dev/null 2>&1")
     os.system(command)
     
-    print("CALCULATING FORMULATION DESCRIPTORS...")
+    print("CALCULATING PREDICTIONS...")
     
-    command=str("Rscript "+CON+"/fgv2.R > /dev/null 2>&1")
+    command=str("Rscript "+CON+"/predict2.R > /dev/null 2>&1")
     os.system(command)
     
     print("WRITE RESULTS TO CSV...")
     print("DONE! CALCULATION TIME: {0} SECONDS".format(time.time() - startTime))
-    os.system("rm -r db_formulations.csv db_test.csv descriptors.csv fin_results2.csv options.csv testformulations.dat xgboost/ db_smiles3.csv desc.dat model_*rda")
+    os.system("rm -r db_formulations.csv db_test.csv descriptors.csv fin_results2.csv options.csv testformulations.dat xgboost/ db_smiles.csv desc.dat model_*rda")
     os.system("mv fin_results.csv poxload_results.csv")
     sys.exit()
     
