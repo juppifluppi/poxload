@@ -106,11 +106,16 @@ scaled_new <- predict(preproc, newdata = afx2)
 # Use proxy package for efficient distance calculation
 distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
-# Extract the distances for each row in afx2 and calculate the mean
-z1 <- sapply(1:nrow(afx2), function(huh) {
-  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
-  mean(aggg, na.rm = TRUE)
-})
+## Extract the distances for each row in afx2 and calculate the mean
+#z1 <- sapply(1:nrow(afx2), function(huh) {
+#  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
+#  mean(aggg, na.rm = TRUE)
+#})
+agggsx=c()
+for(uj in 1:nrow(afx2)){
+  agggsx = append(agggsx,mean(abs(sort(distances[uj, distances[uj, ] > 0])[1:15]),na.rm=T))
+}
+z1=agggsx
 
 
 
@@ -163,11 +168,16 @@ scaled_new <- predict(preproc, newdata = afx2)
 # Use proxy package for efficient distance calculation
 distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
-# Extract the distances for each row in afx2 and calculate the mean
-z1 <- sapply(1:nrow(afx2), function(huh) {
-  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
-  mean(aggg, na.rm = TRUE)
-})
+## Extract the distances for each row in afx2 and calculate the mean
+#z1 <- sapply(1:nrow(afx2), function(huh) {
+#  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
+#  mean(aggg, na.rm = TRUE)
+#})
+agggsx=c()
+for(uj in 1:nrow(afx2)){
+  agggsx = append(agggsx,mean(abs(sort(distances[uj, distances[uj, ] > 0])[1:15]),na.rm=T))
+}
+z1=agggsx
 
 
 
@@ -215,11 +225,16 @@ scaled_new <- predict(preproc, newdata = afx2)
 # Use proxy package for efficient distance calculation
 distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
-# Extract the distances for each row in afx2 and calculate the mean
-z1 <- sapply(1:nrow(afx2), function(huh) {
-  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
-  mean(aggg, na.rm = TRUE)
-})
+## Extract the distances for each row in afx2 and calculate the mean
+#z1 <- sapply(1:nrow(afx2), function(huh) {
+#  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
+#  mean(aggg, na.rm = TRUE)
+#})
+agggsx=c()
+for(uj in 1:nrow(afx2)){
+  agggsx = append(agggsx,mean(abs(sort(distances[uj, distances[uj, ] > 0])[1:15]),na.rm=T))
+}
+z1=agggsx
 
 
 
@@ -265,11 +280,16 @@ scaled_new <- predict(preproc, newdata = afx2)
 # Use proxy package for efficient distance calculation
 distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
-# Extract the distances for each row in afx2 and calculate the mean
-z1 <- sapply(1:nrow(afx2), function(huh) {
-  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
-  mean(aggg, na.rm = TRUE)
-})
+## Extract the distances for each row in afx2 and calculate the mean
+#z1 <- sapply(1:nrow(afx2), function(huh) {
+#  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
+#  mean(aggg, na.rm = TRUE)
+#})
+agggsx=c()
+for(uj in 1:nrow(afx2)){
+  agggsx = append(agggsx,mean(abs(sort(distances[uj, distances[uj, ] > 0])[1:15]),na.rm=T))
+}
+z1=agggsx
 
 
 b=as.character(unlist(predict(m4,newdata=afx2)))
@@ -313,11 +333,16 @@ scaled_new <- predict(preproc, newdata = afx2)
 # Use proxy package for efficient distance calculation
 distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
-# Extract the distances for each row in afx2 and calculate the mean
-z1 <- sapply(1:nrow(afx2), function(huh) {
-  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
-  mean(aggg, na.rm = TRUE)
-})
+## Extract the distances for each row in afx2 and calculate the mean
+#z1 <- sapply(1:nrow(afx2), function(huh) {
+#  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
+#  mean(aggg, na.rm = TRUE)
+#})
+agggsx=c()
+for(uj in 1:nrow(afx2)){
+  agggsx = append(agggsx,mean(abs(sort(distances[uj, distances[uj, ] > 0])[1:15]),na.rm=T))
+}
+z1=agggsx
 
 
 
@@ -363,11 +388,16 @@ scaled_new <- predict(preproc, newdata = afx2)
 # Use proxy package for efficient distance calculation
 distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
-# Extract the distances for each row in afx2 and calculate the mean
-z1 <- sapply(1:nrow(afx2), function(huh) {
-  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
-  mean(aggg, na.rm = TRUE)
-})
+## Extract the distances for each row in afx2 and calculate the mean
+#z1 <- sapply(1:nrow(afx2), function(huh) {
+#  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
+#  mean(aggg, na.rm = TRUE)
+#})
+agggsx=c()
+for(uj in 1:nrow(afx2)){
+  agggsx = append(agggsx,mean(abs(sort(distances[uj, distances[uj, ] > 0])[1:15]),na.rm=T))
+}
+z1=agggsx
 
 
 b=as.character(unlist(predict(m6,newdata=afx2)))
@@ -413,11 +443,16 @@ scaled_new <- predict(preproc, newdata = afx2)
 # Use proxy package for efficient distance calculation
 distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
-# Extract the distances for each row in afx2 and calculate the mean
-z1 <- sapply(1:nrow(afx2), function(huh) {
-  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
-  mean(aggg, na.rm = TRUE)
-})
+## Extract the distances for each row in afx2 and calculate the mean
+#z1 <- sapply(1:nrow(afx2), function(huh) {
+#  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
+#  mean(aggg, na.rm = TRUE)
+#})
+agggsx=c()
+for(uj in 1:nrow(afx2)){
+  agggsx = append(agggsx,mean(abs(sort(distances[uj, distances[uj, ] > 0])[1:15]),na.rm=T))
+}
+z1=agggsx
 
 
 
@@ -462,11 +497,16 @@ scaled_new <- predict(preproc, newdata = afx2)
 # Use proxy package for efficient distance calculation
 distances <- proxy::dist(proxy::as.matrix(scaled_new), proxy::as.matrix(uix))
 
-# Extract the distances for each row in afx2 and calculate the mean
-z1 <- sapply(1:nrow(afx2), function(huh) {
-  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
-  mean(aggg, na.rm = TRUE)
-})
+## Extract the distances for each row in afx2 and calculate the mean
+#z1 <- sapply(1:nrow(afx2), function(huh) {
+#  aggg = abs(sort(distances[huh, distances[huh, ] > 0])[1:15])
+#  mean(aggg, na.rm = TRUE)
+#})
+agggsx=c()
+for(uj in 1:nrow(afx2)){
+  agggsx = append(agggsx,mean(abs(sort(distances[uj, distances[uj, ] > 0])[1:15]),na.rm=T))
+}
+z1=agggsx
 
 
 b=as.character(unlist(predict(m8,newdata=afx2)))
