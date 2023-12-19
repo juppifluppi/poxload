@@ -52,21 +52,21 @@ library("proxy")
 
 devtools::load_all('xgboost',helpers=FALSE,quiet=TRUE,export_all=FALSE)
 
-load("model_LC10.rda")
+load("model_final_LC10.rda")
 m1=model
-load("model_LC20.rda")
+load("model_final_LC20.rda")
 m2=model
-load("model_LC30.rda")
+load("model_final_LC30.rda")
 m3=model
-load("model_LC40.rda")
+load("model_final_LC40.rda")
 m4=model
-load("model_LE20.rda")
+load("model_final_LE20.rda")
 m5=model
-load("model_LE40.rda")
+load("model_final_LE40.rda")
 m6=model
-load("model_LE60.rda")
+load("model_final_LE60.rda")
 m7=model
-load("model_LE80.rda")
+load("model_final_LE80.rda")
 m8=model
 
 af=read.csv("testformulations.dat",check.names = F)
