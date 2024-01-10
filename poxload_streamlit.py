@@ -62,7 +62,7 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
  Version 1.0 (19.12.2023)""")
  
 
-    SMI = st.text_input('Enter [SMILES code](https://pubchem.ncbi.nlm.nih.gov//edit3/index.html) of drug to load', '') 
+    SMI = st.text_input('Enter [SMILES code](https://pubchem.ncbi.nlm.nih.gov//edit3/index.html) of drug to load:', '') 
     
     on = st.toggle('Use drawn structure',key="13")
     with st.expander("SMILES editor"):
