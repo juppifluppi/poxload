@@ -56,6 +56,8 @@ It is based on predictions for loading efficiency (LE) and loading capacity (LC)
 The formulations are assumed to be made via thin-film hydration using ethanol as solvent and an elevated temperature of 55 °C during re-hydration. Enter the SMILES code of a drug 
 (and potential co-formulated compounds) and select the polymers of interest. A formulation report is generated, outputting predictions for all models, given a polymer feed of 10 g/L
  and drug feeds of 2-10 g/L. The software is hosted and downloadable as command-line tool at our [github page](https://github.com/juppifluppi/poxload).
+
+ Details can be found in our [preprint](https://doi.org/10.26434/chemrxiv-2024-l5kvc).
  
  Version 1.0 (19.12.2023)""")
  
