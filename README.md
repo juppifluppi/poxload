@@ -38,4 +38,4 @@ poxload_batch CSVFILE
 
 ## Please cite
 
-[Kehrein et al. "POxload: Machine Learning Estimates Drug Loadings of Polymeric Micelles" ChemRxiv 2024](https://doi.org/10.26434/chemrxiv-2024-l5kvc)
+[Kehrein et al. "POxload: Machine Learning Estimates Drug Loadings of Polymeric Micelles." ChemRxiv 2024](https://doi.org/10.26434/chemrxiv-2024-l5kvc)
