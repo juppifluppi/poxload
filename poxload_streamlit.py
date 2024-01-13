@@ -58,13 +58,14 @@ with st.form(key='my_form_to_submit'):
         
         st.caption(""":black[Program usage]""")
         st.caption("""Enter the SMILES code of a drug (and potential co-formulated compounds) and select the polymers of interest. Alternatively, get a list of predictions for multiple drugs using the batch mode, or evaluate long-term storage of a drug for a specific polymer.
-        A formulation report is generated, outputting predictions for all models, given a polymer feed of 10 g/L and drug feeds of 2-10 g/L. Passed thresholds are marked as "X1", those outside of the model applicability as "AD".""")
+        A formulation report is generated, outputting predictions for all models, given a polymer feed of 10 g/L and drug feeds of 2-10 g/L. Passed thresholds are marked as "X1" in the resulting table, those outside of the model applicability as "AD".
+        Amounts of solubilized drug are calculated individually for LC and LE models from the highest threshold before two consecutive negative predictions, and subsequently averaged.""")
         
         st.caption(""":black[Model choice]""")
         st.caption("""Final prediction models provided the highest accuracy on external data, but require initialization of the xgboost package.
         RDK-RF7 models showed slightly lower accuracy, but provide faster computation and a larger applicability (suitable for drugs where final models show "AD" classifications).""") 
         
-        st.caption("""Details can be found in our [preprint](https://doi.org/10.26434/chemrxiv-2024-l5kvc).""")
+        st.caption("""Details and polymer names can be found in our [preprint](https://doi.org/10.26434/chemrxiv-2024-l5kvc).""")
         
         st.caption("""The software is hosted and downloadable as command-line tool at our [github page](https://github.com/juppifluppi/poxload).""")
  
@@ -101,7 +102,7 @@ with st.form(key='my_form_to_submit'):
 
 
     choosemodel = st.selectbox('Models to use:',
-                         ('Final models [holdout AUC = 0.91, up to ~7 min computation time]','RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time, larger applicability]'))
+                         ('Final models [holdout AUC = 0.91, up to ~7 min computation time]','RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time]'))
 
     on3 = st.toggle('Perform batch calculation',key="16")    
     with st.expander("Batch settings"):
@@ -193,7 +194,7 @@ if submit_button:
                     result1 = process1.communicate()
             
                 with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
-                    if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time, larger applicability]':
+                    if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time]':
                         process2 = subprocess.Popen(["Rscript", "create_mixtures.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result2 = process2.communicate()
         
@@ -202,7 +203,7 @@ if submit_button:
                         result2 = process2.communicate()
                 
                 with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
-                    if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time, larger applicability]':
+                    if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time]':
                         process3 = subprocess.Popen(["Rscript", "predict.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result3 = process3.communicate()
                     if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min computation time]':
@@ -413,7 +414,7 @@ if submit_button:
                     result1 = process1.communicate()
             
                 with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
-                    if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time, larger applicability]':
+                    if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time]':
                         process2 = subprocess.Popen(["Rscript", "create_mixtures.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result2 = process2.communicate()
         
@@ -422,7 +423,7 @@ if submit_button:
                         result2 = process2.communicate()
                 
                 with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
-                    if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time, larger applicability]':
+                    if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time]':
                         process3 = subprocess.Popen(["Rscript", "predict5.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result3 = process3.communicate()
                     if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min computation time]':
@@ -614,7 +615,7 @@ if submit_button:
                 result1 = process1.communicate()
         
             with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
-                if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time, larger applicability]':
+                if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time]':
                     process2 = subprocess.Popen(["Rscript", "create_mixtures.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result2 = process2.communicate()
                 if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min computation time]':
@@ -622,7 +623,7 @@ if submit_button:
                     result2 = process2.communicate()
                                    
             with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
-                if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time, larger applicability]':
+                if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time]':
                     process3 = subprocess.Popen(["Rscript", "predict3.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result3 = process3.communicate()
                 if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min computation time]':
