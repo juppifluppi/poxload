@@ -73,6 +73,20 @@ with st.form(key='my_form_to_submit'):
     if on:
         SMI=drawer
 
+    col1, col2 = st.columns(2)
+    with col1:
+        SMI2 = st.text_input('Add potential co-formulated drug:', '')
+        
+    with col2:        
+        numberSD2 = st.number_input('Drug feed of co-formulated drug:',min_value=0, max_value=12, value="min", step=2)
+  
+    on2 = st.toggle('Use drawn structure from editor',key="15")    
+    with st.expander("SMILES editor"):
+        drawer2 = st_ketcher(key="14")
+        st.caption("Use the toggle and click on Apply to activate the drawn structure as input.")  
+    if on2:
+        SMI2=drawer2
+
     options = st.multiselect(
         'Polymers to calculate loading for:',
         options=["A-cPrOx-A","A-cPrOzi-A","A-nPrOx-A","A-nPrOzi-A","A-iPrOx-A","A-iPrOzi-A","A-cPrMeOx-A","A-cPrMeOzi-A","A-nBuOx-A","A-nBuOzi-A","A-iBuOx-A","A-iBuOzi-A","A-sBuOx-A","A-sBuOzi-A","A-PentOx-A","A*-nPrOzi-A*","A*-nBuOx-A*","A-BzOx-A","A-BzOzi-A","A-PhOx-A","A-PhOzi-A","A-EtHepOx-A","A-EtHepOzi-A","A-nNonOx-A","A-nNonOzi-A"],
@@ -81,21 +95,6 @@ with st.form(key='my_form_to_submit'):
 
     choosemodel = st.selectbox('Models to use:',
                          ('Final models [holdout AUC = 0.91, up to ~7 min computation time]','RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time, larger applicability]'))
-
-    with st.expander("Co-formulations"):
-        col1, col2 = st.columns(2)
-        with col1:
-            SMI2 = st.text_input('Add co-formulated drug:', '')
-            
-        with col2:        
-            numberSD2 = st.number_input('Drug feed of co-formulated drug:',min_value=0, max_value=12, value="min", step=2)
-    
-        on2 = st.toggle('Use drawn structure from editor',key="15")    
-        with st.expander("SMILES editor"):
-            drawer2 = st_ketcher(key="14")
-            st.caption("Use the toggle and click on Apply to activate the drawn structure as input.")  
-        if on2:
-            SMI2=drawer2
 
     with st.expander("Alternative computations"):
         on3 = st.toggle('Perform batch calculation',key="16")    
