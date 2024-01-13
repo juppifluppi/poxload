@@ -1,7 +1,7 @@
 # POxload
 
-POxload is a tool to evaluate the amount of drug solubilized by amphiphilic, triblock copolymeric poly(oxazoline)/poly(oxazine) (pOx/pOzi) micelles.
-It is based on predictions for loading efficiency (LE) and loading capacity (LC) using four different thresholds for each parameter (LC10, LC20, LC30, LC40, LE20, LE40, LE60, LE80).
+POxload is a web tool to evaluate the amount of drug solubilized by amphiphilic, triblock copolymeric poly(oxazoline)/poly(oxazine) (pOx/pOzi) micelles.
+It is based on predictions for loading efficiency (LE) and loading capacity (LC) using four different thresholds for each parameter (LC 10/20/30/40%, LE 20/40/60/80%).
 The formulations are assumed to be made via thin-film hydration using ethanol as solvent and an elevated temperature of 55 °C during re-hydration.
 
 Details can be found in our [preprint](https://doi.org/10.26434/chemrxiv-2024-l5kvc).
