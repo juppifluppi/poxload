@@ -49,67 +49,72 @@ MW=[]
 st.image('logo.png')
 
 with st.form(key='my_form_to_submit'):
-    with st.expander("More info"):
+    with st.expander("More information"):
         
         st.caption("""POxload is a web tool to evaluate the amount of drug solubilized by amphiphilic, triblock copolymeric poly(oxazoline)/poly(oxazine) (pOx/pOzi) micelles.
-It is based on predictions for loading efficiency (LE) and loading capacity (LC) using four different thresholds for each parameter (LC10, LC20, LC30, LC40, LE20, LE40, LE60, LE80).
-The formulations are assumed to be made via thin-film hydration using ethanol as solvent and an elevated temperature of 55 °C during re-hydration. Enter the SMILES code of a drug 
-(and potential co-formulated compounds) and select the polymers of interest. A formulation report is generated, outputting predictions for all models, given a polymer feed of 10 g/L
- and drug feeds of 2-10 g/L. The software is hosted and downloadable as command-line tool at our [github page](https://github.com/juppifluppi/poxload).
-
- Details can be found in our [preprint](https://doi.org/10.26434/chemrxiv-2024-l5kvc).
+        It is based on predictions for loading efficiency (LE) and loading capacity (LC) using four different thresholds for each parameter (LC 10/20/30/40%, LE 20/40/60/80%).
+        The formulations are assumed to be made via thin-film hydration using ethanol as solvent and an elevated temperature of 55 °C during re-hydration.
+        
+        Enter the SMILES code of a drug (and potential co-formulated compounds) and select the polymers of interest. Alternatively, get a list of predictions for multiple drugs using the batch mode, or evaluate long-term storage of a drug for a specific polymer.
+        A formulation report is generated, outputting predictions for all models, given a polymer feed of 10 g/L and drug feeds of 2-10 g/L. Final prediction models provided the highest accuracy on external data, but require initialization of the xgboost package.
+        RDK-RF7 models showed slightly lower accuracy, but provide faster computation and a larger applicability. 
+        
+        The software is hosted and downloadable as command-line tool at our [github page](https://github.com/juppifluppi/poxload). Details can be found in our [preprint](https://doi.org/10.26434/chemrxiv-2024-l5kvc).
  
- Version 1.0 (19.12.2023)""")
+        Version 1.0 (19.12.2023)""")
  
-
     SMI = st.text_input('Enter [SMILES code](https://pubchem.ncbi.nlm.nih.gov//edit3/index.html) of drug to load:', '') 
     
-    on = st.toggle('Use drawn structure',key="13")
+    on = st.toggle('Use drawn structure from editor',key="13")
     with st.expander("SMILES editor"):
         drawer = st_ketcher(key="12")
-        st.caption("Click on Apply to save the drawn structure as input.")
+        st.caption("Use the toggle and click on Apply to activate the drawn structure as input.")
 
     if on:
         SMI=drawer
-    
-    col1, col2 = st.columns(2)
-    with col1:
-        SMI2 = st.text_input('Add potential co-formulated drug:', '')
-        
-    with col2:        
-        numberSD2 = st.number_input('Drug feed of co-formulated drug',min_value=0, max_value=12, value="min", step=2)
 
-    on2 = st.toggle('Use drawn structure',key="15")    
-    with st.expander("SMILES editor"):
-        drawer2 = st_ketcher(key="14")
-        st.caption("Click on Apply to save the drawn structure as input.")  
-    if on2:
-        SMI2=drawer2
-    
     options = st.multiselect(
-        'Polymers to calculate loading for',
+        'Polymers to calculate loading for:',
         options=["A-cPrOx-A","A-cPrOzi-A","A-nPrOx-A","A-nPrOzi-A","A-iPrOx-A","A-iPrOzi-A","A-cPrMeOx-A","A-cPrMeOzi-A","A-nBuOx-A","A-nBuOzi-A","A-iBuOx-A","A-iBuOzi-A","A-sBuOx-A","A-sBuOzi-A","A-PentOx-A","A*-nPrOzi-A*","A*-nBuOx-A*","A-BzOx-A","A-BzOzi-A","A-PhOx-A","A-PhOzi-A","A-EtHepOx-A","A-EtHepOzi-A","A-nNonOx-A","A-nNonOzi-A"],
         default=["A-nPrOx-A","A-nPrOzi-A","A-nBuOx-A","A-nBuOzi-A"])
 
 
     choosemodel = st.selectbox('Models to use:',
-                         ('Final models (around 7 min)','RDK7-RF (around 1 min)'))
+                         ('Final models [holdout AUC = 0.91, up to ~7 min computation time]','RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time, larger applicability]'))
 
-    
-    on3 = st.toggle('Perform batch calculation',key="16")    
-    with st.expander("Batch settings"):
+    with st.expander("Advanced options"):
+        st.write("Co-formulations")
+      
         col1, col2 = st.columns(2)
         with col1:
-            st.write("Names of compounds")
-            NAMESx = st.text_area(label="Input names of compounds separated by linebreaks",key="17")
-        with col2:
-            st.write("SMILES codes")
-            SMILESx = st.text_area(label="Input SMILES of compounds separated by linebreaks",key="18")
-
-    on4 = st.toggle('Predict long-term storage',key="19")    
-    with st.expander("Settings"):
-        options2 = st.selectbox('Select polymer for 0-30 days storage:',
-                         ("A-nBuOx-A","A-nBuOzi-A","A-nPrOx-A","A-nPrOzi-A","A-cPrOx-A","A-cPrOzi-A","A-iPrOx-A","A-iPrOzi-A","A-cPrMeOx-A","A-cPrMeOzi-A","A-iBuOx-A","A-iBuOzi-A","A-sBuOx-A","A-sBuOzi-A","A-PentOx-A","A*-nPrOzi-A*","A*-nBuOx-A*","A-BzOx-A","A-BzOzi-A","A-PhOx-A","A-PhOzi-A","A-EtHepOx-A","A-EtHepOzi-A","A-nNonOx-A","A-nNonOzi-A"))
+            SMI2 = st.text_input('Add co-formulated drug:', '')
+            
+        with col2:        
+            numberSD2 = st.number_input('Drug feed of co-formulated drug:',min_value=0, max_value=12, value="min", step=2)
+    
+        on2 = st.toggle('Use drawn structure from editor',key="15")    
+        with st.expander("SMILES editor"):
+            drawer2 = st_ketcher(key="14")
+            st.caption("Use the toggle and click on Apply to activate the drawn structure as input.")  
+        if on2:
+            SMI2=drawer2
+            
+        st.write("Alternative computations")
+        
+        on3 = st.toggle('Perform batch calculation',key="16")    
+        with st.expander("Batch settings"):
+            col1, col2 = st.columns(2)
+            with col1:
+                st.write("Names of compounds")
+                NAMESx = st.text_area(label="Input names of compounds separated by linebreaks",key="17")
+            with col2:
+                st.write("SMILES codes")
+                SMILESx = st.text_area(label="Input SMILES of compounds separated by linebreaks",key="18")
+    
+        on4 = st.toggle('Predict long-term storage',key="19")    
+        with st.expander("Storage settings"):
+            options2 = st.selectbox('Select polymer for 0-30 days storage:',
+                             ("A-nBuOx-A","A-nBuOzi-A","A-nPrOx-A","A-nPrOzi-A","A-cPrOx-A","A-cPrOzi-A","A-iPrOx-A","A-iPrOzi-A","A-cPrMeOx-A","A-cPrMeOzi-A","A-iBuOx-A","A-iBuOzi-A","A-sBuOx-A","A-sBuOzi-A","A-PentOx-A","A*-nPrOzi-A*","A*-nBuOx-A*","A-BzOx-A","A-BzOzi-A","A-PhOx-A","A-PhOzi-A","A-EtHepOx-A","A-EtHepOzi-A","A-nNonOx-A","A-nNonOzi-A"))
 
     emoji = '💊'
     label = ' Formulate!'
@@ -186,19 +191,19 @@ if submit_button:
                     result1 = process1.communicate()
             
                 with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
-                    if choosemodel == 'RDK7-RF (around 1 min)':
+                    if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time, larger applicability]':
                         process2 = subprocess.Popen(["Rscript", "create_mixtures.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result2 = process2.communicate()
         
-                    if choosemodel == 'Final models (around 7 min)':
+                    if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min computation time]':
                         process2 = subprocess.Popen(["Rscript", "create_mixtures2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result2 = process2.communicate()
                 
                 with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
-                    if choosemodel == 'RDK7-RF (around 1 min)':
+                    if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time, larger applicability]':
                         process3 = subprocess.Popen(["Rscript", "predict.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result3 = process3.communicate()
-                    if choosemodel == 'Final models (around 7 min)':
+                    if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min computation time]':
                         process3 = subprocess.Popen(["Rscript", "predict2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result3 = process3.communicate()
                     
@@ -406,19 +411,19 @@ if submit_button:
                     result1 = process1.communicate()
             
                 with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
-                    if choosemodel == 'RDK7-RF (around 1 min)':
+                    if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time, larger applicability]':
                         process2 = subprocess.Popen(["Rscript", "create_mixtures.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result2 = process2.communicate()
         
-                    if choosemodel == 'Final models (around 7 min)':
+                    if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min computation time]':
                         process2 = subprocess.Popen(["Rscript", "create_mixtures2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result2 = process2.communicate()
                 
                 with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
-                    if choosemodel == 'RDK7-RF (around 1 min)':
+                    if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time, larger applicability]':
                         process3 = subprocess.Popen(["Rscript", "predict5.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result3 = process3.communicate()
-                    if choosemodel == 'Final models (around 7 min)':
+                    if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min computation time]':
                         process3 = subprocess.Popen(["Rscript", "predict6.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result3 = process3.communicate()
                     
@@ -607,18 +612,18 @@ if submit_button:
                 result1 = process1.communicate()
         
             with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
-                if choosemodel == 'RDK7-RF (around 1 min)':
+                if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time, larger applicability]':
                     process2 = subprocess.Popen(["Rscript", "create_mixtures.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result2 = process2.communicate()
-                if choosemodel == 'Final models (around 7 min)':
+                if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min computation time]':
                     process2 = subprocess.Popen(["Rscript", "create_mixtures2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result2 = process2.communicate()
                                    
             with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
-                if choosemodel == 'RDK7-RF (around 1 min)':
+                if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time, larger applicability]':
                     process3 = subprocess.Popen(["Rscript", "predict3.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result3 = process3.communicate()
-                if choosemodel == 'Final models (around 7 min)':
+                if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min computation time]':
                     process3 = subprocess.Popen(["Rscript", "predict4.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result3 = process3.communicate()
                 
