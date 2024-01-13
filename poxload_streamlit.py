@@ -58,8 +58,7 @@ with st.form(key='my_form_to_submit'):
         
         st.caption(""":black[Program usage]""")
         st.caption("""Enter the SMILES code of a drug (and potential co-formulated compounds) and select the polymers of interest. Alternatively, get a list of predictions for multiple drugs using the batch mode, or evaluate long-term storage of a drug for a specific polymer.
-        A formulation report is generated, outputting predictions for all models, given a polymer feed of 10 g/L and drug feeds of 2-10 g/L. Passed thresholds are marked as "X1" in the resulting table, those outside of the model applicability as "AD".
-        Amounts of solubilized drug are calculated individually for LC and LE models from the highest threshold before two consecutive negative predictions, and subsequently averaged.""")
+        A formulation report is generated, outputting predictions for all models, given a polymer feed of 10 g/L and drug feeds of 2-10 g/L. Passed thresholds are marked as "X1" in the resulting table, those outside of the model applicability as "AD".""")
         
         st.caption(""":black[Model choice]""")
         st.caption("""Final prediction models provided the highest accuracy on external data, but require initialization of the xgboost package.
