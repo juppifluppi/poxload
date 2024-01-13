@@ -96,21 +96,20 @@ with st.form(key='my_form_to_submit'):
     choosemodel = st.selectbox('Models to use:',
                          ('Final models [holdout AUC = 0.91, up to ~7 min computation time]','RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time, larger applicability]'))
 
-    with st.expander("Alternative computations"):
-        on3 = st.toggle('Perform batch calculation',key="16")    
-        with st.expander("Batch settings"):
-            col1, col2 = st.columns(2)
-            with col1:
-                st.write("Names of compounds")
-                NAMESx = st.text_area(label="Input names of compounds separated by linebreaks",key="17")
-            with col2:
-                st.write("SMILES codes")
-                SMILESx = st.text_area(label="Input SMILES of compounds separated by linebreaks",key="18")
-    
-        on4 = st.toggle('Predict long-term storage',key="19")    
-        with st.expander("Storage settings"):
-            options2 = st.selectbox('Select polymer for 0-30 days storage:',
-                             ("A-nBuOx-A","A-nBuOzi-A","A-nPrOx-A","A-nPrOzi-A","A-cPrOx-A","A-cPrOzi-A","A-iPrOx-A","A-iPrOzi-A","A-cPrMeOx-A","A-cPrMeOzi-A","A-iBuOx-A","A-iBuOzi-A","A-sBuOx-A","A-sBuOzi-A","A-PentOx-A","A*-nPrOzi-A*","A*-nBuOx-A*","A-BzOx-A","A-BzOzi-A","A-PhOx-A","A-PhOzi-A","A-EtHepOx-A","A-EtHepOzi-A","A-nNonOx-A","A-nNonOzi-A"))
+    on3 = st.toggle('Perform batch calculation',key="16")    
+    with st.expander("Batch settings"):
+        col1, col2 = st.columns(2)
+        with col1:
+            st.write("Names of compounds")
+            NAMESx = st.text_area(label="Input names of compounds separated by linebreaks",key="17")
+        with col2:
+            st.write("SMILES codes")
+            SMILESx = st.text_area(label="Input SMILES of compounds separated by linebreaks",key="18")
+
+    on4 = st.toggle('Predict long-term storage',key="19")    
+    with st.expander("Storage settings"):
+        options2 = st.selectbox('Select polymer for 0-30 days storage:',
+                         ("A-nBuOx-A","A-nBuOzi-A","A-nPrOx-A","A-nPrOzi-A","A-cPrOx-A","A-cPrOzi-A","A-iPrOx-A","A-iPrOzi-A","A-cPrMeOx-A","A-cPrMeOzi-A","A-iBuOx-A","A-iBuOzi-A","A-sBuOx-A","A-sBuOzi-A","A-PentOx-A","A*-nPrOzi-A*","A*-nBuOx-A*","A-BzOx-A","A-BzOzi-A","A-PhOx-A","A-PhOzi-A","A-EtHepOx-A","A-EtHepOzi-A","A-nNonOx-A","A-nNonOzi-A"))
 
     emoji = '💊'
     label = ' Formulate!'
