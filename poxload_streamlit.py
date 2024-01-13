@@ -62,7 +62,7 @@ with st.form(key='my_form_to_submit'):
         
         st.caption(""":black[Model choice]""")
         st.caption("""Final prediction models provided the highest accuracy on external data, but require initialization of the xgboost package.
-        RDK-RF7 models showed slightly lower accuracy, but provide faster computation and a larger applicability (suitable for drugs where final models show "AD" classifications).""") 
+        RDK7-RF models showed slightly lower accuracy, but provide faster computation and a larger applicability (suitable for drugs where final models show "AD" classifications).""") 
         
         st.caption("""Details and polymer names can be found in our [preprint](https://doi.org/10.26434/chemrxiv-2024-l5kvc).""")
         
