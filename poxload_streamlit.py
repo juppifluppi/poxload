@@ -59,7 +59,9 @@ with st.form(key='my_form_to_submit'):
         A formulation report is generated, outputting predictions for all models, given a polymer feed of 10 g/L and drug feeds of 2-10 g/L. Final prediction models provided the highest accuracy on external data, but require initialization of the xgboost package.
         RDK-RF7 models showed slightly lower accuracy, but provide faster computation and a larger applicability.""") 
         
-        st.caption("""The software is hosted and downloadable as command-line tool at our [github page](https://github.com/juppifluppi/poxload). Details can be found in our [preprint](https://doi.org/10.26434/chemrxiv-2024-l5kvc).""")
+        st.caption("""Details can be found in our [preprint](https://doi.org/10.26434/chemrxiv-2024-l5kvc).""")
+        
+        st.caption("""The software is hosted and downloadable as command-line tool at our [github page](https://github.com/juppifluppi/poxload).""")
  
         st.caption("""Version 1.0 (19.12.2023)""")
  
