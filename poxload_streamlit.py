@@ -101,7 +101,7 @@ with st.form(key='my_form_to_submit'):
 
 
     choosemodel = st.selectbox('Models to use:',
-                         ('Final models [holdout AUC = 0.91, up to ~7 min computation time]','RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time]'))
+                         ('Final models [holdout AUC = 0.91, up to ~7 min]','RDK7-RF [holdout AUC = 0.88, up to ~1 min]'))
 
     on3 = st.toggle('Perform batch calculation',key="16")    
     with st.expander("Batch settings"):
@@ -193,19 +193,19 @@ if submit_button:
                     result1 = process1.communicate()
             
                 with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
-                    if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time]':
+                    if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min]':
                         process2 = subprocess.Popen(["Rscript", "create_mixtures.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result2 = process2.communicate()
         
-                    if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min computation time]':
+                    if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min]':
                         process2 = subprocess.Popen(["Rscript", "create_mixtures2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result2 = process2.communicate()
                 
                 with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
-                    if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time]':
+                    if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min]':
                         process3 = subprocess.Popen(["Rscript", "predict.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result3 = process3.communicate()
-                    if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min computation time]':
+                    if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min]':
                         process3 = subprocess.Popen(["Rscript", "predict2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result3 = process3.communicate()
                     
@@ -413,19 +413,19 @@ if submit_button:
                     result1 = process1.communicate()
             
                 with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
-                    if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time]':
+                    if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min]':
                         process2 = subprocess.Popen(["Rscript", "create_mixtures.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result2 = process2.communicate()
         
-                    if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min computation time]':
+                    if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min]':
                         process2 = subprocess.Popen(["Rscript", "create_mixtures2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result2 = process2.communicate()
                 
                 with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
-                    if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time]':
+                    if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min]':
                         process3 = subprocess.Popen(["Rscript", "predict5.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result3 = process3.communicate()
-                    if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min computation time]':
+                    if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min]':
                         process3 = subprocess.Popen(["Rscript", "predict6.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result3 = process3.communicate()
                     
@@ -614,18 +614,18 @@ if submit_button:
                 result1 = process1.communicate()
         
             with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
-                if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time]':
+                if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min]':
                     process2 = subprocess.Popen(["Rscript", "create_mixtures.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result2 = process2.communicate()
-                if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min computation time]':
+                if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min]':
                     process2 = subprocess.Popen(["Rscript", "create_mixtures2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result2 = process2.communicate()
                                    
             with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
-                if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min computation time]':
+                if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min]':
                     process3 = subprocess.Popen(["Rscript", "predict3.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result3 = process3.communicate()
-                if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min computation time]':
+                if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min]':
                     process3 = subprocess.Popen(["Rscript", "predict4.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result3 = process3.communicate()
                 
