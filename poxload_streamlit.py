@@ -66,7 +66,7 @@ with st.form(key='my_form_to_submit'):
         
         st.caption("""Details can be found in our [preprint](https://doi.org/10.26434/chemrxiv-2024-l5kvc).""")
         
-        st.caption("""The software is hosted and downloadable as command-line tool at our [github page](https://github.com/juppifluppi/poxload).""")
+        st.caption("""The software is hosted and downloadable as command-line tool at our [github page](https://github.com/juppifluppi/poxload), licensed under MIT.""")
  
         st.caption("""Version 1.0 (19.12.2023)""")
  
