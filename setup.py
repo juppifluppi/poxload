@@ -27,8 +27,8 @@ setup(
     include_package_data=True,
     entry_points={
         'console_scripts': [
-            'poxload=poxload',
-            'poxload_batch=poxload_batch'
+            'poxload=poxload:main',
+            'poxload_batch=poxload_batch:main'
         ]
     },
     install_requires=[
