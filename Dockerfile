@@ -8,7 +8,7 @@ USER root
 
 # Install libXrender 
 
-RUN yum install -y libXrender && yum clean all
+RUN yum install -y libXrender R java && yum clean all
 
 # Create a non-root user without a password
 
