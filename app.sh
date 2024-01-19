@@ -1,6 +1,6 @@
 #!/bin/bash
 
-yum install -y libXrender && yum clean all
+sudo yum install -y libXrender && yum clean all
 
 streamlit run \
           --server.address 0.0.0.0 \
