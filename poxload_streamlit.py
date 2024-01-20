@@ -274,7 +274,6 @@ if submit_button:
                         
                 with col2:
                     st.image(im)
-                    figs.append(im)
         
                 st.write("Predicted amount of solubilized drug (average by LE and LC models, see below)")
                 fig3=plt.figure(figsize=(10, 6))
@@ -283,8 +282,9 @@ if submit_button:
                 plt.ylabel("Solubilized drug [g/L]")
                 plt.ylim(0, 10)
                 ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-                st.pyplot(fig3)
                 figs.append(fig3)
+                st.pyplot(fig3)
+                
         
                 col1, col2 = st.columns(2)
                 with col1:
@@ -303,7 +303,7 @@ if submit_button:
                     plt.ylim(0, 10)
                     ax.get_legend().remove()
                     st.pyplot(fig1a)
-                    figs.append(fig1a)
+                    #figs.append(fig1a)
         
                     st.write("Calculated from LE predictions:")
                     fig1b=plt.figure(figsize=(10, 6))
@@ -313,7 +313,7 @@ if submit_button:
                     plt.ylim(0, 100)
                     ax.get_legend().remove()
                     st.pyplot(fig1b)
-                    figs.append(fig1b)
+                    #figs.append(fig1b)
                 
                 
                 with col2:
@@ -331,7 +331,7 @@ if submit_button:
                     plt.ylim(0, 10)
                     ax.get_legend().remove()
                     st.pyplot(fig2a)
-                    figs.append(fig2a)
+                    #figs.append(fig2a)
         
                     st.write("Calculated from LC predictions:")
                     fig2b=plt.figure(figsize=(10, 6))
@@ -341,7 +341,7 @@ if submit_button:
                     plt.ylim(0, 50)
                     ax.get_legend().remove()
                     st.pyplot(fig2b)
-                    figs.append(fig2b)
+                    #figs.append(fig2b)
         
                 df = pd.read_csv(r'fin_results.csv',index_col=0)
                 df = df.rename(columns={0: "POL", 1:"DF", 2: "LC10", 3: "LC20", 4: "LC30", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE80", 10:"Passed"})
@@ -358,7 +358,7 @@ if submit_button:
                 plt.ylim(0, 8)
                 ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
                 st.pyplot(fig4)
-                figs.append(fig4)
+                #figs.append(fig4)
                 
                 
                 # Creating export and download link for pdf file.
