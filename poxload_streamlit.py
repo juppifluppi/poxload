@@ -641,3 +641,5 @@ if submit_button:
 
 #except:
 #    st.write("Something went wrong. Cannot parse molecules! Please verify your structures.")  
+
+os.system("rm db_formulations.csv db_test.csv options.csv descriptors.csv fin_results.csv fin_results2.csv testformulations.dat")
