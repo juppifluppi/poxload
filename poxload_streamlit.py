@@ -19,6 +19,9 @@ import uuid
 
 original_directory = os.getcwd()
 
+processx = subprocess.Popen(["Rscript", "rpackages.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+resultx = processx.communicate()
+
 calc = Calculator(descriptors, ignore_3D=False)
 
 def fingerprint_rdk5(self) -> np.ndarray:
