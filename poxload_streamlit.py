@@ -18,7 +18,6 @@ from PIL import Image
 import uuid
 
 original_directory = os.getcwd()
-st.write(original_directory)
 
 calc = Calculator(descriptors, ignore_3D=False)
 
