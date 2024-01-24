@@ -17,7 +17,7 @@ import subprocess
 from PIL import Image
 import uuid
 
-original_directory = os.getcwd()
+homedir = "/mount/src/poxload/"
 
 calc = Calculator(descriptors, ignore_3D=False)
 
@@ -45,10 +45,6 @@ def cooling_highlight(val):
    color = 'green' if val == 8 else "green" if val == 7 else "green" if val == 6 else "green" if val == "X1" else "yellow" if val == 5 else "yellow" if val == 4  else "yellow" if val == 3 else "red" if val == 2 else "red" if val == 1 else "red" if val == 0 else "red" if val == "X0" else "grey" if val == "AD" else "white"                    
    return f'background-color: {color}'
 
-#NAMES=["MeOx","EtOx","nPrOx","nBuOx","iBuOx","cPrOx","iPrOx","cPrMeOx","sBuOx","EtHepOx","nNonOx","PhOx","PentOx","nPrOzi","nBuOzi","iBuOzi","cPrOzi","iPrOzi","cPrMeOzi","sBuOzi","EtHepOzi","nNonOzi","PhOzi","BzOx","BzOzi","PhenOx","PhenOzi","Pid","EIP","PgMeOx","Pip","PipBoc","nBuEnOx","nBuOxPh","nBuOxNH2","nBuOxCOOH","PcBOx","OH","NH2","rEtEtOx","sEtEtOx","EtEtOx","rPrMeOx","sPrMeOx","PrMeOx","Bz"]
-#SMILES=["CC(=O)N(C)CC","CCC(=O)N(C)CC","CCCC(=O)N(C)CC","CCCCC(=O)N(C)CC","CC(C)CC(=O)N(C)CC","CCN(C)C(=O)C1CC1","CC(C)C(=O)N(C)CC","CCN(C)C(=O)CC1CC1","CCC(C)C(=O)N(C)CC","CCCCC(CC)CCC(=O)N(C)CC","CCCCCCCCCC(=O)N(C)CC","CCN(C)C(=O)c1ccccc1","CCCCCC(=O)N(C)CC","CCCC(=O)N(C)CCC","CCCCC(=O)N(C)CCC","CC(C)CC(=O)N(C)CCC","CCCN(C)C(=O)C1CC1","CCCN(C)C(=O)C(C)C","CCCN(C)C(=O)CC1CC1","CCC(C)C(=O)N(C)CCC","CCCCC(CC)CCC(=O)N(C)CCC","CCCCCCCCCC(=O)N(C)CCC","CCCN(C)C(=O)c1ccccc1","CCN(C)C(=O)Cc1ccccc1","CCCN(C)C(=O)Cc1ccccc1","CCN(C)C(=O)CCc1ccccc1","CCCN(C)C(=O)CCc1ccccc1","CN1CCCCC1","CCOC(=O)C1CCN(C)CC1","C#CCCN(C)C(C)=O","CN1CCNCC1","CN1CCN(C(=O)OC(C)(C)C)CC1","C=CCCC(=O)N(C)CC","CCN(C)C(=O)CCCCSCc1ccccc1","CCN(C)C(=O)CCCCSCC(=O)O","CCN(C)C(=O)CCCCSCC(=O)O","CCN(C)C(=O)CCc1nc(N)nc(N(C)C)n1","CO","CN","CCC(=O)N(C)[C@H](C)CC","CCC(=O)N(C)[C@@H](C)CC","CCC(=O)N(C)C(C)CC","CCCC(=O)N(C)[C@H](C)C","CCCC(=O)N(C)[C@@H](C)C","CCCC(=O)N(C)C(C)C","Cc1ccccc1"]
-#MW=[]
-
 st.image('logo.png')
 
 with st.form(key='my_form_to_submit'):
@@ -73,7 +69,6 @@ with st.form(key='my_form_to_submit'):
  
         st.caption("""Version 1.0 (24.01.2024)""")
  
-
     SMI = st.text_input('Enter [SMILES code](https://pubchem.ncbi.nlm.nih.gov//edit3/index.html) of drug to load', '') 
     
     on = st.toggle('Use drawn structure',key="13")
@@ -103,11 +98,9 @@ with st.form(key='my_form_to_submit'):
         options=["A-cPrOx-A","A-cPrOzi-A","A-nPrOx-A","A-nPrOzi-A","A-iPrOx-A","A-iPrOzi-A","A-cPrMeOx-A","A-cPrMeOzi-A","A-nBuOx-A","A-nBuOzi-A","A-iBuOx-A","A-iBuOzi-A","A-sBuOx-A","A-sBuOzi-A","A-PentOx-A","A*-nPrOzi-A*","A*-nBuOx-A*","A-BzOx-A","A-BzOzi-A","A-PhOx-A","A-PhOzi-A","A-EtHepOx-A","A-EtHepOzi-A","A-nNonOx-A","A-nNonOzi-A"],
         default=["A-nPrOx-A","A-nPrOzi-A","A-nBuOx-A","A-nBuOzi-A"])
 
-
     choosemodel = st.selectbox('Models to use:',
                          ('Final models [AUC = 0.91, ~7 min]','RDK7-RF [AUC = 0.88, ~1 min]'))
 
-    
     on3 = st.toggle('Perform batch calculation',key="16")    
     with st.expander("Batch settings"):
         col1, col2 = st.columns(2)
@@ -128,17 +121,15 @@ with st.form(key='my_form_to_submit'):
     
     submit_button = st.form_submit_button(label=f'{emoji} {label}')
 
-
-
 if submit_button:
-    folder_name = str(uuid.uuid4())
-    os.makedirs(folder_name, exist_ok=True)
-    os.chdir(folder_name)
+    os.chdir(homedir)
+    tempdir = str(uuid.uuid4())
+    os.makedirs(tempdir)
+    os.chdir(tempdir)
 
-    for filename in os.listdir(original_directory):
-        if os.path.isfile(os.path.join(original_directory, filename)):
-            shutil.copy2(os.path.join(original_directory, filename), os.getcwd())
-    shutil.copytree(os.path.join(original_directory, "xgboost"), os.path.join(os.getcwd(), "xgboost"))
+    for filename in os.listdir(homedir):
+        if os.path.isfile(os.path.join(homedir, filename)):
+            shutil.copy2(os.path.join(homedir, filename), os.getcwd())
 
     SMI=SMI
     SMI2=SMI2
@@ -665,16 +656,8 @@ if submit_button:
             df.reset_index(inplace=True)               
             st.dataframe(df.style.applymap(cooling_highlight,subset=["LC10","LC20","LC30","LC40","LE20","LE40","LE60","LE80","Passed"]))    
 
-    os.chdir(original_directory)
-    print("Back to original directory:", os.getcwd())
-    shutil.rmtree(folder_name)
-
-try:
-    os.chdir(original_directory)
-    print("Back to original directory:", os.getcwd())
-    shutil.rmtree(folder_name)
-except:
-    pass
+    os.chdir(homedir)
+    shutil.rmtree(tempdir)
 
     # except:
     #     st.write("Something went wrong. Cannot parse molecules! Please verify your structures.")  
