@@ -678,12 +678,5 @@ try:
 except:
     pass
 
-
-#    for es in ["db_formulations.csv","db_test.csv","options.csv","descriptors.csv","fin_results.csv","fin_results2.csv","testformulations.dat","create_formulations_temp.R"]:
-#        try:
-#            os.remove(es)
-#        except:
-#            pass
-
     # except:
     #     st.write("Something went wrong. Cannot parse molecules! Please verify your structures.")  
