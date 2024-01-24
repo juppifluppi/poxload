@@ -44,7 +44,7 @@ thr4_6=41.08382
 thr4_7=40.04237
 thr4_8=36.79055
 
-
+.libPaths(c("../", .libPaths()))
 using<-function(...) {
     libs<-unlist(list(...))
     req<-unlist(lapply(libs,require,character.only=TRUE))
