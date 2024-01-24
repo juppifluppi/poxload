@@ -184,8 +184,8 @@ if submit_button:
                         
                         mj = Chem.Descriptors.ExactMolWt(mol)
                         MW.append(mj)
-                        if molecule == len(SMILES)-1:
-                            im = Draw.MolToImage(Chem.MolFromSmiles(SMILES[molecule]),fitImage=True) 
+                        #if molecule == len(SMILES)-1:
+                        #    im = Draw.MolToImage(Chem.MolFromSmiles(SMILES[molecule]),fitImage=True) 
                   
                     dfx = pd.DataFrame(columns=['NAME', "SMILES","MW"])
                     dfx["NAME"]=NAMES
@@ -275,6 +275,7 @@ if submit_button:
             
                             
                     with col2:
+                        im = Draw.MolToImage(Chem.MolFromSmiles(SMI),fitImage=True)
                         st.image(im)
             
                     st.write("Predicted amount of solubilized drug (average by LE and LC models, see below)")
@@ -405,8 +406,8 @@ if submit_button:
                         
                         mj = Chem.Descriptors.ExactMolWt(mol)
                         MW.append(mj)
-                        if molecule == len(SMILES)-1:
-                            im = Draw.MolToImage(Chem.MolFromSmiles(SMILES[molecule]),fitImage=True) 
+                        #if molecule == len(SMILES)-1:
+                        #    im = Draw.MolToImage(Chem.MolFromSmiles(SMILES[molecule]),fitImage=True) 
                   
                     dfx = pd.DataFrame(columns=['NAME', "SMILES","MW"])
                     dfx["NAME"]=NAMES
@@ -489,6 +490,7 @@ if submit_button:
                         st.write("Maximum solubilized drug: "+str(round(max(SDcx),1))+" g/L at "+str(df3.loc[SDcx.idxmax(), "DF"])+" g/L drug feed (LE: "+str(finalLE)+" %, LC: "+str(finalLC)+" %)")       
                             
                     with col2:
+                        im = Draw.MolToImage(Chem.MolFromSmiles(SMI),fitImage=True)
                         st.image(im)
             
                     st.write("Predicted amount of solubilized drug (average by LE and LC models, see below)")
