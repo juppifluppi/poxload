@@ -15,6 +15,7 @@ from streamlit_ketcher import st_ketcher
 import time
 import subprocess
 from PIL import Image
+import fcntl
 
 calc = Calculator(descriptors, ignore_3D=False)
 
@@ -128,6 +129,14 @@ with st.form(key='my_form_to_submit'):
 
 
 if submit_button:
+    fcntl.flock("options.csv", fcntl.LOCK_EX)
+    fcntl.flock("descriptors.csv", fcntl.LOCK_EX)
+    fcntl.flock("create_formulations_temp.R", fcntl.LOCK_EX)
+    fcntl.flock("db_formulations.csv", fcntl.LOCK_EX)
+    fcntl.flock("db_test.csv", fcntl.LOCK_EX)
+    fcntl.flock("fin_results.csv", fcntl.LOCK_EX)
+    fcntl.flock("fin_results2.csv", fcntl.LOCK_EX)
+    fcntl.flock("testformulations.dat", fcntl.LOCK_EX)
 #    for es in ["db_formulations.csv","db_test.csv","options.csv","descriptors.csv","fin_results.csv","fin_results2.csv","testformulations.dat","create_formulations_temp.R"]:
 #        try:
 #            os.remove(es)
@@ -210,31 +219,41 @@ if submit_button:
                 process1 = subprocess.Popen(["Rscript", "create_formulations_temp.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 result1 = process1.communicate()
                 #st.write(result1)
+                fcntl.flock("create_formulations_temp.R", fcntl.LOCK_UN)
+                fcntl.flock("options.csv", fcntl.LOCK_UN)
+                fcntl.flock("db_test.csv", fcntl.LOCK_UN)
         
             with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
                 if choosemodel == 'RDK7-RF [AUC = 0.88, ~1 min]':
                     process2 = subprocess.Popen(["Rscript", "create_mixtures.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result2 = process2.communicate()
                     #st.write(result2)
+                    fcntl.flock("descriptors.csv", fcntl.LOCK_UN)
+                    fcntl.flock("db_formulations.csv", fcntl.LOCK_UN)
     
                 if choosemodel == 'Final models [AUC = 0.91, ~7 min]':
                     process2 = subprocess.Popen(["Rscript", "create_mixtures2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result2 = process2.communicate()
                     #st.write(result2)
+                    fcntl.flock("descriptors.csv", fcntl.LOCK_UN)
+                    fcntl.flock("db_formulations.csv", fcntl.LOCK_UN)
             
             with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
                 if choosemodel == 'RDK7-RF [AUC = 0.88, ~1 min]':
                     process3 = subprocess.Popen(["Rscript", "predict.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result3 = process3.communicate()
                     #st.write(result3)
+                    fcntl.flock("testformulations.dat", fcntl.LOCK_UN)
                     
                 if choosemodel == 'Final models [AUC = 0.91, ~7 min]':
                     process3 = subprocess.Popen(["Rscript", "predict2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result3 = process3.communicate()
                     #st.write(result3)
+                    fcntl.flock("testformulations.dat", fcntl.LOCK_UN)
                 
                 df2 = pd.read_csv(r'fin_results2.csv')
                 df2 = df2.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
+                fcntl.flock("fin_results2.csv", fcntl.LOCK_UN)
         
                 SDc = ((df2["DF"])*((df2["LE"])/100))
                 #Dc2 = (((df2["LC"]/100)*10)/(1-(df2["LC"]/100)))
@@ -361,6 +380,7 @@ if submit_button:
                 df = pd.read_csv(r'fin_results.csv',index_col=0)
                 df = df.rename(columns={0: "POL", 1:"DF", 2: "LC10", 3: "LC20", 4: "LC30", 5: "LC40", 6: "LE20", 7: "LE40", 8: "LE60", 9: "LE80", 10:"Passed"})
                 df.reset_index(inplace=True)
+                fcntl.flock("fin_results.csv", fcntl.LOCK_UN)
 
                 st.write("Table of all predictions:")
                 st.dataframe(df.style.applymap(cooling_highlight,subset=["LC10","LC20","LC30","LC40","LE20","LE40","LE60","LE80","Passed"]))     
