@@ -129,10 +129,10 @@ if submit_button:
     # try:
     if on3 is False:
         if on4 is False:
+            os.system("cp create_formulations.R create_formulations_temp.R")
             if len(SMI2) > 2:
                 NAMES.insert(0, "CO-COMPOUND")
                 SMILES.insert(0, SMI2)
-                os.system("cp create_formulations.R create_formulations_temp.R")
                 tune_DF=str("sed -i -e 's/XXXX/"+str(numberSD2)+"/g' create_formulations_temp.R")
                 os.system(tune_DF)
         
@@ -358,10 +358,10 @@ if submit_button:
                 st.pyplot(fig4)
 
         if on4:
+            os.system("cp create_formulations3.R create_formulations_temp.R")
             if len(SMI2) > 2:
                 NAMES.insert(0, "CO-COMPOUND")
                 SMILES.insert(0, SMI2)
-                os.system("cp create_formulations3.R create_formulations_temp.R")
                 tune_DF=str("sed -i -e 's/XXXX/"+str(numberSD2)+"/g' create_formulations_temp.R")
                 os.system(tune_DF)
         
