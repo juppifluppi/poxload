@@ -7,4 +7,3 @@ seaborn
 numpy
 mordredcommunity
 streamlit-ketcher
-fcntl
