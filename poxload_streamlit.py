@@ -129,11 +129,10 @@ with st.form(key='my_form_to_submit'):
 
 
 if submit_button:
-    tempdir = str(uuid.uuid4())
+    folder_name = str(uuid.uuid4())
     original_directory = os.getcwd()
-    os.system(str("cd "+tempdir))
-    os.system(str("mkdir -p "+tempdir))
-    os.system(str("cp ../* ."))
+    os.makedirs(folder_name, exist_ok=True)
+    os.chdir(folder_name)
 
     for filename in os.listdir(original_directory):
         if os.path.isfile(os.path.join(original_directory, filename)):
@@ -671,8 +670,10 @@ if submit_button:
             df = df.rename(columns={0: "POL", 1: "DRUG", 2:"DF", 3: "LC10", 4: "LC20", 5: "LC30", 6: "LC40", 7: "LE20", 8: "LE40", 9: "LE60", 10: "LE80", 11:"Passed"})
             df.reset_index(inplace=True)               
             st.dataframe(df.style.applymap(cooling_highlight,subset=["LC10","LC20","LC30","LC40","LE20","LE40","LE60","LE80","Passed"]))    
-    os.system(str("cd "+original_directory))
-    os.system(str("rm -r "+tempdir))
+
+    os.chdir(original_directory)
+    print("Back to original directory:", os.getcwd())
+    shutil.rmtree(folder_name)
 
 #    for es in ["db_formulations.csv","db_test.csv","options.csv","descriptors.csv","fin_results.csv","fin_results2.csv","testformulations.dat","create_formulations_temp.R"]:
 #        try:
