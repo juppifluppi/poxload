@@ -12,6 +12,8 @@ formulations$DMW2=0
 formulations$MR2=0
 formulations$D2FRAC=0
 
+print(dr)
+
 full=rep(NA,ncol(formulations))
 
 for(k in c(2,4,6,8,10)){
@@ -42,5 +44,7 @@ for(i in nrow(dr)){
 }
 colnames(full)=colnames(formulations)
 full=full[-1,]
+
+print(full)
 
 write.table(full,file="db_formulations.csv",row.names = F,sep="\t",quote=F)
