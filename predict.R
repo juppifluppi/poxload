@@ -50,8 +50,6 @@ library("kernlab")
 library("devtools")
 library("proxy")
 
-#devtools::load_all('xgboost',helpers=FALSE,quiet=TRUE,export_all=FALSE)
-
 load("model_rdk7rf_LC10.rda")
 m1=model
 load("model_rdk7rf_LC20.rda")
