@@ -46,11 +46,7 @@ thr4_8=35.31043
 
 library("caret")
 library("randomForest")
-library("kernlab")
-library("devtools")
 library("proxy")
-
-#devtools::load_all('xgboost',helpers=FALSE,quiet=TRUE,export_all=FALSE)
 
 load("model_rdk7rf_LC10.rda")
 m1=model
