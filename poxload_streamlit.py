@@ -17,8 +17,6 @@ import subprocess
 from PIL import Image
 import uuid
 
-homedir = "/mount/src/poxload/"
-
 calc = Calculator(descriptors, ignore_3D=False)
 
 def fingerprint_rdk5(self) -> np.ndarray:
@@ -117,19 +115,10 @@ with st.form(key='my_form_to_submit'):
                          ("A-nBuOx-A","A-nBuOzi-A","A-nPrOx-A","A-nPrOzi-A","A-cPrOx-A","A-cPrOzi-A","A-iPrOx-A","A-iPrOzi-A","A-cPrMeOx-A","A-cPrMeOzi-A","A-iBuOx-A","A-iBuOzi-A","A-sBuOx-A","A-sBuOzi-A","A-PentOx-A","A*-nPrOzi-A*","A*-nBuOx-A*","A-BzOx-A","A-BzOzi-A","A-PhOx-A","A-PhOzi-A","A-EtHepOx-A","A-EtHepOzi-A","A-nNonOx-A","A-nNonOzi-A"))
 
     emoji = '💊'
-    label = ' Formulate!'
-    
+    label = ' Formulate!'    
     submit_button = st.form_submit_button(label=f'{emoji} {label}')
 
 if submit_button:
-    os.chdir(homedir)
-    tempdir = str(uuid.uuid4())
-    os.makedirs(tempdir)
-    os.chdir(tempdir)
-
-    for filename in os.listdir(homedir):
-        if os.path.isfile(os.path.join(homedir, filename)):
-            shutil.copy2(os.path.join(homedir, filename), os.getcwd())
 
     SMI=SMI
     SMI2=SMI2
@@ -194,8 +183,6 @@ if submit_button:
                     
                     mj = Chem.Descriptors.ExactMolWt(mol)
                     MW.append(mj)
-                    #if molecule == len(SMILES)-1:
-                    #    im = Draw.MolToImage(Chem.MolFromSmiles(SMILES[molecule]),fitImage=True) 
               
                 dfx = pd.DataFrame(columns=['NAME', "SMILES","MW"])
                 dfx["NAME"]=NAMES
@@ -232,19 +219,13 @@ if submit_button:
                 df2 = df2.rename(columns={0: "POL", 1: "DF", 2: "LC", 3: "LE"})
         
                 SDc = ((df2["DF"])*((df2["LE"])/100))
-                #Dc2 = (((df2["LC"]/100)*10)/(1-(df2["LC"]/100)))
                 SDc2 = (((df2["LC"]/100)*(-1)*10)/((df2["LC"]/100)-1))
                 SDcx = ((SDc+SDc2)/2)
-                #SDcx = pd.concat([SDc, SDc2], axis=1).min(axis=1)
-                #SDcx = pd.concat([SDc, SDc2], axis=1).max(axis=1)
                 
                 if len(SMI2) > 2:
                     SDc = ((df2["DF"])*((df2["LE"])/100))
-                    #SDc2 = (((df2["LC"]/100)*(10))/(1-(df2["LC"]/100)))
                     SDc2 = (((df2["LC"]/100)*(-1)*10)/((df2["LC"]/100)-1))
                     SDcx = ((SDc+SDc2)/2)
-                    #SDcx = pd.concat([SDc, SDc2], axis=1).min(axis=1)
-                    #SDcx = pd.concat([SDc, SDc2], axis=1).max(axis=1)
                 
         
                 calcLE=(SDcx/df2["DF"])*100
@@ -419,8 +400,6 @@ if submit_button:
                     
                     mj = Chem.Descriptors.ExactMolWt(mol)
                     MW.append(mj)
-                    #if molecule == len(SMILES)-1:
-                    #    im = Draw.MolToImage(Chem.MolFromSmiles(SMILES[molecule]),fitImage=True) 
               
                 dfx = pd.DataFrame(columns=['NAME', "SMILES","MW"])
                 dfx["NAME"]=NAMES
@@ -454,19 +433,13 @@ if submit_button:
                 df2 = df2.rename(columns={0: "Time", 1: "DF", 2: "LC", 3: "LE"})
         
                 SDc = ((df2["DF"])*((df2["LE"])/100))
-                #Dc2 = (((df2["LC"]/100)*10)/(1-(df2["LC"]/100)))
                 SDc2 = (((df2["LC"]/100)*(-1)*10)/((df2["LC"]/100)-1))
                 SDcx = ((SDc+SDc2)/2)
-                #SDcx = pd.concat([SDc, SDc2], axis=1).min(axis=1)
-                #SDcx = pd.concat([SDc, SDc2], axis=1).max(axis=1)
                 
                 if len(SMI2) > 2:
                     SDc = ((df2["DF"])*((df2["LE"])/100))
-                    #SDc2 = (((df2["LC"]/100)*(10))/(1-(df2["LC"]/100)))
                     SDc2 = (((df2["LC"]/100)*(-1)*10)/((df2["LC"]/100)-1))
                     SDcx = ((SDc+SDc2)/2)
-                    #SDcx = pd.concat([SDc, SDc2], axis=1).min(axis=1)
-                    #SDcx = pd.concat([SDc, SDc2], axis=1).max(axis=1)
         
                 calcLE=(SDcx/df2["DF"])*100
                 calcLC=(SDcx/(SDcx+10))*100
@@ -655,9 +628,6 @@ if submit_button:
             df = df.rename(columns={0: "POL", 1: "DRUG", 2:"DF", 3: "LC10", 4: "LC20", 5: "LC30", 6: "LC40", 7: "LE20", 8: "LE40", 9: "LE60", 10: "LE80", 11:"Passed"})
             df.reset_index(inplace=True)               
             st.dataframe(df.style.applymap(cooling_highlight,subset=["LC10","LC20","LC30","LC40","LE20","LE40","LE60","LE80","Passed"]))    
-
-    os.chdir(homedir)
-    shutil.rmtree(tempdir)
 
     # except:
     #     st.write("Something went wrong. Cannot parse molecules! Please verify your structures.")  
