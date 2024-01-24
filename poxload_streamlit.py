@@ -675,6 +675,13 @@ if submit_button:
     print("Back to original directory:", os.getcwd())
     shutil.rmtree(folder_name)
 
+try:
+    os.chdir(original_directory)
+    print("Back to original directory:", os.getcwd())
+    shutil.rmtree(folder_name)
+except:
+    pass
+
 #    for es in ["db_formulations.csv","db_test.csv","options.csv","descriptors.csv","fin_results.csv","fin_results2.csv","testformulations.dat","create_formulations_temp.R"]:
 #        try:
 #            os.remove(es)
