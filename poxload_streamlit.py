@@ -120,6 +120,7 @@ if submit_button:
     for es in ["db_formulations.csv","db_test.csv","options.csv","descriptors.csv","fin_results.csv","fin_results2.csv","testformulations.dat"]:
         try:
             os.remove(es)
+            st.write(es)
         except:
             pass
     
