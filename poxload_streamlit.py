@@ -123,7 +123,7 @@ if submit_button:
         except:
             pass
     SMI=SMI
-    SMI=SMI2
+    SMI2=SMI2
     numberSD2=numberSD2
     NAMESx=NAMESx
     SMILESx=SMILESx
