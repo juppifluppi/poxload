@@ -120,8 +120,17 @@ with st.form(key='my_form_to_submit'):
     submit_button = st.form_submit_button(label=f'{emoji} {label}')
 
 if submit_button:
+# try:
     lock = FileLock("lockfile.lock")
-    with lock:
+    with st.spinner('WAITING IN QUEUE ...'):
+        lock.acquire()
+    
+    try:
+        for es in ["descriptors.csv","options.csv","create_formulations_temp.R","fin_results.csv","fin_results2.csv","db_test.csv","testformulations.dat","db_formulations.csv"]:
+            try:
+                os.remove(es)
+            except:
+                pass
     
         SMI=SMI
         SMI2=SMI2
@@ -149,11 +158,6 @@ if submit_button:
                 
                 NAMES.append("COMPOUND")
                 SMILES.append(SMI)
-                
-                try:
-                    os.remove("descriptors.csv")
-                except:
-                    pass
                 
                 with st.spinner('CALCULATING DESCRIPTORS (STEP 1 OF 4)...'):
                     
@@ -365,10 +369,6 @@ if submit_button:
                 
                 NAMES.append("COMPOUND")
                 SMILES.append(SMI)
-                try:
-                    os.remove("descriptors.csv")
-                except:
-                    pass
                 
                 with st.spinner('CALCULATING DESCRIPTORS (STEP 1 OF 4)...'):
                     
@@ -561,11 +561,6 @@ if submit_button:
             NAMES.extend(NAMESx)
             SMILES.extend(SMILESx)
             
-            try:
-                os.remove("descriptors.csv")
-            except:
-                pass
-            
             with st.spinner('CALCULATING DESCRIPTORS (STEP 1 OF 4)...'):
                 
                 for molecule in range(0,len(SMILES)):            
@@ -629,6 +624,15 @@ if submit_button:
                 df = df.rename(columns={0: "POL", 1: "DRUG", 2:"DF", 3: "LC10", 4: "LC20", 5: "LC30", 6: "LC40", 7: "LE20", 8: "LE40", 9: "LE60", 10: "LE80", 11:"Passed"})
                 df.reset_index(inplace=True)               
                 st.dataframe(df.style.applymap(cooling_highlight,subset=["LC10","LC20","LC30","LC40","LE20","LE40","LE60","LE80","Passed"]))    
+    
+        for es in ["descriptors.csv","options.csv","create_formulations_temp.R","fin_results.csv","fin_results2.csv","db_test.csv","testformulations.dat","db_formulations.csv"]:
+            try:
+                os.remove(es)
+            except:
+                pass
 
-    # except:
-    #     st.write("Something went wrong. Cannot parse molecules! Please verify your structures.")  
+    finally:
+        lock.release()
+
+#    except:
+#        st.write("Something went wrong. Cannot parse molecules! Please verify your structures.")  
