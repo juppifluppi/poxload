@@ -102,7 +102,7 @@ with st.form(key='my_form_to_submit'):
 
 
     choosemodel = st.selectbox('Models to use:',
-                         ('Final models (around 7 min)','RDK7-RF (around 1 min)'))
+                         ('Final models [AUC = 0.91, ~7 min]','RDK7-RF [AUC = 0.88, ~1 min]'))
 
     
     on3 = st.toggle('Perform batch calculation',key="16")    
@@ -159,6 +159,7 @@ if submit_button:
             
             NAMES.append("COMPOUND")
             SMILES.append(SMI)
+            
             try:
                 os.remove("descriptors.csv")
             except:
@@ -211,23 +212,23 @@ if submit_button:
                 #st.write(result1)
         
             with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
-                if choosemodel == 'RDK7-RF (around 1 min)':
+                if choosemodel == 'RDK7-RF [AUC = 0.88, ~1 min]':
                     process2 = subprocess.Popen(["Rscript", "create_mixtures.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result2 = process2.communicate()
                     #st.write(result2)
     
-                if choosemodel == 'Final models (around 7 min)':
+                if choosemodel == 'Final models [AUC = 0.91, ~7 min]':
                     process2 = subprocess.Popen(["Rscript", "create_mixtures2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result2 = process2.communicate()
                     #st.write(result2)
             
             with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
-                if choosemodel == 'RDK7-RF (around 1 min)':
+                if choosemodel == 'RDK7-RF [AUC = 0.88, ~1 min]':
                     process3 = subprocess.Popen(["Rscript", "predict.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result3 = process3.communicate()
                     #st.write(result3)
                     
-                if choosemodel == 'Final models (around 7 min)':
+                if choosemodel == 'Final models [AUC = 0.91, ~7 min]':
                     process3 = subprocess.Popen(["Rscript", "predict2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result3 = process3.communicate()
                     #st.write(result3)
@@ -438,19 +439,19 @@ if submit_button:
                 result1 = process1.communicate()
         
             with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
-                if choosemodel == 'RDK7-RF (around 1 min)':
+                if choosemodel == 'RDK7-RF [AUC = 0.88, ~1 min]':
                     process2 = subprocess.Popen(["Rscript", "create_mixtures.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result2 = process2.communicate()
     
-                if choosemodel == 'Final models (around 7 min)':
+                if choosemodel == 'Final models [AUC = 0.91, ~7 min]':
                     process2 = subprocess.Popen(["Rscript", "create_mixtures2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result2 = process2.communicate()
             
             with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
-                if choosemodel == 'RDK7-RF (around 1 min)':
+                if choosemodel == 'RDK7-RF [AUC = 0.88, ~1 min]':
                     process3 = subprocess.Popen(["Rscript", "predict5.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result3 = process3.communicate()
-                if choosemodel == 'Final models (around 7 min)':
+                if choosemodel == 'Final models [AUC = 0.91, ~7 min]':
                     process3 = subprocess.Popen(["Rscript", "predict6.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result3 = process3.communicate()
                 
@@ -640,18 +641,18 @@ if submit_button:
             result1 = process1.communicate()
     
         with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
-            if choosemodel == 'RDK7-RF (around 1 min)':
+            if choosemodel == 'RDK7-RF [AUC = 0.88, ~1 min]':
                 process2 = subprocess.Popen(["Rscript", "create_mixtures.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 result2 = process2.communicate()
-            if choosemodel == 'Final models (around 7 min)':
+            if choosemodel == 'Final models [AUC = 0.91, ~7 min]':
                 process2 = subprocess.Popen(["Rscript", "create_mixtures2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 result2 = process2.communicate()
                                
         with st.spinner('CALCULATING PREDICTIONS (STEP 4 OF 4)...'):
-            if choosemodel == 'RDK7-RF (around 1 min)':
+            if choosemodel == 'RDK7-RF [AUC = 0.88, ~1 min]':
                 process3 = subprocess.Popen(["Rscript", "predict3.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 result3 = process3.communicate()
-            if choosemodel == 'Final models (around 7 min)':
+            if choosemodel == 'Final models [AUC = 0.91, ~7 min]':
                 process3 = subprocess.Popen(["Rscript", "predict4.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 result3 = process3.communicate()
             
