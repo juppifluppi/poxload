@@ -46,8 +46,6 @@ thr4_8=35.31043
 
 library("caret")
 library("randomForest")
-library("kernlab")
-library("devtools")
 library("proxy")
 
 load("model_rdk7rf_LC10.rda")
