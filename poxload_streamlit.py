@@ -8,14 +8,14 @@ from mordred import Calculator, descriptors
 import numpy as np
 import pandas as pd
 import seaborn as sns
-import sys, os
+import sys, os, shutil
 import matplotlib.pyplot as plt
 import streamlit as st
 from streamlit_ketcher import st_ketcher
 import time
 import subprocess
 from PIL import Image
-import fcntl
+import uuid
 
 calc = Calculator(descriptors, ignore_3D=False)
 
@@ -129,6 +129,14 @@ with st.form(key='my_form_to_submit'):
 
 
 if submit_button:
+    tempdir = str(uuid.uuid4())
+    original_directory = os.getcwd()
+    os.makedirs(tempdir)
+    os.chdir(tempdir)
+    for filename in os.listdir(original_directory):
+        if os.path.isfile(os.path.join(original_directory, filename)):
+            shutil.copy2(os.path.join(original_directory, filename), os.getcwd())
+
 #    for es in ["db_formulations.csv","db_test.csv","options.csv","descriptors.csv","fin_results.csv","fin_results2.csv","testformulations.dat","create_formulations_temp.R"]:
 #        try:
 #            os.remove(es)
@@ -661,6 +669,8 @@ if submit_button:
             df = df.rename(columns={0: "POL", 1: "DRUG", 2:"DF", 3: "LC10", 4: "LC20", 5: "LC30", 6: "LC40", 7: "LE20", 8: "LE40", 9: "LE60", 10: "LE80", 11:"Passed"})
             df.reset_index(inplace=True)               
             st.dataframe(df.style.applymap(cooling_highlight,subset=["LC10","LC20","LC30","LC40","LE20","LE40","LE60","LE80","Passed"]))    
+    os.chdir(original_directory)
+    shutil.rmtree(tempdir)
 
 #    for es in ["db_formulations.csv","db_test.csv","options.csv","descriptors.csv","fin_results.csv","fin_results2.csv","testformulations.dat","create_formulations_temp.R"]:
 #        try:
