@@ -83,7 +83,7 @@ with st.form(key='my_form_to_submit'):
     
     col1, col2 = st.columns(2)
     with col1:
-        SMI2 = st.text_input('Co-formulated drug (press ENTER to apply):', '')
+        SMI2 = st.text_input('Add co-formulated drug:', '')
         
     with col2:        
         numberSD2 = st.number_input('Drug feed of co-formulated drug',min_value=0, max_value=12, value="min", step=2)
