@@ -17,6 +17,8 @@ import subprocess
 from PIL import Image
 import uuid
 
+original_directory = os.getcwd()
+
 calc = Calculator(descriptors, ignore_3D=False)
 
 def fingerprint_rdk5(self) -> np.ndarray:
@@ -130,19 +132,15 @@ with st.form(key='my_form_to_submit'):
 
 if submit_button:
     folder_name = str(uuid.uuid4())
-    original_directory = os.getcwd()
     os.makedirs(folder_name, exist_ok=True)
     os.chdir(folder_name)
 
     for filename in os.listdir(original_directory):
         if os.path.isfile(os.path.join(original_directory, filename)):
             shutil.copy2(os.path.join(original_directory, filename), os.getcwd())
+    
+    shutil.copytree(os.path.join(original_directory, specific_folder_name), os.path.join(os.getcwd(), "xgboost"))
 
-#    for es in ["db_formulations.csv","db_test.csv","options.csv","descriptors.csv","fin_results.csv","fin_results2.csv","testformulations.dat","create_formulations_temp.R"]:
-#        try:
-#            os.remove(es)
-#        except:
-#            pass
     SMI=SMI
     SMI2=SMI2
     numberSD2=numberSD2
@@ -681,6 +679,7 @@ try:
     shutil.rmtree(folder_name)
 except:
     pass
+
 
 #    for es in ["db_formulations.csv","db_test.csv","options.csv","descriptors.csv","fin_results.csv","fin_results2.csv","testformulations.dat","create_formulations_temp.R"]:
 #        try:
