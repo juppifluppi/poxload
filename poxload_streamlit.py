@@ -117,6 +117,12 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
 
 
 if submit_button:
+    for es in ["db_formulations.csv","db_test.csv","options.csv","descriptors.csv","fin_results.csv","fin_results2.csv","testformulations.dat"]:
+        try:
+            os.remove(es)
+        except:
+            pass
+    
     try:
         if on3 is False:
             if on4 is False:
