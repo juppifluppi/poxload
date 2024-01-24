@@ -128,11 +128,11 @@ with st.form(key='my_form_to_submit'):
 
 
 if submit_button:
-    for es in ["db_formulations.csv","db_test.csv","options.csv","descriptors.csv","fin_results.csv","fin_results2.csv","testformulations.dat","create_formulations_temp.R"]:
-        try:
-            os.remove(es)
-        except:
-            pass
+#    for es in ["db_formulations.csv","db_test.csv","options.csv","descriptors.csv","fin_results.csv","fin_results2.csv","testformulations.dat","create_formulations_temp.R"]:
+#        try:
+#            os.remove(es)
+#        except:
+#            pass
     SMI=SMI
     SMI2=SMI2
     numberSD2=numberSD2
@@ -660,11 +660,11 @@ if submit_button:
             df.reset_index(inplace=True)               
             st.dataframe(df.style.applymap(cooling_highlight,subset=["LC10","LC20","LC30","LC40","LE20","LE40","LE60","LE80","Passed"]))    
 
-    for es in ["db_formulations.csv","db_test.csv","options.csv","descriptors.csv","fin_results.csv","fin_results2.csv","testformulations.dat","create_formulations_temp.R"]:
-        try:
-            os.remove(es)
-        except:
-            pass
+#    for es in ["db_formulations.csv","db_test.csv","options.csv","descriptors.csv","fin_results.csv","fin_results2.csv","testformulations.dat","create_formulations_temp.R"]:
+#        try:
+#            os.remove(es)
+#        except:
+#            pass
 
     # except:
     #     st.write("Something went wrong. Cannot parse molecules! Please verify your structures.")  
