@@ -49,15 +49,26 @@ def cooling_highlight(val):
 st.image('logo.png')
 
 with st.form(key='my_form_to_submit'):
-    with st.expander("More info"):
+    with st.expander("More information"):
         
+        st.caption(""":black[Background]""")
         st.caption("""POxload is a web tool to evaluate the amount of drug solubilized by amphiphilic, triblock copolymeric poly(oxazoline)/poly(oxazine) (pOx/pOzi) micelles.
-It is based on predictions for loading efficiency (LE) and loading capacity (LC) using four differen thresholds for each parameter (LC10, LC20, LC30, LC40, LE20, LE40, LE60, LE80).
-The formulations are assumed to be made via thin-film hydration using ethanol as solvent and an elevated temperature of 55 °C during re-hydration. Enter the SMILES code of a drug 
-(and potential co-formulated compounds) and select the polymers of interest. A formulation report is generated, outputting predictions for all models, given a polymer feed of 10 g/L
- and drug feeds of 2-10 g/L. The software is hosted and downloadable as command-line tool at our [github page](https://github.com/juppifluppi/poxload).
+        It is based on predictions for loading efficiency (LE) and loading capacity (LC) using four different thresholds for each parameter (LC 10/20/30/40%, LE 20/40/60/80%).
+        The formulations are assumed to be made via thin-film hydration using ethanol as solvent and an elevated temperature of 55 °C during re-hydration.""")
+        
+        st.caption(""":black[Program usage]""")
+        st.caption("""Enter the SMILES code of a drug (and potential co-formulated compounds) and select the polymers of interest. Alternatively, get a list of predictions for multiple drugs using the batch mode, or evaluate long-term storage of a drug for a specific polymer.
+        A formulation report is generated, outputting predictions for all models, given a polymer feed of 10 g/L and drug feeds of 2-10 g/L. Passed thresholds are marked as "X1" in the resulting table, those outside of the model applicability as "AD".""")
+        
+        st.caption(""":black[Model choice]""")
+        st.caption("""Final prediction models provided the highest accuracy on external data, but require initialization of the xgboost package.
+        RDK7-RF models showed slightly lower accuracy, but provide faster computation and a larger applicability (suitable for drugs where final models show "AD" classifications).""") 
+        
+        st.caption("""Details can be found in our [preprint](https://doi.org/10.26434/chemrxiv-2024-l5kvc).""")
+        
+        st.caption("""The software is hosted and downloadable as command-line tool at our [github page](https://github.com/juppifluppi/poxload), licensed under MIT.""")
  
- Version 1.0 (19.12.2023)""")
+        st.caption("""Version 1.0 (19.12.2023)""")
  
 
     SMI = st.text_input('Enter [SMILES code](https://pubchem.ncbi.nlm.nih.gov//edit3/index.html) of drug to load', 'CC1=C2[C@@]([C@]([C@H]([C@@H]3[C@]4([C@H](OC4)C[C@@H]([C@]3(C(=O)[C@@H]2OC(=O)C)C)O)OC(=O)C)OC(=O)c5ccccc5)(C[C@@H]1OC(=O)[C@H](O)[C@@H](NC(=O)c6ccccc6)c7ccccc7)O)(C)C') 
