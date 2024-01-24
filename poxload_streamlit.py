@@ -138,6 +138,7 @@ if submit_button:
     for filename in os.listdir(original_directory):
         if os.path.isfile(os.path.join(original_directory, filename)):
             shutil.copy2(os.path.join(original_directory, filename), os.getcwd())
+    shutil.copytree(os.path.join(original_directory, "xgboost"), os.path.join(os.getcwd(), "xgboost"))
 
     SMI=SMI
     SMI2=SMI2
