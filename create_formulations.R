@@ -12,7 +12,7 @@ formulations$DMW2=0
 formulations$MR2=0
 formulations$D2FRAC=0
 
-print(dr)
+
 
 full=rep(NA,ncol(formulations))
 
