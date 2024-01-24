@@ -44,21 +44,24 @@ thr4_6=41.08382
 thr4_7=40.04237
 thr4_8=36.79055
 
-library("caret")
-library("randomForest")
-library("kernlab")
-library("devtools")
-library("proxy")
 
-packages <- c("xgboost")
-install_if_not_installed <- function(package) {
-  if (!require(package, character.only = TRUE)) {
-    install.packages(package, repos = "http://cran.rstudio.com/", lib="/usr/lib/R/library")
-  }
-
-# Install the packages
-sapply(packages, install_if_not_installed)
+using<-function(...) {
+    libs<-unlist(list(...))
+    req<-unlist(lapply(libs,require,character.only=TRUE))
+    need<-libs[req==FALSE]
+    if(length(need)>0){ 
+        install.packages(need)
+        lapply(need,require,character.only=TRUE)
+    }
 }
+using("caret","randomForest","kernlab","proxy","xgboost")
+
+#library("caret")
+#library("randomForest")
+#library("kernlab")
+#library("devtools")
+#library("proxy")
+
 #devtools::load_all("/mount/src/poxload/xgboost",helpers=FALSE,quiet=TRUE,export_all=FALSE)
 
 load("model_final_LC10.rda")
