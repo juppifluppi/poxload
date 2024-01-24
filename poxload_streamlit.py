@@ -117,16 +117,19 @@ The formulations are assumed to be made via thin-film hydration using ethanol as
 
 
 if submit_button:
-    for es in ["db_formulations.csv","db_test.csv","options.csv","descriptors.csv","fin_results.csv","fin_results2.csv","testformulations.dat"]:
+    for es in ["db_formulations.csv","db_test.csv","options.csv","descriptors.csv","fin_results.csv","fin_results2.csv","testformulations.dat","create_formulations_temp.R"]:
         try:
             os.remove(es)
         except:
             pass
-    
+    SMI=SMI
+    SMI=SMI2
+    NAMESx=NAMESx
+    SMILESx=SMILESx
+    numberSD2=numberSD2
     NAMES=["MeOx","EtOx","nPrOx","nBuOx","iBuOx","cPrOx","iPrOx","cPrMeOx","sBuOx","EtHepOx","nNonOx","PhOx","PentOx","nPrOzi","nBuOzi","iBuOzi","cPrOzi","iPrOzi","cPrMeOzi","sBuOzi","EtHepOzi","nNonOzi","PhOzi","BzOx","BzOzi","PhenOx","PhenOzi","Pid","EIP","PgMeOx","Pip","PipBoc","nBuEnOx","nBuOxPh","nBuOxNH2","nBuOxCOOH","PcBOx","OH","NH2","rEtEtOx","sEtEtOx","EtEtOx","rPrMeOx","sPrMeOx","PrMeOx","Bz"]
     SMILES=["CC(=O)N(C)CC","CCC(=O)N(C)CC","CCCC(=O)N(C)CC","CCCCC(=O)N(C)CC","CC(C)CC(=O)N(C)CC","CCN(C)C(=O)C1CC1","CC(C)C(=O)N(C)CC","CCN(C)C(=O)CC1CC1","CCC(C)C(=O)N(C)CC","CCCCC(CC)CCC(=O)N(C)CC","CCCCCCCCCC(=O)N(C)CC","CCN(C)C(=O)c1ccccc1","CCCCCC(=O)N(C)CC","CCCC(=O)N(C)CCC","CCCCC(=O)N(C)CCC","CC(C)CC(=O)N(C)CCC","CCCN(C)C(=O)C1CC1","CCCN(C)C(=O)C(C)C","CCCN(C)C(=O)CC1CC1","CCC(C)C(=O)N(C)CCC","CCCCC(CC)CCC(=O)N(C)CCC","CCCCCCCCCC(=O)N(C)CCC","CCCN(C)C(=O)c1ccccc1","CCN(C)C(=O)Cc1ccccc1","CCCN(C)C(=O)Cc1ccccc1","CCN(C)C(=O)CCc1ccccc1","CCCN(C)C(=O)CCc1ccccc1","CN1CCCCC1","CCOC(=O)C1CCN(C)CC1","C#CCCN(C)C(C)=O","CN1CCNCC1","CN1CCN(C(=O)OC(C)(C)C)CC1","C=CCCC(=O)N(C)CC","CCN(C)C(=O)CCCCSCc1ccccc1","CCN(C)C(=O)CCCCSCC(=O)O","CCN(C)C(=O)CCCCSCC(=O)O","CCN(C)C(=O)CCc1nc(N)nc(N(C)C)n1","CO","CN","CCC(=O)N(C)[C@H](C)CC","CCC(=O)N(C)[C@@H](C)CC","CCC(=O)N(C)C(C)CC","CCCC(=O)N(C)[C@H](C)C","CCCC(=O)N(C)[C@@H](C)C","CCCC(=O)N(C)C(C)C","Cc1ccccc1"]
     MW=[]
-
     
     try:
         if on3 is False:
@@ -134,7 +137,8 @@ if submit_button:
                 if len(SMI2) > 2:
                     NAMES.insert(0, "CO-COMPOUND")
                     SMILES.insert(0, SMI2)
-                    tune_DF=str("sed -i -e 's/XXXX/"+str(numberSD2)+"/g' create_formulations.R")
+                    os.system("cp create_formulations.R create_formulations_temp.R")
+                    tune_DF=str("sed -i -e 's/XXXX/"+str(numberSD2)+"/g' create_formulations_temp.R")
                     os.system(tune_DF)
             
                 file_path = 'options.csv'
@@ -191,7 +195,7 @@ if submit_button:
                     dfx.to_csv("db_test.csv",index=False)
                                            
                 with st.spinner('CREATING FORMULATION DATABASE (STEP 2 OF 4)...'):
-                    process1 = subprocess.Popen(["Rscript", "create_formulations.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    process1 = subprocess.Popen(["Rscript", "create_formulations_temp.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result1 = process1.communicate()
             
                 with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
@@ -355,7 +359,8 @@ if submit_button:
                 if len(SMI2) > 2:
                     NAMES.insert(0, "CO-COMPOUND")
                     SMILES.insert(0, SMI2)
-                    tune_DF=str("sed -i -e 's/XXXX/"+str(numberSD2)+"/g' create_formulations3.R")
+                    os.system("cp create_formulations3.R create_formulations_temp.R")
+                    tune_DF=str("sed -i -e 's/XXXX/"+str(numberSD2)+"/g' create_formulations_temp.R")
                     os.system(tune_DF)
             
                 file_path = 'options.csv'
@@ -411,7 +416,7 @@ if submit_button:
                     dfx.to_csv("db_test.csv",index=False)
                                            
                 with st.spinner('CREATING FORMULATION DATABASE (STEP 2 OF 4)...'):
-                    process1 = subprocess.Popen(["Rscript", "create_formulations3.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    process1 = subprocess.Popen(["Rscript", "create_formulations_temp.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result1 = process1.communicate()
             
                 with st.spinner('CALCULATING MIXTURE DESCRIPTORS (STEP 3 OF 4)...'):
