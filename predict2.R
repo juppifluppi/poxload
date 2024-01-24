@@ -49,7 +49,16 @@ library("randomForest")
 library("kernlab")
 library("devtools")
 library("proxy")
-library("xgboost")
+
+packages <- c("xgboost")
+install_if_not_installed <- function(package) {
+  if (!require(package, character.only = TRUE)) {
+    install.packages(package, repos = "http://cran.rstudio.com/", lib="/usr/lib/R/library")
+  }
+
+# Install the packages
+sapply(packages, install_if_not_installed)
+}
 #devtools::load_all("/mount/src/poxload/xgboost",helpers=FALSE,quiet=TRUE,export_all=FALSE)
 
 load("model_final_LC10.rda")
