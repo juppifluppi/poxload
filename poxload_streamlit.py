@@ -16,7 +16,7 @@ import time
 import subprocess
 from PIL import Image
 import uuid
-from grizzled.io.filelock import locked_file
+from filelock import Timeout, FileLock
 
 calc = Calculator(descriptors, ignore_3D=False)
 
@@ -120,8 +120,8 @@ with st.form(key='my_form_to_submit'):
     submit_button = st.form_submit_button(label=f'{emoji} {label}')
 
 if submit_button:
-    fd = open('./lockfile', 'w+')
-    with locked_file(fd):
+    lock = FileLock("lockfile.lock")
+    with lock:
     
         SMI=SMI
         SMI2=SMI2
