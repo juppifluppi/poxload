@@ -44,25 +44,12 @@ thr4_6=41.08382
 thr4_7=40.04237
 thr4_8=36.79055
 
-.libPaths(c("/mount/src/poxload/", "/usr/lib/R/library"))
-using<-function(...) {
-    libs<-unlist(list(...))
-    req<-unlist(lapply(libs,require,character.only=TRUE))
-    need<-libs[req==FALSE]
-    if(length(need)>0){ 
-        install.packages(need,lib="/mount/src/poxload/")
-        lapply(need,require,character.only=TRUE)
-    }
-}
-using("caret","randomForest","kernlab","proxy","xgboost")
-
-#library("caret")
-#library("randomForest")
-#library("kernlab")
-#library("devtools")
-#library("proxy")
-
-#devtools::load_all("/mount/src/poxload/xgboost",helpers=FALSE,quiet=TRUE,export_all=FALSE)
+library("caret")
+library("randomForest")
+library("kernlab")
+library("devtools")
+library("proxy")
+devtools::load_all("xgboost",helpers=FALSE,quiet=TRUE,export_all=FALSE)
 
 load("model_final_LC10.rda")
 m1=model
