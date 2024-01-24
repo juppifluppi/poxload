@@ -647,13 +647,17 @@ if submit_button:
             df.reset_index(inplace=True)               
             st.dataframe(df.style.applymap(cooling_highlight,subset=["LC10","LC20","LC30","LC40","LE20","LE40","LE60","LE80","Passed"]))    
 
-
-
-#except:
-#    st.write("Something went wrong. Cannot parse molecules! Please verify your structures.")  
-
 for es in ["db_formulations.csv","db_test.csv","options.csv","descriptors.csv","fin_results.csv","fin_results2.csv","testformulations.dat"]:
     try:
         os.remove(es)
     except:
         pass
+
+
+#except:
+#    st.write("Something went wrong. Cannot parse molecules! Please verify your structures.")  
+#    for es in ["db_formulations.csv","db_test.csv","options.csv","descriptors.csv","fin_results.csv","fin_results2.csv","testformulations.dat"]:
+#        try:
+#            os.remove(es)
+#        except:
+#            pass
