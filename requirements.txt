@@ -7,3 +7,4 @@ seaborn
 numpy
 mordredcommunity
 streamlit-ketcher
+grizzled-python
