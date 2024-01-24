@@ -48,6 +48,12 @@ MW=[]
 
 st.image('logo.png')
 
+for es in ["db_formulations.csv","db_test.csv","options.csv","descriptors.csv","fin_results.csv","fin_results2.csv","testformulations.dat"]:
+    try:
+        os.remove(es)
+    except:
+        pass
+
 with st.form(key='my_form_to_submit'):
     with st.expander("More information"):
         
@@ -197,7 +203,6 @@ if submit_button:
                 if choosemodel == 'RDK7-RF [holdout AUC = 0.88, up to ~1 min]':
                     process2 = subprocess.Popen(["Rscript", "create_mixtures.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     result2 = process2.communicate()
-                    st.write(result2)
     
                 if choosemodel == 'Final models [holdout AUC = 0.91, up to ~7 min]':
                     process2 = subprocess.Popen(["Rscript", "create_mixtures2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
