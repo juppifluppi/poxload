@@ -17,6 +17,9 @@ import subprocess
 from PIL import Image
 import uuid
 
+processx = subprocess.Popen(["Rscript", "rpackages.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+resultx = processx.communicate()
+
 original_directory = os.getcwd()
 
 calc = Calculator(descriptors, ignore_3D=False)
@@ -50,9 +53,6 @@ def cooling_highlight(val):
 #MW=[]
 
 st.image('logo.png')
-
-processx = subprocess.Popen(["Rscript", "rpackages.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-resultx = processx.communicate()
 
 with st.form(key='my_form_to_submit'):
     with st.expander("More information"):
