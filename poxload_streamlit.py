@@ -120,7 +120,7 @@ with st.form(key='my_form_to_submit'):
     submit_button = st.form_submit_button(label=f'{emoji} {label}')
 
 if submit_button:
-    fd = open('./lockfile', 'r+')
+    fd = open('./lockfile', 'w+')
     with locked_file(fd):
     
         SMI=SMI
