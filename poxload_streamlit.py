@@ -122,9 +122,9 @@ with st.form(key='my_form_to_submit'):
 if submit_button:
 # try:
     lock = FileLock("lockfile.lock")
-    with st.spinner('WAITING IN QUEUE ...'):
+    with st.spinner('WAITING IN QUEUE (MAXIMUM 7 MIN) ...'):
         try:
-            lock.acquire(timeout=300)
+            lock.acquire(timeout=420)
         except Timeout:
             os.remove("lockfile.lock")
             lock = FileLock("lockfile.lock")
