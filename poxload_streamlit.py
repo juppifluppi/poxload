@@ -124,9 +124,10 @@ if submit_button:
     lock = FileLock("lockfile.lock")
     with st.spinner('WAITING IN QUEUE ...'):
         try:
-            lock.acquire(timeout=420)
+            lock.acquire(timeout=60)
         except Timeout:
-            lock.release(force=True)
+            os.remove("lockfile.lock")
+            lock = FileLock("lockfile.lock")
             lock.acquire()
     
     try:
