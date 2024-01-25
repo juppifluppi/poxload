@@ -40,7 +40,7 @@ A batch mode is available to compute predictions for a list of compounds. Prepar
 poxload_batch CSVFILE 
 ```
 
-The ```xgboost``` package is included in the repository and loaded via devtools, as it is necessary for usage of the web application in the streamlit cloud. Installing ```xgboost``` locally for the command-line tool and then loading the package normally can speed up computation. In order to do this, simply replace the lines ```devtools::load_all("xgboost"...``` in the ```predict4.R``` and ```predict6.R``` files in your anaconda environment directory with ```library("xgboost")``` after installation.
+The ```xgboost``` package is included in the repository and loaded via devtools, as it is necessary for usage of the web application in the streamlit cloud. Installing ```xgboost``` locally for the command-line tool and then loading the package normally can speed up computation. In order to do this, simply replace the lines ```devtools::load_all("xgboost"...``` in the ```predict2.R``` and ```predict4.R``` files in your anaconda environment directory with ```library("xgboost")``` after installation.
 
 ## Please cite
 
