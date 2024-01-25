@@ -12,6 +12,10 @@ The recommended way to use the program is the streamlit web app ```poxload_strea
 
 https://poxload.streamlit.app/
 
+## Self-hosting application
+
+Given all required python, R and debian packages are installed on a local machine or server (listed in ```requirements.txt``` and ```packages.txt```), users can also download the repository to host the streamlit app themselves by running the executable ```app.sh``` file. This avoids traffic through streamlit's community cloud (may be more favorable for processing confidential structures).
+
 ## Local command-line tool
 
 The models can be installed as program in a new conda environment with all necessary packages, but currently with limited functionalities compared to the web application (no GUI, supports loading prediction for single drugs and batch mode for the final models):
