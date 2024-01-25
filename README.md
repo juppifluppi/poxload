@@ -8,13 +8,13 @@ Details can be found in our [preprint](https://doi.org/10.26434/chemrxiv-2024-l5
 
 ## Web application
 
-The streamlit web app ```poxload_streamlit.py``` is accessible at:
+The recommended streamlit web app ```poxload_streamlit.py``` is accessible at:
 
 https://poxload.streamlit.app/
 
 ## Local command-line tool
 
-The model can be installed as program in a new conda environment with all the necessary packages in the following way:
+The models can be installed as program in a new conda environment with all the necessary packages, currently with limited functionalities compared to the web application (supports loading prediction for single drugs and batch mode for the final models):
 
 1. (go to your local ~/anaconda3/envs/ directory)
 2. ```git clone https://github.com/juppifluppi/poxload.git```
@@ -23,18 +23,20 @@ The model can be installed as program in a new conda environment with all the ne
 5. ```conda activate poxload```
 6. ```pip install -e .```
 
-In addition, R and the packages caret, randomForest, kernlab, devtools and proxy need to be installed.
+In addition, R and the packages ```caret```, ```randomForest```, ```kernlab```, ```devtools``` and ```proxy``` need to be installed.
 
 You can then use the alias poxload:
 ```
 poxload "SMILESCODE" 
 ```
 
-A batch mode is available to compute predictions for a list of compounds. Prepare a comma-separated CSV file with two columns named "name" and "smiles"
+A batch mode is available to compute predictions for a list of compounds. Prepare a comma-separated CSV file with two comma-separated columns named "name" and "smiles"
 
 ```
 poxload_batch CSVFILE 
 ```
+
+The ```xgboost``` package is included in the repository and loaded via devtools, as it is necessary for usage of the web application in the streamlit cloud. Installing ```xgboost``` locally for the command-line tool and then loading the package normally can speed up computation. In order to do this, simply replace the lines ```devtools::load_all("xgboost"...``` in the ```predict4.R``` and ```predict6.R``` files in your anaconda environment with ```library("xgboost")```.
 
 ## Please cite
 
