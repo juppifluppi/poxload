@@ -123,7 +123,11 @@ if submit_button:
 # try:
     lock = FileLock("lockfile.lock")
     with st.spinner('WAITING IN QUEUE ...'):
-        lock.acquire()
+        try:
+            lock.acquire(timeout=420):
+        except Timeout:
+            lock.release(force=True)
+            lock.acquire()
     
     try:
         for es in ["descriptors.csv","options.csv","create_formulations_temp.R","fin_results.csv","fin_results2.csv","db_test.csv","testformulations.dat","db_formulations.csv"]:
