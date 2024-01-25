@@ -49,7 +49,7 @@ library("randomForest")
 library("kernlab")
 library("devtools")
 library("proxy")
-devtools::load_all("/mount/src/poxload/xgboost",helpers=FALSE,quiet=TRUE,export_all=FALSE)
+devtools::load_all("xgboost",helpers=FALSE,quiet=TRUE,export_all=FALSE)
 
 load("model_final_LC10.rda")
 m1=model
