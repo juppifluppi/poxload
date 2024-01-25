@@ -14,7 +14,7 @@ https://poxload.streamlit.app/
 
 ## Self-hosting application
 
-Given all required python, R and debian packages are installed on a local machine or server (listed in ```requirements.txt``` and ```packages.txt```), users can also download the repository to host the streamlit app themselves by running the executable ```app.sh``` file. This avoids traffic through streamlit's community cloud (may be more favorable for processing confidential structures).
+Given all required python, R and debian packages are installed on a local machine or server (listed in ```requirements.txt``` and ```packages.txt```), users can also download the repository to host the app independently from the streamlit cloud, by running the executable ```app.sh``` file.
 
 ## Local command-line tool
 
