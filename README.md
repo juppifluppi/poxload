@@ -8,7 +8,7 @@ Details can be found in our [preprint](https://doi.org/10.26434/chemrxiv-2024-l5
 
 ## Web application
 
-The recommended streamlit web app ```poxload_streamlit.py``` is accessible at:
+The recommended way to use the program is the streamlit web app ```poxload_streamlit.py```, accessible at:
 
 https://poxload.streamlit.app/
 
