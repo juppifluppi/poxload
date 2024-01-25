@@ -18,7 +18,7 @@ Given all required python, R and debian packages are installed on a local machin
 
 ## Local command-line tool
 
-The models can be installed as program in a new conda environment with all necessary packages, but currently with limited functionalities compared to the web application (no GUI, supports loading prediction for single drugs and batch mode for the final models):
+The models can be installed as program in a new conda environment with all necessary packages, but currently with limited functionalities compared to the web application (no GUI, supports loading prediction for single drugs and batch mode only for the final models):
 
 1. (go to your local ~/anaconda3/envs/ directory)
 2. ```git clone https://github.com/juppifluppi/poxload.git```
