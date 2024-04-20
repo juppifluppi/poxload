@@ -66,7 +66,7 @@ with st.form(key='my_form_to_submit'):
         
         st.caption("""The software is hosted and downloadable as command-line tool at our [github page](https://github.com/juppifluppi/poxload), licensed under MIT.""")
  
-        st.caption("""Version 1.0 (25.01.2024)""")
+        st.caption("""Version 1.0 (20.04.2024)""")
  
     SMI = st.text_input('Enter [SMILES code](https://pubchem.ncbi.nlm.nih.gov//edit3/index.html) of drug to load', '') 
     
