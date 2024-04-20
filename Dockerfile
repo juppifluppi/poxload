@@ -60,13 +60,6 @@ RUN rm -f /usr/lib/python3.11/EXTERNALLY-MANAGED
 
 RUN pip install --default-timeout=100 stmol pandas matplotlib scipy seaborn numpy mordredcommunity streamlit-ketcher filelock
 
-RUN git config --global http.postBuffer 500M
-RUN git config --global http.maxRequestBuffer 100M
-RUN git config --global core.compression 0
-RUN git clone https://github.com/juppifluppi/poxload.git
-RUN mv poxload/* .
-RUN rm -r poxload/
-
 RUN chmod +x app.sh
 
 RUN Rscript -e "install.packages('devtools', repos='http://cran.rstudio.com/', dependencies=TRUE )"
