@@ -47,7 +47,7 @@ RUN apt-get update && \
     libpam0g-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN adduser --ingroup sudo --disabled-password --gecos '' appuser
+#RUN adduser --ingroup sudo --disabled-password --gecos '' appuser
 
 WORKDIR /tmp
 
@@ -61,7 +61,7 @@ RUN chmod +x app.sh
 
 RUN Rscript -e "install.packages(c('devtools', 'tidyverse', 'kernlab', 'caret', 'purrr', 'dplyr', 'xgboost', 'randomForest'), repos='http://cran.rstudio.com/', dependencies=TRUE )"
 
-USER appuser
+#USER appuser
 
 EXPOSE 8080
 
