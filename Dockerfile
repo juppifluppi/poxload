@@ -45,9 +45,20 @@ RUN apt-get update && \
     libxml2-dev \
     libx11-dev \
     libpam0g-dev \
+    r-base \
+    r-base-dev \
+    r-cran-proxy \
+    r-base-core \
+    r-cran-kernlab \
+    r-cran-devtools \
+    r-cran-caret \
+    r-cran-tidyverse \
+    r-cran-purrr \
+    r-cran-dplyr \
+    r-cran-randomforest \
     && rm -rf /var/lib/apt/lists/*
 
-#RUN adduser --ingroup sudo --disabled-password --gecos '' appuser
+RUN adduser --ingroup sudo --disabled-password --gecos '' appuser
 
 WORKDIR /tmp
 
@@ -59,9 +70,9 @@ RUN pip install --default-timeout=100 stmol pandas matplotlib scipy seaborn nump
 
 RUN chmod +x app.sh
 
-RUN Rscript -e "install.packages(c('devtools', 'tidyverse', 'kernlab', 'caret', 'purrr', 'dplyr', 'xgboost', 'randomForest'), repos='http://cran.rstudio.com/', dependencies=TRUE )"
+RUN Rscript -e "install.packages('xgboost', repos='http://cran.rstudio.com/', dependencies=TRUE )"
 
-#USER appuser
+USER appuser
 
 EXPOSE 8080
 
