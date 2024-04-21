@@ -70,7 +70,7 @@ RUN pip install --default-timeout=100 stmol pandas matplotlib scipy seaborn nump
 
 RUN chmod +x app.sh
 
-RUN Rscript -e "install.packages('xgboost', repos='http://cran.rstudio.com/', dependencies=TRUE )"
+RUN Rscript -e "install.packages('xgboost', repos='http://cran.rstudio.com/', dependencies=FALSE )"
 
 USER appuser
 
