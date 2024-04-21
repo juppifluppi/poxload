@@ -47,14 +47,11 @@ RUN apt-get update && \
     libpam0g-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN adduser --disabled-password --gecos '' appuser
+RUN adduser --ingroup sudo --disabled-password --gecos '' appuser
 
 WORKDIR /tmp
 
 COPY . .
-
-RUN chown -R appuser:appuser /tmp
-RUN chmod -R 755 /tmp
 
 RUN rm -f /usr/lib/python3.11/EXTERNALLY-MANAGED
 
@@ -62,15 +59,7 @@ RUN pip install --default-timeout=100 stmol pandas matplotlib scipy seaborn nump
 
 RUN chmod +x app.sh
 
-RUN Rscript -e "install.packages('devtools', repos='http://cran.rstudio.com/', dependencies=TRUE )"
-RUN Rscript -e "install.packages('tidyverse', repos='http://cran.rstudio.com/', dependencies=TRUE )"
-RUN Rscript -e "install.packages('kernlab', repos='http://cran.rstudio.com/', dependencies=TRUE )"
-RUN Rscript -e "install.packages('caret', repos='http://cran.rstudio.com/', dependencies=TRUE )"
-RUN Rscript -e "install.packages('purrr', repos='http://cran.rstudio.com/', dependencies=TRUE )"
-RUN Rscript -e "install.packages('dplyr', repos='http://cran.rstudio.com/', dependencies=TRUE )"
-RUN Rscript -e "install.packages('xgboost', repos='http://cran.rstudio.com/', dependencies=TRUE )"
-RUN Rscript -e "install.packages('randomForest', repos='http://cran.rstudio.com/', dependencies=TRUE )"
-RUN Rscript -e "install.packages('devtools', repos='http://cran.rstudio.com/', dependencies=TRUE )"
+RUN Rscript -e "install.packages(c('devtools', 'tidyverse', 'kernlab', 'caret', 'purrr', 'dplyr', 'xgboost', 'randomForest'), repos='http://cran.rstudio.com/', dependencies=TRUE )"
 
 USER appuser
 
