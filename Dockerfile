@@ -49,12 +49,12 @@ RUN apt-get update && \
 
 RUN adduser --disabled-password --gecos '' appuser
 
-WORKDIR /home/appuser
+WORKDIR /tmp
 
 COPY . .
 
-RUN chown -R appuser:appuser /home/appuser
-RUN chmod -R 755 /home/appuser
+RUN chown -R appuser:appuser /tmp
+RUN chmod -R 755 /tmp
 
 RUN rm -f /usr/lib/python3.11/EXTERNALLY-MANAGED
 
