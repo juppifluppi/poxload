@@ -44,4 +44,4 @@ The ```xgboost``` package is included in the repository and loaded via devtools,
 
 ## Please cite
 
-[Kehrein et al. "POxload: Machine Learning Estimates Drug Loadings of Polymeric Micelles." Mol. Pharmaceutics](https://pubs.acs.org/doi/10.1021/acs.molpharmaceut.4c00086)
+[Kehrein et al. "POxload: Machine Learning Estimates Drug Loadings of Polymeric Micelles." Mol. Pharmaceutics 2024](https://pubs.acs.org/doi/10.1021/acs.molpharmaceut.4c00086)
