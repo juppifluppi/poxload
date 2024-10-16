@@ -4,7 +4,7 @@ POxload is a web tool to evaluate the amount of drug solubilized by amphiphilic,
 It is based on predictions for loading efficiency (LE) and loading capacity (LC) using four different thresholds for each parameter (LC 10/20/30/40%, LE 20/40/60/80%).
 The formulations are assumed to be made via thin-film hydration using ethanol as solvent and an elevated temperature of 55 °C during re-hydration.
 
-Details can be found in our [publication](https://pubs.acs.org/doi/10.1021/acs.molpharmaceut.4c00086) or the open-access [preprint](https://doi.org/10.26434/chemrxiv-2024-l5kvc) of it.
+Details can be found in our [publication](https://pubs.acs.org/doi/10.1021/acs.molpharmaceut.4c00086).
 
 ## Web application
 
