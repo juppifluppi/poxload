@@ -9,3 +9,4 @@ numpy
 mordredcommunity
 streamlit-ketcher
 filelock
+pyodbc
