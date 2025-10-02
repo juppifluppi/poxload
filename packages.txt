@@ -11,3 +11,7 @@ r-cran-purrr
 r-cran-dplyr
 r-cran-randomforest
 default-jre-headless
+unixodbc
+unixodbc-dev
+gcc
+g++
