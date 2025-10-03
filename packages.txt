@@ -12,5 +12,6 @@ r-cran-dplyr
 r-cran-randomforest
 default-jre-headless
 build-essential
+libodbc2
 libgdal-dev
 libproj-dev
