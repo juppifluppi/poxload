@@ -13,3 +13,4 @@ r-cran-randomforest
 default-jre-headless
 libodbcinst2
 libgdal-dev
+unixodbc-common
