@@ -10,8 +10,8 @@ thr4_8=36.79055
 .libPaths("./rpackages/")
 library("caret")
 library("randomForest")
-library("kernlab")
-library("proxy")
+#library("kernlab")
+#library("proxy")
 library("xgboost")
 
 load("model_final_LC10.rda")
