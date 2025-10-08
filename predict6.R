@@ -7,18 +7,12 @@ thr4_6=41.08382
 thr4_7=40.04237
 thr4_8=36.79055
 
+.libPaths("./rpackages/")
 library("caret")
 library("randomForest")
 library("kernlab")
 library("devtools")
 library("proxy")
-
-if (require(xgboost, quietly = TRUE)) {
-  library("xgboost")
-}
-if (!require(xgboost, quietly = TRUE)) {
-  devtools::load_all("xgboost",helpers=FALSE,quiet=TRUE,export_all=FALSE)
-}
 
 load("model_final_LC10.rda")
 m1=model

@@ -7,6 +7,7 @@ thr4_6=41.08382
 thr4_7=40.04237
 thr4_8=35.31043
 
+.libPaths("./rpackages/")
 library("caret")
 library("randomForest")
 library("proxy")
