@@ -8,9 +8,9 @@ thr4_7=40.04237
 thr4_8=36.79055
 
 .libPaths("./rpackages/")
+library("xgboost")
 library("caret")
 library("randomForest")
-library("xgboost")
 
 load("model_final_LC10.rda")
 m1=model
