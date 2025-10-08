@@ -222,6 +222,7 @@ if submit_button:
                         result3 = process3.communicate()
                         
                     if choosemodel == 'Final models [AUC = 0.91, ~7 min]':
+                        subprocess.Popen(["Rscript", "predict2.R"])
                         process3 = subprocess.Popen(["Rscript", "predict2.R"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                         result3 = process3.communicate()
                     
