@@ -11,7 +11,6 @@ thr4_8=36.79055
 library("caret")
 library("randomForest")
 library("kernlab")
-library("devtools")
 library("proxy")
 library("xgboost")
 
