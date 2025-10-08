@@ -10,7 +10,6 @@ thr4_8=35.31043
 .libPaths("./rpackages/")
 library("caret")
 library("randomForest")
-library("proxy")
 
 load("model_rdk7rf_LC10.rda")
 m1=model
