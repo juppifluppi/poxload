@@ -10,8 +10,15 @@ thr4_8=36.79055
 .libPaths("./rpackages/")
 #library("xgboost")
 library("caret")
-library("proxy")
-#library("randomForest")
+#library("proxy")
+library("randomForest")
+
+if (require(xgboost, quietly = TRUE)) {
+  library("xgboost")
+}
+if (!require(xgboost, quietly = TRUE)) {
+  devtools::load_all("xgboost",helpers=FALSE,quiet=TRUE,export_all=FALSE)
+}
 
 load("model_final_LC10.rda")
 m1=model
