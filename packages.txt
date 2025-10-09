@@ -1,4 +1,3 @@
 libxrender1
 r-base-core
-r-cran-devtools
 default-jre-headless
