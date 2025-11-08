@@ -18,6 +18,8 @@ from PIL import Image
 import uuid
 from filelock import Timeout, FileLock
 
+st.set_page_config(page_title="POxload")
+
 calc = Calculator(descriptors, ignore_3D=False)
 
 def fingerprint_rdk5(self) -> np.ndarray:
