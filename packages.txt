@@ -1,3 +1,13 @@
 libxrender1
+r-base
+r-base-dev
+r-cran-proxy
 r-base-core
+r-cran-kernlab
+r-cran-devtools
+r-cran-caret
+r-cran-tidyverse
+r-cran-purrr
+r-cran-dplyr
+r-cran-randomforest
 default-jre-headless

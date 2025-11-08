@@ -7,11 +7,11 @@ thr4_6=41.08382
 thr4_7=40.04237
 thr4_8=36.79055
 
-.libPaths("./rpackages/")
-#library("xgboost")
 library("caret")
-#library("proxy")
 library("randomForest")
+library("kernlab")
+library("devtools")
+library("proxy")
 
 if (require(xgboost, quietly = TRUE)) {
   library("xgboost")
