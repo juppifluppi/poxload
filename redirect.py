@@ -4,5 +4,5 @@ st.set_page_config(page_title="POxload")
 
 st.markdown("""
 ## 🚀 We've moved!
-Please visit our new 👉 [address](http://46.62.247.214:8501)!
+Please visit our new 👉 [address](https://kehrein.xyz/poxload/)!
 """)
